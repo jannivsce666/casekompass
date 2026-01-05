@@ -172,6 +172,15 @@ exports.handler = async (event) => {
       form.toString()
     );
 
+    const respPreview = String(resp.body || "").slice(0, 500);
+    console.log("mailgun", {
+      status: resp.statusCode,
+      ok: resp.ok,
+      domain,
+      to: toEmail,
+      preview: respPreview,
+    });
+
     if (!resp.ok) {
       return {
         statusCode: 502,
@@ -180,7 +189,7 @@ exports.handler = async (event) => {
           ok: false,
           error: "E-Mail Versand fehlgeschlagen",
           status: resp.statusCode,
-          detail: String(resp.body || "").slice(0, 500),
+          detail: respPreview,
         }),
       };
     }
@@ -188,9 +197,20 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ok: true }),
+      body: JSON.stringify({
+        ok: true,
+        ...(process.env.DEBUG_MAILGUN === "1"
+          ? {
+              mailgun: {
+                status: resp.statusCode,
+                preview: respPreview,
+              },
+            }
+          : null),
+      }),
     };
   } catch (e) {
+    console.log("contact_error", String(e && e.message ? e.message : e));
     return {
       statusCode: 500,
       headers: { "content-type": "application/json" },
