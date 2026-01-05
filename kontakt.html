@@ -277,41 +277,68 @@
           document.documentElement.classList.add("is-loaded");
         });
 
-        const form = document.getElementById('contact-form');
-        const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+        const form = document.getElementById("contact-form");
+        const statusEl = document.getElementById("contact-status");
+        const overlay = document.getElementById("loading-overlay");
+        const overlayText = document.getElementById("loading-text");
 
-        if (form && submitBtn) {
-          form.addEventListener('submit', async (e) => {
+        function setLoading(isLoading) {
+          document.body.classList.toggle("is-loading", Boolean(isLoading));
+          if (overlay) overlay.style.display = isLoading ? "flex" : "none";
+        }
+
+        if (form && statusEl) {
+          form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const formData = new FormData(form);
-            formData.append("access_key", "bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2");
+            statusEl.style.display = "none";
+            statusEl.textContent = "";
+            if (overlayText) overlayText.textContent = "Bitte einen Moment warten.";
 
-            const originalText = submitBtn.textContent;
-
-            submitBtn.textContent = "Sending...";
-            submitBtn.disabled = true;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : "";
+            if (submitBtn) {
+              submitBtn.textContent = "Senden…";
+              submitBtn.disabled = true;
+            }
+            setLoading(true);
 
             try {
+              const formData = new FormData(form);
+              formData.append("access_key", "bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2");
+
               const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
-                body: formData
+                body: formData,
               });
 
-              const data = await response.json();
+              const data = await response.json().catch(() => ({}));
 
-              if (response.ok) {
-                alert("Success! Your message has been sent.");
-                form.reset();
-              } else {
-                alert("Error: " + data.message);
+              if (!response.ok || !data || data.success !== true) {
+                setLoading(false);
+                statusEl.style.display = "block";
+                statusEl.textContent = (data && data.message) ? String(data.message) : "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.";
+                if (submitBtn) {
+                  submitBtn.textContent = originalText;
+                  submitBtn.disabled = false;
+                }
+                return;
               }
 
-            } catch (error) {
-              alert("Something went wrong. Please try again.");
-            } finally {
-              submitBtn.textContent = originalText;
-              submitBtn.disabled = false;
+              if (overlayText) overlayText.textContent = "E‑Mail erfolgreich versendet. Weiterleitung …";
+              form.reset();
+
+              setTimeout(() => {
+                window.location.href = "/#top";
+              }, 1400);
+            } catch {
+              setLoading(false);
+              statusEl.style.display = "block";
+              statusEl.textContent = "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.";
+              if (submitBtn) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+              }
             }
           });
         }
