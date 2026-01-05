@@ -327,7 +327,11 @@
                 return;
               }
 
-              if (overlayText) overlayText.textContent = "E‑Mail erfolgreich versendet. Weiterleitung …";
+              if (overlayText) {
+                const mg = json && json.mailgun ? json.mailgun : null;
+                const mgHint = mg && (mg.preview || mg.status) ? ` (Mailgun: ${mg.preview ? String(mg.preview).trim() : "Status " + String(mg.status)})` : "";
+                overlayText.textContent = `E‑Mail erfolgreich versendet. Weiterleitung …${mgHint}`;
+              }
               form.reset();
 
               setTimeout(() => {
