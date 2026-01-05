@@ -1457,6 +1457,10 @@ body.is-loading .loading-overlay {
     grid-template-columns: 260px 1fr;
     gap: 26px;
   }
+
+  .about.about--no-media {
+    grid-template-columns: 1fr;
+  }
 }
 
 .about-media {
