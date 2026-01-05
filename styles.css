@@ -104,6 +104,33 @@ html {
   }
 }
 
+/* Scroll reveal for panels/cards on the way down */
+.reveal-scroll {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+  transition:
+    opacity 560ms var(--ease-out),
+    transform 560ms var(--ease-out),
+    filter 560ms var(--ease-out);
+}
+
+.reveal-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-scroll {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 .sprite-sheet {
   position: absolute;
   width: 0;
