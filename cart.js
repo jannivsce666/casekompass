@@ -3,30 +3,23 @@
 
   /**
    * Catalog: prices are end consumer prices incl. VAT (as provided).
-   * For the Pro Toolkit we model two SKUs (Privat / Pro).
    */
   const CATALOG = {
     startklar: {
       id: "startklar",
-      name: "Startklar – Soforthilfe & Orientierung",
+      name: "Startklar – Checklisten & Vorlagen",
       price: 24.9,
       url: "/paket-startklar.html",
     },
     "care-plan": {
       id: "care-plan",
-      name: "Care-Plan – Struktur für 4–8 Wochen",
-      price: 69.9,
+      name: "CarePlan – Maßgeschneiderter Fallplan",
+      price: 149.0,
       url: "/paket-care-plan.html",
     },
-    "pro-toolkit-privat": {
-      id: "pro-toolkit-privat",
-      name: "Pro Toolkit – Vorlagenbibliothek & System (Privat)",
-      price: 169.0,
-      url: "/paket-pro-toolkit.html",
-    },
-    "pro-toolkit-pro": {
-      id: "pro-toolkit-pro",
-      name: "Pro Toolkit – Vorlagenbibliothek & System (Pro/Lizenz)",
+    "careplan-plus": {
+      id: "careplan-plus",
+      name: "CarePlan Plus – Plan + Beratung",
       price: 299.0,
       url: "/paket-pro-toolkit.html",
     },

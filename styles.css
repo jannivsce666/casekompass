@@ -1536,6 +1536,26 @@ body.is-loading .loading-overlay {
   color: var(--muted);
 }
 
+.bullets--checks {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.bullets--checks li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.bullets--checks li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--brand);
+  font-weight: 900;
+}
+
 .quote {
   padding: 16px;
 }
