@@ -1,6 +1,3 @@
 [build]
   publish = "."
   command = "echo 'No build step'"
-
-[functions]
-  directory = "netlify/functions"
