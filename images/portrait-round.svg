@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="900" viewBox="0 0 900 900" role="img" aria-label="Portrait Platzhalter">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#357d9a"/>
+    </linearGradient>
+    <radialGradient id="hl" cx="35%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="450" cy="450" r="440" fill="url(#bg)"/>
+  <circle cx="450" cy="450" r="440" fill="url(#hl)"/>
+
+  <!-- simple silhouette -->
+  <circle cx="450" cy="380" r="150" fill="#ffffff" opacity="0.90"/>
+  <path d="M160 820c40-180 210-280 290-280s250 100 290 280" fill="#ffffff" opacity="0.90"/>
+
+  <!-- subtle border ring -->
+  <circle cx="450" cy="450" r="438" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="4"/>
+</svg>

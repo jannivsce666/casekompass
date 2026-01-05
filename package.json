@@ -1,0 +1,10 @@
+{
+  "name": "casekompass",
+  "private": true,
+  "devDependencies": {
+    "netlify-cli": "^23.13.0"
+  },
+  "scripts": {
+    "dev": "netlify dev"
+  }
+}

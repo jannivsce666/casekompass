@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Kompass">
+  <title>Kompass</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#93c5fd" />
+      <stop offset="1" stop-color="#5b7286" />
+    </linearGradient>
+    <style>
+      .s { fill: none; stroke: #0b1220; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+      .f { fill: #0b1220; }
+    </style>
+  </defs>
+
+  <!-- Background (top light blue, bottom grey-blue) -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" />
+
+  <!-- Outer ring -->
+  <circle class="s" cx="32" cy="32" r="26" />
+  <circle class="s" cx="32" cy="32" r="18" opacity="0.25" />
+
+  <!-- Needle (rotated to point North-East) -->
+  <g transform="rotate(-45 32 32)">
+    <path class="f" d="M32 14 40 34 32 30 24 34 32 14Z" />
+    <path class="f" d="M32 50 24 30 32 34 40 30 32 50Z" opacity="0.5" />
+  </g>
+
+  <!-- Center dot -->
+  <circle class="f" cx="32" cy="32" r="3" />
+
+  <!-- Cardinal marks -->
+  <path class="s" d="M32 6v4" />
+  <path class="s" d="M32 54v4" />
+  <path class="s" d="M6 32h4" />
+  <path class="s" d="M54 32h4" />
+</svg>

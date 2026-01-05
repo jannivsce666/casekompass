@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" role="img" aria-label="Hintergrund-Sprite-Pattern">
+  <defs>
+    <pattern id="p" width="240" height="240" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.18">
+        <!-- Document -->
+        <g transform="translate(24 28)">
+          <path d="M32 18h88l30 30v116H32z"/>
+          <path d="M120 18v34h34"/>
+          <path d="M52 78h92"/>
+          <path d="M52 104h84"/>
+          <path d="M52 130h66"/>
+        </g>
+
+        <!-- Checklist -->
+        <g transform="translate(132 134)">
+          <path d="M18 22h96a18 18 0 0 1 18 18v116H18V22z" opacity="0.95"/>
+          <path d="M44 66l16 16l28-34"/>
+          <path d="M44 104l16 16l28-34" opacity="0.9"/>
+          <path d="M44 142l16 16l28-34" opacity="0.85"/>
+        </g>
+
+        <!-- Calendar -->
+        <g transform="translate(28 144)">
+          <path d="M24 44h132v120H24z"/>
+          <path d="M24 74h132"/>
+          <path d="M52 24v28"/>
+          <path d="M128 24v28"/>
+          <path d="M54 102h36" opacity="0.9"/>
+          <path d="M54 132h84" opacity="0.85"/>
+        </g>
+
+        <!-- Network -->
+        <g transform="translate(144 26)">
+          <circle cx="36" cy="46" r="16"/>
+          <circle cx="132" cy="46" r="16"/>
+          <circle cx="84" cy="132" r="16"/>
+          <path d="M50 58l22 22"/>
+          <path d="M118 58l-22 22"/>
+          <path d="M84 116v-22" opacity="0.9"/>
+        </g>
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#p)"/>
+</svg>
