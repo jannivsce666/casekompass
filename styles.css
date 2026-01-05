@@ -679,10 +679,6 @@ h1 {
   overflow: hidden;
 }
 
-.panel--padded {
-  padding: 16px 18px;
-}
-
 .panel::before {
   content: "";
   position: absolute;
