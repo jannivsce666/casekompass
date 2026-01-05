@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kontakt Case Management Heidenheim – Johannes Piperidis | casekompass.de</title>
+    <title>Kontakt Case Management deutschlandweit – Johannes Piperidis | casekompass.de</title>
     <meta
       name="description"
       content="Kontakt für Case Management deutschlandweit (telefonisch/online) und in der Region Heidenheim. Johannes Piperidis – Anfrage per E‑Mail/Telefon oder über das Formular."
@@ -13,7 +13,7 @@
     <link rel="icon" href="/images/logo.png" type="image/png" />
     <meta property="og:site_name" content="casekompass.de" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Kontakt Case Management Heidenheim – Johannes Piperidis | casekompass.de" />
+    <meta property="og:title" content="Kontakt Case Management deutschlandweit – Johannes Piperidis | casekompass.de" />
     <meta
       property="og:description"
       content="Kontakt für Case Management deutschlandweit (telefonisch/online) und in der Region Heidenheim – Anfrage per E‑Mail/Telefon oder Formular."
@@ -21,7 +21,7 @@
     <meta property="og:url" content="https://casekompass.de/kontakt.html" />
     <meta property="og:image" content="https://casekompass.de/images/logo.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kontakt Case Management Heidenheim – Johannes Piperidis | casekompass.de" />
+    <meta name="twitter:title" content="Kontakt Case Management deutschlandweit – Johannes Piperidis | casekompass.de" />
     <meta
       name="twitter:description"
       content="Kontakt für Case Management deutschlandweit (telefonisch/online) und in der Region Heidenheim – Anfrage per E‑Mail/Telefon oder Formular."
@@ -119,7 +119,7 @@
             </h1>
             <p class="lead">
               Nutzen Sie das Formular für Beratung, Fallsteuerung oder Koordination. Je präziser die Angaben,
-              desto schneller kann ich sinnvoll reagieren.
+              desto schneller ist eine sinnvolle Rückmeldung möglich.
             </p>
           </div>
         </div>
@@ -130,7 +130,7 @@
           <div class="section-head">
             <h2>Kontakt</h2>
             <p>
-              Sie können mich alternativ auch direkt per E‑Mail oder Telefon erreichen.
+              Sie erreichen Johannes Piperidis alternativ auch direkt per E‑Mail oder Telefon.
             </p>
           </div>
 
@@ -318,7 +318,7 @@
               if (!response.ok || !data || data.success !== true) {
                 setLoading(false);
                 statusEl.style.display = "block";
-                statusEl.textContent = (data && data.message) ? String(data.message) : "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.";
+                statusEl.textContent = (data && data.message) ? String(data.message) : "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder nehmen Sie direkt Kontakt auf.";
                 if (submitBtn) {
                   submitBtn.textContent = originalText;
                   submitBtn.disabled = false;
@@ -335,7 +335,7 @@
             } catch {
               setLoading(false);
               statusEl.style.display = "block";
-              statusEl.textContent = "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.";
+              statusEl.textContent = "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder nehmen Sie direkt Kontakt auf.";
               if (submitBtn) {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
