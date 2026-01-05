@@ -1,5 +1,22 @@
 const https = require("https");
 
+function pickEnv(keys) {
+  for (const key of keys) {
+    const value = process.env[key];
+    if (value) return { key, value };
+  }
+  return { key: null, value: null };
+}
+
+function looksLikeMailgunHttpApiKey(value) {
+  // Heuristic only (do not hard-fail): Mailgun HTTP API keys are commonly
+  // prefixed with "key-", but some accounts show a hex-with-dashes token.
+  const v = String(value || "").trim();
+  if (!v) return false;
+  if (v.startsWith("key-")) return true;
+  return /^[a-f0-9]{32}-[a-f0-9]{8}-[a-f0-9]{8}$/i.test(v);
+}
+
 function postForm(url, headers, body) {
   return new Promise((resolve, reject) => {
     const req = https.request(
@@ -38,7 +55,8 @@ exports.handler = async (event) => {
     };
   }
 
-  const apiKey = process.env.MAILGUN_API_KEY || process.env.API_KEY;
+  const pickedKey = pickEnv(["MAILGUN_API_KEY", "API_KEY"]);
+  const apiKey = pickedKey.value;
   const domain = process.env.MAILGUN_DOMAIN;
   const apiBase = (process.env.MAILGUN_API_BASE || "https://api.mailgun.net").replace(/\/$/, "");
 
@@ -57,6 +75,10 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         ok: false,
         error: "Missing MAILGUN_API_KEY/API_KEY or MAILGUN_DOMAIN",
+        missing: {
+          MAILGUN_DOMAIN: !domain,
+          MAILGUN_API_KEY_or_API_KEY: !apiKey,
+        },
       }),
     };
   }
@@ -95,7 +117,12 @@ exports.handler = async (event) => {
         ok: resp.ok,
         status: resp.statusCode,
         response: String(resp.body || "").slice(0, 2000),
-        used: { apiBase, domain, to },
+        used: { apiBase, domain, to, apiKeyEnv: pickedKey.key },
+        warnings: looksLikeMailgunHttpApiKey(apiKey)
+          ? []
+          : [
+              "The provided key does not look like a Mailgun HTTP API key (usually starts with 'key-'). Make sure you're using the Mailgun API key (HTTP), not an SMTP password or other token.",
+            ],
       }),
     };
   } catch (e) {

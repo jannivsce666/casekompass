@@ -1,5 +1,20 @@
 const https = require("https");
 
+function pickEnv(keys) {
+  for (const key of keys) {
+    const value = process.env[key];
+    if (value) return { key, value };
+  }
+  return { key: null, value: null };
+}
+
+function looksLikeMailgunHttpApiKey(value) {
+  const v = String(value || "").trim();
+  if (!v) return false;
+  if (v.startsWith("key-")) return true;
+  return /^[a-f0-9]{32}-[a-f0-9]{8}-[a-f0-9]{8}$/i.test(v);
+}
+
 function decodeForm(body) {
   const params = new URLSearchParams(body || "");
   const result = {};
@@ -95,7 +110,8 @@ exports.handler = async (event) => {
       };
     }
 
-    const apiKey = process.env.MAILGUN_API_KEY || process.env.API_KEY;
+    const pickedKey = pickEnv(["MAILGUN_API_KEY", "API_KEY"]);
+    const apiKey = pickedKey.value;
     const domain = process.env.MAILGUN_DOMAIN;
     const toEmail = process.env.CONTACT_TO_EMAIL;
     const apiBase = (process.env.MAILGUN_API_BASE || "https://api.mailgun.net").replace(/\/$/, "");
@@ -107,6 +123,11 @@ exports.handler = async (event) => {
         body: JSON.stringify({
           ok: false,
           error: "Server not configured (MAILGUN_API_KEY or API_KEY / MAILGUN_DOMAIN / CONTACT_TO_EMAIL)",
+          missing: {
+            MAILGUN_DOMAIN: !domain,
+            CONTACT_TO_EMAIL: !toEmail,
+            MAILGUN_API_KEY_or_API_KEY: !apiKey,
+          },
         }),
       };
     }
@@ -204,6 +225,12 @@ exports.handler = async (event) => {
               mailgun: {
                 status: resp.statusCode,
                 preview: respPreview,
+                used: { apiBase, domain, to: toEmail, apiKeyEnv: pickedKey.key },
+                warnings: looksLikeMailgunHttpApiKey(apiKey)
+                  ? []
+                  : [
+                      "The provided key does not look like a Mailgun HTTP API key (usually starts with 'key-'). Make sure you're using the Mailgun API key (HTTP), not an SMTP password or other token.",
+                    ],
               },
             }
           : null),
