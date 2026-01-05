@@ -57,7 +57,7 @@ exports.handler = async (event) => {
 
   const pickedKey = pickEnv(["MAILGUN_API_KEY", "API_KEY"]);
   const apiKey = pickedKey.value;
-  const domain = process.env.MAILGUN_DOMAIN;
+  const domain = process.env.MAILGUN_SANDBOX_DOMAIN || process.env.MAILGUN_DOMAIN;
   const apiBase = (process.env.MAILGUN_API_BASE || "https://api.mailgun.net").replace(/\/$/, "");
 
   // Defaults match the Java sample as closely as possible
@@ -74,9 +74,9 @@ exports.handler = async (event) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         ok: false,
-        error: "Missing MAILGUN_API_KEY/API_KEY or MAILGUN_DOMAIN",
+        error: "Missing MAILGUN_API_KEY/API_KEY or MAILGUN_SANDBOX_DOMAIN/MAILGUN_DOMAIN",
         missing: {
-          MAILGUN_DOMAIN: !domain,
+          MAILGUN_SANDBOX_DOMAIN_or_MAILGUN_DOMAIN: !domain,
           MAILGUN_API_KEY_or_API_KEY: !apiKey,
         },
       }),

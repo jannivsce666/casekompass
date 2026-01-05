@@ -112,7 +112,7 @@ exports.handler = async (event) => {
 
     const pickedKey = pickEnv(["MAILGUN_API_KEY", "API_KEY"]);
     const apiKey = pickedKey.value;
-    const domain = process.env.MAILGUN_DOMAIN;
+    const domain = process.env.MAILGUN_SENDING_DOMAIN || process.env.MAILGUN_DOMAIN;
     const toEmail = process.env.CONTACT_TO_EMAIL;
     const apiBase = (process.env.MAILGUN_API_BASE || "https://api.mailgun.net").replace(/\/$/, "");
 
@@ -122,9 +122,9 @@ exports.handler = async (event) => {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           ok: false,
-          error: "Server not configured (MAILGUN_API_KEY or API_KEY / MAILGUN_DOMAIN / CONTACT_TO_EMAIL)",
+          error: "Server not configured (MAILGUN_API_KEY or API_KEY / MAILGUN_SENDING_DOMAIN or MAILGUN_DOMAIN / CONTACT_TO_EMAIL)",
           missing: {
-            MAILGUN_DOMAIN: !domain,
+            MAILGUN_SENDING_DOMAIN_or_MAILGUN_DOMAIN: !domain,
             CONTACT_TO_EMAIL: !toEmail,
             MAILGUN_API_KEY_or_API_KEY: !apiKey,
           },
