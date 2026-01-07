@@ -61,6 +61,18 @@
         background: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(10px);
       }
+
+      .loading-illustration {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        margin: 0 auto 14px;
+        background-image: url('/images/logo.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: var(--shadow-sm);
+      }
     </style>
   </head>
   <body>
@@ -265,6 +277,7 @@
 
     <div class="loading-overlay" id="loading-overlay" aria-live="polite" aria-atomic="true" role="status">
       <div class="loading-box panel">
+        <div class="loading-illustration" aria-hidden="true"></div>
         <div class="loading-spinner" aria-hidden="true"></div>
         <h3 class="panel-title" style="justify-content:center;">Anfrage wird gesendet …</h3>
         <p class="small" id="loading-text" style="margin-top: 10px;">Bitte einen Moment warten.</p>
@@ -406,12 +419,12 @@
                 return;
               }
 
-              if (overlayText) overlayText.textContent = "Anfrage erfolgreich versendet. Weiterleitung …";
+              if (overlayText) overlayText.textContent = "Anfrage erfolgreich versendet. Weiterleitung zur Startseite …";
               form.reset();
 
               setTimeout(() => {
                 window.location.href = "/#top";
-              }, 1400);
+              }, 1200);
             } catch {
               setLoading(false);
               statusEl.style.display = "block";
