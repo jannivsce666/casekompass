@@ -38,6 +38,30 @@
     <script defer src="/cart.js"></script>
     <script defer src="/effects.js"></script>
     <script type="module" src="/firebase.js"></script>
+
+    <style>
+      .tp-when {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 860px) {
+        .tp-when {
+          grid-template-columns: 1fr 1fr;
+          align-items: end;
+        }
+      }
+
+      .tp-summary {
+        margin-top: 10px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(10px);
+      }
+    </style>
   </head>
   <body>
     <svg class="sprite-sheet" aria-hidden="true" focusable="false">
@@ -117,7 +141,7 @@
           <div class="section-head">
             <h2>Termin anfragen</h2>
             <p>
-              Die folgenden Termine sind Vorschläge. Bei Bedarf schlage ich Alternativen vor.
+              Wählen Sie einen Tag und eine Uhrzeit. Bei Bedarf schlage ich Alternativen vor.
             </p>
           </div>
 
@@ -154,14 +178,27 @@
               </div>
 
               <div class="form-group" aria-label="Termin auswählen">
-                <label>
-                  <span>Wunschtermin</span>
-                  <select name="wunschtermin" id="slot-select" required aria-label="Wunschtermin auswählen">
-                    <option value="">Bitte auswählen …</option>
-                  </select>
-                </label>
+                <div class="tp-when">
+                  <label>
+                    <span>Tag</span>
+                    <input name="wunschtermin_datum" id="tp-date" type="date" required aria-label="Tag auswählen" />
+                  </label>
 
-                <div class="cards" id="slot-suggestions" aria-label="Terminvorschläge" style="margin-top: 14px;"></div>
+                  <label>
+                    <span>Uhrzeit</span>
+                    <input
+                      name="wunschtermin_uhrzeit"
+                      id="tp-time"
+                      type="time"
+                      step="900"
+                      required
+                      aria-label="Uhrzeit auswählen"
+                    />
+                  </label>
+                </div>
+
+                <input type="hidden" name="wunschtermin" id="tp-iso" value="" />
+                <div id="tp-summary" class="tp-summary small" aria-live="polite">Bitte Tag und Uhrzeit wählen.</div>
               </div>
 
               <fieldset class="form-group" aria-label="Art des Gesprächs">
@@ -245,8 +282,10 @@
           document.documentElement.classList.add("is-loaded");
         });
 
-        const slotSelect = document.getElementById("slot-select");
-        const suggestionWrap = document.getElementById("slot-suggestions");
+        const dateEl = document.getElementById("tp-date");
+        const timeEl = document.getElementById("tp-time");
+        const isoEl = document.getElementById("tp-iso");
+        const summaryEl = document.getElementById("tp-summary");
 
         function pad2(n) {
           return String(n).padStart(2, "0");
@@ -262,89 +301,42 @@
           return `${weekday}, ${day}.${month}.${year} – ${hours}:${minutes}`;
         }
 
-        function buildSlots() {
-          const slots = [];
+        function toLocalIso(dateStr, timeStr) {
+          if (!dateStr || !timeStr) return "";
+          // Keep as local ISO-ish string for email readability.
+          return `${dateStr}T${timeStr}`;
+        }
+
+        function syncWhenUI() {
+          const dateStr = dateEl && dateEl.value ? String(dateEl.value) : "";
+          const timeStr = timeEl && timeEl.value ? String(timeEl.value) : "";
+          const iso = toLocalIso(dateStr, timeStr);
+          if (isoEl) isoEl.value = iso;
+
+          if (!summaryEl) return;
+          if (!dateStr || !timeStr) {
+            summaryEl.textContent = "Bitte Tag und Uhrzeit wählen.";
+            return;
+          }
+
+          const asDate = new Date(`${dateStr}T${timeStr}`);
+          summaryEl.textContent = `Ihr Wunschtermin: ${formatLabel(asDate)}`;
+        }
+
+        // Set minimum date to tomorrow
+        try {
           const now = new Date();
-          const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-          const times = [
-            { h: 9, m: 0 },
-            { h: 10, m: 0 },
-            { h: 11, m: 0 },
-            { h: 13, m: 0 },
-            { h: 14, m: 0 },
-            { h: 15, m: 0 },
-            { h: 16, m: 0 },
-          ];
-
-          let daysAdded = 0;
-          let cursor = new Date(start);
-
-          while (daysAdded < 14) {
-            const day = cursor.getDay();
-            const isWeekend = day === 0 || day === 6;
-            if (!isWeekend) {
-              for (const t of times) {
-                const d = new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate(), t.h, t.m);
-                slots.push(d);
-              }
-              daysAdded += 1;
-            }
-            cursor.setDate(cursor.getDate() + 1);
-          }
-
-          return slots;
+          const min = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+          const minStr = `${min.getFullYear()}-${pad2(min.getMonth() + 1)}-${pad2(min.getDate())}`;
+          if (dateEl) dateEl.min = minStr;
+          if (timeEl && !timeEl.value) timeEl.value = "09:00";
+        } catch {
+          // ignore
         }
 
-        function renderSlotOptions() {
-          if (!slotSelect) return;
-
-          const slots = buildSlots();
-          for (const d of slots) {
-            const value = d.toISOString();
-            const label = formatLabel(d);
-
-            const opt = document.createElement("option");
-            opt.value = value;
-            opt.textContent = label;
-            slotSelect.appendChild(opt);
-          }
-
-          if (suggestionWrap) {
-            const sample = slots.slice(0, 8);
-            suggestionWrap.innerHTML = "";
-
-            for (const d of sample) {
-              const card = document.createElement("article");
-              card.className = "card panel";
-
-              const title = document.createElement("h3");
-              title.className = "panel-title";
-              const span = document.createElement("span");
-              span.textContent = formatLabel(d);
-              title.appendChild(span);
-
-              const actions = document.createElement("div");
-              actions.className = "hero-actions";
-              actions.style.marginTop = "12px";
-
-              const btn = document.createElement("button");
-              btn.type = "button";
-              btn.className = "btn btn-secondary";
-              btn.textContent = "Diesen Termin wählen";
-              btn.addEventListener("click", () => {
-                slotSelect.value = d.toISOString();
-                slotSelect.focus();
-              });
-
-              actions.appendChild(btn);
-              card.appendChild(title);
-              card.appendChild(actions);
-              suggestionWrap.appendChild(card);
-            }
-          }
-        }
-
-        renderSlotOptions();
+        if (dateEl) dateEl.addEventListener("change", syncWhenUI);
+        if (timeEl) timeEl.addEventListener("change", syncWhenUI);
+        syncWhenUI();
 
         const form = document.getElementById("appointment-form");
         const statusEl = document.getElementById("appointment-status");
@@ -389,8 +381,10 @@
               formData.append("access_key", "bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2");
               formData.append("subject", "Terminanfrage – casekompass.de");
 
-              if (slotSelect && slotSelect.value) {
-                const selected = new Date(slotSelect.value);
+              const dateStr = dateEl && dateEl.value ? String(dateEl.value) : "";
+              const timeStr = timeEl && timeEl.value ? String(timeEl.value) : "";
+              if (dateStr && timeStr) {
+                const selected = new Date(`${dateStr}T${timeStr}`);
                 formData.append("wunschtermin_label", formatLabel(selected));
               }
 
