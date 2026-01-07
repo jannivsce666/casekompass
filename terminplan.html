@@ -416,30 +416,6 @@
                 return;
               }
 
-              // Store to Realtime Database for the profile page (if logged in)
-              try {
-                const fb = window.CasekompassFirebase;
-                const user = fb && fb.auth ? fb.auth.currentUser : null;
-                if (fb && user) {
-                  const profile = await fb.loadUserProfile(user.uid);
-                  const okProfile = profile && profile.privacyConsent === true && profile.fullName && profile.phone && profile.street && profile.postalCode && profile.city;
-                  if (!okProfile) throw new Error("profile_incomplete");
-
-                  const selectedIso = slotSelect && slotSelect.value ? String(slotSelect.value) : "";
-                  const selectedLabel = (selectedIso ? formatLabel(new Date(selectedIso)) : "");
-                  const talkTypeEl = form.querySelector('input[name="gespraech"]:checked');
-                  const talkType = talkTypeEl ? String(talkTypeEl.value) : "";
-                  await fb.addUserAppointment(user.uid, {
-                    slotIso: selectedIso,
-                    slotLabel: selectedLabel,
-                    type: talkType,
-                    status: "requested",
-                  });
-                }
-              } catch {
-                // DB store is best-effort; do not block sending.
-              }
-
               if (overlayText) overlayText.textContent = "Anfrage erfolgreich versendet. Weiterleitung …";
               form.reset();
 

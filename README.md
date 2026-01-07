@@ -25,21 +25,6 @@ Die Hero-Bilder liegen in `images/` (SVG Platzhalter). Du kannst sie durch eigen
 
 Konfiguration: `netlify.toml`
 
-## Firebase (Google Login + Realtime Database)
+## Firebase
 
-Diese Website nutzt Firebase direkt im Browser (ohne Build Step) via [firebase.js](firebase.js).
-
-### In der Firebase Console aktivieren
-
-- **Authentication** → **Sign-in method** → **Google** aktivieren
-- **Realtime Database** anlegen
-
-### Realtime Database Rules
-
-Setze Regeln so, dass Nutzer nur ihre eigenen Daten lesen/schreiben können.
-Empfohlene Basisregeln liegen in [firebase-realtimedb-rules.json](firebase-realtimedb-rules.json).
-
-### Wichtige Hinweise
-
-- Bestellungen sind aktuell eine **E-Mail-Anfrage (mailto)**. Wenn ein Nutzer angemeldet ist und der Datenschutz bestätigt wurde, wird diese Anfrage zusätzlich im Profil gespeichert.
-- Terminanfragen werden (bei Anmeldung) zusätzlich im Profil gespeichert.
+Aktuell ist **kein Login-System** aktiv. Optional wird Firebase nur für technische Funktionen (z. B. Analytics, falls aktiv) direkt im Browser (ohne Build Step) via [firebase.js](firebase.js) eingebunden.

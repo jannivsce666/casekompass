@@ -241,45 +241,7 @@
       const mailBody = `Hallo,\n\nich möchte folgende Download-Pakete bestellen:\n\n${body}\n\nGesamt: ${formatEUR(total)}\n\nBitte senden Sie mir die weiteren Schritte/Download-Infos.\n\nViele Grüße`;
       checkoutLink.href = `mailto:casekompass@gmx.de?subject=${encodeURIComponent("Bestellung – casekompass.de")}&body=${encodeURIComponent(mailBody)}`;
 
-      // Best-effort: store purchase intent in Firebase (if logged in + privacy consent checked)
-      checkoutLink.addEventListener(
-        "click",
-        () => {
-          try {
-            const fb = window.CasekompassFirebase;
-            const user = fb && fb.auth ? fb.auth.currentUser : null;
-            const privacy = document.getElementById("checkout-privacy");
-            const privacyOk = !privacy || privacy.checked === true;
-            if (!fb || !user || !privacyOk) return;
-
-            const payload = {
-              source: "mailto",
-              total,
-              totalLabel: formatEUR(total),
-              lines: lines.map((l) => ({
-                id: l.id,
-                name: l.name,
-                qty: l.qty,
-                price: l.price,
-                lineTotal: l.lineTotal,
-                lineTotalLabel: formatEUR(l.lineTotal),
-              })),
-            };
-
-            // Fire-and-forget (but ensure profile is complete + privacy consent is stored)
-            Promise.resolve(fb.loadUserProfile(user.uid))
-              .then((profile) => {
-                const okProfile = profile && profile.privacyConsent === true && profile.fullName && profile.phone && profile.street && profile.postalCode && profile.city;
-                if (!okProfile) return;
-                return fb.addUserPurchase(user.uid, payload);
-              })
-              .catch(() => {});
-          } catch {
-            // ignore
-          }
-        },
-        { once: true }
-      );
+      // Note: no Firebase login storage (orders are mailto requests)
     }
   }
 
