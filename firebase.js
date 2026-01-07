@@ -21,6 +21,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBMND2wIYLxKxMRGAWbio4bYcVB9k0h7do",
   authDomain: "casekompass.firebaseapp.com",
+  databaseURL: "https://casekompass-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "casekompass",
   storageBucket: "casekompass.firebasestorage.app",
   messagingSenderId: "791049710344",
