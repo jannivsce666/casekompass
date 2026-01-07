@@ -2070,6 +2070,11 @@ body.is-loading .loading-overlay {
   line-height: 1.65;
 }
 
+.qual-card {
+  border-color: rgba(13, 148, 136, 0.26);
+  box-shadow: var(--shadow-lg);
+}
+
 @media (min-width: 980px) {
   .faq-item p {
     font-size: 15px;
