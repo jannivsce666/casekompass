@@ -950,6 +950,7 @@ h1 {
 
 .hero-media--single {
   padding: 0;
+  height: 420px;
 }
 
 .hero-image {
@@ -963,6 +964,13 @@ h1 {
 .hero-media.panel {
   border-radius: 22px;
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  background: transparent;
+}
+
+/* Remove light-surface panel sheen for image-only hero media */
+.hero-media.panel::before,
+.hero-media.panel::after {
+  display: none;
 }
 
 .panel {
@@ -1143,6 +1151,7 @@ h1 {
 
   .hero-media--single {
     min-height: 520px;
+    height: 520px;
   }
 }
 
