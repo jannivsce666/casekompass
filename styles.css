@@ -114,6 +114,7 @@ html {
     opacity 560ms var(--ease-out),
     transform 560ms var(--ease-out),
     filter 560ms var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal-scroll.is-visible {
@@ -128,6 +129,47 @@ html {
     transform: none;
     filter: none;
     transition: none;
+  }
+}
+
+/* Letter-by-letter reveal (opt-in via [data-seq-text] or automatic on .brand-name) */
+.seq-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.seq-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px) scale(0.985);
+  filter: blur(6px);
+  will-change: transform, opacity, filter;
+}
+
+.is-loaded .seq-text span {
+  animation: seq-letter-in 560ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 22ms);
+}
+
+@keyframes seq-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seq-text span {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
   }
 }
 
@@ -358,6 +400,16 @@ code {
   bottom: 0;
 }
 
+.nav-toggle-lines::before,
+.nav-toggle-lines::after {
+  transition:
+    transform 240ms var(--ease-out),
+    top 240ms var(--ease-out),
+    bottom 240ms var(--ease-out),
+    box-shadow 240ms var(--ease-out),
+    opacity 240ms var(--ease-out);
+}
+
 .nav-link {
   font-size: 13px;
   font-weight: 700;
@@ -501,7 +553,7 @@ code {
   }
 
   .nav-links {
-    display: none;
+    display: flex;
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
@@ -516,20 +568,60 @@ code {
     align-items: stretch;
     gap: 6px;
     z-index: 20;
+
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity 240ms var(--ease-out),
+      transform 240ms var(--ease-out),
+      visibility 0ms linear 240ms;
   }
 
   .nav[data-open="true"] .nav-links {
-    display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity 240ms var(--ease-out),
+      transform 240ms var(--ease-out),
+      visibility 0ms;
   }
 
   .nav[data-open="true"] .nav-toggle {
     box-shadow: var(--ring);
   }
 
+  .nav[data-open="true"] .nav-toggle-lines::before {
+    top: 5px;
+    transform: rotate(45deg);
+    box-shadow: none;
+  }
+
+  .nav[data-open="true"] .nav-toggle-lines::after {
+    bottom: 5px;
+    transform: rotate(-45deg);
+  }
+
   .nav-links .nav-link {
     width: 100%;
     justify-content: flex-start;
     padding: 12px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @media (max-width: 760px) {
+    .nav-links {
+      transition: none;
+    }
+
+    .nav-toggle-lines::before,
+    .nav-toggle-lines::after {
+      transition: none;
+    }
   }
 }
 
