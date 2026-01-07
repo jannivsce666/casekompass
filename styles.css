@@ -950,14 +950,14 @@ h1 {
 
 .hero-media--single {
   padding: 0;
-  min-height: 0;
-  height: auto;
+  height: 420px;
 }
 
 .hero-image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-media.panel {
@@ -1142,7 +1142,7 @@ h1 {
   }
 
   .hero-media--single {
-    min-height: 0;
+    height: 520px;
   }
 }
 
