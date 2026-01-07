@@ -62,7 +62,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260107-3" />
+    <link rel="stylesheet" href="styles.css?v=20260107-4" />
     <script defer src="cart.js"></script>
     <script defer src="effects.js"></script>
     <script type="module" src="firebase.js"></script>
@@ -147,17 +147,25 @@
     </header>
 
     <main id="top" class="container">
-      <section class="hero" aria-label="Hero">
+      <section class="hero hero--home" aria-label="Hero">
         <div class="hero-bg" aria-hidden="true">
         </div>
         <div class="hero-bg-overlay" aria-hidden="true"></div>
         <div class="hero-inner">
           <div class="hero-copy reveal reveal--1">
           <p class="pill">Case Management • deutschlandweit (telefonisch/online) • Sitz Region Heidenheim</p>
-          <h1>
-            Case Management deutschlandweit –
-            <span class="accent" data-seq-text>mit Struktur, Plan und Umsetzung</span>
-          </h1>
+
+          <div class="hero-head">
+            <div class="hero-head-text">
+              <h1>
+                Case Management deutschlandweit –
+                <span class="accent" data-seq-text>mit Struktur, Plan und Umsetzung</span>
+              </h1>
+            </div>
+            <div class="hero-head-media" aria-label="Hero-Bild">
+              <img class="hero-head-image" src="images/hero.png" alt="Hero-Bild von casekompass.de" />
+            </div>
+          </div>
           <p class="sublead">
             <strong>Mein Name ist Johannes Piperidis</strong> (Inhaber von <strong>casekompass.de</strong>).
             Case Management <strong>deutschlandweit</strong> (telefonisch/online) sowie in der <strong>Region Heidenheim</strong>.
@@ -192,10 +200,6 @@
               <div class="stat-v">Plan, Maßnahmen, verlässliche Umsetzung</div>
             </div>
           </div>
-          </div>
-
-          <div class="hero-media hero-media--single panel reveal reveal--2" aria-label="Hero-Bild">
-            <img class="hero-image" src="images/hero.png" alt="Hero-Bild von casekompass.de" />
           </div>
         </div>
       </section>
