@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Datenschutzerklärung | casekompass.de</title>
+    <meta name="description" content="Datenschutzerklärung von casekompass.de" />
+    <link rel="canonical" href="https://casekompass.de/datenschutz.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/images/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=20260107-1" />
+    <script defer src="/cart.js"></script>
+    <script defer src="/effects.js"></script>
+    <script type="module" src="/firebase.js"></script>
+  </head>
+  <body>
+    <svg class="sprite-sheet" aria-hidden="true" focusable="false">
+      <symbol id="i-cart" viewBox="0 0 24 24">
+        <path d="M6 6h15l-2 9H7L6 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <path d="M6 6L5 3H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M9 20a1 1 0 1 0 0 .01ZM17 20a1 1 0 1 0 0 .01Z" fill="none" stroke="currentColor" stroke-width="2" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/#top" aria-label="Startseite">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">casekompass.de</span>
+        </a>
+
+        <nav class="nav" aria-label="Navigation" data-nav>
+          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-links" data-nav-links>
+            <a class="nav-link" href="/">Start</a>
+            <a class="nav-link" href="/#leistungen">Leistungen</a>
+            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/terminplan.html">Termin</a>
+            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+          </div>
+
+          <a class="nav-link nav-profile" href="/profil.html" aria-label="Profil">
+            <span class="nav-avatar" data-nav-avatar data-initials="?" aria-hidden="true"></span>
+          </a>
+
+          <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
+            <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
+            <span class="cart-count" data-cart-count aria-hidden="true"></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero hero--compact" aria-label="Datenschutz">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-bg-overlay" aria-hidden="true"></div>
+        <div class="hero-inner hero-inner--single">
+          <div class="hero-copy reveal reveal--1">
+            <p class="pill">Rechtliches</p>
+            <h1>
+              Datenschutzerklärung –
+              <span class="accent">casekompass.de</span>
+            </h1>
+            <p class="lead">Bitte ergänzen Sie hier Ihre vollständige Datenschutzerklärung (inkl. Firebase/Google).</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-panel">
+          <div class="section-head">
+            <h2>Inhalt</h2>
+            <p>
+              Diese Seite ist aktuell ein Platzhalter. Für ein produktives Deployment sollten u. a. geregelt werden:
+            </p>
+          </div>
+
+          <div class="cards">
+            <article class="card panel">
+              <h3 class="panel-title"><span>Firebase/Google</span></h3>
+              <p class="small">Authentifizierung (Google Login), Realtime Database, Analytics (falls aktiv), Datenübermittlung und Auftragsverarbeitung.</p>
+            </article>
+            <article class="card panel">
+              <h3 class="panel-title"><span>Welche Daten?</span></h3>
+              <p class="small">Profil (Name/Adresse/Telefon), Bestell- & Termin-Historie, technische Logdaten.</p>
+            </article>
+            <article class="card panel">
+              <h3 class="panel-title"><span>Rechte</span></h3>
+              <p class="small">Auskunft, Berichtigung, Löschung, Widerruf, Beschwerderecht.</p>
+            </article>
+          </div>
+
+          <div class="note panel panel--note" style="margin-top: 16px;">
+            <h3 class="panel-title"><span>Wichtig</span></h3>
+            <p class="small">Ich kann dir die Seite technisch einbinden. Für den konkreten rechtlichen Text (DSGVO) solltest du eine passende Vorlage/Anwalt/Generator nutzen und Firebase explizit aufführen.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="y"></span> casekompass.de</span>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+      <script>
+        document.getElementById("y").textContent = String(new Date().getFullYear());
+        requestAnimationFrame(() => {
+          document.documentElement.classList.add("is-loaded");
+        });
+      </script>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profil | casekompass.de</title>
+    <meta name="description" content="Profil: Daten verwalten, Käufe & Termine einsehen, Konto löschen." />
+    <link rel="canonical" href="https://casekompass.de/profil.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/images/logo.png" type="image/png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css?v=20260107-1" />
+
+    <script defer src="/cart.js"></script>
+    <script defer src="/effects.js"></script>
+    <script type="module" src="/profil.js"></script>
+  </head>
+  <body>
+    <svg class="sprite-sheet" aria-hidden="true" focusable="false">
+      <symbol id="i-cart" viewBox="0 0 24 24">
+        <path d="M6 6h15l-2 9H7L6 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <path d="M6 6L5 3H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M9 20a1 1 0 1 0 0 .01ZM17 20a1 1 0 1 0 0 .01Z" fill="none" stroke="currentColor" stroke-width="2" />
+      </symbol>
+      <symbol id="i-user" viewBox="0 0 24 24">
+        <path d="M12 12a4 4 0 1 0-4-4a4 4 0 0 0 4 4Z" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-message" viewBox="0 0 24 24">
+        <path d="M21 12a8 8 0 0 1-8 8H7l-4 2l1.5-4.5A8 8 0 1 1 21 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <path d="M8 12h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <path d="M10 11v6M14 11v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        <path d="M6 7l1 14h10l1-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+        <path d="M9 7V4h6v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/#top" aria-label="Startseite">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">casekompass.de</span>
+        </a>
+
+        <nav class="nav" aria-label="Navigation" data-nav>
+          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-links" data-nav-links>
+            <a class="nav-link" href="/">Start</a>
+            <a class="nav-link" href="/#leistungen">Leistungen</a>
+            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/terminplan.html">Termin</a>
+            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+          </div>
+
+          <a class="nav-link nav-profile" href="/profil.html" aria-label="Profil">
+            <span class="nav-avatar" data-nav-avatar data-initials="?" aria-hidden="true"></span>
+          </a>
+
+          <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
+            <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
+            <span class="cart-count" data-cart-count aria-hidden="true"></span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero hero--compact" aria-label="Profil">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-bg-overlay" aria-hidden="true"></div>
+        <div class="hero-inner hero-inner--single">
+          <div class="hero-copy reveal reveal--1">
+            <p class="pill">Profil</p>
+            <h1>
+              Konto &amp; Daten –
+              <span class="accent">übersichtlich verwalten</span>
+            </h1>
+            <p class="lead">Google Login, Profil, Käufe und Termine – inkl. Löschfunktion.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-panel">
+          <div class="section-head">
+            <h2>Anmeldung</h2>
+            <p>Mit Google registrieren oder einloggen.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card panel">
+              <h3 class="panel-title">
+                <span class="ico-wrap" aria-hidden="true"><svg class="ico"><use href="#i-user"></use></svg></span>
+                <span>Google Login</span>
+              </h3>
+              <p class="small" id="auth-status">Status: nicht angemeldet</p>
+              <div class="hero-actions" style="margin-top: 12px;">
+                <button class="btn btn-primary" type="button" id="btn-login">Mit Google anmelden</button>
+                <button class="btn btn-secondary" type="button" id="btn-logout" style="display:none;">Abmelden</button>
+              </div>
+            </article>
+
+            <article class="card panel" id="profile-summary" style="display:none;">
+              <h3 class="panel-title">
+                <span class="ico-wrap" aria-hidden="true"><svg class="ico"><use href="#i-message"></use></svg></span>
+                <span>Profil</span>
+              </h3>
+              <p class="small" id="summary-email"></p>
+              <p class="small" id="summary-name"></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="section-profile" style="display:none;">
+        <div class="section-panel">
+          <div class="section-head">
+            <h2>Ihre Daten</h2>
+            <p>
+              Wenn Daten fehlen (z. B. nur Google-Name), bitte ergänzen. Diese Angaben werden in der Realtime Database gespeichert
+              und beim nächsten Login wieder geladen.
+            </p>
+          </div>
+
+          <form id="profile-form" class="contact-form panel" aria-label="Profilformular">
+            <div class="panel-head">
+              <div class="panel-head-left">
+                <span class="ico-wrap" aria-hidden="true"><svg class="ico"><use href="#i-user"></use></svg></span>
+                <h3 class="panel-title-text">Profil vervollständigen</h3>
+              </div>
+              <p class="panel-head-note">Pflichtfelder sind markiert.</p>
+            </div>
+
+            <label>
+              <span>Vor- und Nachname *</span>
+              <input name="fullName" id="fullName" type="text" autocomplete="name" required />
+            </label>
+
+            <label>
+              <span>E‑Mail *</span>
+              <input name="email" id="email" type="email" autocomplete="email" required disabled />
+            </label>
+
+            <label>
+              <span>Telefon *</span>
+              <input name="phone" id="phone" type="tel" autocomplete="tel" required />
+            </label>
+
+            <label>
+              <span>Straße &amp; Hausnummer *</span>
+              <input name="street" id="street" type="text" autocomplete="address-line1" required />
+            </label>
+
+            <label>
+              <span>PLZ *</span>
+              <input name="postalCode" id="postalCode" type="text" autocomplete="postal-code" required />
+            </label>
+
+            <label>
+              <span>Ort *</span>
+              <input name="city" id="city" type="text" autocomplete="address-level2" required />
+            </label>
+
+            <fieldset class="form-group" aria-label="Datenschutz">
+              <legend>Datenschutz</legend>
+              <div class="checklist" aria-label="Datenschutz">
+                <label class="option">
+                  <input type="checkbox" id="privacyConsent" required />
+                  <span>Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme zu.</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <p id="profile-status" class="small" role="status" aria-live="polite" style="display:none; margin: 10px 0 0;"></p>
+
+            <div class="hero-actions" style="margin-top: 14px;">
+              <button class="btn btn-primary" type="submit" id="btn-save">Speichern</button>
+              <button class="btn btn-secondary" type="button" id="btn-delete">Konto &amp; Daten löschen</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="section-history" style="display:none;">
+        <div class="section-panel">
+          <div class="section-head">
+            <h2>Historie</h2>
+            <p>Käufe (Bestellanfrage) und Termine (Terminanfrage).</p>
+          </div>
+
+          <div class="cards">
+            <article class="card panel">
+              <h3 class="panel-title"><span>Käufe</span></h3>
+              <div id="purchases" class="small">Noch keine Einträge.</div>
+            </article>
+            <article class="card panel">
+              <h3 class="panel-title"><span>Termine</span></h3>
+              <div id="appointments" class="small">Noch keine Einträge.</div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span>© <span id="y"></span> casekompass.de</span>
+        <a href="/impressum.html">Impressum</a>
+      </div>
+      <script>
+        document.getElementById("y").textContent = String(new Date().getFullYear());
+        requestAnimationFrame(() => {
+          document.documentElement.classList.add("is-loaded");
+        });
+      </script>
+    </footer>
+  </body>
+</html>

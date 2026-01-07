@@ -65,6 +65,7 @@
     <link rel="stylesheet" href="/styles.css?v=20260105-1" />
     <script defer src="/cart.js"></script>
     <script defer src="/effects.js"></script>
+    <script type="module" src="/firebase.js"></script>
   </head>
   <body>
     <svg class="sprite-sheet" aria-hidden="true" focusable="false">
@@ -124,11 +125,23 @@
           <span class="brand-name">casekompass.de</span>
         </a>
 
-        <nav class="nav" aria-label="Navigation">
-          <a class="nav-link" href="/">Start</a>
-          <a class="nav-link" href="/#leistungen">Leistungen</a>
-          <a class="nav-link" href="/shop.html">Shop</a>
-          <a class="nav-link nav-cta" href="/kontakt.html">Kontakt</a>
+        <nav class="nav" aria-label="Navigation" data-nav>
+          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-links" data-nav-links>
+            <a class="nav-link" href="/">Start</a>
+            <a class="nav-link" href="/#leistungen">Leistungen</a>
+            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/terminplan.html">Termin</a>
+            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+          </div>
+
+          <a class="nav-link nav-profile" href="/profil.html" aria-label="Profil">
+            <span class="nav-avatar" data-nav-avatar data-initials="?" aria-hidden="true"></span>
+          </a>
+
           <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
             <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
             <span class="cart-count" data-cart-count aria-hidden="true"></span>
@@ -154,7 +167,7 @@
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#pakete">Pakete ansehen</a>
-              <a class="btn btn-secondary" href="https://calendly.com/piperidisjohannes/30min" target="_blank" rel="noopener">Unverbindlichen Termin buchen</a>
+              <a class="btn btn-secondary" href="/terminplan.html">Unverbindlichen Termin anfragen</a>
             </div>
           </div>
         </div>
@@ -231,7 +244,7 @@
                 <li>Priorisierte Q&amp;A‑Liste: Antworten auf die 10 wichtigsten Fragen aus deinem Fall</li>
                 <li>Bonus: „Vorlagenpaket Kommunikation“ (E‑Mail/Telefon‑Skripte) + Update‑Zugang 12 Monate</li>
               </ul>
-              <p class="small"><strong>Lieferung/Start:</strong> Nach Bestellung erhalten Sie die nächsten Schritte. Terminbuchung: <a href="https://calendly.com/piperidisjohannes/30min" target="_blank" rel="noopener">Calendly-Link</a>.</p>
+              <p class="small"><strong>Lieferung/Start:</strong> Nach Bestellung erhalten Sie die nächsten Schritte. Terminplanung: <a href="/terminplan.html">Termin anfragen</a>.</p>
               <p class="small"><strong>Hinweis:</strong> Information und Orientierung – keine Rechtsberatung, keine medizinische Heilbehandlung.</p>
               <p class="price">299,00 € inkl. MwSt.</p>
               <div class="hero-actions" style="margin-top: 14px;">

@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="/styles.css?v=20260105-2" />
     <script defer src="/cart.js"></script>
     <script defer src="/effects.js"></script>
+    <script type="module" src="/firebase.js"></script>
   </head>
   <body>
     <svg class="sprite-sheet" aria-hidden="true" focusable="false">
@@ -69,11 +70,23 @@
           <span class="brand-name">casekompass.de</span>
         </a>
 
-        <nav class="nav" aria-label="Navigation">
-          <a class="nav-link" href="/">Start</a>
-          <a class="nav-link" href="/#leistungen">Leistungen</a>
-          <a class="nav-link" href="/shop.html">Shop</a>
-          <a class="nav-link nav-cta" href="/kontakt.html">Kontakt</a>
+        <nav class="nav" aria-label="Navigation" data-nav>
+          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-links" data-nav-links>
+            <a class="nav-link" href="/">Start</a>
+            <a class="nav-link" href="/#leistungen">Leistungen</a>
+            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/terminplan.html">Termin</a>
+            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+          </div>
+
+          <a class="nav-link nav-profile" href="/profil.html" aria-label="Profil">
+            <span class="nav-avatar" data-nav-avatar data-initials="?" aria-hidden="true"></span>
+          </a>
+
           <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
             <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
             <span class="cart-count" data-cart-count aria-hidden="true"></span>
@@ -119,6 +132,20 @@
             <a class="btn btn-secondary" href="/kontakt.html">Fragen? Kontakt</a>
           </div>
 
+          <fieldset class="form-group" aria-label="Datenschutz" style="margin-top: 14px;">
+            <legend>Datenschutz</legend>
+            <div class="checklist" aria-label="Datenschutz">
+              <label class="option">
+                <input type="checkbox" id="checkout-privacy" />
+                <span>Ich habe die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme zu.</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p class="small" style="margin-top: 10px;">
+            Hinweis: Wenn Sie angemeldet sind, wird die Bestellanfrage zusätzlich im <a href="/profil.html">Profil</a> gespeichert.
+          </p>
+
           <p class="small" style="margin-top: 12px;">
             Hinweis: Information und Orientierung – keine Rechtsberatung, keine medizinische Heilbehandlung.
           </p>
@@ -136,6 +163,21 @@
         requestAnimationFrame(() => {
           document.documentElement.classList.add("is-loaded");
         });
+
+        // Gate mailto behind privacy consent.
+        const privacy = document.getElementById("checkout-privacy");
+        const mailto = document.querySelector("[data-checkout-mailto]");
+        function syncCheckoutGate() {
+          if (!mailto) return;
+          const ok = Boolean(privacy && privacy.checked);
+          mailto.setAttribute("aria-disabled", ok ? "false" : "true");
+          mailto.style.pointerEvents = ok ? "auto" : "none";
+          mailto.style.opacity = ok ? "1" : "0.6";
+        }
+        if (privacy && mailto) {
+          syncCheckoutGate();
+          privacy.addEventListener("change", syncCheckoutGate);
+        }
       </script>
     </footer>
   </body>

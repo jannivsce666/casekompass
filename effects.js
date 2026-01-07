@@ -51,13 +51,61 @@
     candidates.forEach((el) => io.observe(el));
   }
 
+  function setupNavMenu() {
+    const navs = Array.from(document.querySelectorAll("[data-nav]"));
+    if (!navs.length) return;
+
+    function closeAll() {
+      navs.forEach((nav) => {
+        nav.setAttribute("data-open", "false");
+        const btn = nav.querySelector("[data-nav-toggle]");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    navs.forEach((nav) => {
+      nav.setAttribute("data-open", "false");
+      const btn = nav.querySelector("[data-nav-toggle]");
+      const links = nav.querySelector("[data-nav-links]");
+      if (!btn || !links) return;
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = nav.getAttribute("data-open") === "true";
+        closeAll();
+        nav.setAttribute("data-open", isOpen ? "false" : "true");
+        btn.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      });
+
+      links.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          closeAll();
+        });
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!target) return;
+      const inside = navs.some((nav) => nav.contains(target));
+      if (!inside) closeAll();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      closeAll();
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       markLoaded();
       setupScrollReveal();
+      setupNavMenu();
     });
   } else {
     markLoaded();
     setupScrollReveal();
+    setupNavMenu();
   }
 })();

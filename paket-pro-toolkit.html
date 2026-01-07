@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="/styles.css?v=20260105-2" />
     <script defer src="/cart.js"></script>
     <script defer src="/effects.js"></script>
+    <script type="module" src="/firebase.js"></script>
   </head>
   <body>
     <svg class="sprite-sheet" aria-hidden="true" focusable="false">
@@ -56,11 +57,23 @@
           <span class="brand-name">casekompass.de</span>
         </a>
 
-        <nav class="nav" aria-label="Navigation">
-          <a class="nav-link" href="/">Start</a>
-          <a class="nav-link" href="/#leistungen">Leistungen</a>
-          <a class="nav-link" href="/shop.html">Shop</a>
-          <a class="nav-link nav-cta" href="/kontakt.html">Kontakt</a>
+        <nav class="nav" aria-label="Navigation" data-nav>
+          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <div class="nav-links" data-nav-links>
+            <a class="nav-link" href="/">Start</a>
+            <a class="nav-link" href="/#leistungen">Leistungen</a>
+            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/terminplan.html">Termin</a>
+            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+          </div>
+
+          <a class="nav-link nav-profile" href="/profil.html" aria-label="Profil">
+            <span class="nav-avatar" data-nav-avatar data-initials="?" aria-hidden="true"></span>
+          </a>
+
           <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
             <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
             <span class="cart-count" data-cart-count aria-hidden="true"></span>
@@ -83,7 +96,7 @@
             <p class="lead">Individuelle Fallsteuerung/Versorgungsplanung + Beratung (Video/Telefon) inkl. Follow‑up.</p>
             <div class="hero-actions">
               <a class="btn btn-secondary" href="/shop.html">Zur Übersicht</a>
-              <a class="btn btn-primary" href="https://calendly.com/piperidisjohannes/30min" target="_blank" rel="noopener">Unverbindlichen Termin buchen</a>
+              <a class="btn btn-primary" href="/terminplan.html">Unverbindlichen Termin anfragen</a>
             </div>
           </div>
         </div>
@@ -114,7 +127,7 @@
             <article class="card panel">
               <h3 class="panel-title"><span>Für wen geeignet?</span></h3>
               <p>Für dich, wenn du zusätzlich zum Plan eine strukturierte Besprechung und Anpassung möchtest.</p>
-              <p class="small"><strong>Lieferung/Start:</strong> Nach Bestellung erhalten Sie die nächsten Schritte (z. B. Fragebogen/Plan). Terminbuchung: <a href="https://calendly.com/piperidisjohannes/30min" target="_blank" rel="noopener">Calendly-Link</a>.</p>
+              <p class="small"><strong>Lieferung/Start:</strong> Nach Bestellung erhalten Sie die nächsten Schritte (z. B. Fragebogen/Plan). Terminplanung: <a href="/terminplan.html">Termin anfragen</a>.</p>
               <p class="small"><strong>Datenschutz:</strong> Bitte geben Sie keine sensiblen Gesundheitsdaten ein.</p>
               <p class="small"><strong>Hinweis:</strong> Information und Orientierung – keine Rechtsberatung, keine medizinische Heilbehandlung.</p>
             </article>

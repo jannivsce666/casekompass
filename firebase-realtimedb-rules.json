@@ -1,0 +1,15 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        "profile": {
+          ".validate": "newData.hasChildren(['fullName','email','phone','street','postalCode','city','privacyConsent']) && newData.child('privacyConsent').val() === true"
+        }
+      }
+    }
+  }
+}
