@@ -727,7 +727,7 @@ main {
 
 @media (min-width: 980px) {
   .hero-inner {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 26px;
   }
@@ -950,7 +950,9 @@ h1 {
 
 .hero-media--single {
   padding: 0;
-  height: 420px;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+  height: auto;
 }
 
 .hero-image {
@@ -1150,8 +1152,7 @@ h1 {
   }
 
   .hero-media--single {
-    min-height: 520px;
-    height: 520px;
+    min-height: 0;
   }
 }
 
