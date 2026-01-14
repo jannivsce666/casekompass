@@ -285,10 +285,33 @@
       </section>
     </main>
 
-    <div class="loading-overlay" id="loading-overlay" aria-live="polite" aria-atomic="true" role="status">
-      <div class="loading-box panel">
-        <div class="loading-spinner" aria-hidden="true"></div>
-        <h3 class="panel-title" style="justify-content:center;">E‑Mail wird gesendet …</h3>
+    <div
+      class="loading-overlay"
+      id="loading-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="loading-title"
+      aria-describedby="loading-text"
+      data-state="idle"
+    >
+      <div class="loading-box panel" tabindex="-1">
+        <div class="loading-visual" aria-hidden="true">
+          <div class="loading-spinner"></div>
+          <div class="loading-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" focusable="false" aria-hidden="true">
+              <path
+                d="M20 6L9 17l-5-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <h3 class="panel-title" id="loading-title" style="justify-content:center;">E‑Mail wird gesendet …</h3>
         <p class="small" id="loading-text" style="margin-top: 10px;">Bitte einen Moment warten.</p>
       </div>
     </div>
@@ -307,7 +330,9 @@
         const form = document.getElementById("contact-form");
         const statusEl = document.getElementById("contact-status");
         const overlay = document.getElementById("loading-overlay");
+        const overlayTitle = document.getElementById("loading-title");
         const overlayText = document.getElementById("loading-text");
+        const overlayBox = overlay ? overlay.querySelector(".loading-box") : null;
         const privacyEl = document.getElementById("contact-privacy");
         const paketEl = document.getElementById("contact-paket");
 
@@ -328,12 +353,19 @@
           if (overlay) overlay.style.display = isLoading ? "flex" : "none";
         }
 
+        function setOverlayState(state) {
+          if (!overlay) return;
+          overlay.setAttribute("data-state", String(state || "idle"));
+        }
+
         if (form && statusEl) {
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             statusEl.style.display = "none";
             statusEl.textContent = "";
+            setOverlayState("loading");
+            if (overlayTitle) overlayTitle.textContent = "E‑Mail wird gesendet …";
             if (overlayText) overlayText.textContent = "Bitte einen Moment warten.";
 
             const submitBtn = form.querySelector('button[type="submit"]');
@@ -343,6 +375,11 @@
               submitBtn.disabled = true;
             }
             setLoading(true);
+
+            if (overlayBox) {
+              // Focus the modal for screen readers / keyboard users.
+              requestAnimationFrame(() => overlayBox.focus());
+            }
 
             try {
               if (privacyEl && !privacyEl.checked) {
@@ -375,6 +412,7 @@
 
               if (!response.ok || !data || data.success !== true) {
                 setLoading(false);
+                setOverlayState("idle");
                 statusEl.style.display = "block";
                 statusEl.textContent = (data && data.message) ? String(data.message) : "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder nehmen Sie direkt Kontakt auf.";
                 if (submitBtn) {
@@ -384,14 +422,17 @@
                 return;
               }
 
-              if (overlayText) overlayText.textContent = "E‑Mail erfolgreich versendet. Weiterleitung …";
+              setOverlayState("success");
+              if (overlayTitle) overlayTitle.textContent = "Vielen Dank!";
+              if (overlayText) overlayText.textContent = "Wir werden uns umgehend bei Ihnen melden. Sie werden zur Startseite weitergeleitet …";
               form.reset();
 
               setTimeout(() => {
                 window.location.href = "/#top";
-              }, 1400);
+              }, 2200);
             } catch {
               setLoading(false);
+              setOverlayState("idle");
               statusEl.style.display = "block";
               statusEl.textContent = "Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder nehmen Sie direkt Kontakt auf.";
               if (submitBtn) {
