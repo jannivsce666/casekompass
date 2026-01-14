@@ -47,7 +47,7 @@ try {
 }
 
 // Bridge for legacy non-module scripts.
-// (cart.js and some inline scripts are classic scripts and can't import ES modules.)
+// Some inline scripts are classic scripts and can't import ES modules.
 if (typeof window !== "undefined") {
   window.CasekompassFirebase = {
     app,

@@ -1,3 +1,13 @@
 [build]
   publish = "."
   command = "echo 'No build step'"
+
+[[redirects]]
+  from = "/warenkorb"
+  to = "/kontakt.html"
+  status = 301
+
+[[redirects]]
+  from = "/warenkorb.html"
+  to = "/kontakt.html"
+  status = 301

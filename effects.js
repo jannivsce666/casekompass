@@ -3,11 +3,40 @@
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
+  function setupHeaderScrollState() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+
+    const threshold = 8;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      header.classList.toggle("is-scrolled", window.scrollY > threshold);
+    };
+
+    // Initial state
+    update();
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+      },
+      { passive: true }
+    );
+  }
+
   function markLoaded() {
     // Used by existing CSS animations (hero reveal).
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add("is-loaded");
-    });
+    // Tiny delay makes the reveal readable (instead of looking like instant paint).
+    window.setTimeout(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add("is-loaded");
+      });
+    }, 140);
   }
 
   function setupScrollReveal() {
@@ -31,7 +60,7 @@
       const group = getGroup(el);
       const idx = groupCounter.get(group) || 0;
       groupCounter.set(group, idx + 1);
-      const delay = Math.min(idx, 6) * 70;
+      const delay = Math.min(idx, 7) * 110;
       el.style.setProperty("--reveal-delay", `${delay}ms`);
     });
 
@@ -86,7 +115,7 @@
       const frag = document.createDocumentFragment();
       Array.from(raw).forEach((ch, i) => {
         const span = document.createElement("span");
-        span.textContent = ch === " " ? "\u00A0" : ch;
+        span.textContent = ch;
         span.style.setProperty("--i", String(i));
         span.setAttribute("aria-hidden", "true");
         frag.appendChild(span);
@@ -160,17 +189,54 @@
     });
   }
 
+  function setupActiveNavLink() {
+    const links = Array.from(document.querySelectorAll(".nav-links a.nav-link[href]"));
+    if (!links.length) return;
+
+    const normalizePath = (pathname) => {
+      if (!pathname) return "/";
+      let p = pathname;
+      if (!p.startsWith("/")) p = `/${p}`;
+      // Treat /index.html as /
+      if (p === "/index.html") return "/";
+      // Remove trailing slash (except root)
+      if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+      return p;
+    };
+
+    const current = normalizePath(window.location.pathname);
+
+    links.forEach((a) => {
+      try {
+        const href = a.getAttribute("href") || "";
+        const url = new URL(href, window.location.origin);
+        const target = normalizePath(url.pathname);
+        if (target === current) {
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      } catch {
+        // Ignore malformed URLs
+      }
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
       markLoaded();
       setupSequentialText();
       setupScrollReveal();
+      setupActiveNavLink();
       setupNavMenu();
+      setupHeaderScrollState();
     });
   } else {
     markLoaded();
     setupSequentialText();
     setupScrollReveal();
+    setupActiveNavLink();
     setupNavMenu();
+    setupHeaderScrollState();
   }
 })();

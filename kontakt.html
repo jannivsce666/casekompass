@@ -63,7 +63,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css?v=20260107-7" />
-    <script defer src="cart.js"></script>
     <script defer src="effects.js"></script>
   </head>
   <body>
@@ -101,16 +100,10 @@
 
           <div class="nav-links" data-nav-links>
             <a class="nav-link" href="/">Start</a>
-            <a class="nav-link" href="/#leistungen">Leistungen</a>
-            <a class="nav-link" href="/shop.html">Shop</a>
+            <a class="nav-link" href="/shop.html">Leistungen</a>
             <a class="nav-link" href="/terminplan.html">Termin</a>
             <a class="nav-link" href="/kontakt.html">Kontakt</a>
           </div>
-
-          <a class="nav-link nav-cart" href="/warenkorb.html" aria-label="Warenkorb">
-            <svg class="nav-cart-ico" aria-hidden="true"><use href="#i-cart"></use></svg>
-            <span class="cart-count" data-cart-count aria-hidden="true"></span>
-          </a>
         </nav>
       </div>
     </header>
@@ -219,6 +212,20 @@
                 </select>
               </label>
 
+              <label>
+                <span>Gewünschtes Paket (optional)</span>
+                <select name="paket" id="contact-paket" aria-label="Paket auswählen">
+                  <option value="">Noch unsicher / kein Paket ausgewählt</option>
+                  <option value="A">Paket A – Erstcheck (79 €)</option>
+                  <option value="B">Paket B – Pflegegrad & Begutachtung (249 €)</option>
+                  <option value="C">Paket C – Antragsservice (199 €)</option>
+                  <option value="D">Paket D – Widerspruch Pflegegrad (349 €)</option>
+                  <option value="E">Paket E – Versorgungsplan & Netzwerk (449 €)</option>
+                  <option value="F">Paket F – Begleitung 4 Wochen (690 €)</option>
+                  <option value="G">Paket G – Begleitung 8 Wochen (1.190 €)</option>
+                </select>
+              </label>
+
               <fieldset class="form-group" aria-label="Bedarf">
                 <legend>Was benötigen Sie?</legend>
                 <div class="checklist" aria-label="Leistungen">
@@ -302,6 +309,19 @@
         const overlay = document.getElementById("loading-overlay");
         const overlayText = document.getElementById("loading-text");
         const privacyEl = document.getElementById("contact-privacy");
+        const paketEl = document.getElementById("contact-paket");
+
+        // Allow preselecting a package via URL, e.g. /kontakt.html?paket=C
+        try {
+          const url = new URL(window.location.href);
+          const paket = (url.searchParams.get("paket") || "").trim().toUpperCase();
+          const allowed = new Set(["A", "B", "C", "D", "E", "F", "G"]);
+          if (paketEl && allowed.has(paket)) {
+            paketEl.value = paket;
+          }
+        } catch {
+          // ignore
+        }
 
         function setLoading(isLoading) {
           document.body.classList.toggle("is-loading", Boolean(isLoading));
@@ -338,6 +358,13 @@
 
               const formData = new FormData(form);
               formData.append("access_key", "bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2");
+
+              // Make the selected package show up prominently in the email
+              const paketValue = paketEl ? String(paketEl.value || "").trim() : "";
+              const subject = paketValue
+                ? `Kontaktanfrage – Paket ${paketValue}`
+                : "Kontaktanfrage – casekompass.de";
+              formData.append("subject", subject);
 
               const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
