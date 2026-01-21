@@ -64,6 +64,19 @@
     />
     <link rel="stylesheet" href="styles.css?v=20260121-3" />
     <script defer src="effects.js?v=20260121-2"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script defer src="service-area-map.js?v=20260121-1"></script>
   </head>
   <body>
     <svg class="sprite-sheet" aria-hidden="true" focusable="false">
@@ -347,6 +360,33 @@
               Abrechnung minutengenau (bei Stundenabrechnung). Vor Beginn erhalten Sie immer eine klare Kostenschätzung.
               Schriftstücke/Telefonate/Koordination werden dokumentiert (kurzer Tätigkeitsnachweis).
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="einsatzgebiet" class="section">
+        <div class="plain-wrap">
+          <div class="section-head section-head--center">
+            <h2>Einsatzgebiet</h2>
+            <p>Am Rathaus 9, Schnaitheim – ca. 20 km Umkreis (zur Orientierung).</p>
+          </div>
+
+          <div class="service-area" aria-label="Einsatzgebiet Karte">
+            <div id="service-area-map" class="service-area-map" aria-label="Karte mit 20 km Umkreis"></div>
+
+            <div class="service-area-meta">
+              <a
+                class="btn btn-secondary"
+                href="https://www.google.com/maps?q=48.7063332,10.1619939"
+                target="_blank"
+                rel="noopener"
+              >
+                In Google Maps öffnen
+              </a>
+              <p class="small" style="margin: 10px 0 0 0; color: var(--muted2);">
+                Die Karte ist bewusst nicht zoombar/verschiebbar und dient nur zur Anzeige des Einsatzradius.
+              </p>
+            </div>
           </div>
         </div>
       </section>
