@@ -1,9 +1,9 @@
 (function () {
-  function setupGithubAvailabilityGate() {
+  function setupAvailabilityGate() {
     const hostname = String(window.location && window.location.hostname ? window.location.hostname : "").toLowerCase();
-    // Only show on GitHub Pages (avoid affecting production domains like casekompass.de)
-    const isGithubPages = hostname.endsWith("github.io");
-    if (!isGithubPages) return;
+    // Only show on the real domain (keep GitHub Pages/local dev fully accessible)
+    const isProductionDomain = hostname === "casekompass.de" || hostname === "www.casekompass.de";
+    if (!isProductionDomain) return;
 
     // Site should be accessible starting March 1, 2026 (CET)
     const availableFrom = new Date("2026-03-01T00:00:00+01:00");
@@ -22,7 +22,7 @@
     overlay.setAttribute("aria-labelledby", "github-gate-title");
     overlay.innerHTML = `
       <div class="github-gate__card" tabindex="-1">
-        <div class="github-gate__badge">GitHub Vorschau</div>
+        <div class="github-gate__badge">Bald verf\u00fcgbar</div>
         <h1 id="github-gate-title" class="github-gate__title">Wir sind bald f\u00fcr dich da</h1>
         <p class="github-gate__text">Danke f\u00fcrs Vorbeischauen! Diese Seite ist gerade noch im Aufbau und wird ab dem <strong>${dateLabel}</strong> verf\u00fcgbar sein.</p>
         <p class="github-gate__text github-gate__muted">Bitte schau dann nochmal vorbei.</p>
@@ -272,7 +272,7 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
-      setupGithubAvailabilityGate();
+      setupAvailabilityGate();
       markLoaded();
       setupSequentialText();
       setupScrollReveal();
@@ -281,7 +281,7 @@
       setupHeaderScrollState();
     });
   } else {
-    setupGithubAvailabilityGate();
+    setupAvailabilityGate();
     markLoaded();
     setupSequentialText();
     setupScrollReveal();
