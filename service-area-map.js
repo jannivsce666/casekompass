@@ -2,6 +2,22 @@
   const center = [48.7063332, 10.1619939]; // Am Rathaus, Schnaitheim
   const radiusMeters = 20000;
 
+  function boundsFromCenterRadius(centerLatLng, radiusM) {
+    // Approximate bounds without requiring the circle to be attached to a map.
+    // Good enough for fitting a 20km service radius.
+    const lat = centerLatLng[0];
+    const lng = centerLatLng[1];
+    const earthRadiusM = 6378137;
+    const dLat = radiusM / earthRadiusM;
+    const dLng = radiusM / (earthRadiusM * Math.cos((lat * Math.PI) / 180));
+    const dLatDeg = (dLat * 180) / Math.PI;
+    const dLngDeg = (dLng * 180) / Math.PI;
+    return window.L.latLngBounds(
+      [lat - dLatDeg, lng - dLngDeg],
+      [lat + dLatDeg, lng + dLngDeg]
+    );
+  }
+
   function initServiceAreaMap() {
     const el = document.getElementById("service-area-map");
     if (!el) return;
@@ -35,7 +51,9 @@
     window.L.marker(center, { keyboard: false }).addTo(map);
 
     // Fit view to show the whole service radius with a bit of padding.
-    map.fitBounds(circle.getBounds(), { padding: [24, 24] });
+    // Avoid circle.getBounds() here because it can throw if the internal map ref isn't ready yet.
+    const bounds = boundsFromCenterRadius(center, radiusMeters);
+    map.fitBounds(bounds, { padding: [24, 24] });
 
     // Extra hardening against interaction (mobile/trackpad quirks)
     map.on("click", (e) => {
