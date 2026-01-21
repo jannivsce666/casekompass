@@ -62,7 +62,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260121-2" />
+    <link rel="stylesheet" href="styles.css?v=20260121-3" />
     <script defer src="effects.js?v=20260121-2"></script>
   </head>
   <body>
@@ -192,107 +192,141 @@
             <p>Klare Sätze, klare Pakete – ohne Überraschungen.</p>
           </div>
 
-          <div class="features-plain" aria-label="Stundensätze, Kurzberatung und Fahrtkosten">
-            <article class="feature-plain">
+          <div class="price-grid" aria-label="Preise Übersicht">
+            <div class="price-card">
               <h3 class="panel-title"><span>Stundensätze</span></h3>
-              <ul class="about-plain-list">
-                <li><strong>Pflegeberatung / Case Management</strong> (telefonisch / Video / vor Ort): <strong>89 € / Stunde</strong></li>
-                <li><strong>Schriftverkehr &amp; Dokumente</strong> (Anträge, Widerspruch, Begründungen, Formulare): <strong>89 € / Stunde</strong></li>
-              </ul>
-            </article>
-
-            <article class="feature-plain">
-              <h3 class="panel-title"><span>Kurzberatung</span></h3>
-              <p>
-                <strong>15 Minuten:</strong> <strong>25 €</strong>
-                <span class="small" style="display:block; margin-top: 8px;">(wird bei anschließender Buchung eines Pakets angerechnet)</span>
+              <div class="price-table-wrap" role="region" aria-label="Stundensätze Tabelle">
+                <table class="price-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Leistung</th>
+                      <th scope="col" class="price-table__right">Preis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Angehörigenberatung / Pflegeberatung / Case Management (Telefon / Video / vor Ort)</td>
+                      <td class="price-table__right"><strong>89 € / Stunde</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Schriftverkehr &amp; Dokumente (Anträge, Widerspruch, Begründungen, Formulare)</td>
+                      <td class="price-table__right"><strong>89 € / Stunde</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Kurzberatung (15 Minuten)</td>
+                      <td class="price-table__right"><strong>25 €</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="small" style="margin-top: 10px; color: var(--muted2);">
+                Die Kurzberatung wird bei anschließender Buchung eines Pakets angerechnet.
               </p>
-            </article>
+            </div>
 
-            <article class="feature-plain">
+            <div class="price-card">
               <h3 class="panel-title"><span>Fahrtkosten</span></h3>
-              <ul class="about-plain-list">
-                <li><strong>Fahrtpauschale Hausbesuch:</strong> <strong>30 € pro Termin</strong></li>
-                <li>(inkl. An-/Abfahrt innerhalb deines Einzugsgebiets; außerhalb optional zusätzlich km‑Pauschale)</li>
-              </ul>
-            </article>
+              <div class="price-table-wrap" role="region" aria-label="Fahrtkosten Tabelle">
+                <table class="price-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Position</th>
+                      <th scope="col" class="price-table__right">Preis</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Fahrtpauschale Hausbesuch (inkl. An-/Abfahrt innerhalb Ihres Einzugsgebiets)</td>
+                      <td class="price-table__right"><strong>30 € pro Termin</strong></td>
+                    </tr>
+                    <tr>
+                      <td>Außerhalb des Einzugsgebiets</td>
+                      <td class="price-table__right">optional km‑Pauschale</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
           <div class="plain-note" aria-label="Pakete">
-            <h3 class="plain-note-title">5 Pakete</h3>
-            <p class="plain-note-text">Ideal, wenn du nicht „irgendwie“ loslegen willst, sondern einen klaren Plan brauchst.</p>
+            <h3 class="plain-note-title">Pakete</h3>
+            <p class="plain-note-text">Ideal, wenn Sie schnell Klarheit möchten und einen sauberen nächsten Schritt‑Plan brauchen.</p>
           </div>
 
-          <ol class="steps-plain" aria-label="Pakete">
-            <li class="step-plain">
-              <div class="step-num" aria-hidden="true">01</div>
-              <div class="step-body">
-                <h3 class="step-title">Erstcheck Pflege &amp; Leistungen</h3>
-                <p><strong>Ideal, wenn</strong> du schnell Klarheit brauchst.</p>
-                <p><strong>Dauer:</strong> 90 Minuten</p>
-                <p><strong>Leistung:</strong> Situationsanalyse, Prioritäten, Leistungscheck (Pflegekasse/Krankenkasse), nächster Schritt‑Plan</p>
-                <p><strong>Preis:</strong> 139 € (remote) / 169 € (vor Ort, zzgl. 30 € Fahrtpauschale)</p>
-              </div>
-            </li>
-
-            <li class="step-plain">
-              <div class="step-num" aria-hidden="true">02</div>
-              <div class="step-body">
-                <h3 class="step-title">Pflegegrad‑Paket (Begutachtung &amp; Vorbereitung)</h3>
-                <p><strong>Ideal, wenn</strong> Pflegegrad beantragt wird oder die Begutachtung ansteht.</p>
-                <p><strong>Leistung:</strong> Strukturierte Vorbereitung, Leitfaden für Alltag/Defizite, Dokumentenliste, typische Fragen, Strategie für MD‑Termin</p>
-                <p><strong>Umfang:</strong> 2,5 Stunden Gesamt (z. B. 90 Min + 60 Min Nachbereitung)</p>
-                <p><strong>Preis:</strong> 229 € (remote) / 259 € (vor Ort, zzgl. 30 € Fahrtpauschale)</p>
-              </div>
-            </li>
-
-            <li class="step-plain">
-              <div class="step-num" aria-hidden="true">03</div>
-              <div class="step-body">
-                <h3 class="step-title">Antragsservice‑Paket</h3>
-                <p><strong>Ideal, wenn</strong> Formulare und Fristen dich erschlagen.</p>
-                <p><strong>Leistung:</strong> Auswahl passender Leistungen, Ausfüllen/strukturieren, Check aller Nachweise, Versandvorbereitung, Fristenplan</p>
-                <p><strong>Umfang:</strong> bis 3 Stunden</p>
-                <p><strong>Preis:</strong> 269 € (remote) / 299 € (vor Ort, zzgl. 30 € Fahrtpauschale)</p>
-                <p><strong>Mehrbedarf:</strong> danach 89 € / Std.</p>
-              </div>
-            </li>
-
-            <li class="step-plain">
-              <div class="step-num" aria-hidden="true">04</div>
-              <div class="step-body">
-                <h3 class="step-title">Widerspruch‑Paket (Pflegegrad/Leistung abgelehnt)</h3>
-                <p><strong>Ideal, wenn</strong> ein Bescheid nicht passt und du strukturiert dagegen vorgehen willst.</p>
-                <p><strong>Leistung:</strong> Bescheidanalyse, Argumentationsstruktur, Widerspruchsschreiben, Nachweisliste, ggf. Vorbereitung für Zweitbegutachtung</p>
-                <p><strong>Umfang:</strong> bis 4 Stunden</p>
-                <p><strong>Preis:</strong> 349 € (remote) / 379 € (vor Ort, zzgl. 30 € Fahrtpauschale)</p>
-                <p><strong>Mehrbedarf:</strong> danach 89 € / Std.</p>
-              </div>
-            </li>
-
-            <li class="step-plain">
-              <div class="step-num" aria-hidden="true">05</div>
-              <div class="step-body">
-                <h3 class="step-title">Versorgungsmanagement (Begleitung &amp; Koordination)</h3>
-                <p><strong>Ideal</strong> bei komplexer Versorgung: Pflegedienst, Tagespflege, Hilfsmittel, Entlastung, Umbau, Netzwerk.</p>
-                <p><strong>Leistung:</strong> Versorgungsplan, Anbieter‑Recherche/Koordination, Telefonate, Terminabstimmung, Verlaufskontrolle</p>
-                <p><strong>Abrechnung:</strong> 89 € / Std. (transparent, minutengenau)</p>
-                <p><strong>Vor Ort:</strong> je Termin + 30 € Fahrtpauschale</p>
-                <p><strong>Monatspakete (optional):</strong></p>
+          <div class="faq-plain" aria-label="Pakete als Übersicht">
+            <details class="faq-item faq-item--plain">
+              <summary class="faq-q">1) Erstcheck Pflege &amp; Leistungen <span class="small">— 139 € remote / 169 € vor Ort</span></summary>
+              <div class="faq-a">
                 <ul class="about-plain-list">
-                  <li><strong>Starter:</strong> 3 Std. = 249 € / Monat</li>
-                  <li><strong>Plus:</strong> 6 Std. = 489 € / Monat</li>
-                  <li><strong>Intensiv:</strong> 10 Std. = 799 € / Monat</li>
-                  <li>(nicht genutzte Stunden: z. B. 30 Tage gültig – kann man als Regel definieren)</li>
+                  <li><strong>Dauer:</strong> 90 Minuten</li>
+                  <li><strong>Leistung:</strong> Situationsanalyse, Prioritäten, Leistungscheck (Pflegekasse/Krankenkasse), nächster Schritt‑Plan</li>
+                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
                 </ul>
               </div>
-            </li>
-          </ol>
+            </details>
+
+            <details class="faq-item faq-item--plain">
+              <summary class="faq-q">2) Pflegegrad‑Paket (Begutachtung &amp; Vorbereitung) <span class="small">— 229 € remote / 259 € vor Ort</span></summary>
+              <div class="faq-a">
+                <ul class="about-plain-list">
+                  <li><strong>Umfang:</strong> 2,5 Stunden gesamt (z. B. 90 Min + 60 Min Nachbereitung)</li>
+                  <li><strong>Leistung:</strong> Strukturierte Vorbereitung, Leitfaden für Alltag/Defizite, Dokumentenliste, typische Fragen, Strategie für MD‑Termin</li>
+                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item faq-item--plain">
+              <summary class="faq-q">3) Antragsservice‑Paket <span class="small">— 269 € remote / 299 € vor Ort</span></summary>
+              <div class="faq-a">
+                <ul class="about-plain-list">
+                  <li><strong>Umfang:</strong> bis 3 Stunden</li>
+                  <li><strong>Leistung:</strong> Auswahl passender Leistungen, Ausfüllen/strukturieren, Check aller Nachweise, Versandvorbereitung, Fristenplan</li>
+                  <li><strong>Mehrbedarf:</strong> danach 89 € / Std.</li>
+                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item faq-item--plain">
+              <summary class="faq-q">4) Widerspruch‑Paket (Pflegegrad/Leistung abgelehnt) <span class="small">— 349 € remote / 379 € vor Ort</span></summary>
+              <div class="faq-a">
+                <ul class="about-plain-list">
+                  <li><strong>Umfang:</strong> bis 4 Stunden</li>
+                  <li><strong>Leistung:</strong> Bescheidanalyse, Argumentationsstruktur, Widerspruchsschreiben, Nachweisliste, ggf. Vorbereitung für Zweitbegutachtung</li>
+                  <li><strong>Mehrbedarf:</strong> danach 89 € / Std.</li>
+                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item faq-item--plain">
+              <summary class="faq-q">5) Versorgungsmanagement (Begleitung &amp; Koordination) <span class="small">— 89 € / Std. minutengenau</span></summary>
+              <div class="faq-a">
+                <ul class="about-plain-list">
+                  <li><strong>Ideal</strong> bei komplexer Versorgung: Pflegedienst, Tagespflege, Hilfsmittel, Entlastung, Umbau, Netzwerk.</li>
+                  <li><strong>Leistung:</strong> Versorgungsplan, Anbieter‑Recherche/Koordination, Telefonate, Terminabstimmung, Verlaufskontrolle</li>
+                  <li><strong>Abrechnung:</strong> 89 € / Std. (transparent, minutengenau)</li>
+                  <li><strong>Vor Ort:</strong> je Termin + 30 € Fahrtpauschale</li>
+                </ul>
+                <div class="plain-note" style="margin-top: 14px; padding-top: 14px;">
+                  <h4 class="plain-note-title" style="font-size: 16px;">Monatspakete (optional)</h4>
+                  <ul class="about-plain-list">
+                    <li><strong>Starter:</strong> 3 Std. = 249 € / Monat</li>
+                    <li><strong>Plus:</strong> 6 Std. = 489 € / Monat</li>
+                    <li><strong>Intensiv:</strong> 10 Std. = 799 € / Monat</li>
+                    <li>(nicht genutzte Stunden: z. B. 30 Tage gültig – kann man als Regel definieren)</li>
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </div>
 
           <div class="plain-note" aria-label="Abrechnung und Transparenz">
             <h3 class="plain-note-title">Abrechnung &amp; Transparenz</h3>
             <p class="plain-note-text">
-              Abrechnung minutengenau (bei Stundenabrechnung). Vor Beginn immer eine klare Kostenschätzung.
+              Abrechnung minutengenau (bei Stundenabrechnung). Vor Beginn erhalten Sie immer eine klare Kostenschätzung.
               Schriftstücke/Telefonate/Koordination werden dokumentiert (kurzer Tätigkeitsnachweis).
             </p>
           </div>
