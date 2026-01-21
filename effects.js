@@ -1,4 +1,52 @@
 (function () {
+  function setupGithubAvailabilityGate() {
+    const hostname = String(window.location && window.location.hostname ? window.location.hostname : "").toLowerCase();
+    // Only show on GitHub Pages (avoid affecting production domains like casekompass.de)
+    const isGithubPages = hostname.endsWith("github.io");
+    if (!isGithubPages) return;
+
+    // Site should be accessible starting March 1, 2026 (CET)
+    const availableFrom = new Date("2026-03-01T00:00:00+01:00");
+    const now = new Date();
+    if (!(availableFrom instanceof Date) || Number.isNaN(availableFrom.getTime())) return;
+    if (now.getTime() >= availableFrom.getTime()) return;
+
+    const dateLabel = availableFrom.toLocaleDateString("de-DE", { day: "numeric", month: "long" });
+
+    document.documentElement.classList.add("github-locked");
+
+    const overlay = document.createElement("div");
+    overlay.className = "github-gate";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "github-gate-title");
+    overlay.innerHTML = `
+      <div class="github-gate__card" tabindex="-1">
+        <div class="github-gate__badge">GitHub Vorschau</div>
+        <h1 id="github-gate-title" class="github-gate__title">Wir sind bald f\u00fcr dich da</h1>
+        <p class="github-gate__text">Danke f\u00fcrs Vorbeischauen! Diese Seite ist gerade noch im Aufbau und wird ab dem <strong>${dateLabel}</strong> verf\u00fcgbar sein.</p>
+        <p class="github-gate__text github-gate__muted">Bitte schau dann nochmal vorbei.</p>
+      </div>
+    `.trim();
+
+    // Ensure the body exists (effects.js is loaded with defer, but keep this defensive)
+    const mount = document.body || document.documentElement;
+    mount.appendChild(overlay);
+
+    // Prevent background scroll on mobile
+    try {
+      document.body.style.overflow = "hidden";
+    } catch {
+      // ignore
+    }
+
+    // Focus for accessibility (no close button by design)
+    const card = overlay.querySelector(".github-gate__card");
+    if (card && typeof card.focus === "function") {
+      card.focus();
+    }
+  }
+
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
@@ -224,6 +272,7 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
+      setupGithubAvailabilityGate();
       markLoaded();
       setupSequentialText();
       setupScrollReveal();
@@ -232,6 +281,7 @@
       setupHeaderScrollState();
     });
   } else {
+    setupGithubAvailabilityGate();
     markLoaded();
     setupSequentialText();
     setupScrollReveal();
