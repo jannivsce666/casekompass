@@ -252,14 +252,48 @@
       return p;
     };
 
-    const current = normalizePath(window.location.pathname);
+    const currentPath = normalizePath(window.location.pathname);
+    const currentHash = (window.location.hash || "").toLowerCase();
+
+    // First pass: exact match on path + hash (only if link has a hash)
+    let matched = false;
 
     links.forEach((a) => {
       try {
         const href = a.getAttribute("href") || "";
         const url = new URL(href, window.location.origin);
-        const target = normalizePath(url.pathname);
-        if (target === current) {
+        const targetPath = normalizePath(url.pathname);
+        const targetHash = (url.hash || "").toLowerCase();
+
+        const isExact =
+          targetPath === currentPath &&
+          ((targetHash && targetHash === currentHash) || (!targetHash && !currentHash));
+
+        if (isExact) {
+          a.setAttribute("aria-current", "page");
+          matched = true;
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      } catch {
+        // Ignore malformed URLs
+      }
+    });
+
+    if (matched) return;
+
+    // Fallback: match only by path, but avoid treating "/#..." as the homepage when user is on "/" with no hash.
+    links.forEach((a) => {
+      try {
+        const href = a.getAttribute("href") || "";
+        const url = new URL(href, window.location.origin);
+        const targetPath = normalizePath(url.pathname);
+        const targetHash = (url.hash || "").toLowerCase();
+
+        const isPathMatch = targetPath === currentPath;
+        const allowFallback = !targetHash; // don't auto-activate hash links unless hash matches
+
+        if (isPathMatch && allowFallback) {
           a.setAttribute("aria-current", "page");
         } else {
           a.removeAttribute("aria-current");
