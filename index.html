@@ -1,75 +1,322 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="de">
   <head>
+    <title>Alltagsbegleitung &amp; Case Management – casekompass.de</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pflegeberatung &amp; Versorgungsmanagement deutschlandweit – Johannes Piperidis | casekompass.de</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta
       name="description"
-      content="Pflegeberatung & Versorgungsmanagement deutschlandweit (telefonisch/online) und in der Region Heidenheim: Johannes Piperidis unterstützt bei Pflegegrad, Anträgen, Organisation, Koordination und Entlastung – für Betroffene und Angehörige."
+      content="Alltagsbegleitung, Angehörigenberatung und Case Management: klare Hilfe bei Pflege, Anträgen und Organisation – deutschlandweit online und in der Region Heidenheim vor Ort."
     />
     <link rel="canonical" href="https://casekompass.de/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/images/logo.png" type="image/png" />
-    <meta property="og:site_name" content="casekompass.de" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Pflegeberatung &amp; Versorgungsmanagement deutschlandweit – Johannes Piperidis | casekompass.de" />
-    <meta
-      property="og:description"
-      content="Pflegeberatung & Versorgungsmanagement deutschlandweit (telefonisch/online) und in der Region Heidenheim: Pflegegrad, Anträge, Organisation und Koordination – strukturiert, pragmatisch, verlässlich."
-    />
-    <meta property="og:url" content="https://casekompass.de/" />
-    <meta property="og:image" content="https://casekompass.de/images/logo.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Pflegeberatung &amp; Versorgungsmanagement deutschlandweit – Johannes Piperidis | casekompass.de" />
-    <meta
-      name="twitter:description"
-      content="Pflegeberatung & Versorgungsmanagement deutschlandweit (telefonisch/online) und in der Region Heidenheim: Pflegegrad, Anträge, Organisation und Koordination – strukturiert, pragmatisch, verlässlich."
-    />
-    <meta name="twitter:image" content="https://casekompass.de/images/logo.png" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "@id": "https://casekompass.de/#business",
-        "name": "casekompass.de",
-        "url": "https://casekompass.de/",
-        "logo": "https://casekompass.de/images/logo.png",
-        "image": "https://casekompass.de/images/logo.png",
-        "telephone": "+49 152 26560105",
-        "email": "casekompass@gmx.de",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Albstraße 5",
-          "postalCode": "89542",
-          "addressLocality": "Herbrechtingen",
-          "addressRegion": "Baden-Württemberg",
-          "addressCountry": "DE"
-        },
-        "areaServed": [
-          { "@type": "Country", "name": "Deutschland" },
-          { "@type": "AdministrativeArea", "name": "Landkreis Heidenheim" },
-          { "@type": "City", "name": "Heidenheim an der Brenz" }
-        ],
-        "founder": { "@type": "Person", "name": "Johannes Piperidis" },
-        "serviceType": ["Pflegeberatung & Versorgungsmanagement", "Pflegeberatung", "Fallsteuerung", "Koordination"],
-        "mainEntityOfPage": { "@type": "WebPage", "@id": "https://casekompass.de/" }
+    <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
+    <style>
+      #banner {
+        position: relative;
+        overflow: hidden;
+        background-image: none !important;
+        background-color: #9fd8d8;
+        background: linear-gradient(135deg, #b9e7e7 0%, #9fd8d8 45%, #89caca 100%);
       }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css?v=20260121-3" />
-    <script defer src="effects.js?v=20260121-3"></script>
+
+      .banner-slides {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .banner-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        animation: banner-fade 16s ease-in-out infinite;
+      }
+
+      .banner-slide--1 {
+        background-image: url('/images/hero1.png');
+        animation-delay: 0s;
+      }
+
+      .banner-slide--2 {
+        background-image: url('/images/hero2.png');
+        animation-delay: 4s;
+      }
+
+      .banner-slide--3 {
+        background-image: url('/images/hero3.png');
+        animation-delay: 8s;
+      }
+
+      .banner-slide--4 {
+        background-image: url('/images/hero4.png');
+        animation-delay: 12s;
+      }
+
+      .banner-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: rgba(255, 255, 255, 0.12);
+        pointer-events: none;
+      }
+
+      #banner .content {
+        position: relative;
+        z-index: 1;
+        background: rgba(177, 221, 171, 0.78) !important;
+        border: 1px solid rgba(177, 221, 171, 0.72);
+        box-shadow: 0 12px 30px rgba(80, 120, 74, 0.20);
+      }
+
+      #banner .content .button,
+      #banner .content .button:visited,
+      #banner .content .button:hover,
+      #banner .content .button:active {
+        color: #ffffff !important;
+      }
+
+      @keyframes banner-fade {
+        0% {
+          opacity: 0;
+        }
+        8% {
+          opacity: 0.36;
+        }
+        24% {
+          opacity: 0.36;
+        }
+        32% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
       crossorigin=""
     />
+  </head>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+
+      <header id="header">
+        <div class="logo container">
+          <div>
+            <h1><a href="/" id="logo">casekompass.de</a></h1>
+            <p>Alltagsbegleitung, Pflegekoordination und Unterstützung bei Bürokratie</p>
+          </div>
+        </div>
+      </header>
+
+      <nav id="nav">
+        <ul>
+          <li class="current"><a href="#banner" class="scrolly">Start</a></li>
+          <li><a href="/leistungen.html">Leistungen</a></li>
+          <li><a href="/kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <section id="banner">
+        <div class="banner-slides" aria-hidden="true">
+          <span class="banner-slide banner-slide--1"></span>
+          <span class="banner-slide banner-slide--2"></span>
+          <span class="banner-slide banner-slide--3"></span>
+          <span class="banner-slide banner-slide--4"></span>
+        </div>
+        <div class="banner-overlay" aria-hidden="true"></div>
+        <div class="content">
+          <h2>Klare Hilfe bei Pflege und Organisation</h2>
+          <p>Sie bekommen Struktur, verständliche Schritte und Entlastung im Alltag.</p>
+          <a href="/kontakt.html#termin" class="button scrolly">Erstgespräch starten</a>
+        </div>
+      </section>
+
+      <section id="main">
+        <div class="container">
+          <div class="row gtr-200">
+            <div class="col-12">
+              <section class="box highlight">
+                <ul class="special">
+                  <li><span class="icon solid fa-hands-helping"><span class="label">Alltag</span></span></li>
+                  <li><span class="icon solid fa-clipboard-list"><span class="label">Anträge</span></span></li>
+                  <li><span class="icon solid fa-users"><span class="label">Angehörige</span></span></li>
+                  <li><span class="icon solid fa-route"><span class="label">Struktur</span></span></li>
+                </ul>
+                <header>
+                  <h2>Was Sie bei mir bekommen</h2>
+                  <p>Kurz, klar und zuverlässig begleitet</p>
+                </header>
+                <p>
+                  Ich unterstütze bei Pflegegrad, Anträgen, Fristen und Abstimmung mit beteiligten Stellen. Sie wissen jederzeit,
+                  was wichtig ist und was als Nächstes kommt.
+                </p>
+              </section>
+            </div>
+
+            <div class="col-12">
+              <section class="box features">
+                <h2 class="major"><span>Leistungen auf einen Blick</span></h2>
+                <div>
+                  <div class="row">
+                    <div class="col-3 col-6-medium col-12-small">
+                      <section class="box feature">
+                        <a href="/leistungen.html#alltagsbegleitung" class="image featured"><img src="images/hero1.png" alt="Alltagsbegleitung" /></a>
+                        <h3><a href="/leistungen.html#alltagsbegleitung">Alltagsbegleitung</a></h3>
+                        <p>Praktische Unterstützung, damit der Alltag wieder leichter und planbar wird.</p>
+                      </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <section class="box feature">
+                        <a href="/leistungen.html#pflegekoordination" class="image featured"><img src="images/hero2.png" alt="Pflegekoordination" /></a>
+                        <h3><a href="/leistungen.html#pflegekoordination">Pflegekoordination</a></h3>
+                        <p>Saubere Abstimmung von Leistungen, Ansprechpartnern und nächsten Schritten.</p>
+                      </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <section class="box feature">
+                        <a href="/leistungen.html#antragsservice" class="image featured"><img src="images/hero3.png" alt="Antragsservice" /></a>
+                        <h3><a href="/leistungen.html#antragsservice">Antragsservice</a></h3>
+                        <p>Dokumente und Begründungen klar vorbereitet, damit nichts Wichtiges verloren geht.</p>
+                      </section>
+                    </div>
+                    <div class="col-3 col-6-medium col-12-small">
+                      <section class="box feature">
+                        <a href="/leistungen.html#ueber-mich" class="image featured"><img src="images/bild.png" alt="Johannes Piperidis" /></a>
+                        <h3><a href="/leistungen.html#ueber-mich">Über mich</a></h3>
+                        <p>Persönliche Begleitung mit Weiterbildung in Case Management und §45a/b.</p>
+                      </section>
+                    </div>
+                    <div class="col-12">
+                      <ul class="actions">
+                        <li><a href="/leistungen.html" class="button large">Leistungen im Detail</a></li>
+                        <li><a href="/kontakt.html" class="button alt large">Kontakt aufnehmen</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="col-12">
+              <section class="box blog">
+                <h2 class="major"><span>Leistungen kompakt</span></h2>
+                <div>
+                  <div class="row">
+                    <div class="col-9 col-12-medium">
+                      <div class="content">
+                        <article class="box post">
+                          <header>
+                            <h3><a href="/leistungen.html">Alle Leistungen auf einer Seite</a></h3>
+                            <p>Ausführliche Inhalte, klare Preise und direkte Sprungmarken je Leistungsbereich.</p>
+                          </header>
+                          <p>
+                            Die neue Seite <strong>Leistungen</strong> enthält alle Informationen zu
+                            <strong>Alltagsbegleitung</strong>, <strong>Pflegekoordination</strong>,
+                            <strong>Antragsservice</strong> und <strong>Über mich</strong> in ausführlicher Form.
+                          </p>
+                          <p>
+                            So bleibt die Navigation auf der Startseite klar und übersichtlich, während alle Details gebündelt
+                            an einer Stelle verfügbar sind.
+                          </p>
+                          <p>
+                            Direkt zu den Abschnitten: Alltagsbegleitung, Pflegekoordination, Antragsservice und Über mich.
+                          </p>
+                          <a href="/leistungen.html" class="button">Zur Seite Leistungen</a>
+                        </article>
+                      </div>
+                    </div>
+                    <div class="col-3 col-12-medium">
+                      <div class="sidebar">
+                        <ul class="divided">
+                          <li>
+                            <article class="box post-summary">
+                              <h3><a href="/leistungen.html#alltagsbegleitung">Alltagsbegleitung</a></h3>
+                              <ul class="meta"><li class="icon fa-euro-sign">32 €/h + 15 € Anfahrt</li></ul>
+                            </article>
+                          </li>
+                          <li>
+                            <article class="box post-summary">
+                              <h3><a href="/leistungen.html#pflegekoordination">Pflegekoordination</a></h3>
+                              <ul class="meta"><li class="icon fa-euro-sign">89 €/h</li></ul>
+                            </article>
+                          </li>
+                          <li>
+                            <article class="box post-summary">
+                              <h3><a href="/leistungen.html#antragsservice">Antragsservice</a></h3>
+                              <ul class="meta"><li class="icon fa-euro-sign">89 €/h</li></ul>
+                            </article>
+                          </li>
+                          <li>
+                            <article class="box post-summary">
+                              <h3><a href="/leistungen.html#ueber-mich">Über mich</a></h3>
+                              <ul class="meta"><li class="icon fa-user">Qualifiziert &amp; persönlich</li></ul>
+                            </article>
+                          </li>
+                        </ul>
+                        <a href="/kontakt.html#termin" class="button alt">Jetzt Termin anfragen</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="footer">
+        <div class="container">
+          <div class="row gtr-200">
+            <div class="col-12">
+              <section>
+                <h2 class="major"><span>CaseKompass</span></h2>
+                <p>
+                  Alltagsbegleitung, Angehörigenberatung und Case Management mit Fokus auf Orientierung,
+                  Entlastung und nachvollziehbare Entscheidungen.
+                </p>
+              </section>
+            </div>
+            <div class="col-12">
+              <section>
+                <h2 class="major"><span>Kontakt</span></h2>
+                <ul class="contact">
+                  <li><a class="icon solid fa-envelope" href="mailto:casekompass@gmx.de"><span class="label">E-Mail</span></a></li>
+                  <li><a class="icon solid fa-phone" href="tel:+4915226560105"><span class="label">Telefon</span></a></li>
+                  <li><a class="icon solid fa-calendar" href="/kontakt.html#termin"><span class="label">Termin</span></a></li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div id="copyright">
+            <ul class="menu">
+              <li>&copy; <span id="y"></span> casekompass.de</li>
+              <li><a href="/impressum.html">Impressum</a></li>
+              <li><a href="/datenschutz.html">Datenschutz</a></li>
+              <li>Template-Basis: <a href="https://html5up.net/txt" rel="noopener" target="_blank">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="Vorlage/assets/js/jquery.min.js"></script>
+    <script src="Vorlage/assets/js/jquery.dropotron.min.js"></script>
+    <script src="Vorlage/assets/js/jquery.scrolly.min.js"></script>
+    <script src="Vorlage/assets/js/browser.min.js"></script>
+    <script src="Vorlage/assets/js/breakpoints.min.js"></script>
+    <script src="Vorlage/assets/js/util.js"></script>
+    <script src="Vorlage/assets/js/main.js"></script>
+    <script src="/smooth-scroll.js"></script>
     <script
       defer
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -77,363 +324,8 @@
       crossorigin=""
     ></script>
     <script defer src="service-area-map.js?v=20260121-2"></script>
-  </head>
-  <body>
-    <svg class="sprite-sheet" aria-hidden="true" focusable="false">
-      <symbol id="i-cart" viewBox="0 0 24 24">
-        <path d="M6 6h15l-2 9H7L6 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M6 6L5 3H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M9 20a1 1 0 1 0 0 .01ZM17 20a1 1 0 1 0 0 .01Z" fill="none" stroke="currentColor" stroke-width="2" />
-      </symbol>
-      <symbol id="i-compass" viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Z" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M14.6 9.4l-1.3 5.2l-5.2 1.3l1.3-5.2l5.2-1.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-      </symbol>
-      <symbol id="i-network" viewBox="0 0 24 24">
-        <path d="M7 7a3 3 0 1 0 0 .01Zm10 0a3 3 0 1 0 0 .01ZM12 17a3 3 0 1 0 0 .01Z" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M9.4 8.6L10.8 10m2.4 2.4l1.4 1.4M14.6 8.6L13.2 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-      <symbol id="i-check" viewBox="0 0 24 24">
-        <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </symbol>
-      <symbol id="i-target" viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 1 0 10 10" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M12 7a5 5 0 1 0 5 5" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M12 12l8-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-      <symbol id="i-clipboard" viewBox="0 0 24 24">
-        <path d="M9 5h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        <path d="M9 3h6a2 2 0 0 1 2 2v16H7V5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M9 9h6M9 13h6M9 17h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-      <symbol id="i-shield" viewBox="0 0 24 24">
-        <path d="M12 2l8 4v6c0 6-4 10-8 10S4 18 4 12V6l8-4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M9 12l2 2l4-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </symbol>
-      <symbol id="i-calendar" viewBox="0 0 24 24">
-        <path d="M7 3v3M17 3v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        <path d="M4 7h16v14H4V7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M8 11h4M8 15h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-      <symbol id="i-message" viewBox="0 0 24 24">
-        <path d="M21 12a8 8 0 0 1-8 8H7l-4 2l1.5-4.5A8 8 0 1 1 21 12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M8 12h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24">
-        <path d="M4 6h16v12H4V6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M4 7l8 6l8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </symbol>
-      <symbol id="i-user" viewBox="0 0 24 24">
-        <path d="M12 12a4 4 0 1 0-4-4a4 4 0 0 0 4 4Z" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M4 20a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-      </symbol>
-    </svg>
-
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Startseite">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">casekompass.de</span>
-        </a>
-
-        <nav class="nav" aria-label="Navigation" data-nav>
-          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
-            <span class="nav-toggle-lines" aria-hidden="true"></span>
-          </button>
-
-          <div class="nav-links" data-nav-links>
-            <a class="nav-link" href="/">Start</a>
-            <a class="nav-link" href="/#pakete">Leistungen</a>
-            <a class="nav-link" href="/terminplan.html">Termin</a>
-            <a class="nav-link" href="/kontakt.html">Kontakt</a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top" class="container">
-      <section class="hero hero--home" aria-label="Hero">
-        <div class="hero-collage" aria-hidden="true">
-          <div class="hero-collage-tile hero-collage-tile--1"></div>
-          <div class="hero-collage-tile hero-collage-tile--2"></div>
-          <div class="hero-collage-tile hero-collage-tile--3"></div>
-          <div class="hero-collage-tile hero-collage-tile--4"></div>
-        </div>
-        <div class="hero-home">
-          <div class="hero-home-card reveal reveal--1">
-            <div class="hero-home-logo" aria-hidden="true">
-              <img src="images/logo.png" alt="" />
-            </div>
-
-            <h1 class="hero-home-title">
-              <span class="hero-home-title-line" data-seq-text>Pflegeberatung</span>
-              <span class="hero-home-title-line" data-seq-text>Angehörigenberatung</span>
-            </h1>
-            <p class="hero-home-sub">
-              <strong>Johannes Piperidis</strong> (Inhaber von <strong>casekompass.de</strong>) – telefonisch/online deutschlandweit sowie in der
-              <strong>Region Heidenheim</strong>.
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="/terminplan.html">Erstgespräch vereinbaren</a>
-              <a class="btn btn-secondary" href="#preise">Preise &amp; Pakete ansehen</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="ueber-mich" class="section about-plain">
-        <div class="section-head about-plain-head">
-          <h2>Über mich – Johannes Piperidis</h2>
-          <p>Struktur, Orientierung und machbare nächste Schritte – büro-/telefonbasiert.</p>
-        </div>
-
-        <div class="about-plain-grid" aria-label="Über mich">
-          <div class="about-plain-media" aria-label="Portrait">
-            <img class="about-plain-avatar" src="images/bild.png" alt="Portrait von Johannes Piperidis" />
-          </div>
-
-          <div class="about-plain-copy">
-            <h3 class="about-plain-title">Wer ich bin</h3>
-            <p class="about-plain-text">
-              Mein Name ist <strong>Johannes Piperidis</strong>. Ich bin <strong>Geschäftsinhaber</strong> von <strong>casekompass.de</strong> und unterstütze
-              Menschen rund um <strong>Pflege</strong>, <strong>Angehörigenberatung</strong> und <strong>Versorgungskoordination</strong> – mit einem klaren Fokus auf
-              Orientierung, Struktur und machbare nächste Schritte.
-            </p>
-            <p class="about-plain-text">
-              Der Pflegebereich begleitet mich seit früh: Meine Mutter ist gelernte Krankenschwester – dadurch war das Thema Pflege
-              in meiner Familie immer präsent. Ich habe ein <strong>Freiwilliges Soziales Jahr (1,5 Jahre)</strong> in der Pflege gemacht und
-              anschließend eine <strong>Pflegehelfer‑Ausbildung</strong> begonnen. Danach habe ich weitere Stationen gewählt, um Perspektiven
-              zu sammeln und meinen Blick zu erweitern – unter anderem bei der <strong>Bundeswehr</strong> und in einer
-              <strong>Flaschner‑Ausbildung</strong>, die ich mit einem <strong>1,0er Zeugnis</strong> abgeschlossen habe.
-            </p>
-            <p class="about-plain-text">
-              Was mich dabei immer begleitet hat: der Wunsch, Menschen in belastenden Situationen nicht allein zu lassen.
-              Ich habe erkrankte Angehörige früh <strong>ehrenamtlich unterstützt</strong> und engagiere mich bis heute – und genau deshalb
-              mache ich diese Arbeit nun auch beruflich.
-            </p>
-
-            <h3 class="about-plain-title" style="margin-top: 14px;">Wie ich arbeite</h3>
-            <p class="about-plain-text">
-              Viele Familien erleben, wie schnell man im <strong>Bürokratie‑Dschungel</strong> rund um Pflegegrad, Anträge, Fristen und
-              Zuständigkeiten den Überblick verliert. Ich helfe Ihnen dabei, <strong>Ordnung in die Situation</strong> zu bringen,
-              Prioritäten zu setzen und Entscheidungen sauber vorzubereiten – ruhig, transparent und nachvollziehbar.
-            </p>
-            <p class="about-plain-text">
-              Zusätzlich arbeite ich <strong>in Kooperation</strong> mit meiner Partnerin, die <strong>Ergotherapeutin</strong> ist. Außerdem bin ich
-              mit verschiedenen <strong>Fachstellen und Dienstleistern</strong> vernetzt (z. B. je nach Bedarf). So können wir Themen rund um
-              Pflege und Versorgung ganzheitlich denken – und trotzdem bleibt alles klar getrennt und transparent.
-            </p>
-
-            <div class="about-plain-block" aria-label="Qualifikation">
-              <h4 class="about-plain-sub">Qualifikation</h4>
-              <ul class="about-plain-list">
-                <li><strong>Weiterbildung</strong> „Case Management in der Pflege“ (Fernakademie für Gesundheitsberufe)</li>
-                <li><strong>Staatlich geprüfte und zugelassene Weiterbildung</strong> (ZFU-Zulassungsnummer 7444323)</li>
-                <li><strong>Kompetenzniveau</strong>: Fst-DQR Stufe 6 (Fernstudien-DQR-Register, Reg.-Nr. FstDQR-0234)</li>
-                <li><strong>30 Fortbildungspunkte</strong> (Registrierung beruflich Pflegender – RegbP) nach Abschluss</li>
-                <li><strong>Inkl. Abschlussarbeit/Projektarbeit</strong> als Praxis-/Reflexionsanteil</li>
-              </ul>
-              <p class="small about-plain-note">
-                <strong>Hinweis:</strong> Das DQR-Niveau beschreibt ein Kompetenzniveau und ist kein akademischer Grad.
-              </p>
-            </div>
-
-            <p class="small about-plain-disclaimer">
-              CaseKompass bietet Information und Orientierung zur Fallsteuerung/Versorgungskoordination. Keine Rechtsberatung, keine medizinische Heilbehandlung.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="preise" class="section">
-        <div class="plain-wrap">
-          <div class="section-head section-head--center">
-            <h2>Preise &amp; Pakete (transparent)</h2>
-            <p>Klare Sätze, klare Pakete – ohne Überraschungen.</p>
-          </div>
-
-          <div class="price-grid" aria-label="Preise Übersicht">
-            <div class="price-card">
-              <h3 class="panel-title"><span>Stundensätze</span></h3>
-              <div class="price-table-wrap" role="region" aria-label="Stundensätze Tabelle">
-                <table class="price-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Leistung</th>
-                      <th scope="col" class="price-table__right">Preis</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Angehörigenberatung / Pflegeberatung / Case Management (Telefon / Video / vor Ort)</td>
-                      <td class="price-table__right"><strong>89 € / Stunde</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Schriftverkehr &amp; Dokumente (Anträge, Widerspruch, Begründungen, Formulare)</td>
-                      <td class="price-table__right"><strong>89 € / Stunde</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Kurzberatung (15 Minuten)</td>
-                      <td class="price-table__right"><strong>25 €</strong></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="small" style="margin-top: 10px; color: var(--muted2);">
-                Die Kurzberatung wird bei anschließender Buchung eines Pakets angerechnet.
-              </p>
-            </div>
-
-            <div class="price-card">
-              <h3 class="panel-title"><span>Fahrtkosten</span></h3>
-              <div class="price-table-wrap" role="region" aria-label="Fahrtkosten Tabelle">
-                <table class="price-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Position</th>
-                      <th scope="col" class="price-table__right">Preis</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Fahrtpauschale Hausbesuch (inkl. An-/Abfahrt innerhalb Ihres Einzugsgebiets)</td>
-                      <td class="price-table__right"><strong>30 € pro Termin</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Außerhalb des Einzugsgebiets</td>
-                      <td class="price-table__right">optional km‑Pauschale</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div id="pakete" class="plain-note" aria-label="Pakete">
-            <h3 class="plain-note-title">Pakete</h3>
-            <p class="plain-note-text">Ideal, wenn Sie schnell Klarheit möchten und einen sauberen nächsten Schritt‑Plan brauchen.</p>
-          </div>
-
-          <div class="faq-plain" aria-label="Pakete als Übersicht">
-            <details class="faq-item faq-item--plain">
-              <summary class="faq-q">1) Erstcheck Pflege &amp; Leistungen <span class="small">— 139 € remote / 169 € vor Ort</span></summary>
-              <div class="faq-a">
-                <ul class="about-plain-list">
-                  <li><strong>Dauer:</strong> 90 Minuten</li>
-                  <li><strong>Leistung:</strong> Situationsanalyse, Prioritäten, Leistungscheck (Pflegekasse/Krankenkasse), nächster Schritt‑Plan</li>
-                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
-                </ul>
-              </div>
-            </details>
-
-            <details class="faq-item faq-item--plain">
-              <summary class="faq-q">2) Pflegegrad‑Paket (Begutachtung &amp; Vorbereitung) <span class="small">— 229 € remote / 259 € vor Ort</span></summary>
-              <div class="faq-a">
-                <ul class="about-plain-list">
-                  <li><strong>Umfang:</strong> 2,5 Stunden gesamt (z. B. 90 Min + 60 Min Nachbereitung)</li>
-                  <li><strong>Leistung:</strong> Strukturierte Vorbereitung, Leitfaden für Alltag/Defizite, Dokumentenliste, typische Fragen, Strategie für MD‑Termin</li>
-                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
-                </ul>
-              </div>
-            </details>
-
-            <details class="faq-item faq-item--plain">
-              <summary class="faq-q">3) Antragsservice‑Paket <span class="small">— 269 € remote / 299 € vor Ort</span></summary>
-              <div class="faq-a">
-                <ul class="about-plain-list">
-                  <li><strong>Umfang:</strong> bis 3 Stunden</li>
-                  <li><strong>Leistung:</strong> Auswahl passender Leistungen, Ausfüllen/strukturieren, Check aller Nachweise, Versandvorbereitung, Fristenplan</li>
-                  <li><strong>Mehrbedarf:</strong> danach 89 € / Std.</li>
-                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
-                </ul>
-              </div>
-            </details>
-
-            <details class="faq-item faq-item--plain">
-              <summary class="faq-q">4) Widerspruch‑Paket (Pflegegrad/Leistung abgelehnt) <span class="small">— 349 € remote / 379 € vor Ort</span></summary>
-              <div class="faq-a">
-                <ul class="about-plain-list">
-                  <li><strong>Umfang:</strong> bis 4 Stunden</li>
-                  <li><strong>Leistung:</strong> Bescheidanalyse, Argumentationsstruktur, Widerspruchsschreiben, Nachweisliste, ggf. Vorbereitung für Zweitbegutachtung</li>
-                  <li><strong>Mehrbedarf:</strong> danach 89 € / Std.</li>
-                  <li><strong>Vor Ort:</strong> zzgl. 30 € Fahrtpauschale</li>
-                </ul>
-              </div>
-            </details>
-
-            <details class="faq-item faq-item--plain">
-              <summary class="faq-q">5) Versorgungsmanagement (Begleitung &amp; Koordination) <span class="small">— 89 € / Std. minutengenau</span></summary>
-              <div class="faq-a">
-                <ul class="about-plain-list">
-                  <li><strong>Ideal</strong> bei komplexer Versorgung: Pflegedienst, Tagespflege, Hilfsmittel, Entlastung, Umbau, Netzwerk.</li>
-                  <li><strong>Leistung:</strong> Versorgungsplan, Anbieter‑Recherche/Koordination, Telefonate, Terminabstimmung, Verlaufskontrolle</li>
-                  <li><strong>Abrechnung:</strong> 89 € / Std. (transparent, minutengenau)</li>
-                  <li><strong>Vor Ort:</strong> je Termin + 30 € Fahrtpauschale</li>
-                </ul>
-                <div class="plain-note" style="margin-top: 14px; padding-top: 14px;">
-                  <h4 class="plain-note-title" style="font-size: 16px;">Monatspakete (optional)</h4>
-                  <ul class="about-plain-list">
-                    <li><strong>Starter:</strong> 3 Std. = 249 € / Monat</li>
-                    <li><strong>Plus:</strong> 6 Std. = 489 € / Monat</li>
-                    <li><strong>Intensiv:</strong> 10 Std. = 799 € / Monat</li>
-                    <li>(nicht genutzte Stunden: z. B. 30 Tage gültig – kann man als Regel definieren)</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
-          </div>
-
-          <div class="plain-note" aria-label="Abrechnung und Transparenz">
-            <h3 class="plain-note-title">Abrechnung &amp; Transparenz</h3>
-            <p class="plain-note-text">
-              Abrechnung minutengenau (bei Stundenabrechnung). Vor Beginn erhalten Sie immer eine klare Kostenschätzung.
-              Schriftstücke/Telefonate/Koordination werden dokumentiert (kurzer Tätigkeitsnachweis).
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="einsatzgebiet" class="section">
-        <div class="plain-wrap">
-          <div class="section-head section-head--center">
-            <h2>Einsatzgebiet</h2>
-            <p>Am Rathaus 9, Schnaitheim – ca. 20 km Umkreis (zur Orientierung).</p>
-          </div>
-
-          <div class="service-area" aria-label="Einsatzgebiet Karte">
-            <div id="service-area-map" class="service-area-map" aria-label="Karte mit 20 km Umkreis"></div>
-
-            <div class="service-area-meta">
-              <a
-                class="btn btn-secondary"
-                href="https://www.google.com/maps?q=48.7063332,10.1619939"
-                target="_blank"
-                rel="noopener"
-              >
-                In Google Maps öffnen
-              </a>
-              <p class="small" style="margin: 10px 0 0 0; color: var(--muted2);">
-                Die Karte ist bewusst nicht zoombar/verschiebbar und dient nur zur Anzeige des Einsatzradius.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <span>© <span id="y"></span> casekompass.de</span>
-        <a href="/impressum.html">Impressum</a>
-      </div>
-      <script>
-        document.getElementById("y").textContent = String(new Date().getFullYear());
-        // Trigger a small reveal animation for the hero panels.
-        requestAnimationFrame(() => {
-          document.documentElement.classList.add("is-loaded");
-        });
-      </script>
-    </footer>
+    <script>
+      document.getElementById("y").textContent = String(new Date().getFullYear());
+    </script>
   </body>
 </html>

@@ -1,112 +1,132 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="de">
   <head>
+    <title>Datenschutz – casekompass.de</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Datenschutzerklärung | casekompass.de</title>
-    <meta name="description" content="Datenschutzerklärung von casekompass.de" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Datenschutzhinweise von casekompass.de." />
     <link rel="canonical" href="https://casekompass.de/datenschutz.html" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/images/logo.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css?v=20260121-3" />
-    <script defer src="effects.js?v=20260121-3"></script>
+    <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
+    <style>
+      #banner {
+        position: relative;
+        overflow: hidden;
+        background-image: none !important;
+        background: linear-gradient(135deg, #b9e7e7 0%, #9fd8d8 45%, #89caca 100%);
+      }
+      .banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,.12);
+        pointer-events: none;
+      }
+      #banner .content {
+        position: relative;
+        z-index: 1;
+        background: rgba(177, 221, 171, 0.78) !important;
+        border: 1px solid rgba(177, 221, 171, 0.72);
+        box-shadow: 0 12px 30px rgba(80, 120, 74, 0.20);
+      }
+      .ds-confirm {
+        margin-top: 1rem;
+        padding: .9rem 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(32,98,98,.18);
+        background: rgba(255,255,255,.9);
+      }
+      .ds-confirm label { color: #335b5b; font-weight: 600; }
+    </style>
   </head>
-  <body>
-    <svg class="sprite-sheet" aria-hidden="true" focusable="false">
-      <symbol id="i-cart" viewBox="0 0 24 24">
-        <path d="M6 6h15l-2 9H7L6 6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
-        <path d="M6 6L5 3H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M9 20a1 1 0 1 0 0 .01ZM17 20a1 1 0 1 0 0 .01Z" fill="none" stroke="currentColor" stroke-width="2" />
-      </symbol>
-    </svg>
-
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/#top" aria-label="Startseite">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">casekompass.de</span>
-        </a>
-
-        <nav class="nav" aria-label="Navigation" data-nav>
-          <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" data-nav-toggle>
-            <span class="nav-toggle-lines" aria-hidden="true"></span>
-          </button>
-
-          <div class="nav-links" data-nav-links>
-            <a class="nav-link" href="/">Start</a>
-            <a class="nav-link" href="/#pakete">Leistungen</a>
-            <a class="nav-link" href="/terminplan.html">Termin</a>
-            <a class="nav-link" href="/kontakt.html">Kontakt</a>
+  <body class="homepage is-preload">
+    <div id="page-wrapper">
+      <header id="header">
+        <div class="logo container">
+          <div>
+            <h1><a href="/" id="logo">casekompass.de</a></h1>
+            <p>Alltagsbegleitung, Pflegekoordination und Unterstützung bei Bürokratie</p>
           </div>
-        </nav>
-      </div>
-    </header>
+        </div>
+      </header>
 
-    <main id="top" class="container">
-      <section class="hero hero--compact" aria-label="Datenschutz">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="hero-bg-overlay" aria-hidden="true"></div>
-        <div class="hero-inner hero-inner--single">
-          <div class="hero-copy reveal reveal--1">
-            <p class="pill">Rechtliches</p>
-            <h1>
-              Datenschutzerklärung –
-              <span class="accent">casekompass.de</span>
-            </h1>
-            <p class="lead">Bitte ergänzen Sie hier Ihre vollständige Datenschutzerklärung.</p>
+      <nav id="nav">
+        <ul>
+          <li><a href="/">Start</a></li>
+          <li><a href="/leistungen.html">Leistungen</a></li>
+          <li><a href="/kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <section id="banner">
+        <div class="banner-overlay" aria-hidden="true"></div>
+        <div class="content">
+          <h2>Datenschutz</h2>
+          <p>Informationen zur Verarbeitung personenbezogener Daten.</p>
+        </div>
+      </section>
+
+      <section id="main">
+        <div class="container">
+          <div class="row gtr-200">
+            <div class="col-12">
+              <section class="box">
+                <h2 class="major"><span>Datenschutzhinweise</span></h2>
+                <p>
+                  Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten
+                  auf dieser Website (z. B. Kontakt- und Terminanfragen).
+                </p>
+                <p>
+                  Verarbeitet werden insbesondere Angaben aus Formularen (Name, E‑Mail, Nachricht, Terminwunsch) und
+                  technisch notwendige Verbindungsdaten. Die Daten werden ausschließlich zweckgebunden verarbeitet.
+                </p>
+                <p>
+                  Betroffene Personen haben insbesondere das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung,
+                  Datenübertragbarkeit sowie Widerspruch nach Maßgabe der gesetzlichen Vorschriften.
+                </p>
+              </section>
+            </div>
+
+            <div class="col-12">
+              <section class="box">
+                <h2 class="major"><span>Bestätigung</span></h2>
+                <p>
+                  Für Kontakt- und Terminanfragen ist eine aktive Datenschutz-Bestätigung erforderlich.
+                </p>
+                <div class="ds-confirm">
+                  <label>
+                    <input type="checkbox" checked disabled />
+                    Bestätigungs-Kästchen ist in den Formularen vorhanden und muss vor dem Senden aktiv angeklickt werden.
+                  </label>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-panel">
-          <div class="section-head">
-            <h2>Inhalt</h2>
-            <p>
-              Diese Seite ist aktuell ein Platzhalter. Für ein produktives Deployment sollten u. a. geregelt werden:
-            </p>
-          </div>
-
-          <div class="cards">
-            <article class="card panel">
-              <h3 class="panel-title"><span>Technische Dienste</span></h3>
-              <p class="small">Hosting (Netlify) und ggf. Analytics/Tracking (falls aktiv). Bitte führen Sie alle eingesetzten Dienste vollständig auf.</p>
-            </article>
-            <article class="card panel">
-              <h3 class="panel-title"><span>Welche Daten?</span></h3>
-              <p class="small">Kontaktanfragen (Formular/E-Mail), Terminanfragen (Formular), technische Logdaten.</p>
-            </article>
-            <article class="card panel">
-              <h3 class="panel-title"><span>Rechte</span></h3>
-              <p class="small">Auskunft, Berichtigung, Löschung, Widerruf, Beschwerderecht.</p>
-            </article>
-          </div>
-
-          <div class="note panel panel--note" style="margin-top: 16px;">
-            <h3 class="panel-title"><span>Wichtig</span></h3>
-            <p class="small">Hinweis: Diese Seite enthält Platzhalter. Für den konkreten rechtlichen Text (DSGVO) sollten Sie eine passende Vorlage/Anwalt/Generator nutzen und alle tatsächlich verwendeten Dienste explizit aufführen.</p>
+      <footer id="footer">
+        <div class="container">
+          <div id="copyright">
+            <ul class="menu">
+              <li>&copy; <span id="y"></span> casekompass.de</li>
+              <li><a href="/impressum.html">Impressum</a></li>
+            </ul>
           </div>
         </div>
-      </section>
-    </main>
+      </footer>
+    </div>
 
-    <footer class="footer">
-      <div class="container footer-inner">
-        <span>© <span id="y"></span> casekompass.de</span>
-        <a href="/impressum.html">Impressum</a>
-      </div>
-      <script>
-        document.getElementById("y").textContent = String(new Date().getFullYear());
-        requestAnimationFrame(() => {
-          document.documentElement.classList.add("is-loaded");
-        });
-      </script>
-    </footer>
+    <script src="Vorlage/assets/js/jquery.min.js"></script>
+    <script src="Vorlage/assets/js/jquery.dropotron.min.js"></script>
+    <script src="Vorlage/assets/js/jquery.scrolly.min.js"></script>
+    <script src="Vorlage/assets/js/browser.min.js"></script>
+    <script src="Vorlage/assets/js/breakpoints.min.js"></script>
+    <script src="Vorlage/assets/js/util.js"></script>
+    <script src="Vorlage/assets/js/main.js"></script>
+    <script src="/smooth-scroll.js"></script>
+    <script>
+      document.getElementById("y").textContent = String(new Date().getFullYear());
+    </script>
   </body>
 </html>
