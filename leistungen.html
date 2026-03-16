@@ -33,50 +33,7 @@
         background-image: none !important;
         background-color: #348d91;
         background: linear-gradient(135deg, #6fb8bb 0%, #348d91 45%, #2c8c8c 100%);
-      }
-
-      .banner-slides {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-      }
-
-      .banner-slide {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: banner-fade 16s ease-in-out infinite;
-      }
-
-      .banner-slide--1 {
-        background-image: url('/images/hero1.png');
-        animation-delay: 0s;
-      }
-
-      .banner-slide--2 {
-        background-image: url('/images/hero2.png');
-        animation-delay: 4s;
-      }
-
-      .banner-slide--3 {
-        background-image: url('/images/hero3.png');
-        animation-delay: 8s;
-      }
-
-      .banner-slide--4 {
-        background-image: url('/images/hero4.png');
-        animation-delay: 12s;
-      }
-
-      .banner-overlay {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: transparent;
-        pointer-events: none;
+        padding: 2.5rem 0;
       }
 
       #banner .content {
@@ -86,6 +43,8 @@
         border: 1px solid rgba(44, 140, 140, 0.72);
         box-shadow: 0 12px 30px rgba(30, 90, 95, 0.22);
         color: #111111;
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
       }
 
       #banner .content h2,
@@ -98,6 +57,53 @@
       #banner .content .button:hover,
       #banner .content .button:active {
         color: #ffffff !important;
+      }
+
+      .banner-quicknav {
+        margin-top: 1.2rem;
+      }
+
+      .banner-quicknav-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+
+      .banner-qitem {
+        text-decoration: none;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: rgba(255, 255, 255, 0.16);
+        display: block;
+      }
+
+      .banner-qitem-image {
+        display: block;
+        width: 100%;
+        height: clamp(120px, 18vw, 170px);
+        overflow: hidden;
+      }
+
+      .banner-qitem-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.04);
+        animation: hero-pan 10s ease-in-out infinite;
+        transition: transform 0.35s ease;
+      }
+
+      .banner-qitem:hover .banner-qitem-image img {
+        transform: scale(1.12);
+      }
+
+      .banner-qitem-title {
+        display: block;
+        padding: 0.5rem 0.7rem 0.65rem;
+        font-weight: 700;
+        color: #ffffff;
+        line-height: 1.2;
       }
 
       #main .box.features .box.feature .image.featured {
@@ -136,21 +142,85 @@
         margin-bottom: 0.3rem;
       }
 
-      @keyframes banner-fade {
+      .package-panels {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .package-panel {
+        border: 1px solid rgba(44, 140, 140, 0.28);
+        border-radius: 14px;
+        background: #ffffff;
+        box-shadow: 0 8px 22px rgba(30, 90, 95, 0.12);
+        padding: 1rem;
+      }
+
+      .package-panel h3 {
+        margin: 0 0 0.35rem 0;
+        font-size: 1.1rem;
+        text-transform: none;
+      }
+
+      .package-subline {
+        margin: 0 0 0.8rem 0;
+        color: #3c5656;
+      }
+
+      .package-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .package-list li {
+        margin: 0 0 0.5rem 0;
+        padding: 0.45rem 0.55rem;
+        border-radius: 8px;
+        background: rgba(44, 140, 140, 0.08);
+        line-height: 1.45;
+      }
+
+      .package-price {
+        display: inline-block;
+        margin-top: 0.65rem;
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        background: #2c8c8c;
+        color: #ffffff;
+        font-weight: 700;
+      }
+
+      .package-note {
+        margin-top: 1rem;
+        border: 1px solid rgba(44, 140, 140, 0.24);
+        border-radius: 12px;
+        background: rgba(44, 140, 140, 0.08);
+        padding: 0.9rem 1rem;
+      }
+
+      @media screen and (max-width: 980px) {
+        .package-panels {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @keyframes hero-pan {
         0% {
-          opacity: 0;
+          transform: scale(1.04) translateX(0);
         }
-        8% {
-          opacity: 1;
-        }
-        24% {
-          opacity: 1;
-        }
-        32% {
-          opacity: 0;
+        50% {
+          transform: scale(1.10) translateX(1.6%);
         }
         100% {
-          opacity: 0;
+          transform: scale(1.04) translateX(0);
+        }
+      }
+
+      @media screen and (max-width: 980px) {
+        .banner-quicknav-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -209,17 +279,26 @@
       </nav>
 
       <section id="banner">
-        <div class="banner-slides" aria-hidden="true">
-          <span class="banner-slide banner-slide--1"></span>
-          <span class="banner-slide banner-slide--2"></span>
-          <span class="banner-slide banner-slide--3"></span>
-          <span class="banner-slide banner-slide--4"></span>
-        </div>
-        <div class="banner-overlay" aria-hidden="true"></div>
         <div class="content">
           <h2>Leistungen im Detail</h2>
           <p>Alle Angebote auf einer Seite – inklusive Begleitung für Menschen mit Behinderung.</p>
           <a href="#pakete-monatspauschalen" class="button scrolly">Jetzt ansehen</a>
+          <div class="banner-quicknav" aria-label="Schnellnavigation Leistungen">
+            <div class="banner-quicknav-grid">
+              <a href="#alltagsbegleitung" class="banner-qitem scrolly">
+                <span class="banner-qitem-image"><img src="images/hero1.png" alt="Alltagsbegleitung" /></span>
+                <span class="banner-qitem-title">Alltagsbegleitung</span>
+              </a>
+              <a href="#pflegekoordination" class="banner-qitem scrolly">
+                <span class="banner-qitem-image"><img src="images/hero2.png" alt="Pflegekoordination" /></span>
+                <span class="banner-qitem-title">Pflegekoordination</span>
+              </a>
+              <a href="#antragsservice" class="banner-qitem scrolly">
+                <span class="banner-qitem-image"><img src="images/hero3.png" alt="Antragsservice" /></span>
+                <span class="banner-qitem-title">Antragsservice</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -227,72 +306,46 @@
         <div class="container">
           <div class="row gtr-200">
             <div class="col-12">
-              <section class="box features">
-                <h2 class="major"><span>Schnellnavigation</span></h2>
-                <div>
-                  <div class="row">
-                    <div class="col-4 col-6-medium col-12-small">
-                      <section class="box feature">
-                        <a href="#alltagsbegleitung" class="image featured scrolly"><img src="images/hero1.png" alt="Alltagsbegleitung" /></a>
-                        <h3><a href="#alltagsbegleitung" class="scrolly">Alltagsbegleitung</a></h3>
-                        <p>Unterstützung im Alltag mit klarer Struktur und persönlicher Begleitung.</p>
-                      </section>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                      <section class="box feature">
-                        <a href="#pflegekoordination" class="image featured scrolly"><img src="images/hero2.png" alt="Pflegekoordination" /></a>
-                        <h3><a href="#pflegekoordination" class="scrolly">Pflegekoordination</a></h3>
-                        <p>Versorgung koordinieren, Zuständigkeiten klären und Abläufe stabil halten.</p>
-                      </section>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                      <section class="box feature">
-                        <a href="#antragsservice" class="image featured scrolly"><img src="images/hero3.png" alt="Antragsservice" /></a>
-                        <h3><a href="#antragsservice" class="scrolly">Antragsservice</a></h3>
-                        <p>Anträge vollständig vorbereiten und sicher fristgerecht auf den Weg bringen.</p>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <div class="col-12">
               <section class="box" id="pakete-monatspauschalen">
                 <h2 class="major"><span>Meine Betreuungs-Pakete (Monatspauschalen)</span></h2>
                 <p>
                   Alle Preise sind Endpreise – umsatzsteuerfrei nach <strong>§ 4 Nr. 16 UStG</strong>.
                 </p>
 
-                <article class="box post">
-                  <header>
-                    <h3>Paket 1: „Basis-Entlastung“ (Wöchentlicher Fixtermin)</h3>
-                    <p>Ideal für regelmäßige Hilfe im Haushalt, Einkäufe oder Arztbegleitungen.</p>
-                  </header>
-                  <p><strong>Leistung:</strong> 4 Stunden pro Woche (16 Std. / Monat)</p>
-                  <p><strong>Einsatztag:</strong> 1 fester Termin pro Woche à 4 Stunden</p>
-                  <p><strong>Monatspauschale:</strong> 572,00 € (Inkl. Anfahrtspauschale)</p>
-                </article>
+                <div class="package-panels" aria-label="Paketübersicht">
+                  <article class="package-panel">
+                    <h3>Paket 1: Basis-Entlastung</h3>
+                    <p class="package-subline">Wöchentlicher Fixtermin für regelmäßige Hilfe im Alltag.</p>
+                    <ul class="package-list">
+                      <li><strong>Leistung:</strong> 4 Stunden pro Woche (16 Std. / Monat)</li>
+                      <li><strong>Einsatztag:</strong> 1 fester Termin pro Woche à 4 Stunden</li>
+                      <li><strong>Ideal für:</strong> Haushalt, Einkäufe, Arztbegleitungen</li>
+                    </ul>
+                    <span class="package-price">572,00 € / Monat inkl. Anfahrtspauschale</span>
+                  </article>
 
-                <article class="box post">
-                  <header>
-                    <h3>Paket 2: „Sorglos-Begleitung“ (Die starke Stütze)</h3>
-                    <p>Perfekt für intensive Betreuung, Ausflüge oder Begleitung zu Terminen und Freizeit.</p>
-                  </header>
-                  <p><strong>Leistung:</strong> 8 Stunden pro Woche (32 Std. / Monat)</p>
-                  <p><strong>Einsatztage:</strong> 2 Termine à 4 Stunden oder 1 Termin à 8 Stunden</p>
-                  <p><strong>Monatspauschale:</strong> 1.084,00 € (Inkl. Anfahrtspauschale)</p>
-                </article>
+                  <article class="package-panel">
+                    <h3>Paket 2: Sorglos-Begleitung</h3>
+                    <p class="package-subline">Die starke Stütze für intensive Begleitung und feste Struktur.</p>
+                    <ul class="package-list">
+                      <li><strong>Leistung:</strong> 8 Stunden pro Woche (32 Std. / Monat)</li>
+                      <li><strong>Einsatztage:</strong> 2 Termine à 4 Stunden oder 1 Termin à 8 Stunden</li>
+                      <li><strong>Ideal für:</strong> Termine, Ausflüge und umfassende Betreuung</li>
+                    </ul>
+                    <span class="package-price">1.084,00 € / Monat inkl. Anfahrtspauschale</span>
+                  </article>
 
-                <article class="box post">
-                  <header>
-                    <h3>Paket 3: „Wochenend-Spezial“ (Flexible Familienauszeit)</h3>
-                    <p>Exklusive Betreuung am Samstag oder Sonntag, um pflegenden Angehörigen eine Pause zu ermöglichen.</p>
-                  </header>
-                  <p><strong>Leistung:</strong> 6 Stunden am Stück (Samstag oder Sonntag)</p>
-                  <p><strong>Besonderheit:</strong> Inklusive Wochenend-Zuschlag</p>
-                  <p><strong>Einzelpreis pro Einsatz:</strong> 260,00 € (Inkl. Anfahrtspauschale)</p>
-                </article>
+                  <article class="package-panel">
+                    <h3>Paket 3: Wochenend-Spezial</h3>
+                    <p class="package-subline">Flexible Familienauszeit am Samstag oder Sonntag.</p>
+                    <ul class="package-list">
+                      <li><strong>Leistung:</strong> 6 Stunden am Stück (Samstag oder Sonntag)</li>
+                      <li><strong>Besonderheit:</strong> Inklusive Wochenend-Zuschlag</li>
+                      <li><strong>Ziel:</strong> Entlastung pflegender Angehöriger am Wochenende</li>
+                    </ul>
+                    <span class="package-price">260,00 € pro Einsatz inkl. Anfahrtspauschale</span>
+                  </article>
+                </div>
 
                 <h3>Wichtige Hinweise &amp; Transparenz-Check</h3>
                 <p>
@@ -314,6 +367,9 @@
                   <strong>E-Mobilität:</strong> Ich besuche Sie nachhaltig und sauber mit meinem E-Auto. In der
                   Anfahrtspauschale sind alle Kosten im Umkreis von 20 km um Herbrechtingen enthalten.
                 </p>
+                <div class="package-note">
+                  <strong>Transparenz:</strong> Alle Pakete sind klar kalkuliert, nachvollziehbar dokumentiert und ohne versteckte Zusatzkosten.
+                </div>
               </section>
             </div>
 
