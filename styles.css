@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --container: 1240px;
   --header-h: 72px;
 
@@ -14,10 +14,10 @@
   --muted2: #64748b;
 
   /* Primary palette (requested blues) */
-  --primary: #4CA1A3;
+  --primary: #2c8c8c;
   --primary-600: #3A8A8C;
   --primary-700: #2D6A6C;
-  --primary-rgb: 76, 161, 163;
+  --primary-rgb: 44, 140, 140;
   --primary-600-rgb: 58, 138, 140;
   --primary-700-rgb: 45, 106, 108;
 
@@ -2378,7 +2378,7 @@ body.is-loading .loading-box {
     transform: translateY(-4px);
   }
 
-  /* section-panel: kein Hover-Effekt für große Container-Panels */
+  /* section-panel: kein Hover-Effekt fÃ¼r groÃŸe Container-Panels */
 }
 
 .t-num {
@@ -2658,7 +2658,7 @@ body.is-loading .loading-box {
 }
 
 .about-plain-list li::before {
-  content: "✓";
+  content: "âœ“";
   position: absolute;
   left: 0;
   top: 0;
@@ -3118,7 +3118,7 @@ body.is-loading .loading-box {
 }
 
 .bullets--checks li::before {
-  content: "✓";
+  content: "âœ“";
   position: absolute;
   left: 0;
   top: 0;
@@ -3322,3 +3322,4 @@ textarea:focus {
   justify-content: space-between;
   gap: 12px;
 }
+
