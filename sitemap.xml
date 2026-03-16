@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://casekompass.de/</loc>
-    <lastmod>2026-01-07</lastmod>
+    <lastmod>2026-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://casekompass.de/leistungen.html</loc>
+    <lastmod>2026-03-16</lastmod>
   </url>
   <url>
     <loc>https://casekompass.de/profil.html</loc>
@@ -10,7 +14,15 @@
   </url>
   <url>
     <loc>https://casekompass.de/kontakt.html</loc>
-    <lastmod>2026-01-07</lastmod>
+    <lastmod>2026-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://casekompass.de/terminplan.html</loc>
+    <lastmod>2026-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://casekompass.de/datenschutz.html</loc>
+    <lastmod>2026-03-16</lastmod>
   </url>
   <url>
     <loc>https://casekompass.de/impressum.html</loc>
