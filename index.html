@@ -89,18 +89,16 @@
         animation-delay: 12s;
       }
 
-      .about-preview {
-        display: block;
-        width: clamp(170px, 62%, 240px);
+      .about-side-portrait {
+        float: right;
+        width: clamp(150px, 24vw, 220px);
         aspect-ratio: 1 / 1;
-        overflow: hidden;
-        margin: 0 auto;
         border-radius: 50%;
-        border: 3px solid rgba(44, 140, 140, 0.35);
-        box-shadow: 0 10px 24px rgba(30, 90, 95, 0.24);
+        overflow: hidden;
+        margin: 0 0 0.9rem 1.1rem;
       }
 
-      .about-preview-img {
+      .about-side-portrait img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -194,6 +192,12 @@
         #banner .content .button {
           font-size: 0.92rem;
           padding: 0.75rem 1rem;
+        }
+
+        .about-side-portrait {
+          float: none;
+          margin: 0 auto 1rem;
+          width: min(58vw, 210px);
         }
       }
     </style>
@@ -317,7 +321,7 @@
                     </div>
                     <div class="col-3 col-6-medium col-12-small">
                       <section class="box feature">
-                        <a href="#ueber-mich" class="image featured scrolly about-preview"><img src="images/uebermich.webp" alt="Johannes Piperidis" class="about-preview-img" /></a>
+                        <a href="#ueber-mich" class="image featured scrolly"><img src="images/bild.png" alt="Johannes Piperidis" /></a>
                         <h3><a href="#ueber-mich" class="scrolly">Über mich</a></h3>
                         <p>Persönliche Begleitung mit Weiterbildung in der Pflege und nach §45a/b.</p>
                       </section>
@@ -342,6 +346,9 @@
                       <h3>Johannes Piperidis - Alltagsbegleitung mit Praxisbezug</h3>
                       <p>Persönlich, strukturiert und verlässlich an Ihrer Seite.</p>
                     </header>
+                    <div class="about-side-portrait" aria-hidden="true">
+                      <img src="images/uebermich.webp" alt="Portrait von Johannes Piperidis" />
+                    </div>
                     <p>
                       Ich bin Johannes Piperidis, Inhaber von casekompass.de. Mein Schwerpunkt liegt auf der Verbindung aus
                       menschlicher Begleitung und strukturierter Fallsteuerung. Viele Menschen erleben Pflege und Bürokratie als
