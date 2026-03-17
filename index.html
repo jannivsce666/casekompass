@@ -15,18 +15,42 @@
     <link rel="canonical" href="https://casekompass.de/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/images/logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+    />
     <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
     <style>
+      :root {
+        --home-text: #0f172a;
+        --home-muted: #334155;
+        --home-heading: #0b1414;
+      }
+
       body,
       input,
       textarea,
       select {
-        color: #111111;
+        color: var(--home-text);
+        font-family: "Manrope", "Segoe UI", "Helvetica Neue", Helvetica, sans-serif;
       }
 
-      h1, h2, h3, h4, h5, h6,
-      p, li {
-        color: #111111;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--home-heading);
+        font-family: "DM Serif Display", Georgia, "Times New Roman", serif;
+        letter-spacing: -0.01em;
+      }
+
+      p,
+      li {
+        color: var(--home-muted);
       }
 
       #banner {
@@ -84,15 +108,19 @@
       #banner .content {
         position: relative;
         z-index: 1;
-        background: rgba(44, 140, 140, 0.90) !important;
-        border: 1px solid rgba(44, 140, 140, 0.72);
-        box-shadow: 0 12px 30px rgba(30, 90, 95, 0.22);
-        color: #111111;
+        background: rgba(24, 82, 84, 0.88) !important;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        box-shadow: 0 14px 34px rgba(10, 42, 44, 0.28);
+        color: #ffffff;
       }
 
       #banner .content h2,
       #banner .content p {
-        color: #111111;
+        color: #ffffff;
+      }
+
+      #banner .content p {
+        color: rgba(255, 255, 255, 0.9);
       }
 
       #banner .content .button,
@@ -117,6 +145,34 @@
         }
         100% {
           opacity: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo.container p {
+          font-size: 0.96rem;
+          line-height: 1.45;
+        }
+
+        #banner .content {
+          padding: 1.15rem 1rem;
+        }
+
+        #banner .content h2 {
+          font-size: 1.55rem;
+          line-height: 1.2;
+          margin-bottom: 0.5rem;
+        }
+
+        #banner .content p {
+          font-size: 1rem;
+          line-height: 1.45;
+          margin-bottom: 0.85rem;
+        }
+
+        #banner .content .button {
+          font-size: 0.92rem;
+          padding: 0.75rem 1rem;
         }
       }
     </style>
@@ -161,7 +217,7 @@
         <div class="logo container">
           <div>
             <h1><a href="/" id="logo">casekompass.de</a></h1>
-            <p>Alltagsbegleitung, Begleitung von Menschen mit Behinderung, Pflegekoordination und Unterstützung bei Bürokratie</p>
+            <p>Alltagsbegleitung im Mittelpunkt - Case Management als ergänzende Nische</p>
           </div>
         </div>
       </header>
@@ -184,9 +240,9 @@
         </div>
         <div class="banner-overlay" aria-hidden="true"></div>
         <div class="content">
-          <h2>Klare Hilfe bei Pflege, Behinderung und Organisation</h2>
-          <p>Sie bekommen Struktur, verständliche Schritte und Entlastung im Alltag.</p>
-          <a href="/kontakt.html#termin" class="button scrolly">Erstgespräch starten</a>
+          <h2>Alltagsbegleitung in Heidenheim - damit Ihr Alltag wieder leichter wird</h2>
+          <p>Mein Schwerpunkt ist die praktische Alltagsbegleitung. Case Management biete ich zusaetzlich an, wenn komplexe Abstimmung noetig ist.</p>
+          <a href="/kontakt.html#termin" class="button scrolly">Alltagsbegleitung anfragen</a>
         </div>
       </section>
 
@@ -202,19 +258,20 @@
                   <li><span class="icon solid fa-route"><span class="label">Struktur</span></span></li>
                 </ul>
                 <header>
-                  <h2>Was Sie bei mir bekommen</h2>
-                  <p>Kurz, klar und zuverlässig begleitet</p>
+                  <h2>Alltagsbegleitung ist meine Hauptleistung</h2>
+                  <p>Case Management ist eine zusaetzliche Nische fuer komplexe Faelle</p>
                 </header>
                 <p>
-                  Ich unterstütze bei Pflegegrad, Behinderung, Anträgen, Fristen und Abstimmung mit beteiligten Stellen. Sie wissen jederzeit,
-                  was wichtig ist und was als Nächstes kommt.
+                  Ich unterstuetze Sie im Alltag ganz praktisch: Begleitung zu Terminen, Einkaufen, Struktur im Tagesablauf,
+                  Entlastung fuer Angehoerige und alltagsnahe Hilfe bei Behinderung oder im Alter. Wenn die Situation organisatorisch
+                  komplex wird, uebernehme ich zusaetzlich Case Management mit klaren Schritten und Abstimmung aller Beteiligten.
                 </p>
               </section>
             </div>
 
             <div class="col-12">
               <section class="box features">
-                <h2 class="major"><span>Leistungen auf einen Blick</span></h2>
+                <h2 class="major"><span>Alltagsbegleitung zuerst - ergaenzende Leistungen bei Bedarf</span></h2>
                 <div>
                   <div class="row">
                     <div class="col-3 col-6-medium col-12-small">
@@ -227,8 +284,8 @@
                     <div class="col-3 col-6-medium col-12-small">
                       <section class="box feature">
                         <a href="/leistungen.html#pflegekoordination" class="image featured"><img src="images/hero2.png" alt="Pflegekoordination" /></a>
-                        <h3><a href="/leistungen.html#pflegekoordination">Pflegekoordination</a></h3>
-                        <p>Saubere Abstimmung von Leistungen, Ansprechpartnern und nächsten Schritten.</p>
+                        <h3><a href="/leistungen.html#pflegekoordination">Case Management</a></h3>
+                        <p>Ergaenzende Nische: saubere Abstimmung von Leistungen, Ansprechpartnern und naechsten Schritten.</p>
                       </section>
                     </div>
                     <div class="col-3 col-6-medium col-12-small">
