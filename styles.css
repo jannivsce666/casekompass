@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --container: 1240px;
   --header-h: 72px;
 
@@ -2844,9 +2844,65 @@ body.is-loading .loading-box {
   white-space: nowrap;
 }
 
+.price-table thead th.price-table__right {
+  text-align: right;
+}
+
 @media (max-width: 560px) {
   .price-table {
     min-width: 460px;
+  }
+}
+
+/* Mobile: Preis-Tabelle als Kartenlayout anzeigen */
+@media (max-width: 860px) {
+  .price-table-wrap {
+    overflow-x: visible;
+  }
+
+  .price-table {
+    min-width: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .price-table thead {
+    display: none;
+  }
+
+  .price-table tbody tr {
+    display: block;
+    border: 1px solid rgba(var(--primary-700-rgb), 0.14);
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-sm);
+    margin: 0 0 14px 0;
+  }
+
+  .price-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .price-table tbody td {
+    display: block;
+    border-bottom: none;
+    padding: 12px 14px;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .price-table tbody td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+    color: rgba(15, 23, 42, 0.62);
+    margin-bottom: 6px;
+  }
+
+  .price-table tbody td.price-table__right {
+    text-align: left;
   }
 }
 
