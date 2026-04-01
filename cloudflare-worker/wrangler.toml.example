@@ -1,0 +1,15 @@
+name = "ergomobil-contact"
+main = "worker.js"
+compatibility_date = "2026-01-04"
+
+# After login + deploy, set variables in Cloudflare dashboard:
+# MAILGUN_API_KEY
+# MAILGUN_DOMAIN
+# CONTACT_TO
+# CONTACT_FROM (optional)
+# ALLOWED_ORIGINS (optional)
+
+# Example route (optional):
+# routes = [
+#   { pattern = "ergotherapie-mobil.de/api/contact", zone_name = "ergotherapie-mobil.de" }
+# ]

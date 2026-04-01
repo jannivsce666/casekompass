@@ -1,30 +1,30 @@
-# Johannes Piperidis – Case Management
+# Ergotherapie Mobil – Einfache Website
 
-Statische HTML/CSS Website.
+Diese kleine, mobile-first Website ist für den lokalen Anbieter "Ergotherapie Mobil" im Raum Bolheim & Heidenheim erstellt. Sie nutzt nur HTML, CSS und JavaScript (ohne Frameworks).
 
-## Lokal ansehen
+## Inhalte
+- Sticky Header mit Navigation
+- Start/Hero mit Slogan und CTAs
+- Leistungsübersicht mit Icons
+- Über-uns Abschnitt mit Bild-Platzhalter
+- Einsatzgebiet mit eingebetteten Karten (Bolheim & Heidenheim)
+- Kontakt mit Formular und Kontaktdaten
+- Footer mit Öffnungszeiten und Social Icons
 
-Option A: `index.html` direkt im Browser öffnen.
+## Technik
+- HTML5, CSS3 (Flex/Grid), Vanilla JS
+- Google Fonts (Inter, Nunito Sans)
+- Font Awesome für Icons (CDN)
+- Mobile-first, responsive Design
+- Smooth Scrolling, Reveal-Animationen beim Scrollen
 
-Option B: lokaler Server:
+## Nutzung
+Öffnen Sie die Datei `index.html` direkt im Browser oder starten Sie über eine lokale Server-Erweiterung in VS Code.
 
-```bash
-npx serve . -l 3000
-```
+## Anpassung
+- Farben, Logo, Texte in `style.css` und `index.html` anpassen.
+- Ersetzen Sie Platzhalter (Adresse, Telefonnummer, E-Mail, Social-Links) durch echte Daten.
+- Für ein echtes Formular-Backend (E-Mail-Versand) einen Dienst nutzen (z. B. Formspree, Getform) oder einen eigenen Server bauen.
 
-Dann `http://localhost:3000` öffnen.
-
-## Bilder ersetzen
-
-Die Hero-Bilder liegen in `images/` (SVG Platzhalter). Du kannst sie durch eigene Bilder ersetzen, z.B. `images/hero-1.jpg`, und die Pfade in `index.html` anpassen.
-
-## Netlify
-
-- Publish directory: `.`
-- Build command: `echo 'No build step'`
-
-Konfiguration: `netlify.toml`
-
-## Firebase
-
-Aktuell ist **kein Login-System** aktiv. Optional wird Firebase nur für technische Funktionen (z. B. Analytics, falls aktiv) direkt im Browser (ohne Build Step) via [firebase.js](firebase.js) eingebunden.
+## Lizenz der Beispielbilder
+Die eingebundenen Beispiel-Hintergründe stammen von Unsplash und sind frei nutzbar (gemäß Unsplash-Lizenz). Für eine echte Seite bitte eigene Praxisfotos verwenden.

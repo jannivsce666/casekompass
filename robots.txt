@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://casekompass.de/sitemap.xml
+# Sitemaps
+Sitemap: https://ergotherapie-mobil.de/sitemap.xml
+
+# Crawl-Delay
+Crawl-delay: 1
+
+# Block specific user agents (spam bots)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

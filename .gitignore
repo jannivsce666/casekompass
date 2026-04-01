@@ -1,4 +1,17 @@
-.netlify/
-node_modules/
-.env
-secret.txt
+# Sensible Daten
+api.txt
+
+# System Files
+.DS_Store
+*.log
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*~

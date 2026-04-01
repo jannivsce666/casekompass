@@ -1,662 +1,192 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <title>Kontakt: Privates Case Management in Heidenheim</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Kontakt für privates Case Management in Heidenheim: komplexe Fallkoordination nach Schlaganfall, Widerspruch Pflegegrad, Arztbegleitung und Hilfe bei Wohnzuschuss oder Umbau." />
-    <link rel="canonical" href="https://casekompass.de/kontakt.html" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/images/logo.png" type="image/png" />
-    <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-    <style>
-      body,
-      input,
-      textarea,
-      select {
-        color: #111111;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Kontakt & Beratung mit casekompass.de: Case Management, Pflegegrad-Unterstützung, Widerspruch und Alltagsbegleitung in Heidenheim an der Brenz & Umkreis.">
+  <meta name="keywords" content="Case Management Heidenheim, Pflegegrad Antrag Hilfe, Widerspruch Pflegegrad, Alltagsbegleitung Heidenheim, Betreuung ältere Menschen, Beratung Behinderung">
+  <meta name="robots" content="index, follow">
+  <title>Kontakt & Beratung | casekompass.de</title>
+  <link rel="canonical" href="https://casekompass.de/kontakt.html">
 
-      h1, h2, h3, h4, h5, h6,
-      p, li, label {
-        color: #111111;
-      }
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
 
-      #banner {
-        position: relative;
-        overflow: hidden;
-        background-image: none !important;
-        background: linear-gradient(135deg, #6fb8bb 0%, #348d91 45%, #2c8c8c 100%);
-      }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-      .banner-slides {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-      }
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
 
-      .banner-slide {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        opacity: 0;
-        animation: banner-fade 16s ease-in-out infinite;
-      }
+  <!-- AOS (scroll animations) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
-      .banner-slide--1 {
-        background-image: url('/images/hero1.png');
-        animation-delay: 0s;
-      }
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#kontakt">Zum Inhalt springen</a>
 
-      .banner-slide--2 {
-        background-image: url('/images/hero2.png');
-        animation-delay: 4s;
-      }
+  <header id="top" class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
+        <img src="./images/logo.png" alt="casekompass.de Logo">
+        <span>casekompass.de</span>
+      </a>
 
-      .banner-slide--3 {
-        background-image: url('/images/hero3.png');
-        animation-delay: 8s;
-      }
+      <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
 
-      .banner-slide--4 {
-        background-image: url('/images/hero4.png');
-        animation-delay: 12s;
-      }
-
-      .banner-overlay {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: transparent;
-        pointer-events: none;
-      }
-      #banner .content {
-        position: relative;
-        z-index: 1;
-        background: rgba(44, 140, 140, 0.90) !important;
-        border: 1px solid rgba(44, 140, 140, 0.72);
-        box-shadow: 0 12px 30px rgba(30, 90, 95, 0.22);
-        color: #111111;
-      }
-
-      #banner .content h2,
-      #banner .content p {
-        color: #111111;
-      }
-
-      #banner .content .button,
-      #banner .content .button:visited,
-      #banner .content .button:hover,
-      #banner .content .button:active {
-        color: #ffffff !important;
-      }
-      .split-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
-      .status { margin-top: .7rem; font-size: .95rem; }
-      .appointment-modern {
-        border: 1px solid rgba(32, 98, 98, 0.16);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.92);
-        padding: 1rem;
-        margin-bottom: .8rem;
-      }
-
-      .appointment-modern h4 {
-        margin: 0 0 .6rem 0;
-        font-size: 1rem;
-      }
-
-      .tp-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: .8rem;
-      }
-
-      @media (min-width: 640px) {
-        .tp-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      .tp-field label {
-        display: block;
-        margin-bottom: .35rem;
-        font-weight: 700;
-      }
-
-      .tp-field input[type="text"] {
-        width: 100%;
-      }
-
-      .tp-slots {
-        margin-top: .8rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: .45rem;
-      }
-
-      .tp-slot {
-        border: 1px solid rgba(32, 98, 98, 0.26);
-        background: rgba(255, 255, 255, 0.96);
-        color: #2c8c8c;
-        border-radius: 999px;
-        padding: .28rem .7rem;
-        font-size: .82rem;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .tp-slot:hover {
-        border-color: rgba(32, 98, 98, 0.52);
-        background: #fff;
-      }
-
-      .tp-slot.is-selected {
-        background: rgba(76, 161, 163, 0.2);
-        border-color: rgba(32, 98, 98, 0.6);
-      }
-
-      .flatpickr-calendar {
-        border-radius: 14px;
-        border: 1px solid rgba(32, 98, 98, 0.18);
-        box-shadow: 0 16px 34px rgba(15, 23, 42, 0.16);
-      }
-
-      .flatpickr-day.selected,
-      .flatpickr-day.startRange,
-      .flatpickr-day.endRange {
-        background: #2c8c8c;
-        border-color: #2c8c8c;
-      }
-
-      #main .box form .row.gtr-50 {
-        margin-top: 0.15rem;
-      }
-
-      #main .box form input[type="text"],
-      #main .box form input[type="email"],
-      #main .box form input[type="tel"],
-      #main .box form input[type="date"],
-      #main .box form input[type="time"],
-      #main .box form select,
-      #main .box form textarea {
-        border-radius: 12px;
-        border: 1px solid rgba(32, 98, 98, 0.22);
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
-        transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
-      }
-
-      #main .box form input[type="text"]:hover,
-      #main .box form input[type="email"]:hover,
-      #main .box form input[type="tel"]:hover,
-      #main .box form input[type="date"]:hover,
-      #main .box form input[type="time"]:hover,
-      #main .box form select:hover,
-      #main .box form textarea:hover {
-        border-color: rgba(32, 98, 98, 0.34);
-        background: #ffffff;
-      }
-
-      #main .box form input[type="text"]:focus,
-      #main .box form input[type="email"]:focus,
-      #main .box form input[type="tel"]:focus,
-      #main .box form input[type="date"]:focus,
-      #main .box form input[type="time"]:focus,
-      #main .box form select:focus,
-      #main .box form textarea:focus {
-        border-color: rgba(32, 98, 98, 0.7);
-        box-shadow: 0 0 0 4px rgba(106, 201, 201, 0.24);
-      }
-
-      #main .box form textarea {
-        min-height: 150px;
-        resize: vertical;
-      }
-
-      #main .box form label {
-        color: #2c8c8c;
-        font-weight: 600;
-      }
-
-      #main .box form label,
-      #main .box form label span,
-      #main .box form legend {
-        color: #2c8c8c !important;
-      }
-
-      #main .box form label a,
-      #main .box form legend a {
-        color: #2c8c8c !important;
-      }
-
-      #main .box form label a:hover,
-      #main .box form legend a:hover {
-        color: #236f72 !important;
-      }
-
-      #main a[href^="mailto:"],
-      #main a[href^="tel:"],
-      #main .box a[href^="mailto:"],
-      #main .box a[href^="tel:"] {
-        color: #2c8c8c !important;
-      }
-
-      #main a[href^="mailto:"]:hover,
-      #main a[href^="tel:"]:hover,
-      #main .box a[href^="mailto:"]:hover,
-      #main .box a[href^="tel:"]:hover {
-        color: #236f72 !important;
-      }
-
-      #main .box form .button {
-        border-radius: 12px;
-      }
-
-      #main .box form .button.alt {
-        border-color: rgba(32, 98, 98, 0.3);
-      }
-
-      #main .box form label:has(input[type="checkbox"]) {
-        display: flex;
-        gap: .6rem;
-        align-items: flex-start;
-        padding: .6rem .7rem;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.86);
-        border: 1px solid rgba(32, 98, 98, 0.16);
-      }
-
-      #main .box form input[type="checkbox"] {
-        margin-top: 0.2rem;
-        -webkit-appearance: checkbox !important;
-        -moz-appearance: checkbox !important;
-        appearance: auto !important;
-        width: 18px;
-        height: 18px;
-        min-width: 18px;
-        min-height: 18px;
-        accent-color: #2c8c8c;
-        opacity: 1 !important;
-        visibility: visible !important;
-        display: inline-block !important;
-      }
-
-      @keyframes banner-fade {
-        0% {
-          opacity: 0;
-        }
-        8% {
-          opacity: 1;
-        }
-        24% {
-          opacity: 1;
-        }
-        32% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-    </style>
-  </head>
-  <body class="homepage is-preload">
-    <div id="page-wrapper">
-      <header id="header">
-        <div class="logo container">
-          <div>
-            <h1><a href="/" id="logo">casekompass.de</a></h1>
-            <p>Privates Case Management, Fallkoordination und Unterstützung bei Anträgen, Widersprüchen und Versorgung</p>
-          </div>
-        </div>
-      </header>
-
-      <nav id="nav">
+      <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
-          <li><a href="/">Start</a></li>
-          <li><a href="/leistungen.html">Leistungen</a></li>
-          <li><a href="https://ergomobil-hdh.de">Ergotherapie</a></li>
-          <li class="current"><a href="/kontakt.html">Kontakt</a></li>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="index.html#main">Über mich</a></li>
+          <li><a href="https://ergomobil-hdh.de/">Ergo</a></li>
+          <li><a href="kontakt.html" class="active">Kontakt</a></li>
         </ul>
       </nav>
-
-      <section id="banner">
-        <div class="banner-slides" aria-hidden="true">
-          <span class="banner-slide banner-slide--1"></span>
-          <span class="banner-slide banner-slide--2"></span>
-          <span class="banner-slide banner-slide--3"></span>
-          <span class="banner-slide banner-slide--4"></span>
-        </div>
-        <div class="banner-overlay" aria-hidden="true"></div>
-        <div class="content">
-          <h2>Kontakt &amp; Terminanfrage</h2>
-          <p>Direkter Draht für Fragen, Alltagsbegleitung, Beratung und nächste Schritte bei komplexen Falllagen.</p>
-          <a href="#kontaktformular" class="button scrolly">Jetzt Nachricht senden</a>
-        </div>
-      </section>
-
-      <section id="main">
-        <div class="container">
-          <div class="row gtr-200">
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Private Leistungen anfragen</span></h2>
-                <p>
-                  Sie suchen private Unterstützung in Alltagsbegleitung und Case Management in Heidenheim,
-                  Herbrechtingen, Giengen an der Brenz, Steinheim oder Nattheim?
-                  Hier können Sie direkt eine Anfrage senden.
-                </p>
-                <p>
-                  Auch bei <strong>Alltagsbegleitung für kranke, ältere oder behinderte Menschen</strong>
-                  erhalten Sie eine schnelle Rückmeldung.
-                </p>
-                <p>
-                  Auch bei Themen wie <strong>Schlaganfall-Fallkoordination</strong>,
-                  <strong>Widerspruch gegen Pflegegradeinstufung</strong>,
-                  <strong>Arztbegleitung</strong> oder <strong>Wohnzuschuss und Umbau</strong>
-                  erhalten Sie eine schnelle Rückmeldung.
-                </p>
-              </section>
-            </div>
-
-            <div class="col-12">
-              <section class="box highlight">
-                <header>
-                  <h2>Direktkontakt</h2>
-                  <p>Schnell erreichbar per E‑Mail und Telefon, auch für kurzfristige Rückfragen in komplexen Fällen</p>
-                </header>
-                <p>
-                  E‑Mail: <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a><br />
-                  Telefon: <a href="tel:+4915226560105">0152 26560105</a>
-                </p>
-              </section>
-            </div>
-
-            <div class="col-8 col-12-medium" id="kontaktformular">
-              <section class="box">
-                <h2 class="major"><span>Kontaktformular</span></h2>
-                <form id="contact-form" method="post" action="https://api.web3forms.com/submit">
-                  <div class="row gtr-50">
-                    <div class="col-6 col-12-small">
-                      <input name="name" type="text" placeholder="Name" required />
-                    </div>
-                    <div class="col-6 col-12-small">
-                      <input name="email" type="email" placeholder="E‑Mail" required />
-                    </div>
-                    <div class="col-6 col-12-small">
-                      <select name="anliegen">
-                        <option value="">Worum geht es?</option>
-                        <option>Alltagsbegleitung</option>
-                        <option>Alltagsbegleitung bei Behinderung</option>
-                        <option>Alltagsbegleitung im Alter oder bei Krankheit</option>
-                        <option>Case Management allgemein</option>
-                        <option>Komplexe Fallkoordination nach Schlaganfall</option>
-                        <option>Widerspruch gegen Pflegegradeinstufung</option>
-                        <option>Arztbegleitung / Terminbegleitung</option>
-                        <option>Wohnzuschuss / Wohnungsumbau</option>
-                        <option>Antragsservice</option>
-                        <option>Sonstiges</option>
-                      </select>
-                    </div>
-                    <div class="col-6 col-12-small">
-                      <input name="telefon" type="tel" placeholder="Telefon (optional)" />
-                    </div>
-                    <div class="col-12">
-                      <textarea name="nachricht" rows="6" placeholder="Ihre Nachricht" required></textarea>
-                    </div>
-                    <div class="col-12">
-                      <label><input type="checkbox" name="privacy" id="contact-privacy" required /> Ich stimme der <a href="/datenschutz.html">Datenschutzerklärung</a> zu.</label>
-                    </div>
-                    <div class="col-12">
-                      <label><input type="checkbox" name="privacy_confirm" id="contact-privacy-confirm" required /> Ich bestätige zusätzlich, dass ich die Datenschutzhinweise verstanden habe.</label>
-                    </div>
-                    <div class="col-12 split-actions">
-                      <button class="button" type="submit">Nachricht senden</button>
-                      <a href="mailto:casekompass@gmx.de" class="button alt">Per E‑Mail schreiben</a>
-                    </div>
-                    <div class="col-12"><p id="contact-status" class="status" role="status" aria-live="polite"></p></div>
-                  </div>
-                </form>
-              </section>
-            </div>
-
-            <div class="col-4 col-12-medium" id="termin">
-              <section class="box">
-                <h3>Terminanfrage</h3>
-                <p>Wunschtermin für telefonische oder Online-Beratung im privaten Case Management.</p>
-                <form id="appointment-form" method="post" action="https://api.web3forms.com/submit">
-                  <input name="name" type="text" placeholder="Name" required />
-                  <input name="email" type="email" placeholder="E‑Mail" required />
-                  <div class="appointment-modern">
-                    <h4>Termin auswählen</h4>
-                    <div class="tp-grid">
-                      <div class="tp-field">
-                        <label for="tp-date-display">Tag</label>
-                        <input id="tp-date-display" type="text" placeholder="Datum wählen" readonly />
-                      </div>
-                      <div class="tp-field">
-                        <label for="tp-time-display">Uhrzeit</label>
-                        <input id="tp-time-display" type="text" placeholder="Uhrzeit wählen" readonly />
-                      </div>
-                    </div>
-
-                    <div class="tp-slots" aria-label="Schnelle Uhrzeitwahl">
-                      <button type="button" class="tp-slot" data-time="09:00">09:00</button>
-                      <button type="button" class="tp-slot" data-time="10:30">10:30</button>
-                      <button type="button" class="tp-slot" data-time="12:00">12:00</button>
-                      <button type="button" class="tp-slot" data-time="14:00">14:00</button>
-                      <button type="button" class="tp-slot" data-time="16:00">16:00</button>
-                    </div>
-                  </div>
-
-                  <input type="hidden" name="wunschtermin_datum" id="tp-date" value="" />
-                  <input type="hidden" name="wunschtermin_uhrzeit" id="tp-time" value="" />
-                  <input type="hidden" name="wunschtermin" id="tp-iso" value="" />
-                  <p id="tp-summary" class="status">Bitte Tag und Uhrzeit wählen.</p>
-                  <label><input type="checkbox" name="privacy" id="appointment-privacy" required /> Datenschutz akzeptieren</label>
-                  <label><input type="checkbox" name="privacy_confirm" id="appointment-privacy-confirm" required /> Ich bestätige zusätzlich die Datenschutzhinweise.</label>
-                  <button class="button" type="submit">Terminanfrage senden</button>
-                  <p id="appointment-status" class="status" role="status" aria-live="polite"></p>
-                </form>
-              </section>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer id="footer">
-        <div class="container">
-          <div id="copyright">
-            <ul class="menu">
-              <li>&copy; <span id="y"></span> casekompass.de</li>
-              <li><a href="/impressum.html">Impressum</a></li>
-              <li><a href="/datenschutz.html">Datenschutz</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
+  </header>
 
-    <script src="Vorlage/assets/js/jquery.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.dropotron.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.scrolly.min.js"></script>
-    <script src="Vorlage/assets/js/browser.min.js"></script>
-    <script src="Vorlage/assets/js/breakpoints.min.js"></script>
-    <script src="Vorlage/assets/js/util.js"></script>
-    <script src="Vorlage/assets/js/main.js"></script>
-    <script src="/smooth-scroll.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
-    <script>
-      document.getElementById("y").textContent = String(new Date().getFullYear());
+  <main>
+    <section id="kontakt" class="section reveal" aria-labelledby="kontakt-title" style="padding-top: 120px;">
+      <div class="container contact-grid" data-aos="fade-up">
+        <div class="contact-info">
+          <h1 id="kontakt-title"><i class="fa-solid fa-comments"></i> Kontakt & Beratung</h1>
+          <p>Rufen Sie an oder schreiben Sie mir - ich bin mit Zeit und Herz für Sie da.</p>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Kein fester Standort - mobil bei Ihnen vor Ort oder remote</li>
+            <li><i class="fa-solid fa-route" aria-hidden="true"></i> Einsatzgebiet: Heidenheim a. d. Brenz &amp; Umkreis (z. B. Bolheim, Herbrechtingen, Giengen, Sontheim, Niederstotzingen)</li>
+            <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+4915226560105">015226560105</a></li>
+            <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
+            <li><i class="fa-solid fa-clock" aria-hidden="true"></i> Mo- Sa geöffnet</li>
+          </ul>
+          <div class="socials" aria-label="Soziale Medien">
+            <a href="#" aria-label="Instagram" class="social social-instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span class="social-tooltip">Instagram</span>
+            </a>
+            <a href="#" aria-label="Facebook" class="social social-facebook">
+              <i class="fa-brands fa-facebook"></i>
+              <span class="social-tooltip">Facebook</span>
+            </a>
+            <a href="https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20für%20Case%20Management%20und%20Alltagsbegleitung." aria-label="WhatsApp" class="social social-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span class="social-tooltip">WhatsApp</span>
+              
+            </a>
+          </div>
+        </div>
 
-      const ACCESS_KEY = "bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2";
+        <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="0697e1bf-0224-41c9-b952-bf80dea963ef">
+          <input type="hidden" name="from_name" value="casekompass.de Website">
+          <input type="hidden" name="subject" value="Neue Case-Management Anfrage">
+          <input type="hidden" name="replyto" id="replyto">
+          
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name *</label>
+              <input id="name" name="name" type="text" placeholder="Ihr Name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">E-Mail *</label>
+              <input id="email" name="email" type="email" placeholder="Ihre E-Mail" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Telefon</label>
+              <input id="phone" name="phone" type="tel" placeholder="Ihre Telefonnummer" />
+            </div>
+            <div class="form-field">
+              <label for="anliegen">Worum geht es? *</label>
+              <select id="anliegen" name="anliegen" required>
+                <option value="">Bitte auswählen...</option>
+                <option value="Beratungstermin">Beratungstermin</option>
+                <option value="Pflegegrad & Widerspruch">Pflegegrad & Widerspruch</option>
+                <option value="Alltagsbegleitung & Betreuung">Alltagsbegleitung & Betreuung</option>
+                <option value="Allgemeine Frage">Allgemeine Frage</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">Nachricht *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Erläutern Sie Ihr Anliegen..." required></textarea>
+          </div>
+          <div class="form-field form-consent">
+            <input id="consent" name="consent" type="checkbox" required />
+            <label for="consent">Ich stimme der Verarbeitung meiner Daten zum Zweck der Kontaktaufnahme zu. *</label>
+          </div>
+          <button type="submit" class="btn primary full" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> 
+            <span class="btn-text">Nachricht senden</span>
+            <span class="btn-spinner" style="display: none;">
+              <i class="fa-solid fa-spinner fa-spin"></i> Wird gesendet...
+            </span>
+          </button>
+          <p class="form-feedback" id="formFeedback" role="status" aria-live="polite" style="display: none;"></p>
+        </form>
+      </div>
+    </section>
 
-      function setStatus(el, text, ok) {
-        if (!el) return;
-        el.textContent = text || "";
-        el.style.color = ok ? "#1b7a1b" : "#b42318";
-      }
+  </main>
 
-      async function submitWeb3Form(formEl, statusEl, subject) {
-        const submitBtn = formEl.querySelector('button[type="submit"]');
-        const oldText = submitBtn ? submitBtn.textContent : "";
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Senden…"; }
+  <!-- Success Popup Modal -->
+  <div id="successModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Nachricht erfolgreich gesendet!</h2>
+      <p>Vielen Dank für Ihre Anfrage. Wir melden uns schnellstmöglich bei Ihnen.</p>
+      <div class="modal-redirect">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <span>Sie werden in <span id="countdown">3</span> Sekunden weitergeleitet...</span>
+      </div>
+    </div>
+  </div>
 
-        try {
-          const formData = new FormData(formEl);
-          formData.append("access_key", ACCESS_KEY);
-          formData.append("subject", subject);
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-box">
+        <h3>casekompass.de</h3>
+        <p>Case Management und Alltagsbegleitung für Bolheim & Heidenheim.</p>
+      </div>
+      <div class="footer-box">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Rechtliches</h4>
+        <ul class="footer-list">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 casekompass.de. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
 
-          const response = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
-          const data = await response.json().catch(() => ({}));
-
-          if (!response.ok || !data || data.success !== true) {
-            setStatus(statusEl, (data && data.message) ? data.message : "Senden fehlgeschlagen. Bitte erneut versuchen.", false);
-            return false;
-          }
-
-          setStatus(statusEl, "Vielen Dank! Ihre Nachricht wurde erfolgreich versendet.", true);
-          formEl.reset();
-          return true;
-        } catch {
-          setStatus(statusEl, "Senden fehlgeschlagen. Bitte erneut versuchen.", false);
-          return false;
-        } finally {
-          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = oldText; }
-        }
-      }
-
-      const contactForm = document.getElementById("contact-form");
-      const contactStatus = document.getElementById("contact-status");
-      const contactPrivacy = document.getElementById("contact-privacy");
-      const contactPrivacyConfirm = document.getElementById("contact-privacy-confirm");
-      if (contactForm) {
-        contactForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          if ((contactPrivacy && !contactPrivacy.checked) || (contactPrivacyConfirm && !contactPrivacyConfirm.checked)) {
-            setStatus(contactStatus, "Bitte Datenschutzerklärung bestätigen.", false);
-            return;
-          }
-          await submitWeb3Form(contactForm, contactStatus, "Kontaktanfrage – casekompass.de");
-        });
-      }
-
-      const appointmentForm = document.getElementById("appointment-form");
-      const appointmentStatus = document.getElementById("appointment-status");
-      const appointmentPrivacy = document.getElementById("appointment-privacy");
-      const appointmentPrivacyConfirm = document.getElementById("appointment-privacy-confirm");
-      const dateEl = document.getElementById("tp-date");
-      const timeEl = document.getElementById("tp-time");
-      const isoEl = document.getElementById("tp-iso");
-      const summaryEl = document.getElementById("tp-summary");
-      const dateDisplayEl = document.getElementById("tp-date-display");
-      const timeDisplayEl = document.getElementById("tp-time-display");
-      const timeSlotButtons = Array.from(document.querySelectorAll(".tp-slot"));
-
-      function pad2(n) { return String(n).padStart(2, "0"); }
-      function toLocalIso(dateStr, timeStr) { return dateStr && timeStr ? `${dateStr}T${timeStr}` : ""; }
-      function formatLabel(dateObj) {
-        const weekday = dateObj.toLocaleDateString("de-DE", { weekday: "short" });
-        return `${weekday}, ${pad2(dateObj.getDate())}.${pad2(dateObj.getMonth() + 1)}.${dateObj.getFullYear()} – ${pad2(dateObj.getHours())}:${pad2(dateObj.getMinutes())}`;
-      }
-
-      function syncWhenUI() {
-        const dateStr = dateEl && dateEl.value ? String(dateEl.value) : "";
-        const timeStr = timeEl && timeEl.value ? String(timeEl.value) : "";
-        const iso = toLocalIso(dateStr, timeStr);
-        if (isoEl) isoEl.value = iso;
-
-        timeSlotButtons.forEach((btn) => {
-          const v = String(btn.getAttribute("data-time") || "");
-          btn.classList.toggle("is-selected", Boolean(timeStr) && v === timeStr);
-        });
-
-        if (!summaryEl) return;
-        if (!dateStr || !timeStr) { summaryEl.textContent = "Bitte Tag und Uhrzeit wählen."; return; }
-        summaryEl.textContent = `Ihr Wunschtermin: ${formatLabel(new Date(`${dateStr}T${timeStr}`))}`;
-      }
-
-      try {
-        const now = new Date();
-        const min = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-        const minStr = `${min.getFullYear()}-${pad2(min.getMonth() + 1)}-${pad2(min.getDate())}`;
-
-        if (dateDisplayEl && typeof flatpickr !== "undefined") {
-          flatpickr.localize(flatpickr.l10ns.de);
-          flatpickr(dateDisplayEl, {
-            dateFormat: "d.m.Y",
-            altInput: false,
-            minDate: minStr,
-            disableMobile: true,
-            onChange: (selectedDates) => {
-              if (selectedDates && selectedDates[0] && dateEl) {
-                const d = selectedDates[0];
-                dateEl.value = `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
-              }
-              syncWhenUI();
-            }
-          });
-        }
-
-        if (timeDisplayEl && typeof flatpickr !== "undefined") {
-          flatpickr(timeDisplayEl, {
-            enableTime: true,
-            noCalendar: true,
-            dateFormat: "H:i",
-            time_24hr: true,
-            minuteIncrement: 15,
-            defaultDate: "09:00",
-            disableMobile: true,
-            onChange: (selectedDates, dateStr) => {
-              if (timeEl) timeEl.value = String(dateStr || "");
-              syncWhenUI();
-            }
-          });
-          if (timeEl && !timeEl.value) timeEl.value = "09:00";
-        }
-      } catch {}
-
-      timeSlotButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const value = String(btn.getAttribute("data-time") || "");
-          if (timeEl) timeEl.value = value;
-          if (timeDisplayEl) timeDisplayEl.value = value;
-          syncWhenUI();
-        });
-      });
-
-      syncWhenUI();
-
-      if (appointmentForm) {
-        appointmentForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          if ((appointmentPrivacy && !appointmentPrivacy.checked) || (appointmentPrivacyConfirm && !appointmentPrivacyConfirm.checked)) {
-            setStatus(appointmentStatus, "Bitte Datenschutzerklärung bestätigen.", false);
-            return;
-          }
-          if (!dateEl || !dateEl.value || !timeEl || !timeEl.value) {
-            setStatus(appointmentStatus, "Bitte Datum und Uhrzeit auswählen.", false);
-            return;
-          }
-          const dateStr = dateEl && dateEl.value ? String(dateEl.value) : "";
-          const timeStr = timeEl && timeEl.value ? String(timeEl.value) : "";
-          const formDataLabel = dateStr && timeStr ? formatLabel(new Date(`${dateStr}T${timeStr}`)) : "";
-          if (formDataLabel) {
-            const hidden = document.createElement("input");
-            hidden.type = "hidden";
-            hidden.name = "wunschtermin_label";
-            hidden.value = formDataLabel;
-            appointmentForm.appendChild(hidden);
-          }
-          await submitWeb3Form(appointmentForm, appointmentStatus, "Terminanfrage – casekompass.de");
-        });
-      }
-    </script>
-  </body>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="./script.js?v=2026-01-04-4" defer onerror="console.error('Failed to load script.js')"></script>
+</body>
 </html>
 
 

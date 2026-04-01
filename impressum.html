@@ -1,124 +1,181 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <title>Impressum – casekompass.de</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta name="description" content="Impressum von casekompass.de – Johannes Piperidis, Herbrechtingen." />
-    <link rel="canonical" href="https://casekompass.de/impressum.html" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/images/logo.png" type="image/png" />
-    <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
-    <style>
-      #banner {
-        position: relative;
-        overflow: hidden;
-        background-image: none !important;
-        background: linear-gradient(135deg, #6fb8bb 0%, #348d91 45%, #2c8c8c 100%);
-      }
-      .banner-overlay {
-        position: absolute;
-        inset: 0;
-        background: transparent;
-        pointer-events: none;
-      }
-      #banner .content {
-        position: relative;
-        z-index: 1;
-        background: rgba(44, 140, 140, 0.90) !important;
-        border: 1px solid rgba(44, 140, 140, 0.72);
-        box-shadow: 0 12px 30px rgba(30, 90, 95, 0.22);
-      }
-      .contact-links a[href^="mailto:"],
-      .contact-links a[href^="tel:"] { color: #2c8c8c; }
-    </style>
-  </head>
-  <body class="homepage is-preload">
-    <div id="page-wrapper">
-      <header id="header">
-        <div class="logo container">
-          <div>
-            <h1><a href="/" id="logo">casekompass.de</a></h1>
-            <p>Alltagsbegleitung, Begleitung von Menschen mit Behinderung, Pflegekoordination und Unterstützung bei Bürokratie</p>
-          </div>
-        </div>
-      </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Impressum - casekompass.de</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
+        <img src="./images/logo.png" alt="casekompass.de Logo">
+        <span>casekompass.de</span>
+      </a>
 
-      <nav id="nav">
+      <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
-          <li><a href="/">Start</a></li>
-          <li><a href="/leistungen.html">Leistungen</a></li>
-          <li><a href="https://ergomobil-hdh.de">Ergotherapie</a></li>
-          <li><a href="/kontakt.html">Kontakt</a></li>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="index.html#leistungen">Leistungen</a></li>
+          <li><a href="index.html#main">Über mich</a></li>
+          <li><a href="https://ergomobil-hdh.de/">Ergo</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
-
-      <section id="banner">
-        <div class="banner-overlay" aria-hidden="true"></div>
-        <div class="content">
-          <h2>Impressum</h2>
-          <p>Angaben gemäß § 5 TMG.</p>
-        </div>
-      </section>
-
-      <section id="main">
-        <div class="container">
-          <div class="row gtr-200">
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Anbieter</span></h2>
-                <p><strong>Johannes Piperidis</strong><br />Albstraße 5<br />89542 Herbrechtingen</p>
-              </section>
-            </div>
-
-            <div class="col-12">
-              <section class="box contact-links">
-                <h2 class="major"><span>Kontakt</span></h2>
-                <p>
-                  Telefon: <a href="tel:+4915226560105">0152 26560105</a><br />
-                  E‑Mail: <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a>
-                </p>
-              </section>
-            </div>
-
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Rechtlicher Hinweis</span></h2>
-                <p>
-                  Inhalte dieser Website wurden mit Sorgfalt erstellt. Für die Aktualität, Vollständigkeit und Richtigkeit
-                  wird jedoch keine Gewähr übernommen, sofern gesetzlich zulässig.
-                </p>
-              </section>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer id="footer">
-        <div class="container">
-          <div id="copyright">
-            <ul class="menu">
-              <li>&copy; <span id="y"></span> casekompass.de</li>
-              <li><a href="/datenschutz.html">Datenschutz</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
     </div>
+  </header>
 
-    <script src="Vorlage/assets/js/jquery.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.dropotron.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.scrolly.min.js"></script>
-    <script src="Vorlage/assets/js/browser.min.js"></script>
-    <script src="Vorlage/assets/js/breakpoints.min.js"></script>
-    <script src="Vorlage/assets/js/util.js"></script>
-    <script src="Vorlage/assets/js/main.js"></script>
-    <script src="/smooth-scroll.js"></script>
-    <script>
-      document.getElementById("y").textContent = String(new Date().getFullYear());
-    </script>
-  </body>
+  <main class="legal-page">
+    <section class="section">
+      <div class="container">
+        <div class="legal-content">
+          <h1><i class="fa-solid fa-gavel"></i> Impressum</h1>
+          
+          <h2>Angaben gemäß § 5 TMG</h2>
+          <div class="impressum-section">
+            <h3>Praxisinhaber</h3>
+            <p>
+              Johannes Piperidis<br>
+              Case Manager
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Anschrift</h3>
+            <p>
+              Albstraße 5<br>
+              89542 Herbrechtingen<br>
+              Deutschland
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Kontakt</h3>
+            <p>
+              Telefon: <a href="tel:+4915226560105">015226560105</a><br>
+              E-Mail: <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a>
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Berufsbezeichnung und berufsrechtliche Regelungen</h3>
+            <p>
+              Berufsbezeichnung: Case Manager<br>
+              Zuständige Stelle: [Bitte ergänzen]<br>
+              Verliehen in: Deutschland
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Redaktionell verantwortlich</h3>
+            <p>
+              Johannes Piperidis<br>
+              Albstraße 5<br>
+              89542 Herbrechtingen
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>EU-Streitschlichtung</h3>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+              <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a><br>
+              Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Verbraucherstreitbeilegung/Universalschlichtungsstelle</h3>
+            <p>
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
+              Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Haftung für Inhalte</h3>
+            <p>
+              Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten 
+              nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als 
+              Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte oder gespeicherte 
+              fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine 
+              rechtswidrige Tätigkeit hinweisen.
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Haftung für Links</h3>
+            <p>
+              Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen 
+              Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. 
+              Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der 
+              Seiten verantwortlich.
+            </p>
+          </div>
+
+          <div class="impressum-section">
+            <h3>Urheberrecht</h3>
+            <p>
+              Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen 
+              dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art 
+              der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen 
+              Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </div>
+
+          <div class="back-navigation">
+            <a href="index.html" class="btn secondary">
+              <i class="fa-solid fa-arrow-left"></i> Zurück zur Startseite
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-box">
+        <h4>casekompass.de</h4>
+        <p>Case Management und Alltagsbegleitung - mobil bei Ihnen vor Ort oder remote.</p>
+      </div>
+      <div class="footer-box">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li><i class="fa-solid fa-location-dot"></i> Albstraße 5, 89542 Herbrechtingen</li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <small>© <span id="year"></span> casekompass.de · Alle Rechte vorbehalten</small>
+      <div class="legal-links">
+        <a href="impressum.html" class="active">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+  <script src="./floating-sprites.js" defer></script>
+</body>
 </html>
-
 
 

@@ -1,505 +1,586 @@
-﻿<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <title>Private Case-Management-Leistungen im Landkreis Heidenheim</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta
-      name="description"
-      content="Private Leistungen in Alltagsbegleitung und Case Management: Koordination komplexer Fälle nach Schlaganfall, Widersprüche gegen Pflegegradeinstufungen, Arztbegleitung sowie Unterstützung bei Wohnzuschuss und Umbau."
-    />
-    <meta property="og:title" content="Leistungen: Alltagsbegleitung und Case Management in Heidenheim" />
-    <meta property="og:description" content="Alltagsbegleitung, komplexe Fallkoordination, Pflegegrad-Widerspruch, Arztbegleitung und Wohnraumanpassung aus einer Hand." />
-    <link rel="canonical" href="https://casekompass.de/leistungen.html" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="/images/logo.png" type="image/png" />
-    <link rel="stylesheet" href="Vorlage/assets/css/main.css" />
-    <style>
-      body,
-      input,
-      textarea,
-      select {
-        color: #111111;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Unsere ergotherapeutischen Leistungen – Neurologie, Handtherapie, Geriatrie. Mobile Behandlung in Bolheim & Heidenheim.">
+  <title>Unsere Leistungen | Ergotherapie Mobil</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+</head>
+<body>
+  
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Ergotherapie Mobil Startseite">
+        <img src="./images/logo.png" alt="Ergotherapie Mobil Logo">
+        <span>Ergotherapie Mobil</span>
+      </a>
 
-      h1, h2, h3, h4, h5, h6,
-      p, li, summary {
-        color: #111111;
-      }
+      <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
 
-      #banner {
-        position: relative;
-        overflow: hidden;
-        background-image: none !important;
-        background-color: #348d91;
-        background: linear-gradient(135deg, #6fb8bb 0%, #348d91 45%, #2c8c8c 100%);
-        padding: 1.4rem 0;
-      }
-
-      #banner .content {
-        position: relative;
-        z-index: 1;
-        background: rgba(44, 140, 140, 0.90) !important;
-        border: 1px solid rgba(44, 140, 140, 0.72);
-        box-shadow: 0 12px 30px rgba(30, 90, 95, 0.22);
-        color: #111111;
-        width: min(860px, calc(100% - 2rem));
-        margin: 0 auto;
-      }
-
-      #banner .content h2,
-      #banner .content p {
-        color: #111111;
-      }
-
-      #banner .content .button,
-      #banner .content .button:visited,
-      #banner .content .button:hover,
-      #banner .content .button:active {
-        color: #ffffff !important;
-      }
-
-      #main .box.features .box.feature .image.featured {
-        display: block;
-        height: clamp(170px, 18vw, 210px);
-        overflow: hidden;
-      }
-
-      #main .box.features .box.feature .image.featured img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
-
-      .service-accordion {
-        display: grid;
-        gap: 0.9rem;
-      }
-
-      .service-accordion details {
-        border: 1px solid rgba(32, 98, 98, 0.2);
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.92);
-        padding: 0.15rem 0.9rem 0.75rem;
-      }
-
-      .service-accordion summary {
-        cursor: pointer;
-        font-weight: 700;
-        color: #2c8c8c;
-        padding: 0.7rem 0.1rem;
-      }
-
-      .service-accordion details[open] summary {
-        margin-bottom: 0.3rem;
-      }
-
-      .package-panels {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.15rem;
-        margin-top: 1rem;
-      }
-
-      .package-panel {
-        border: 1px solid rgba(44, 140, 140, 0.28);
-        border-radius: 14px;
-        background: #ffffff;
-        box-shadow: 0 8px 22px rgba(30, 90, 95, 0.12);
-        padding: 1.25rem;
-      }
-
-      .package-panel h3 {
-        margin: 0 0 0.35rem 0;
-        font-size: 1.1rem;
-        text-transform: none;
-      }
-
-      .package-subline {
-        margin: 0 0 0.8rem 0;
-        color: #3c5656;
-      }
-
-      .package-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .package-list li {
-        margin: 0 0 0.5rem 0;
-        padding: 0.45rem 0.55rem;
-        border-radius: 8px;
-        background: rgba(44, 140, 140, 0.08);
-        line-height: 1.45;
-      }
-
-      .package-price {
-        display: inline-block;
-        margin-top: 0.65rem;
-        padding: 0.4rem 0.7rem;
-        border-radius: 999px;
-        background: #2c8c8c;
-        color: #ffffff;
-        font-weight: 700;
-      }
-
-      .package-note {
-        margin-top: 1rem;
-        border: 1px solid rgba(44, 140, 140, 0.24);
-        border-radius: 12px;
-        background: rgba(44, 140, 140, 0.08);
-        padding: 0.9rem 1rem;
-      }
-
-      .dqr-badge {
-        display: inline-block;
-        margin: 0.15rem 0 0.7rem;
-        padding: 0.35rem 0.7rem;
-        border-radius: 999px;
-        background: #0f172a;
-        color: #ffffff;
-        font-weight: 700;
-        letter-spacing: 0.01em;
-      }
-
-      @media screen and (max-width: 980px) {
-        #banner {
-          padding: 1rem 0;
-        }
-      }
-    </style>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Unterstützen Sie bei Leistungen nach § 45a SGB XI?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, wir unterstützen bei der Einordnung und Vorbereitung rund um Angebote zur Unterstützung im Alltag (AUA) und relevante Anträge."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Geht es auch um Entlastungsbetrag 125 Euro / 131 Euro?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ja, wir beraten zur Nutzung des Entlastungsbetrags und helfen bei der Vorbereitung notwendiger Unterlagen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Bieten Sie Verhinderungspflege in Heidenheim an?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Wir unterstützen im Landkreis Heidenheim bei Fragen zur Verhinderungspflege und bei der Abstimmung mit Beteiligten."
-            }
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body class="homepage is-preload">
-    <div id="page-wrapper">
-
-      <header id="header">
-        <div class="logo container">
-          <div>
-            <h1><a href="/" id="logo">casekompass.de</a></h1>
-            <p>Alltagsbegleitung und privates Case Management für kranke, ältere und behinderte Menschen</p>
-          </div>
-        </div>
-      </header>
-
-      <nav id="nav">
+      <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
-          <li><a href="/">Start</a></li>
-          <li class="current"><a href="/leistungen.html">Leistungen</a></li>
-          <li><a href="https://ergomobil-hdh.de">Ergotherapie</a></li>
-          <li><a href="/kontakt.html">Kontakt</a></li>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="leistungen.html" class="active">Leistungen</a></li>
+          <li><a href="index.html#main">Über mich</a></li>
+          <li><a href="https://ergomobil-hdh.de/">Ergo</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
+    </div>
+  </header>
 
-      <section id="banner">
-        <div class="content">
-          <h2>Leistungen im Detail</h2>
-          <p>Alle Leistungen auf einer Seite: von Alltagsbegleitung bis komplexer Fallkoordination.</p>
-          <a href="#pakete-monatspauschalen" class="button scrolly">Jetzt ansehen</a>
+  <main class="leistungen-page">
+    <section class="page-hero">
+      <div class="container">
+        <h1><i class="fa-solid fa-house-medical"></i> Unsere Leistungen</h1>
+        <p class="hero-subtitle">Evidenzbasierte, mobile Ergotherapie mit Fokus auf Selbstständigkeit, Sicherheit und Lebensqualität – direkt bei Ihnen vor Ort.</p>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section">
+      <div class="container">
+        <h2><i class="fa-solid fa-stethoscope"></i> Spezialisierte Behandlungsbereiche</h2>
+        <p class="section-intro">Wir bieten evidenzbasierte ergotherapeutische Behandlung in drei Hauptbereichen mit individuell angepassten Therapiekonzepten.</p>
+
+        <div class="services-grid">
+          <!-- Neurologie -->
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-brain"></i></div>
+              <h3>Neurologie</h3>
+              <p class="service-subtitle">Rehabilitation nach neurologischen Erkrankungen</p>
+            </div>
+            <div class="service-content">
+              <p>Gezielte Förderung von Motorik, Kognition und Handlungskompetenz nach Schlaganfall, Parkinson, MS oder anderen neurologischen Ereignissen.</p>
+              
+              <h4><i class="fa-solid fa-target"></i> Behandlungsziele</h4>
+              <ul class="service-points">
+                <li>Wiederherstellung motorischer Funktionen</li>
+                <li>Verbesserung kognitiver Fähigkeiten</li>
+                <li>Alltagsrelevantes Funktionstraining</li>
+                <li>Kompensation & Neuroplastizität nutzen</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Therapiemethoden</h4>
+              <ul class="service-points">
+                <li>Bobath-Konzept für normale Bewegung</li>
+                <li>Perfetti-Methode zur Sensomotorik</li>
+                <li>Spiegeltherapie bei Lähmungen</li>
+                <li>Kognitives Training & Gedächtnisübungen</li>
+                <li>ADL-Training (Anziehen, Essen, Körperpflege)</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Indikationen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Schlaganfall</span>
+                <span class="indication-tag">Parkinson</span>
+                <span class="indication-tag">Multiple Sklerose</span>
+                <span class="indication-tag">Schädel-Hirn-Trauma</span>
+                <span class="indication-tag">Polyneuropathie</span>
+                <span class="indication-tag">Demenz</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hand / Orthopädie -->
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+              <h3>Hand / Orthopädie</h3>
+              <p class="service-subtitle">Funktionelle Rehabilitation der oberen Extremität</p>
+            </div>
+            <div class="service-content">
+              <p>Wiederherstellung von Beweglichkeit, Kraft, Koordination und gezielter Funktion im Alltag nach Verletzungen oder Operationen.</p>
+              
+              <h4><i class="fa-solid fa-target"></i> Behandlungsziele</h4>
+              <ul class="service-points">
+                <li>Schmerzreduktion und Beweglichkeit</li>
+                <li>Kraftaufbau und Koordination</li>
+                <li>Sensibilitätstraining</li>
+                <li>Funktionelle Alltagsbewegungen</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Therapiemethoden</h4>
+              <ul class="service-points">
+                <li>Manuelle Therapie & Mobilisation</li>
+                <li>Narben- & Weichteilbehandlung</li>
+                <li>Sensibilitätstraining nach Verletzungen</li>
+                <li>Krafttraining & Koordinationsübungen</li>
+                <li>Hilfsmittelberatung & -anpassung</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Indikationen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Karpaltunnel-Syndrom</span>
+                <span class="indication-tag">Frakturen</span>
+                <span class="indication-tag">Sehnenrisse</span>
+                <span class="indication-tag">Arthrose</span>
+                <span class="indication-tag">Dupuytren</span>
+                <span class="indication-tag">CRPS</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Geriatrie -->
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-person-walking-with-cane"></i></div>
+              <h3>Geriatrie</h3>
+              <p class="service-subtitle">Erhaltung der Selbstständigkeit im Alter</p>
+            </div>
+            <div class="service-content">
+              <p>Ressourcenorientierte Unterstützung zur Erhaltung von Selbstständigkeit, Sicherheit und Tagesstruktur im höheren Lebensalter.</p>
+              
+              <h4><i class="fa-solid fa-target"></i> Behandlungsziele</h4>
+              <ul class="service-points">
+                <li>Erhaltung der Mobilität</li>
+                <li>Sturzprävention & Sicherheit</li>
+                <li>Kognitive Aktivierung</li>
+                <li>Selbstständigkeit im Alltag</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Therapiemethoden</h4>
+              <ul class="service-points">
+                <li>Sturzprävention & Ganganalyse</li>
+                <li>Kognitives Aktivierungstraining</li>
+                <li>Energiemanagement & Alltagsstruktur</li>
+                <li>Wohnumfeld- & Sturzrisikoanalyse</li>
+                <li>Gedächtnistraining & Orientierung</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Indikationen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Demenz</span>
+                <span class="indication-tag">Depression</span>
+                <span class="indication-tag">Sturzgefahr</span>
+                <span class="indication-tag">Isolation</span>
+                <span class="indication-tag">Multimorbidität</span>
+                <span class="indication-tag">Alltagsschwäche</span>
+              </div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="main">
-        <div class="container">
-          <div class="row gtr-200">
-            <div class="col-12">
-              <section class="box" id="pakete-monatspauschalen">
-                <h2 class="major"><span>Meine Privatleistungs-Pakete (Monatspauschalen)</span></h2>
-                <p>
-                  Alle Preise sind Endpreise – umsatzsteuerfrei nach <strong>§ 4 Nr. 16 UStG</strong>.
-                </p>
-
-                <div class="package-panels" aria-label="Paketübersicht">
-                  <article class="package-panel">
-                    <h3>Paket 1: Basis-Fallbegleitung</h3>
-                    <p class="package-subline">Wöchentlicher Fixtermin für stabile Struktur in komplexen Situationen.</p>
-                    <ul class="package-list">
-                      <li><strong>Leistung:</strong> 4 Stunden pro Woche (16 Std. / Monat)</li>
-                      <li><strong>Einsatztag:</strong> 1 fester Termin pro Woche à 4 Stunden</li>
-                      <li><strong>Ideal für:</strong> Arzttermine, Fallabstimmung, laufende Organisation</li>
-                    </ul>
-                    <span class="package-price">572,00 € / Monat inkl. Anfahrtspauschale</span>
-                  </article>
-
-                  <article class="package-panel">
-                    <h3>Paket 2: Intensiv-Koordination</h3>
-                    <p class="package-subline">Die starke Stütze bei hohem Abstimmungsbedarf und vielen Beteiligten.</p>
-                    <ul class="package-list">
-                      <li><strong>Leistung:</strong> 8 Stunden pro Woche (32 Std. / Monat)</li>
-                      <li><strong>Einsatztage:</strong> 2 Termine à 4 Stunden oder 1 Termin à 8 Stunden</li>
-                      <li><strong>Ideal für:</strong> Schlaganfall-Nachsorge, Pflegekoordination, Behördenwege</li>
-                    </ul>
-                    <span class="package-price">1.084,00 € / Monat inkl. Anfahrtspauschale</span>
-                  </article>
-
-                  <article class="package-panel">
-                    <h3>Paket 3: Wochenend-Fallservice</h3>
-                    <p class="package-subline">Flexible Entlastung mit Fokus auf wichtige Termine und Organisation.</p>
-                    <ul class="package-list">
-                      <li><strong>Leistung:</strong> 6 Stunden am Stück (Samstag oder Sonntag)</li>
-                      <li><strong>Besonderheit:</strong> Inklusive Wochenend-Zuschlag</li>
-                      <li><strong>Ziel:</strong> Entlastung von Angehörigen bei komplexen Falllagen</li>
-                    </ul>
-                    <span class="package-price">260,00 € pro Einsatz inkl. Anfahrtspauschale</span>
-                  </article>
-
-                  <article class="package-panel">
-                    <h3>Paket 4: Stundenweise Einzelberatung</h3>
-                    <p class="package-subline">Wenn Sie statt eines Pakets flexibel einzelne Stunden benötigen.</p>
-                    <ul class="package-list">
-                      <li><strong>Leistung:</strong> Stundenweise Case-Management-Unterstützung nach Bedarf</li>
-                      <li><strong>Geeignet für:</strong> Widerspruchsvorbereitung, Arztbegleitung, Wohnzuschuss</li>
-                      <li><strong>Abrechnung:</strong> Transparent pro Einsatz ohne Paketbindung</li>
-                    </ul>
-                    <span class="package-price">32 € / Stunde + 15 € Anfahrtspauschale</span>
-                  </article>
-                </div>
-
-                <h3>Wichtige Hinweise &amp; Transparenz-Check</h3>
-                <p>
-                  <strong>Abrechnung:</strong> Da ich als solo-selbstständiger Fach-Betreuer (§ 45a SGB XI) arbeite,
-                  stelle ich meine Leistungen direkt an Sie in Rechnung. Eine direkte Abrechnung mit der Pflegekasse ist derzeit
-                  auf zwei Plätze begrenzt (Einzelhelfer-Regelung BW).
-                </p>
-                <p>
-                  <strong>Kostenerstattung:</strong> Sie können meine Rechnungen jedoch bei Ihrer Pflegekasse zur
-                  Kostenerstattung einreichen (z. B. über die Verhinderungspflege bis zu 2.418 €/Jahr oder den
-                  Entlastungsbetrag von 131 €/Monat). Ich unterstütze Sie gerne bei den nötigen Nachweisen.
-                </p>
-                <p>
-                  <strong>Steuervorteil:</strong> Als anerkannter Dienst sind meine Leistungen gem. § 35a EStG zu 20 %
-                  steuerlich absetzbar. Das bedeutet für Sie: Das Finanzamt erstattet Ihnen bis zu ein Fünftel meiner Kosten
-                  direkt zurück.
-                </p>
-                <p>
-                  <strong>E-Mobilität:</strong> Ich besuche Sie nachhaltig und sauber mit meinem E-Auto. In der
-                  Anfahrtspauschale sind alle Kosten im Umkreis von 20 km um Herbrechtingen enthalten.
-                </p>
-                <div class="package-note">
-                  <strong>Transparenz:</strong> Alle Pakete sind klar kalkuliert, nachvollziehbar dokumentiert und ohne versteckte Zusatzkosten.
-                </div>
-              </section>
+    <section class="therapy-process">
+      <div class="container">
+        <h2><i class="fa-solid fa-route"></i> So läuft Ihre Therapie ab</h2>
+        <p class="section-intro">Von der ersten Kontaktaufnahme bis zum erfolgreichen Therapieabschluss – transparent und strukturiert.</p>
+        
+        <div class="process-steps">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-phone"></i> Erstkontakt</h3>
+              <p>Telefonische Terminvereinbarung mit Klärung der Verordnung und organisatorischen Details.</p>
+              <ul>
+                <li>Verordnung besprechen</li>
+                <li>Termin koordinieren</li>
+                <li>Anfahrt planen</li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Häufige Case-Management-Themen</span></h2>
-                <p>
-                  Viele Familien suchen gezielt nach Themen wie <strong>Case Management nach Schlaganfall</strong>,
-                  <strong>Widerspruch Pflegegrad</strong>,
-                  <strong>Arztbegleitung</strong>,
-                  <strong>Wohnumfeldverbessernde Maßnahmen</strong> oder
-                  <strong>Wohnzuschuss Pflegekasse</strong>.
-                </p>
-                <p>
-                  Ich unterstütze bei der praktischen Einordnung dieser Themen und bei der Umsetzung:
-                  von der strukturierten Vorbereitung bis zur Abstimmung mit Kasse, Ärzt:innen, Therapeuten und weiteren Stellen.
-                </p>
-                <p>
-                  Im Fokus stehen <strong>belastbare Fallstruktur</strong>,
-                  <strong>nachvollziehbare Entscheidungen</strong> und
-                  <strong>spürbare Entlastung für Betroffene und Angehörige</strong>.
-                </p>
-                <p>
-                  Zusätzlich erhalten Sie eine transparente private Abrechnung mit klarer Dokumentation aller Schritte.
-                </p>
-              </section>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-clipboard-check"></i> Erstbefund</h3>
+              <p>Ausführliche Anamnese und Befunderhebung in Ihrem gewohnten Umfeld.</p>
+              <ul>
+                <li>Medizinische Anamnese</li>
+                <li>Funktionelle Tests</li>
+                <li>Alltagsbeobachtung</li>
+                <li>Zieldefinition</li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Rechtliche Durchsetzung von Leistungsansprüchen</span></h2>
-                <p>
-                  Ich unterstütze Sie bei der <strong>rechtssicheren Durchsetzung von Leistungsansprüchen</strong>:
-                  insbesondere bei Widersprüchen gegen Pflegegradeinstufungen sowie bei der belastbaren
-                  Begründung von Unterstützungs- und Versorgungsbedarfen.
-                </p>
-                <p>
-                  Dazu gehören Fristenkontrolle, strukturierte Unterlagenführung, fachlich klare Argumentation
-                  und die nachvollziehbare Darstellung der tatsächlichen Einschränkungen im Alltag.
-                </p>
-              </section>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-bullseye"></i> Therapieplanung</h3>
+              <p>Individuelle Behandlungsstrategie basierend auf Ihren Bedürfnissen und Zielen.</p>
+              <ul>
+                <li>Therapieziele festlegen</li>
+                <li>Behandlungsplan erstellen</li>
+                <li>Methoden auswählen</li>
+                <li>Termine strukturieren</li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Spezialisierte Hilfe bei neurologischen Erkrankungen (MS, Schlaganfall)</span></h2>
-                <p>
-                  Bei neurologischen Erkrankungen übernehme ich nicht nur Alltagsbegleitung, sondern die
-                  <strong>komplexe Fallsteuerung</strong> zwischen allen Beteiligten.
-                </p>
-                <p>
-                  Ich koordiniere die Abstimmung von Hilfsmittelversorgung, ärztlicher Behandlung,
-                  Therapie, Pflegeleistungen und Angehörigenkommunikation, damit die Versorgung stabil,
-                  planbar und alltagstauglich wird.
-                </p>
-              </section>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-hands-helping"></i> Behandlung</h3>
+              <p>Regelmäßige Therapieeinheiten mit kontinuierlicher Anpassung an Ihren Fortschritt.</p>
+              <ul>
+                <li>Praktische Übungen</li>
+                <li>Alltagstraining</li>
+                <li>Hilfsmittelschulung</li>
+                <li>Fortschrittskontrolle</li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-12">
-              <section class="box">
-                <h2 class="major"><span>Qualifikation</span></h2>
-                <span class="dqr-badge">DQR Stufe 6 - Bachelor-Niveau</span>
-                <p>
-                  Ich arbeite als <strong>Zertifizierter Case Manager (DQR Stufe 6 - Bachelor-Niveau)</strong>.
-                  Die Qualifikation umfasst <strong>482 Unterrichtseinheiten</strong> und bildet die Grundlage
-                  für die fachlich fundierte Begleitung in Alltagsbegleitung und Case Management.
-                </p>
-              </section>
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-chart-line"></i> Evaluation</h3>
+              <p>Regelmäßige Überprüfung der Therapieziele und Anpassung der Behandlung.</p>
+              <ul>
+                <li>Fortschritte messen</li>
+                <li>Ziele anpassen</li>
+                <li>Methoden optimieren</li>
+                <li>Dokumentation</li>
+              </ul>
             </div>
+          </div>
 
-            <div class="col-12">
-              <section class="box" id="leistungen-register">
-                <h2 class="major"><span>Leistungen zum Aufklappen</span></h2>
-                <div class="service-accordion">
-                  <details id="alltagsbegleitung">
-                    <summary>Alltagsbegleitung / Betreuung</summary>
-                    <p>Praktische und menschliche Unterstützung für kranke, ältere und behinderte Menschen im Alltag.</p>
-                    <p>
-                      Ich begleite bei Einkäufen, Arztterminen, Behördenwegen, Tagesstruktur und anderen
-                      regelmäßigen Aufgaben, damit der Alltag stabil und planbar bleibt.
-                    </p>
-                    <p><strong>Preis Alltagsbegleitung / Betreuung:</strong> <strong>32 € pro Stunde</strong> zzgl. <strong>15 € Anfahrtspauschale</strong> je Hausbesuch.</p>
-                    <a href="/kontakt.html#termin" class="button">Alltagsbegleitung anfragen</a>
-                  </details>
-
-                  <details id="case-management">
-                    <summary>Case Management</summary>
-                    <p>Komplexe Versorgung klar steuern - mit einem festen Ansprechpartner.</p>
-                    <p>
-                      Bei mehreren Beteiligten geht schnell der Überblick verloren: Pflegedienst, Arztpraxis, Kasse,
-                      Hilfsmittelanbieter, Therapeuten und Angehörige. In der Pflegekoordination übernehme ich die strukturierte
-                      Abstimmung dieser Schnittstellen, damit Zuständigkeiten klar sind und wichtige Schritte nicht liegen bleiben.
-                    </p>
-                    <p>
-                      Besonders nach Schlaganfällen ist eine eng geführte Koordination wichtig: Reha, Hilfsmittel,
-                      Therapie, Pflegeeinstufung und Alltag müssen sauber zusammenlaufen.
-                    </p>
-                    <p>
-                      Ich helfe bei Priorisierung, Terminplanung, Kommunikation mit Fachstellen und Nachverfolgung offener Punkte.
-                      So entsteht ein belastbarer Versorgungsplan, der im Alltag wirklich funktioniert. Änderungen in der Situation
-                      werden zeitnah aufgenommen und in den Plan integriert.
-                    </p>
-                    <p>
-                      Pflegekoordination bedeutet auch Entlastung für Angehörige: weniger Rückfragen, klarere Zuständigkeiten,
-                      transparente Dokumentation und eine laufende Übersicht über den aktuellen Stand der Versorgung.
-                    </p>
-                    <p>
-                      Im Case Management enthalten sind Pflegekoordination sowie Antragsservice und Widersprüche.
-                    </p>
-                    <p>Anträge, Formulare, Begründungen und Widersprüche professionell vorbereitet.</p>
-                    <p>
-                      Beim Antragsservice unterstütze ich Sie bei Pflege- und Versorgungsanträgen von der Vorbereitung bis zur
-                      finalen Einreichung. Dazu gehören Sichtung der Unterlagen, Strukturierung der notwendigen Informationen,
-                      Formulierungshilfe und Plausibilitätsprüfung der Angaben.
-                    </p>
-                    <p>
-                      Ein Schwerpunkt ist der <strong>Widerspruch gegen Pflegegradeinstufungen</strong>:
-                      Ich unterstütze bei der medizinisch-alltagsbezogenen Begründung, bei Fristen und bei der
-                      nachvollziehbaren Dokumentation relevanter Einschränkungen.
-                    </p>
-                    <p>
-                      Ich achte auf Vollständigkeit, Fristen und nachvollziehbare Begründungen, damit Ihre Unterlagen sauber,
-                      verständlich und fristgerecht eingereicht werden können. Auf Wunsch begleite ich auch den weiteren Verlauf,
-                      z. B. bei Nachforderungen oder Rückfragen.
-                    </p>
-                    <p>
-                      Gerade bei komplexeren Fällen hilft eine professionelle Vorbereitung, weil wichtige Details nicht vergessen
-                      werden und Entscheidungen auf einer klaren Dokumentenlage getroffen werden können.
-                    </p>
-                    <p><strong>Preis Case Management (Pflegekoordination):</strong> <strong>89 € pro Stunde</strong>.</p>
-                    <p><strong>Preis Case Management (Antragsservice &amp; Widerspruch):</strong> <strong>89 € pro Stunde</strong>.</p>
-                    <p><strong>Transparenz:</strong> Dieser Stundensatz entspricht der Spezialisierung und Qualifikation auf DQR Stufe 6 (Bachelor-Niveau).</p>
-                    <a href="/kontakt.html#termin" class="button">Case Management starten</a>
-                  </details>
-                </div>
-              </section>
+          <div class="step-card">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-graduation-cap"></i> Abschluss</h3>
+              <p>Therapieabschluss mit Empfehlungen für die selbstständige Weiterführung.</p>
+              <ul>
+                <li>Abschlussbericht</li>
+                <li>Eigenübungen</li>
+                <li>Empfehlungen</li>
+                <li>Nachsorgeplanung</li>
+              </ul>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <footer id="footer">
-        <div class="container">
-          <div class="row gtr-200">
-            <div class="col-12">
-              <section>
-                <h2 class="major"><span>CaseKompass</span></h2>
-                <p>
-                  Privates Case Management mit Fokus auf komplexe Fallkoordination,
-                  Entlastung und nachvollziehbare Entscheidungen.
-                </p>
-              </section>
+    <section class="info-section">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-file-medical"></i>
             </div>
-            <div class="col-12">
-              <section>
-                <h2 class="major"><span>Kontakt</span></h2>
-                <ul class="contact">
-                  <li><a class="icon solid fa-envelope" href="mailto:casekompass@gmx.de"><span class="label">E-Mail</span></a></li>
-                  <li><a class="icon solid fa-phone" href="tel:+4915226560105"><span class="label">Telefon</span></a></li>
-                  <li><a class="icon solid fa-calendar" href="/kontakt.html#termin"><span class="label">Termin</span></a></li>
-                </ul>
-              </section>
-            </div>
+            <h3>Verordnung & Kostenübernahme</h3>
+            <p>Die Ergotherapie wird von Ihrem Arzt verordnet und in der Regel von der Krankenkasse übernommen.</p>
+            <ul>
+              <li>Verordnung vom Arzt erforderlich</li>
+              <li>Kassenleistung bei medizinischer Indikation</li>
+              <li>Hausbesuche bei entsprechender Verordnung</li>
+              <li>Zuzahlung: 10% + 10€ pro Verordnung</li>
+            </ul>
           </div>
-          <div id="copyright">
-            <ul class="menu">
-              <li>&copy; <span id="y"></span> casekompass.de</li>
-              <li><a href="/impressum.html">Impressum</a></li>
-              <li><a href="/datenschutz.html">Datenschutz</a></li>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-home"></i>
+            </div>
+            <h3>Vorteile der mobilen Therapie</h3>
+            <p>Behandlung in Ihrem gewohnten Umfeld bietet viele therapeutische und praktische Vorteile.</p>
+            <ul>
+              <li>Training in der realen Umgebung</li>
+              <li>Keine Anfahrtswege für Patienten</li>
+              <li>Familiäre, entspannte Atmosphäre</li>
+              <li>Direkte Wohnraumanpassung möglich</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <h3>Behandlungszeiten</h3>
+            <p>Flexible Termingestaltung, die sich an Ihren Bedürfnissen und Ihrem Tagesrhythmus orientiert.</p>
+            <ul>
+              <li>Montag bis Freitag: 9:00 - 17:00 Uhr</li>
+              <li>Termine nach Vereinbarung</li>
+              <li>Behandlungsdauer: 30-60 Minuten</li>
+              <li>Regelmäßige Termine (1-3x pro Woche)</li>
             </ul>
           </div>
         </div>
-      </footer>
+      </div>
+    </section>
 
+    <section class="faq-section">
+      <div class="container">
+        <h2><i class="fa-solid fa-question-circle"></i> Häufige Fragen</h2>
+        <p class="section-intro">Die wichtigsten Antworten rund um unsere ergotherapeutischen Leistungen.</p>
+        
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Wie bekomme ich eine Verordnung für Ergotherapie?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Eine Verordnung für Ergotherapie stellt Ihr behandelnder Arzt aus (Hausarzt, Neurologe, Orthopäde, etc.). Sprechen Sie Ihren Arzt auf Ihre Beschwerden an und fragen Sie gezielt nach Ergotherapie.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Übernimmt die Krankenkasse die Kosten?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Ja, bei medizinischer Indikation übernehmen die gesetzlichen Krankenkassen die Kosten. Sie zahlen lediglich eine Zuzahlung von 10% der Behandlungskosten plus 10€ pro Verordnung.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Wie oft findet die Therapie statt?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Die Häufigkeit hängt von Ihrer Diagnose und dem Therapieziel ab. Typisch sind 1-3 Termine pro Woche über 10-20 Behandlungseinheiten. Dies wird individuell mit Ihnen abgestimmt.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Welche Vorteile hat die mobile Therapie?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Sie trainieren direkt in Ihrer gewohnten Umgebung, sparen Anfahrtswege und können in entspannter Atmosphäre arbeiten. Zudem kann die Wohnung direkt auf Ihre Bedürfnisse angepasst werden.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Was muss ich zur ersten Therapie mitbringen?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Bringen Sie Ihre Verordnung, Ihre Versichertenkarte und alle relevanten Arztbriefe mit. Sorgen Sie für einen ruhigen Raum und bequeme Kleidung.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFAQ(this)">
+              <span>Kann ich einen Termin absagen?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Ja, bitte sagen Sie Termine mindestens 24 Stunden vorher ab. Kurzfristige Absagen können in Rechnung gestellt werden.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qualifikationen Section -->
+    <section class="qualifications-section">
+      <div class="container">
+        <h2><i class="fa-solid fa-graduation-cap"></i> Klinische Expertise & Qualifikationen</h2>
+        <p class="section-intro">Fundierte Ausbildung und kontinuierliche Weiterbildung für evidenzbasierte Therapie</p>
+        
+        <div class="qualifications-grid">
+          <div class="qualification-card">
+            <div class="card-header">
+              <div class="qual-icon neurologie">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <h3>Neurologie-Spezialisierung</h3>
+              <div class="qual-level">Fachtherapeutin</div>
+            </div>
+            <div class="card-content">
+              <p>Spezialisierte Weiterbildungen in neurologischer Rehabilitation mit Fokus auf Schlaganfall, Parkinson und Multiple Sklerose.</p>
+              <div class="cert-badges">
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Bobath-Konzept</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Perfetti-Methode</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Spiegeltherapie</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qualification-card highlight">
+            <div class="card-header">
+              <div class="qual-icon spezialkurs">
+                <i class="fa-solid fa-hand-dots"></i>
+              </div>
+              <h3>Obere Extremität Neurologie</h3>
+              <div class="qual-level">Spezialkurs 2025</div>
+            </div>
+            <div class="card-content">
+              <p>Aktuellste Weiterbildung zur spezialisierten Therapie der oberen Extremität bei neurologischen Schädigungen - 25 Fortbildungspunkte.</p>
+              <div class="cert-badges">
+                <span class="cert-badge primary"><i class="fa-solid fa-star"></i> Sept. 2025</span>
+                <span class="cert-badge primary"><i class="fa-solid fa-award"></i> 25 Punkte</span>
+                <span class="cert-badge primary"><i class="fa-solid fa-brain"></i> Burgau</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qualification-card">
+            <div class="card-header">
+              <div class="qual-icon handtherapie">
+                <i class="fa-solid fa-hand-holding-medical"></i>
+              </div>
+              <h3>Handtherapie</h3>
+              <div class="qual-level">Zertifiziert</div>
+            </div>
+            <div class="card-content">
+              <p>Umfassende Ausbildung in manueller Therapie, Narbenbehandlung und funktioneller Handrehabilitation.</p>
+              <div class="cert-badges">
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Manuelle Therapie</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Lymphdrainage</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Kinesio-Taping</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qualification-card">
+            <div class="card-header">
+              <div class="qual-icon geriatrie">
+                <i class="fa-solid fa-user-clock"></i>
+              </div>
+              <h3>Geriatrische Rehabilitation</h3>
+              <div class="qual-level">Spezialisierung</div>
+            </div>
+            <div class="card-content">
+              <p>Qualifizierte Betreuung älterer Menschen mit Fokus auf Selbstständigkeit und Sturzprävention.</p>
+              <div class="cert-badges">
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Sturzprävention</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Demenzbetreuung</span>
+                <span class="cert-badge"><i class="fa-solid fa-certificate"></i> Hilfsmittelberatung</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="qualification-card">
+            <div class="card-header">
+              <div class="qual-icon grundlagen">
+                <i class="fa-solid fa-school"></i>
+              </div>
+              <h3>Grundausbildung</h3>
+              <div class="qual-level">Staatlich anerkannt</div>
+            </div>
+            <div class="card-content">
+              <p>Staatlich anerkannte Ergotherapeutin mit abgeschlossener Berufsausbildung und mehrjähriger klinischer Erfahrung.</p>
+              <div class="cert-badges">
+                <span class="cert-badge primary"><i class="fa-solid fa-graduation-cap"></i> Ergotherapeutin</span>
+                <span class="cert-badge primary"><i class="fa-solid fa-hospital"></i> Klinische Praxis</span>
+                <span class="cert-badge primary"><i class="fa-solid fa-home"></i> Mobile Therapie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qualifications-footer">
+          <div class="continuing-education">
+            <h4><i class="fa-solid fa-book-open"></i> Kontinuierliche Fortbildung</h4>
+            <p>Regelmäßige Teilnahme an Fachkongressen, Workshops und wissenschaftlichen Weiterbildungen zur Sicherstellung aktueller Behandlungsstandards.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+      <div class="container leistungen-cta cta-block">
+        <h2>Haben Sie Fragen zu unseren Leistungen?</h2>
+        <p>Rufen Sie uns an oder schreiben Sie uns – wir beraten Sie gerne zu allen Aspekten der ergotherapeutischen Behandlung!</p>
+        <div class="cta-actions">
+          <a class="btn primary" href="tel:+4915129812721"><i class="fa-solid fa-phone"></i> Jetzt anrufen</a>
+          <a class="btn ghost" href="kontakt.html"><i class="fa-solid fa-envelope"></i> Nachricht senden</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-box">
+        <h4>Ergotherapie Mobil</h4>
+        <p>Mobile ergotherapeutische Praxis für Herbrechtingen & Umgebung.</p>
+      </div>
+      <div class="footer-box">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li><i class="fa-solid fa-location-dot"></i> Kein fester Standort - mobil bei Ihnen vor Ort oder remote</li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915129812721">01512 9812721</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:infocasekompasshdh@gmail.com">infocasekompasshdh@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Öffnungszeiten</h4>
+        <ul class="footer-list">
+          <li>Di, Mi, Fr: 08:00–18:00 Uhr</li>
+          <li>Mo &amp; Do: Hausbesuche</li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Folgen Sie uns</h4>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="social social-instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+          </a>
+          <a href="#" aria-label="Facebook" class="social social-facebook">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="social-tooltip">Facebook</span>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social social-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-tooltip">WhatsApp</span>
+          </a>
+        </div>
+      </div>
     </div>
+    <div class="container footer-legal">
+      <small>© <span id="year"></span> Ergotherapie Mobil · Alle Rechte vorbehalten</small>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
 
-    <script src="Vorlage/assets/js/jquery.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.dropotron.min.js"></script>
-    <script src="Vorlage/assets/js/jquery.scrolly.min.js"></script>
-    <script src="Vorlage/assets/js/browser.min.js"></script>
-    <script src="Vorlage/assets/js/breakpoints.min.js"></script>
-    <script src="Vorlage/assets/js/util.js"></script>
-    <script src="Vorlage/assets/js/main.js"></script>
-    <script src="/smooth-scroll.js"></script>
-    <script>
-      document.getElementById("y").textContent = String(new Date().getFullYear());
-    </script>
-  </body>
+  <script src="./script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+  <script>
+    function toggleFAQ(button) {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+      
+      button.classList.toggle('active');
+      answer.classList.toggle('active');
+      
+      if (answer.classList.contains('active')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  </script>
+
+  <!-- Sprite-Killer -->
+  <style>
+    .floating-sprite,.sprite,.sprite-hand,.sprite-cross,[data-sprite],.sprites-wrapper{display:none!important;visibility:hidden!important;pointer-events:none!important}
+  </style>
+</body>
 </html>
-
 
 

@@ -1,13 +1,8 @@
 [build]
   publish = "."
-  command = "echo 'No build step'"
+  functions = "netlify/functions"
 
 [[redirects]]
-  from = "/warenkorb"
-  to = "/kontakt.html"
-  status = 301
-
-[[redirects]]
-  from = "/warenkorb.html"
-  to = "/kontakt.html"
-  status = 301
+  from = "/api/contact"
+  to = "/.netlify/functions/contact"
+  status = 200
