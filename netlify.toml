@@ -16,8 +16,8 @@
   status = 200
 
 [[redirects]]
-  from = "/api/planning/validate"
-  to = "/.netlify/functions/planning-validate"
+  from = "/api/planning/process-text"
+  to = "/.netlify/functions/planning-process-text"
   status = 200
 
 [[redirects]]

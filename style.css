@@ -2308,8 +2308,81 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   font-size: 0.95rem;
 }
 
+.planning-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .planning-label span {
   color: var(--accent-600);
+}
+
+.planning-help {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(76,161,163,0.12);
+  color: var(--primary-700);
+  border: 1px solid rgba(76,161,163,0.18);
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.planning-help:hover,
+.planning-help:focus-visible,
+.planning-help:focus-within {
+  background: rgba(76,161,163,0.18);
+  border-color: rgba(76,161,163,0.34);
+}
+
+.planning-help-icon {
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.planning-help-tooltip {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+  transform: translateX(-50%);
+  width: min(280px, calc(100vw - 56px));
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(20, 47, 48, 0.96);
+  color: #fff;
+  box-shadow: 0 18px 36px rgba(14, 32, 33, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+  z-index: 20;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+.planning-help-tooltip::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: rgba(20, 47, 48, 0.96);
+}
+
+.planning-help:hover .planning-help-tooltip,
+.planning-help:focus-visible .planning-help-tooltip,
+.planning-help:focus-within .planning-help-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .planning-choice-grid,
@@ -2457,6 +2530,22 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   .planning-payment-box {
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .planning-help-tooltip {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  .planning-help-tooltip::before {
+    left: 12px;
+    transform: none;
+  }
+
+  .planning-help:hover .planning-help-tooltip,
+  .planning-help:focus-visible .planning-help-tooltip,
+  .planning-help:focus-within .planning-help-tooltip {
+    transform: translateX(0);
   }
 
   .planning-progress-meter {

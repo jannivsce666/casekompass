@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="description" content="Status Ihrer Versorgungsplanung und Versand der PDF-Zusammenfassung nach erfolgreicher Zahlung.">
-  <title>Versorgungsplanung Abschluss | casekompass.de</title>
+  <meta name="description" content="Startseite für das Formular zur Versorgungsplanung von casekompass.de.">
+  <title>Versorgungsplanung starten | casekompass.de</title>
   <link rel="icon" type="image/png" href="./images/logo.png">
   <link rel="apple-touch-icon" href="./images/logo.png">
   <link rel="stylesheet" href="style.css">
@@ -33,24 +33,30 @@
     </div>
   </header>
 
-  <main class="legal-page shop-status-page planning-status-page">
-    <section class="page-hero shop-page-hero">
+  <main class="product-detail-page planning-page">
+    <section class="page-hero product-page-hero planning-page-hero">
       <div class="container">
-        <h1><i class="fa-solid fa-file-circle-check"></i> Versorgungsplanung Abschluss</h1>
-        <p class="hero-subtitle">Hier wird die Zahlung geprüft. Danach wird die PDF-Zusammenfassung erzeugt und per Web3Forms an casekompass.de gesendet.</p>
+        <div class="product-breadcrumbs">
+          <a href="index.html">Start</a>
+          <span>/</span>
+          <a href="leistungen.html">Leistungen</a>
+          <span>/</span>
+          <a href="versorgungsplanung.html">Versorgungsplanung</a>
+          <span>/</span>
+          <strong>Formular starten</strong>
+        </div>
+        <h1><i class="fa-solid fa-layer-group"></i> Formular zur Versorgungsplanung</h1>
+        <p class="hero-subtitle">Hier erfassen Sie die Versorgungslage Schritt für Schritt. Am Ende beschreiben Sie die Situation in eigenen Worten und formulieren den gewünschten Ausgang.</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section planning-app-section" id="versorgungsplaner">
       <div class="container">
-        <div class="shop-status-card planning-status-card" data-planning-status>
-          <div class="shop-status-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
-          <h2>Versorgungsplanung wird vorbereitet</h2>
-          <p>Bitte warten Sie einen Moment. Ich prüfe gerade Ihre Zahlung und bereite die PDF-Zusammenfassung für den Versand vor.</p>
-          <div class="shop-status-actions">
-            <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
-          </div>
+        <div class="shop-section-head">
+          <h2><i class="fa-solid fa-layer-group"></i> Digitaler Versorgungsplaner</h2>
+          <p class="section-intro">Klare Auswahlfelder, nur dort Freitext, wo er wirklich sinnvoll ist. Über das Fragezeichen neben jeder Frage erhalten Sie bei Bedarf eine kurze Erklärung. Nach dem Abschluss wird Ihre freie Beschreibung mit KI strukturiert aufbereitet.</p>
         </div>
+        <div data-planning-app></div>
       </div>
     </section>
   </main>

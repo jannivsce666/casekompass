@@ -9,6 +9,7 @@
   const FILE_STORE = 'files';
   const MAX_UPLOAD_COUNT = 6;
   const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
+  const DEFAULT_FIELD_HELP = 'Tragen Sie hier die Angabe so ein, wie sie aktuell für die betroffene Person am besten passt.';
 
   function textField(id, label, options) {
     return { id, label, type: 'text', ...options };
@@ -16,6 +17,10 @@
 
   function textareaField(id, label, options) {
     return { id, label, type: 'textarea', rows: 4, ...options };
+  }
+
+  function selectField(id, label, options, extra) {
+    return { id, label, type: 'select', options, ...extra };
   }
 
   function radioField(id, label, options) {
@@ -54,7 +59,7 @@
       title: 'Wer füllt aus?',
       intro: 'Wer die Angaben macht, ist für Rückfragen und Einschätzung wichtig.',
       fields: [
-        radioField('filledByRole', 'Wer füllt das Formular aus?', ['Betroffene Person selbst', 'Angehöriger', 'Bevollmächtigter', 'Gesetzlicher Betreuer', 'Sonstige Bezugsperson']),
+        radioField('filledByRole', 'Wer füllt das Formular gerade aus?', ['Betroffene Person selbst', 'Angehörige Person', 'Bevollmächtigte Person', 'Gesetzliche Betreuung', 'Andere Bezugsperson']),
         textareaField('filledByContact', 'Name und Kontaktdaten dieser Person', { required: true, wide: true, placeholder: 'Name, Telefon, E-Mail und Beziehung zur betroffenen Person' }),
       ],
     },
@@ -62,9 +67,9 @@
       title: 'Hauptsituation',
       intro: 'Worum geht es aktuell und warum wird jetzt Hilfe benötigt?',
       fields: [
-        textareaField('requestReason', 'Was ist der Grund der Anfrage?', { required: true, wide: true }),
-        textareaField('mainProblem', 'Was ist aktuell das größte Problem?', { required: true, wide: true }),
-        textField('situationSince', 'Seit wann besteht die Situation?', { required: true }),
+        selectField('requestReason', 'Worum geht es im Kern?', ['Pflegegrad oder Begutachtung', 'Versorgung zuhause sichern', 'Angehörige entlasten', 'Hilfsmittel organisieren', 'Reha oder Krankenhaus-Nachsorge', 'Behörden oder Unterlagen klären', 'Wohnraumanpassung', 'Sonstiges oder unklar'], { required: true, wide: true }),
+        textareaField('mainProblem', 'Was belastet aktuell am meisten?', { required: true, wide: true, placeholder: 'Beschreiben Sie das Hauptproblem in 2 bis 4 Sätzen.' }),
+        selectField('situationSince', 'Seit wann besteht die Situation?', ['Seit wenigen Tagen', 'Seit einigen Wochen', 'Seit einigen Monaten', 'Seit mehr als einem halben Jahr', 'Schon länger, aber aktuell deutlich belastender'], { required: true }),
         yesNoField('recentlyWorsened', 'Hat sich die Lage kürzlich verschlechtert?', { required: true }),
         textareaField('recentHospitalRehabFall', 'Gab es Krankenhaus, Reha oder Sturz in letzter Zeit?', { wide: true, placeholder: 'Wenn ja: kurz mit Zeitraum und Folgen beschreiben' }),
       ],
@@ -73,13 +78,14 @@
       title: 'Diagnosen & Gesundheit',
       intro: 'Die gesundheitliche Lage bestimmt den Versorgungsbedarf direkt mit.',
       fields: [
-        textareaField('mainDiagnoses', 'Wichtigste Diagnosen', { required: true, wide: true }),
-        textareaField('physicalLimitations', 'Körperliche Einschränkungen', { wide: true }),
-        textareaField('psychologicalBurden', 'Psychische Belastungen', { wide: true }),
-        textareaField('cognitiveLimitations', 'Kognitive Einschränkungen', { wide: true }),
-        textareaField('dementiaIssues', 'Demenz, Vergesslichkeit oder Orientierungsschwierigkeiten', { wide: true }),
-        textareaField('painIssues', 'Schmerzen', { wide: true }),
-        textareaField('sensoryIssues', 'Seh- oder Hörprobleme', { wide: true }),
+        checkboxField('mainDiagnoses', 'Welche Diagnosen oder Themen prägen die Lage besonders?', ['Schlaganfall', 'Demenz', 'Parkinson', 'Herz-Kreislauf-Erkrankung', 'Orthopädische Einschränkungen', 'Chronische Schmerzen', 'Psychische Erkrankung', 'Tumorerkrankung', 'Mehrere Diagnosen', 'Noch nicht klar'], { required: true, wide: true }),
+        textareaField('mainDiagnosesDetails', 'Weitere wichtige Diagnosen oder kurze Ergänzungen', { wide: true }),
+        checkboxField('physicalLimitations', 'Körperliche Einschränkungen', ['Schwäche', 'Lähmungen', 'Gleichgewichtsprobleme', 'Erschöpfung', 'Belastbarkeit stark reduziert', 'Feinmotorik eingeschränkt'], { wide: true }),
+        checkboxField('psychologicalBurden', 'Psychische Belastungen', ['Überforderung', 'Ängste', 'Depressive Stimmung', 'Unruhe', 'Aggression', 'Rückzug'], { wide: true }),
+        checkboxField('cognitiveLimitations', 'Kognitive Einschränkungen', ['Vergesslichkeit', 'Konzentrationsprobleme', 'Orientierungsprobleme', 'Entscheidungen fallen schwer', 'Verlangsamtes Denken'], { wide: true }),
+        yesNoField('dementiaIssues', 'Demenz, deutliche Vergesslichkeit oder Orientierungsschwierigkeiten?', { required: true }),
+        selectField('painIssues', 'Schmerzen', ['Keine oder kaum', 'Leicht', 'Mittel', 'Stark', 'Sehr stark oder täglich belastend'], { wide: true }),
+        checkboxField('sensoryIssues', 'Seh- oder Hörprobleme', ['Sehen eingeschränkt', 'Hören eingeschränkt', 'Brille oder Hörgerät vorhanden', 'Keine relevanten Probleme'], { wide: true }),
         yesNoField('hasIncontinence', 'Inkontinenz?', { required: true }),
         yesNoField('hasSwallowingIssues', 'Schluckstörungen?', { required: true }),
       ],
@@ -93,7 +99,7 @@
         yesNoField('canWalkOutsideAlone', 'Draußen allein möglich?', { required: true }),
         yesNoField('canUseStairs', 'Treppen möglich?', { required: true }),
         checkboxField('mobilityAids', 'Vorhandene Hilfsmittel', ['Rollator', 'Rollstuhl', 'Gehstock', 'Pflegebett', 'Toilettenstuhl', 'Haltegriffe'], { wide: true }),
-        textareaField('fallRisk', 'Sturzgefahr?', { wide: true, placeholder: 'Wie zeigt sie sich? Gab es bereits Stürze?' }),
+        selectField('fallRisk', 'Sturzgefahr?', ['Keine erkennbare Sturzgefahr', 'Leicht erhöht', 'Deutlich erhöht', 'Es gab bereits Stürze'], { wide: true }),
         textareaField('transferSupport', 'Transfer-Hilfe nötig? z. B. Bett, Toilette, Dusche', { wide: true }),
       ],
     },
@@ -101,16 +107,9 @@
       title: 'Selbstversorgung',
       intro: 'Wo ist Hilfe im Alltag bereits nötig und wo funktionieren Dinge noch?',
       fields: [
-        textareaField('dailyLimitations', 'Größte Alltagseinschränkungen', { required: true, wide: true }),
-        textareaField('helpWashing', 'Hilfe bei Waschen oder Duschen', { wide: true }),
-        textareaField('helpDressing', 'Hilfe beim Anziehen', { wide: true }),
-        textareaField('helpEating', 'Hilfe beim Essen oder Trinken', { wide: true }),
-        textareaField('helpToilet', 'Hilfe beim Toilettengang', { wide: true }),
-        textareaField('helpMedication', 'Hilfe bei Medikamenten', { wide: true }),
-        textareaField('helpHousehold', 'Hilfe bei Haushaltsführung', { wide: true }),
-        textareaField('helpShopping', 'Hilfe bei Einkaufen', { wide: true }),
-        textareaField('helpCooking', 'Hilfe bei Kochen', { wide: true }),
-        textareaField('helpCleaningLaundry', 'Hilfe bei Ordnung, Wäsche oder Reinigung', { wide: true }),
+        checkboxField('dailyLimitationAreas', 'Wo bestehen die größten Alltagseinschränkungen?', ['Körperpflege', 'Anziehen', 'Essen und Trinken', 'Toilettengang', 'Medikamente', 'Haushalt', 'Einkaufen', 'Kochen', 'Ordnung oder Wäsche'], { required: true, wide: true }),
+        textareaField('dailyLimitations', 'Kurz beschrieben: Wo klappt der Alltag gerade nicht gut?', { required: true, wide: true, placeholder: 'Zum Beispiel morgens, beim Essen, im Bad oder bei der Organisation.' }),
+        checkboxField('helpAreas', 'Wo ist aktuell konkret Hilfe nötig?', ['Waschen oder Duschen', 'Anziehen', 'Essen oder Trinken', 'Toilettengang', 'Medikamente', 'Haushaltsführung', 'Einkaufen', 'Kochen', 'Reinigung oder Wäsche'], { wide: true }),
       ],
     },
     {
@@ -135,7 +134,8 @@
         checkboxField('helperTypes', 'Welche Unterstützung ist aktuell eingebunden?', ['Angehörige', 'Nachbarn', 'Pflegedienst', 'Haushaltshilfe', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Essen auf Rädern', 'Hausnotruf', 'Betreuungsdienst'], { wide: true }),
         textareaField('helperFrequency', 'Wie oft kommt wer?', { wide: true }),
         textareaField('whatWorksWell', 'Was funktioniert gut?', { wide: true }),
-        textareaField('currentGaps', 'Wo gibt es Versorgungslücken oder was fehlt aktuell?', { required: true, wide: true }),
+        checkboxField('currentGapAreas', 'Wo gibt es Versorgungslücken?', ['Zu wenig Entlastung', 'Keine klare Zuständigkeit', 'Hilfsmittel fehlen', 'Pflegedienst reicht nicht aus', 'Anträge oder Unterlagen fehlen', 'Organisation überfordert die Familie'], { wide: true }),
+        textareaField('currentGaps', 'Was fehlt aktuell am dringendsten?', { required: true, wide: true, placeholder: 'Zum Beispiel mehr Entlastung, klare Struktur, Hilfsmittel oder Unterstützung bei Anträgen.' }),
       ],
     },
     {
@@ -147,6 +147,7 @@
         textareaField('therapists', 'Therapeuten', { wide: true }),
         textField('pharmacy', 'Apotheke', { wide: true }),
         textField('medicalSupplyStore', 'Sanitätshaus', { wide: true }),
+        checkboxField('careServiceContactTypes', 'Welche professionellen Stellen sind aktuell eingebunden?', ['Pflegedienst', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Betreuungsdienst', 'Sozialdienst'], { wide: true }),
         textareaField('careServiceContact', 'Pflegedienst oder weitere Dienste', { wide: true }),
         textareaField('clinicContact', 'Ansprechpartner in Klinik, Reha oder Sozialdienst', { wide: true }),
         textareaField('relativeContacts', 'Wichtige Angehörige mit Telefonnummern', { wide: true }),
@@ -166,6 +167,7 @@
         yesNoField('careAidsUsed', 'Pflegehilfsmittel genutzt?', { required: true }),
         yesNoField('shortTermCareUsed', 'Verhinderungspflege oder Kurzzeitpflege schon genutzt?', { required: true }),
         textareaField('availableDocuments', 'Welche Unterlagen oder Bescheide liegen schon vor?', { required: true, wide: true }),
+        checkboxField('rejectedTopics', 'Was wurde schon abgelehnt?', ['Pflegegrad', 'Hilfsmittel', 'Reha', 'Wohnraumanpassung', 'Pflegedienst oder Leistungsausweitung', 'Entlastungsleistungen'], { wide: true }),
         textareaField('rejectedItems', 'Was wurde schon abgelehnt?', { wide: true }),
       ],
     },
@@ -173,29 +175,40 @@
       title: 'Wohnsituation',
       intro: 'Die Wohnumgebung entscheidet oft mit darüber, was sofort verbessert werden sollte.',
       fields: [
-        textField('livingSituation', 'Lebt die Person allein oder mit jemandem?', { required: true, wide: true }),
-        { id: 'housingType', label: 'Wohnung oder Haus?', type: 'select', required: true, options: ['Wohnung', 'Haus', 'Sonstiges'] },
+        textField('livingSituation', 'Wie lebt die Person aktuell?', { required: true, wide: true, placeholder: 'Zum Beispiel allein, mit Partner, mit Familie oder in einer WG.' }),
+        { id: 'housingType', label: 'Wie ist die Wohnform?', type: 'select', required: true, options: ['Wohnung', 'Haus', 'Sonstiges', 'Weiß ich nicht'] },
         textField('floor', 'Stockwerk', {}),
         yesNoField('hasElevator', 'Aufzug vorhanden?', { required: true }),
         yesNoField('hasAccessibleBathroom', 'Bad barrierefrei?', { required: true }),
         yesNoField('hasStairsAtHome', 'Treppen im Haus?', { required: true }),
-        { id: 'bathSetup', label: 'Dusche oder Badewanne?', type: 'select', required: true, options: ['Dusche', 'Badewanne', 'Beides', 'Sonstiges'] },
+        { id: 'bathSetup', label: 'Wie ist das Bad ausgestattet?', type: 'select', required: true, options: ['Dusche', 'Badewanne', 'Beides', 'Sonstiges', 'Weiß ich nicht'] },
         yesNoField('bedAccessible', 'Bett oder Schlafzimmer gut erreichbar?', { required: true }),
         textareaField('tripHazards', 'Gibt es Stolperfallen?', { wide: true }),
         yesNoField('renovationUseful', 'Wäre Umbau sinnvoll?', { required: true }),
-        textareaField('petsAndAccess', 'Haustiere vorhanden? Ländlich oder städtisch? Gute Erreichbarkeit?', { wide: true }),
+        yesNoField('hasPets', 'Haustiere vorhanden?', { required: true }),
+        selectField('areaType', 'Eher ländlich oder städtisch?', ['Städtisch', 'Ländlich', 'Dazwischen'], { required: true }),
+        yesNoField('easyToReach', 'Wohnort gut erreichbar?', { required: true }),
+        textareaField('petsAndAccess', 'Sonstige Hinweise zur Wohnlage oder Erreichbarkeit', { wide: true }),
       ],
     },
     {
       title: 'Ziele der Familie',
       intro: 'Das Zielbild ist der wichtigste Teil für eine starke Versorgungsplanung.',
       fields: [
-        textareaField('improvementGoal', 'Was soll sich konkret verbessern?', { required: true, wide: true }),
-        textareaField('mostUrgentGoal', 'Was ist am dringendsten?', { required: true, wide: true }),
-        textareaField('goalTwoWeeks', 'Was soll in den nächsten 2 Wochen erreicht werden?', { wide: true }),
-        textareaField('goalThreeMonths', 'Was soll in den nächsten 3 Monaten erreicht werden?', { wide: true }),
+        textareaField('improvementGoal', 'Was soll sich konkret verbessern?', { required: true, wide: true, placeholder: 'Beschreiben Sie den gewünschten Unterschied im Alltag.' }),
+        textareaField('mostUrgentGoal', 'Was ist jetzt am dringendsten?', { required: true, wide: true, placeholder: 'Was sollte zuerst geklärt oder verbessert werden?' }),
+        textareaField('goalTwoWeeks', 'Was soll in den nächsten 2 Wochen erreicht werden?', { wide: true, placeholder: 'Zum Beispiel ein Antrag, ein Termin oder eine spürbare Entlastung.' }),
+        textareaField('goalThreeMonths', 'Was soll in den nächsten 3 Monaten erreicht werden?', { wide: true, placeholder: 'Zum Beispiel eine stabile Versorgung oder ein geklärter Pflegegrad.' }),
         checkboxField('goalFocus', 'Worum geht es vor allem?', ['Entlastung der Angehörigen', 'Pflegegrad', 'Sichere Versorgung zuhause', 'Mehr Selbstständigkeit', 'Weniger Überforderung', 'Bessere Struktur', 'Hilfsmittel', 'Reha', 'Behörden oder Unterlagen'], { wide: true }),
         textareaField('familyGoal', 'Was wäre für die Familie ein gutes Ergebnis?', { required: true, wide: true }),
+      ],
+    },
+    {
+      title: 'Eigene Schilderung',
+      intro: 'Hier kann die Situation noch einmal frei in eigenen Worten beschrieben werden.',
+      fields: [
+        textareaField('situationNarrative', 'Wie beschreibt die betroffene Person oder Familie die aktuelle Situation in eigenen Worten?', { required: true, wide: true, rows: 6, placeholder: 'Was ist passiert, was belastet im Alltag am meisten und warum wird gerade jetzt Hilfe gebraucht?' }),
+        textareaField('wishNarrative', 'Was wünscht sich die betroffene Person oder Familie konkret?', { required: true, wide: true, rows: 5, placeholder: 'Was soll sich verbessern, was wäre eine gute Lösung und was wäre kurzfristig schon hilfreich?' }),
       ],
     },
     {
@@ -217,6 +230,29 @@
   SECTIONS.forEach((section) => {
     section.fields.forEach((field) => FIELD_MAP.set(field.id, field));
   });
+
+  const FIELD_HELP_TEXTS = {
+    firstName: 'Bitte tragen Sie die Daten der betroffenen Person ein, nicht die der ausfüllenden Person.',
+    birthDate: 'Das Geburtsdatum hilft, die Situation besser einzuordnen und später Unterlagen korrekt zuzuordnen.',
+    insuranceProvider: 'Falls bekannt, nennen Sie die Kranken- oder Pflegekasse, damit spätere Anträge richtig zugeordnet werden können.',
+    hasCareLevel: 'Falls schon ein Pflegegrad vorliegt, kann die Planung gezielter auf vorhandene Leistungen aufbauen.',
+    filledByRole: 'Damit später klar ist, aus welcher Perspektive die Angaben gemacht wurden.',
+    filledByContact: 'Bitte mit Name, Beziehung zur betroffenen Person und möglichst Telefon oder E-Mail.',
+    requestReason: 'Wählen Sie den Hauptanlass, der die Versorgungsplanung gerade notwendig macht.',
+    mainProblem: 'Beschreiben Sie das Hauptproblem möglichst konkret: Was klappt nicht, wo entsteht Druck oder Überforderung?',
+    situationSince: 'Eine grobe zeitliche Einordnung reicht. Es geht nicht um ein exaktes Datum.',
+    recentlyWorsened: 'Wählen Sie Ja, wenn sich die Lage in letzter Zeit sichtbar verschlechtert hat.',
+    mainDiagnoses: 'Mehrfachauswahl ist möglich. Es geht um die Themen, die den Alltag aktuell am stärksten prägen.',
+    mainDiagnosesDetails: 'Hier können Sie ergänzen, was in den Auswahlfeldern fehlt oder genauer benannt werden soll.',
+    dailyLimitations: 'Kurz und konkret reicht: Wo im Alltag entstehen regelmäßig Probleme oder Abhängigkeiten?',
+    currentGaps: 'Hier geht es um das, was derzeit fehlt, obwohl es eigentlich gebraucht würde.',
+    availableDocuments: 'Nennen Sie zum Beispiel Bescheide, Arztbriefe, Gutachten, Anträge oder Entlassungsberichte.',
+    livingSituation: 'Beschreiben Sie kurz das Wohn- und Lebensumfeld, weil das die Planung stark beeinflusst.',
+    familyGoal: 'Was wäre aus Sicht der Familie oder der betroffenen Person ein wirklich gutes Ergebnis?',
+    situationNarrative: 'Hier darf frei geschrieben werden. Genau dieser Text wird später mit KI verständlich zusammengefasst.',
+    wishNarrative: 'Beschreiben Sie hier das gewünschte Zielbild möglichst konkret und alltagsnah.',
+    supportingDocuments: 'Laden Sie nur Unterlagen hoch, die für die aktuelle Versorgung oder die Antragslage wirklich relevant sind.',
+  };
 
   function escapeHtml(value) {
     return String(value || '')
@@ -318,13 +354,6 @@
     saveJson(DISPATCHED_STORAGE_KEY, value);
   }
 
-  function buildSubmissionFromDraft(draft, files) {
-    return {
-      ...draft,
-      uploadedFiles: files.map((file) => `${file.name} (${Math.round(file.size / 1024)} KB)`),
-    };
-  }
-
   function formatValue(field, value) {
     if (Array.isArray(value)) return value.join(', ');
     if (field?.type === 'date' && value) {
@@ -345,6 +374,23 @@
     });
   }
 
+  function getFieldHelpText(field) {
+    return field.help || FIELD_HELP_TEXTS[field.id] || DEFAULT_FIELD_HELP;
+  }
+
+  function renderFieldLabel(field, inputId) {
+    const labelTarget = inputId ? ` for="${escapeHtml(inputId)}"` : '';
+    return `
+      <div class="planning-label-row">
+        <label class="planning-label"${labelTarget}>${escapeHtml(field.label)}${field.required ? ' <span>*</span>' : ''}</label>
+        <span class="planning-help" tabindex="0" aria-label="Mehr Informationen zu ${escapeHtml(field.label)}">
+          <span class="planning-help-icon" aria-hidden="true">?</span>
+          <span class="planning-help-tooltip">${escapeHtml(getFieldHelpText(field))}</span>
+        </span>
+      </div>
+    `;
+  }
+
   function renderField(field, draft, files) {
     const value = draft[field.id];
     const fieldClass = field.wide ? 'planning-field planning-field-wide' : 'planning-field';
@@ -352,7 +398,7 @@
     if (field.type === 'radio') {
       return `
         <div class="${fieldClass}">
-          <label class="planning-label">${escapeHtml(field.label)}${field.required ? ' <span>*</span>' : ''}</label>
+          ${renderFieldLabel(field)}
           <div class="planning-choice-grid" data-field="${escapeHtml(field.id)}">
             ${field.options.map((option) => `
               <label class="planning-choice-card${value === option ? ' is-selected' : ''}">
@@ -369,7 +415,7 @@
       const checkedValues = Array.isArray(value) ? value : [];
       return `
         <div class="${fieldClass}">
-          <label class="planning-label">${escapeHtml(field.label)}</label>
+          ${renderFieldLabel(field)}
           <div class="planning-chip-grid">
             ${field.options.map((option) => `
               <label class="planning-chip${checkedValues.includes(option) ? ' is-selected' : ''}">
@@ -385,7 +431,7 @@
     if (field.type === 'select') {
       return `
         <div class="${fieldClass}">
-          <label class="planning-label" for="${escapeHtml(field.id)}">${escapeHtml(field.label)}${field.required ? ' <span>*</span>' : ''}</label>
+          ${renderFieldLabel(field, field.id)}
           <select id="${escapeHtml(field.id)}" name="${escapeHtml(field.id)}">
             <option value="">Bitte auswählen</option>
             ${field.options.map((option) => `<option value="${escapeHtml(option)}" ${value === option ? 'selected' : ''}>${escapeHtml(option)}</option>`).join('')}
@@ -397,7 +443,7 @@
     if (field.type === 'textarea') {
       return `
         <div class="${fieldClass}">
-          <label class="planning-label" for="${escapeHtml(field.id)}">${escapeHtml(field.label)}${field.required ? ' <span>*</span>' : ''}</label>
+          ${renderFieldLabel(field, field.id)}
           <textarea id="${escapeHtml(field.id)}" name="${escapeHtml(field.id)}" rows="${field.rows || 4}" placeholder="${escapeHtml(field.placeholder || '')}">${escapeHtml(value || '')}</textarea>
         </div>
       `;
@@ -406,7 +452,7 @@
     if (field.type === 'file') {
       return `
         <div class="${fieldClass}">
-          <label class="planning-label" for="${escapeHtml(field.id)}">${escapeHtml(field.label)}</label>
+          ${renderFieldLabel(field, field.id)}
           <div class="planning-upload-box">
             <input id="${escapeHtml(field.id)}" type="file" name="${escapeHtml(field.id)}" data-planning-files multiple accept="application/pdf,image/*,.doc,.docx">
             <p>${escapeHtml(field.help || '')}</p>
@@ -421,21 +467,26 @@
     const inputType = field.type || 'text';
     return `
       <div class="${fieldClass}">
-        <label class="planning-label" for="${escapeHtml(field.id)}">${escapeHtml(field.label)}${field.required ? ' <span>*</span>' : ''}</label>
+        ${renderFieldLabel(field, field.id)}
         <input id="${escapeHtml(field.id)}" type="${escapeHtml(inputType)}" name="${escapeHtml(field.id)}" value="${escapeHtml(value || '')}" placeholder="${escapeHtml(field.placeholder || '')}">
       </div>
     `;
   }
 
+  function getAllMissingRequired(state) {
+    return SECTIONS.flatMap((section) => getRequiredMissingForSection(section, state.draft, state.draftFiles).map((field) => field.label));
+  }
+
   function renderReview(state) {
     const draft = state.draft;
+    const missingFields = Array.from(new Set(getAllMissingRequired(state)));
     const reviewGroups = [
       ['Person', `${draft.firstName || ''} ${draft.lastName || ''}`.trim(), draft.email || '', draft.phone || ''],
-      ['Hauptproblem', draft.mainProblem || '', draft.dailyLimitations || '', draft.currentGaps || ''],
-      ['Versorgung', draft.currentHelpers || '', draft.availableDocuments || '', draft.familyGoal || ''],
+      ['Kernlage', draft.mainProblem || '', draft.dailyLimitations || '', draft.currentGaps || ''],
+      ['Aktueller Stand', draft.currentHelpers || '', draft.availableDocuments || '', draft.familyGoal || ''],
+      ['Eigene Schilderung', draft.situationNarrative || '', draft.wishNarrative || ''],
     ];
 
-    const validation = state.validationResult;
     return `
       <div class="planning-review-grid">
         ${reviewGroups.map(([title, ...items]) => `
@@ -447,25 +498,20 @@
           </article>
         `).join('')}
       </div>
-      <div class="planning-validation-card${validation ? (validation.ready ? ' is-ready' : ' is-warning') : ''}">
+      <div class="planning-validation-card${missingFields.length ? ' is-warning' : ' is-ready'}">
         <div>
-          <h3>Prüfung vor der Zahlung</h3>
-          <p>${validation ? (validation.ready ? 'Die Pflichtangaben sind vollständig genug, um zur Zahlung zu gehen.' : 'Es fehlen noch Angaben oder Rückfragen für einen belastbaren Versorgungsplan.') : 'Starten Sie jetzt die Prüfung. Erst bei ausreichender Vollständigkeit wird die Zahlung freigeschaltet.'}</p>
+          <h3>Abschluss vor der Zahlung</h3>
+          <p>${missingFields.length ? 'Es fehlen noch einige Pflichtangaben. Ergänzen Sie diese bitte vor dem Checkout.' : 'Alle Pflichtangaben sind vorhanden. Sie können jetzt in den Test-Checkout gehen.'}</p>
         </div>
-        ${validation?.summary ? `<p class="planning-validation-summary">${escapeHtml(validation.summary)}</p>` : ''}
-        ${validation?.missingFields?.length ? `<div class="planning-validation-list"><strong>Fehlt noch:</strong><ul>${validation.missingFields.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
-        ${validation?.followUpQuestions?.length ? `<div class="planning-validation-list"><strong>Nachfragen:</strong><ul>${validation.followUpQuestions.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
-        ${validation?.warnings?.length ? `<div class="planning-validation-list"><strong>Hinweise:</strong><ul>${validation.warnings.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
-        ${validation?.reviewError ? `<p class="planning-inline-note">Die GPT-Prüfung war gerade nicht erreichbar. Die lokale Pflichtfeldprüfung wurde trotzdem ausgeführt.</p>` : ''}
+        ${missingFields.length ? `<div class="planning-validation-list"><strong>Fehlt noch:</strong><ul>${missingFields.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
       </div>
       <div class="planning-payment-box">
         <div>
           <span class="planning-payment-price">0 €</span>
-          <p>Die Zahlung startet erst, wenn die Prüfung keine kritischen Lücken mehr meldet.</p>
+          <p>Die Zahlung startet, sobald alle Pflichtangaben ausgefüllt sind. Die freie Schilderung wird erst nach dem Abschluss mit KI aufbereitet.</p>
         </div>
         <div class="planning-payment-actions">
-          <button class="btn ghost" type="button" data-action="validate">Mit KI prüfen</button>
-          <button class="btn primary" type="button" data-action="checkout" ${validation?.ready ? '' : 'disabled'}>Zur Zahlung mit Mollie</button>
+          <button class="btn primary" type="button" data-action="checkout" ${missingFields.length ? 'disabled' : ''}>Zur Zahlung mit Mollie</button>
         </div>
       </div>
     `;
@@ -501,11 +547,11 @@
               `;
             }).join('')}
             <li>
-              <button type="button" class="planning-step${isReview ? ' is-active' : ''}${state.validationResult?.ready ? ' is-complete' : ''}" data-goto-step="${SECTIONS.length}">
+              <button type="button" class="planning-step${isReview ? ' is-active' : ''}${getAllMissingRequired(state).length === 0 ? ' is-complete' : ''}" data-goto-step="${SECTIONS.length}">
                 <span class="planning-step-index"><i class="fa-solid fa-check"></i></span>
                 <span>
-                  <strong>Prüfung & Zahlung</strong>
-                  <small>Vollständigkeit prüfen und erst dann bezahlen.</small>
+                  <strong>Abschluss & Zahlung</strong>
+                  <small>Vollständigkeit prüfen und dann bezahlen.</small>
                 </span>
               </button>
             </li>
@@ -515,8 +561,8 @@
           <div class="planning-main-head">
             <div>
               <span class="planning-eyebrow">Schritt ${isReview ? 'Final' : state.currentStep + 1}</span>
-              <h2>${escapeHtml(isReview ? 'Prüfung und Zahlungsfreigabe' : section.title)}</h2>
-              <p>${escapeHtml(isReview ? 'Prüfen Sie jetzt die Gesamtlage. Danach wird die Zahlung für die Versorgungsplanung freigegeben.' : section.intro)}</p>
+              <h2>${escapeHtml(isReview ? 'Abschluss und Zahlungsfreigabe' : section.title)}</h2>
+              <p>${escapeHtml(isReview ? 'Hier sehen Sie die wichtigsten Angaben noch einmal gesammelt. Wenn alles vollständig ist, können Sie direkt zum Checkout gehen.' : section.intro)}</p>
             </div>
             <div class="planning-progress-meter">
               <strong>${Math.round(((state.currentStep + 1) / (SECTIONS.length + 1)) * 100)}%</strong>
@@ -555,10 +601,6 @@
     return nextDraft;
   }
 
-  function resetValidation(state) {
-    state.validationResult = null;
-  }
-
   async function handleFileSelection(input, state, rerender) {
     const incomingFiles = Array.from(input.files || []);
     if (incomingFiles.length > MAX_UPLOAD_COUNT) {
@@ -575,47 +617,12 @@
 
     state.draftFiles = incomingFiles;
     await saveFilesForKey('draft', incomingFiles);
-    resetValidation(state);
     rerender();
   }
 
-  async function validatePlanning(state, rerender) {
-    const submission = buildSubmissionFromDraft(state.draft, state.draftFiles);
-    const button = document.querySelector('[data-action="validate"]');
-    if (button) {
-      button.disabled = true;
-      button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Prüfung läuft';
-    }
-
-    try {
-      const response = await fetch('/api/planning/validate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ submission }),
-      });
-
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.success) {
-        throw new Error(data?.message || 'Prüfung konnte nicht durchgeführt werden');
-      }
-
-      state.validationResult = data;
-      rerender();
-    } catch (error) {
-      alert('Die Prüfung konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.innerHTML = 'Mit KI prüfen';
-      }
-    }
-  }
-
   async function startCheckout(state) {
-    if (!state.validationResult?.ready) {
-      alert('Bitte prüfen Sie das Formular zuerst vollständig.');
+    if (getAllMissingRequired(state).length > 0) {
+      alert('Bitte füllen Sie zuerst alle Pflichtangaben aus.');
       return;
     }
 
@@ -652,7 +659,6 @@
       orders[data.orderRef] = {
         createdAt: new Date().toISOString(),
         draft: state.draft,
-        validationResult: state.validationResult,
       };
       saveOrders(orders);
       await saveFilesForKey(data.orderRef, state.draftFiles);
@@ -671,7 +677,6 @@
     const state = {
       currentStep: 0,
       draft: loadJson(DRAFT_STORAGE_KEY, {}),
-      validationResult: null,
       draftFiles: [],
     };
 
@@ -719,10 +724,6 @@
         rerender();
       }
 
-      if (action === 'validate') {
-        await validatePlanning(state, rerender);
-      }
-
       if (action === 'checkout') {
         await startCheckout(state);
       }
@@ -738,7 +739,6 @@
       if (state.currentStep < SECTIONS.length) {
         state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
         saveJson(DRAFT_STORAGE_KEY, state.draft);
-        resetValidation(state);
         if (target.matches('input[type="radio"], input[type="checkbox"], select')) {
           rerender();
         }
@@ -749,7 +749,6 @@
       if (state.currentStep < SECTIONS.length) {
         state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
         saveJson(DRAFT_STORAGE_KEY, state.draft);
-        resetValidation(state);
       }
     });
   }
@@ -774,6 +773,35 @@
 
       return { title: section.title, entries };
     }).filter((section) => section.entries.length > 0);
+  }
+
+  async function processNarrativeText(order) {
+    const response = await fetch('/api/planning/process-text', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        situationText: order.draft.situationNarrative,
+        wishText: order.draft.wishNarrative,
+        context: {
+          mainProblem: order.draft.mainProblem,
+          currentGaps: order.draft.currentGaps,
+          familyGoal: order.draft.familyGoal,
+        },
+      }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data?.success) {
+      return {
+        processedSummary: order.draft.situationNarrative || '',
+        actionFocus: order.draft.wishNarrative || '',
+        source: 'local-fallback',
+      };
+    }
+
+    return data;
   }
 
   function createPdfBlob(orderRef, order, paymentStatus) {
@@ -805,9 +833,14 @@
     addWrappedText(`Zahlungsstatus: ${paymentStatus.status}`, 11, false);
     addWrappedText(`Bezahlt am: ${new Date().toLocaleString('de-DE')}`, 11, false);
 
-    if (order.validationResult?.summary) {
-      addWrappedText('Kurzfassung der KI-Prüfung', 14, true);
-      addWrappedText(order.validationResult.summary, 11, false);
+    if (order.aiProcessing?.processedSummary) {
+      addWrappedText('KI-bearbeitete Situationsbeschreibung', 14, true);
+      addWrappedText(order.aiProcessing.processedSummary, 11, false);
+    }
+
+    if (order.aiProcessing?.actionFocus) {
+      addWrappedText('KI-bearbeiteter Wunschfokus', 14, true);
+      addWrappedText(order.aiProcessing.actionFocus, 11, false);
     }
 
     buildPdfSections(order).forEach((section) => {
@@ -830,6 +863,12 @@
       `E-Mail: ${order.draft.email || paymentStatus.customerEmail || ''}`,
       `Telefon: ${order.draft.phone || ''}`,
       `Zahlungsstatus: ${paymentStatus.status}`,
+      '',
+      `Freie Situationsbeschreibung: ${order.draft.situationNarrative || ''}`,
+      `Freier Wunsch: ${order.draft.wishNarrative || ''}`,
+      '',
+      `KI-bearbeitete Zusammenfassung: ${order.aiProcessing?.processedSummary || ''}`,
+      `KI-bearbeiteter Fokus: ${order.aiProcessing?.actionFocus || ''}`,
       '',
       'Kernaussagen:',
       `Grund der Anfrage: ${order.draft.requestReason || ''}`,
@@ -898,9 +937,9 @@
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
         <h2>Kein gültiger Freigabe-Link</h2>
-        <p>Für diesen Vorgang fehlt der Token. Bitte starten Sie die Versorgungsplanung erneut auf der Detailseite.</p>
+        <p>Für diesen Vorgang fehlt der Token. Bitte starten Sie die Versorgungsplanung erneut über das Formular.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="versorgungsplanung.html"><i class="fa-solid fa-arrow-left"></i> Zur Versorgungsplanung</a>
+          <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
@@ -917,7 +956,7 @@
           <h2>Zahlung noch nicht abgeschlossen</h2>
           <p>Der aktuelle Status ist <strong>${escapeHtml(paymentStatus.status)}</strong>. Sobald die Zahlung bestätigt ist, wird die PDF-Zusammenfassung automatisch verschickt.</p>
           <div class="shop-status-actions">
-            <a class="btn primary" href="versorgungsplanung.html"><i class="fa-solid fa-rotate-right"></i> Zurück zur Versorgungsplanung</a>
+            <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-rotate-right"></i> Zurück zum Formular</a>
             <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
           </div>
         `;
@@ -935,7 +974,7 @@
           <h2>Zahlung erfolgreich verarbeitet</h2>
           <p>Die Versorgungsplanung wurde bereits an casekompass.de übermittelt. Sie müssen nichts weiter tun.</p>
           <div class="shop-status-actions">
-            <a class="btn ghost" href="versorgungsplanung.html"><i class="fa-solid fa-arrow-left"></i> Zurück zur Versorgungsplanung</a>
+            <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           </div>
         `;
         return;
@@ -949,13 +988,14 @@
           <p>Die Zahlung ist bestätigt, aber die Formulardaten sind in diesem Browser nicht mehr vorhanden. Bitte melden Sie sich kurz, damit der Vorgang manuell abgeschlossen werden kann.</p>
           <div class="shop-status-actions">
             <a class="btn primary" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>
-            <a class="btn ghost" href="versorgungsplanung.html"><i class="fa-solid fa-arrow-left"></i> Zurück</a>
+            <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück</a>
           </div>
         `;
         return;
       }
 
       order.files = await getFilesForKey(paymentStatus.orderRef);
+      order.aiProcessing = await processNarrativeText(order);
       await sendOrderToWeb3Forms(paymentStatus.orderRef, order, paymentStatus);
 
       dispatched[paymentStatus.orderRef] = {
@@ -971,7 +1011,7 @@
         <h2>Versorgungsplanung erfolgreich übermittelt</h2>
         <p>Die Zahlung wurde bestätigt. Ihre PDF-Zusammenfassung und die ausgewählten Unterlagen wurden soeben an casekompass.de gesendet.</p>
         <div class="shop-status-actions">
-          <a class="btn ghost" href="versorgungsplanung.html"><i class="fa-solid fa-arrow-left"></i> Zurück zur Versorgungsplanung</a>
+          <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
@@ -982,7 +1022,7 @@
         <h2>Abschluss konnte nicht automatisch gesendet werden</h2>
         <p>Die Zahlung wurde zwar geprüft, aber der Versand an casekompass.de ist gerade fehlgeschlagen. Bitte versuchen Sie die Seite erneut oder melden Sie sich direkt.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="versorgungsplanung.html"><i class="fa-solid fa-arrow-left"></i> Zurück zur Versorgungsplanung</a>
+          <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="description" content="Versorgungsplanung von casekompass.de: strukturierter digitaler Intake, KI-Prüfung vor der Zahlung und individueller Versorgungsplan als PDF." />
+  <meta name="description" content="Versorgungsplanung von casekompass.de: strukturierte Leistungsbeschreibung, separates Formular und individueller Versorgungsplan als PDF." />
   <meta name="robots" content="index, follow" />
   <title>Versorgungsplanung | casekompass.de</title>
   <link rel="canonical" href="https://casekompass.de/versorgungsplanung.html" />
@@ -51,7 +51,7 @@
         <p class="hero-subtitle">Ein digital geführter Intake für Familien, die aus vielen Einzelinformationen einen belastbaren Versorgungsplan machen möchten.</p>
         <div class="planning-hero-badges">
           <span>Remote deutschlandweit</span>
-          <span>KI-Prüfung vor Zahlung</span>
+          <span>Eigenes Formular separat</span>
           <span>0 € Testpreis</span>
         </div>
       </div>
@@ -64,11 +64,12 @@
             <div class="planning-showcase-panel">
               <div class="planning-showcase-chip">Versorgungsplan</div>
               <h2>Vom Aufnahmechaos zur klaren Struktur</h2>
-              <p>Sie geben die Situation Schritt für Schritt ein. Vor der Bezahlung wird geprüft, ob für einen belastbaren Versorgungsplan noch entscheidende Informationen fehlen.</p>
+              <p>Sie erfassen die Situation Schritt für Schritt auf einer eigenen Formularseite. Am Ende können Betroffene oder Angehörige die Lage in eigenen Worten schildern und den Wunsch für die Versorgung benennen.</p>
               <ol class="planning-process-list">
                 <li>Digitale Aufnahme der gesamten Versorgungslage</li>
-                <li>KI-Prüfung auf Lücken, Unklarheiten und fehlende Unterlagen</li>
-                <li>Mollie-Zahlung erst nach vollständiger Eingabe</li>
+                <li>Mehr Auswahlfelder für schnellere und klarere Eingaben</li>
+                <li>Eigene Beschreibung der Situation und des gewünschten Ergebnisses</li>
+                <li>KI-Bearbeitung dieser Freitexte erst nach Abschluss</li>
                 <li>PDF-Zusammenfassung wird direkt an casekompass.de gesendet</li>
               </ol>
             </div>
@@ -79,7 +80,8 @@
             <ul class="product-highlight-list">
               <li>Vollständige digitale Erfassung der Versorgungssituation</li>
               <li>Fokus auf Versorgungslücken, Zuständigkeiten und nächste Prioritäten</li>
-              <li>Pflichtprüfung der zentralen Angaben vor dem Bezahlvorgang</li>
+              <li>Separater Formularstart statt Eingabe direkt auf der Produktseite</li>
+              <li>Freie Schilderung der Situation und des gewünschten Ergebnisses am Ende</li>
               <li>PDF-Ausgabe für die weitere Bearbeitung Ihrer Versorgungsplanung</li>
             </ul>
 
@@ -95,7 +97,7 @@
                 <i class="fa-solid fa-clock"></i>
                 <div>
                   <strong>Ablauf</strong>
-                  <div>Erst Formular vollständig ausfüllen, dann prüfen lassen, dann bezahlen.</div>
+                  <div>Erst Formular ausfüllen, dann direkt in den Test-Checkout und danach Abschlussversand.</div>
                 </div>
               </div>
               <div class="product-meta-item">
@@ -135,28 +137,18 @@
           <article class="detail-panel detail-panel-accent">
             <h2>Startbereit</h2>
             <p class="price-range">Jetzt Aufnahme starten</p>
-            <p>Sie können die Angaben Schritt für Schritt erfassen und vor der Zahlung prüfen lassen.</p>
+            <p>Das Formular startet auf einer eigenen Seite und führt Schritt für Schritt durch die Aufnahme.</p>
           </article>
         </div>
 
         <div class="product-cta-panel planning-cta-panel">
           <h2>Sie möchten einen individuellen Versorgungsplan vorbereiten?</h2>
-          <p>Starten Sie unten direkt mit dem digitalen Formular. Die wichtigsten Lücken werden vor dem Bezahlvorgang noch einmal automatisch geprüft.</p>
+          <p>Starten Sie das Formular auf der nächsten Seite. Dort erfassen Sie strukturiert die Lage und schildern am Ende zusätzlich die Situation in eigenen Worten.</p>
           <div class="product-cta-actions">
-            <a class="btn primary" href="#versorgungsplaner"><i class="fa-solid fa-rocket"></i> Versorgungsplanung starten</a>
+            <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-rocket"></i> Formular starten</a>
             <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Vorher Rückfrage stellen</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section planning-app-section" id="versorgungsplaner">
-      <div class="container">
-        <div class="shop-section-head">
-          <h2><i class="fa-solid fa-layer-group"></i> Digitaler Versorgungsplaner</h2>
-          <p class="section-intro">Schritt für Schritt durch alle relevanten Bereiche. Erst wenn die Angaben belastbar genug sind, geht es zur Zahlung.</p>
-        </div>
-        <div data-planning-app></div>
       </div>
     </section>
   </main>
@@ -190,7 +182,5 @@
   </footer>
 
   <script src="./script.js?v=2026-01-04-4" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" defer></script>
-  <script src="./versorgungsplanung.js" defer></script>
 </body>
 </html>
