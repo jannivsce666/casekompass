@@ -322,10 +322,15 @@
     const hasPrescription = prescriptionValue.includes('ja');
     const concernValue = (concernSelect.value || '').toLowerCase();
     const isAppointment = concernValue.includes('termin');
+    const isInitialConsultation = concernValue.includes('erstgespräch') || concernValue.includes('erstgesprach');
     const name = (nameInput?.value || '').trim();
 
     const greeting = 'Guten Tag,';
     const signature = name ? `Mit freundlichen Grüßen\n${name}` : 'Mit freundlichen Grüßen';
+
+    if (isInitialConsultation) {
+      return `${greeting}\n\nich möchte ein Erstgespräch vereinbaren und bitte um eine kurze Rückmeldung zu den nächsten Schritten.\n\n${signature}`;
+    }
 
     if (isAppointment) {
       const prescriptionLine = hasPrescription

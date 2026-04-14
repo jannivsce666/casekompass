@@ -49,7 +49,7 @@ function buildLocalFallback(message) {
   const text = String(message || '').toLowerCase();
 
   if (includesAny(text, ['pflegegrad', 'begutachtung', 'md', 'einstufung', 'widerspruch'])) {
-    return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket für 199 Euro. Es umfasst ein ausführliches Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Wenn es schon Probleme mit einer Einstufung oder Ablehnung gibt, ist zusätzlich persönliche Beratung sinnvoll. Details finden Sie auf pflegegrad-startpaket.html oder direkt über kontakt.html.';
+    return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket für 199 Euro. Es umfasst ein ausführliches Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Wenn es schon Probleme mit einer Einstufung oder Ablehnung gibt, ist zusätzlich eine vertiefte remote-Beratung sinnvoll. Details finden Sie auf pflegegrad-startpaket.html oder direkt über kontakt.html.';
   }
 
   if (includesAny(text, ['angehörig', 'angehoerig', 'überfordert', 'ueberfordert', 'entlastung', 'pflege zu hause', 'pflege zuhause'])) {
@@ -81,7 +81,7 @@ function buildLocalFallback(message) {
   }
 
   if (includesAny(text, ['gebiet', 'heidenheim', 'vor ort', 'remote', 'mobil', 'deutschlandweit'])) {
-    return 'Case Management ist deutschlandweit remote moeglich. Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an.';
+    return 'Case Management findet ausschliesslich remote und deutschlandweit statt. Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an.';
   }
 
   return 'Ich kann Ihnen bei Fragen zu Pflegegrad, Angehörigen-Entlastung, Hilfe nach dem Krankenhaus, Wohnraumanpassung, Pflegekassen-Leistungen, Alltagsbegleitung sowie Kontakt und Preisen weiterhelfen. Beschreiben Sie am besten kurz Ihre Situation, dann nenne ich das passende Paket oder den besten Kontaktweg.';
@@ -103,7 +103,7 @@ Dein Auftrag:
 
 Anbieterprofil:
 - casekompass.de bietet Case Management und Alltagsbegleitung.
-- Case Management ist deutschlandweit remote moeglich.
+- Case Management findet ausschliesslich remote und deutschlandweit statt.
 - Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an.
 - Kontakt: Telefon 015226560105, E-Mail casekompass@gmx.de, Kontaktseite kontakt.html.
 - WhatsApp-Link: https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20Case%20Management%20und%20Alltagsbegleitung.
@@ -158,7 +158,7 @@ Pakete:
 - Detailseite: alltagsbegleitung-zuhause-startpaket.html
 
 Wenn Nutzer nach dem passenden Paket fragen, schlage aus diesen sechs Angeboten das naheliegendste vor und nenne kurz warum.
-Wenn Nutzer einen Termin oder persönliche Beratung möchten, schreibe kurz: "Sie können mich hier kontaktieren:".
+Wenn Nutzer einen Termin oder eine Beratung möchten, schreibe kurz: "Sie können mich hier kontaktieren:".
 `;
 
 exports.handler = async (event) => {
