@@ -415,6 +415,44 @@ function toggleFAQ(button) {
   let submitEl;
   let toggleEl;
 
+  function includesAny(text, needles) {
+    return needles.some((needle) => text.includes(needle));
+  }
+
+  function localChatFallback(message) {
+    const text = String(message || '').toLowerCase();
+
+    if (includesAny(text, ['pflegegrad', 'begutachtung', 'md', 'einstufung', 'widerspruch'])) {
+      return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket für 199 Euro. Es umfasst ein Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Details finden Sie auf der Detailseite oder über die Kontaktseite.';
+    }
+
+    if (includesAny(text, ['angehörig', 'angehoerig', 'entlastung', 'überfordert', 'ueberfordert'])) {
+      return 'Dafür passt meist das Paket Angehörigen-Entlastung für 249 Euro. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt.';
+    }
+
+    if (includesAny(text, ['krankenhaus', 'reha', 'entlassung'])) {
+      return 'Wenn nach Krankenhaus oder Reha unklar ist, wie es zuhause weitergeht, passt das Paket Nach Krankenhaus wieder zuhause für 349 Euro. Es umfasst ein Aufnahmegespräch, einen Versorgungsplan und eine Checkliste für die ersten Tage.';
+    }
+
+    if (includesAny(text, ['umbau', 'wohnraumanpassung', 'zuschuss'])) {
+      return 'Für dieses Thema passt das Paket Wohnraumanpassung & Umbauzuschuss für 279 Euro. Es unterstützt bei Analyse, Unterlagen und Vorbereitung des Zuschussantrags.';
+    }
+
+    if (includesAny(text, ['pflegekasse', 'entlastungsbetrag', 'pflegehilfsmittel', 'leistungen'])) {
+      return 'Dafür passt meist der Pflegekassen-Leistungen-Check für 179 Euro. Er zeigt, welche Leistungen möglich sind und welche Schritte jetzt sinnvoll sind.';
+    }
+
+    if (includesAny(text, ['alltagsbegleitung', 'alltag', 'begleitung'])) {
+      return 'Für Unterstützung im Alltag passt das Alltagsbegleitung zuhause - Startpaket für 159 Euro. Es enthält ein Vorgespräch, 4 Stunden Alltagsbegleitung und eine erste Einschätzung des weiteren Bedarfs.';
+    }
+
+    if (includesAny(text, ['kontakt', 'telefon', 'whatsapp', 'termin', 'anrufen', 'mail', 'email'])) {
+      return 'Sie können direkt über die Kontaktseite anfragen, eine E-Mail an casekompass@gmx.de senden oder unter 015226560105 anrufen. WhatsApp ist ebenfalls möglich.';
+    }
+
+    return 'Ich kann Fragen zu Pflegegrad, Angehörigen-Entlastung, Hilfe nach dem Krankenhaus, Wohnraumanpassung, Pflegekassen-Leistungen, Alltagsbegleitung, Preisen und Kontakt beantworten. Beschreiben Sie kurz Ihre Situation, dann nenne ich das passende Paket.';
+  }
+
   function loadHistory() {
     try {
       const raw = window.sessionStorage.getItem(storageKey);
@@ -495,7 +533,7 @@ function toggleFAQ(button) {
     state.open = typeof forceOpen === 'boolean' ? forceOpen : !state.open;
     shell.classList.toggle('is-open', state.open);
     toggleEl.setAttribute('aria-expanded', String(state.open));
-    toggleEl.setAttribute('aria-label', state.open ? 'Chat schließen' : 'Chat öffnen');
+    toggleEl.setAttribute('aria-label', state.open ? 'KI-Assistent schließen' : 'KI-Assistent öffnen');
 
     if (state.open) {
       window.setTimeout(() => inputEl.focus(), 80);
@@ -544,7 +582,7 @@ function toggleFAQ(button) {
       renderHistory();
     } catch (error) {
       loadingNode.remove();
-      const fallback = 'Im Moment kann ich nicht antworten. Für eine direkte Anfrage nutzen Sie bitte die Kontaktseite, WhatsApp oder rufen Sie an unter 015226560105.';
+      const fallback = localChatFallback(text);
       state.history.push({ role: 'assistant', content: fallback });
       saveHistory();
       renderHistory();
@@ -557,9 +595,9 @@ function toggleFAQ(button) {
     toggleEl = document.createElement('button');
     toggleEl.type = 'button';
     toggleEl.className = 'chatbot-toggle';
-    toggleEl.setAttribute('aria-label', 'Chat öffnen');
+    toggleEl.setAttribute('aria-label', 'KI-Assistent öffnen');
     toggleEl.setAttribute('aria-expanded', 'false');
-    toggleEl.innerHTML = '<span class="chatbot-toggle-badge">💬</span>';
+    toggleEl.innerHTML = '<span class="chatbot-toggle-badge" aria-hidden="true"><i class="fa-solid fa-robot"></i></span>';
 
     shell = document.createElement('section');
     shell.className = 'chatbot-shell';
@@ -567,10 +605,10 @@ function toggleFAQ(button) {
     shell.innerHTML = `
       <div class="chatbot-header">
         <div>
-          <h2 class="chatbot-title">Leistungs-Chat</h2>
-          <p class="chatbot-subtitle">Fragen zu Paketen, Preisen, Ablauf und Kontakt.</p>
+          <h2 class="chatbot-title">KI-Assistent</h2>
+          <p class="chatbot-subtitle">Fragen zu Leistungen, Paketen und Kontakt.</p>
         </div>
-        <button type="button" class="chatbot-close" aria-label="Chat schließen">×</button>
+        <button type="button" class="chatbot-close" aria-label="KI-Assistent schließen">×</button>
       </div>
       <div class="chatbot-messages"></div>
       <form class="chatbot-form">
