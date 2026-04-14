@@ -387,3 +387,229 @@ function toggleFAQ(button) {
     icon.style.transform = 'rotate(180deg)';
   }
 }
+
+(function () {
+  if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
+
+  const path = window.location.pathname.toLowerCase();
+  if (path.endsWith('/datenschutz.html') || path.endsWith('/impressum.html')) return;
+
+  const storageKey = 'casekompass-chat-history';
+  const endpoint = '/api/chatbot';
+  const quickQuestions = [
+    'Welches Paket passt bei Pflegegrad?',
+    'Was kostet Angehörigen-Entlastung?',
+    'Wie läuft Hilfe nach dem Krankenhaus ab?',
+    'Wie kann ich Kontakt aufnehmen?'
+  ];
+
+  const state = {
+    open: false,
+    busy: false,
+    history: loadHistory(),
+  };
+
+  let shell;
+  let messagesEl;
+  let inputEl;
+  let submitEl;
+  let toggleEl;
+
+  function loadHistory() {
+    try {
+      const raw = window.sessionStorage.getItem(storageKey);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed.slice(-10) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveHistory() {
+    try {
+      window.sessionStorage.setItem(storageKey, JSON.stringify(state.history.slice(-10)));
+    } catch {
+      return;
+    }
+  }
+
+  function createMessage(role, text, options) {
+    const node = document.createElement('div');
+    node.className = `chatbot-message ${role}`;
+    if (options?.loading) node.classList.add('is-loading');
+    node.textContent = text;
+    return node;
+  }
+
+  function scrollMessagesToBottom() {
+    if (!messagesEl) return;
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function appendMessage(role, text, options) {
+    const node = createMessage(role, text, options);
+    messagesEl.appendChild(node);
+    scrollMessagesToBottom();
+    return node;
+  }
+
+  function renderHistory() {
+    messagesEl.innerHTML = '';
+
+    if (!state.history.length) {
+      appendMessage('bot', 'Hallo. Ich beantworte Fragen zu den Leistungen, Paketen, Preisen und Kontaktmöglichkeiten von casekompass.de.');
+      renderSuggestions();
+      return;
+    }
+
+    state.history.forEach((entry) => {
+      appendMessage(entry.role === 'assistant' ? 'bot' : 'user', entry.content);
+    });
+  }
+
+  function renderSuggestions() {
+    const wrap = document.createElement('div');
+    wrap.className = 'chatbot-suggestions';
+
+    quickQuestions.forEach((question) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'chatbot-chip';
+      button.textContent = question;
+      button.addEventListener('click', () => sendMessage(question));
+      wrap.appendChild(button);
+    });
+
+    messagesEl.appendChild(wrap);
+    scrollMessagesToBottom();
+  }
+
+  function setBusy(isBusy) {
+    state.busy = isBusy;
+    submitEl.disabled = isBusy;
+    inputEl.disabled = isBusy;
+    submitEl.textContent = isBusy ? 'Senden...' : 'Senden';
+  }
+
+  function toggleChat(forceOpen) {
+    state.open = typeof forceOpen === 'boolean' ? forceOpen : !state.open;
+    shell.classList.toggle('is-open', state.open);
+    toggleEl.setAttribute('aria-expanded', String(state.open));
+    toggleEl.setAttribute('aria-label', state.open ? 'Chat schließen' : 'Chat öffnen');
+
+    if (state.open) {
+      window.setTimeout(() => inputEl.focus(), 80);
+      scrollMessagesToBottom();
+    }
+  }
+
+  async function sendMessage(prefill) {
+    if (state.busy) return;
+
+    const text = (typeof prefill === 'string' ? prefill : inputEl.value).trim();
+    if (!text) return;
+
+    if (!state.open) toggleChat(true);
+
+    state.history.push({ role: 'user', content: text });
+    saveHistory();
+    renderHistory();
+
+    if (!prefill) inputEl.value = '';
+
+    setBusy(true);
+    const loadingNode = appendMessage('bot', 'Ich prüfe gerade die passenden Leistungen ...', { loading: true });
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: text,
+          history: state.history.slice(-8, -1),
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+      loadingNode.remove();
+
+      if (!response.ok || !data?.answer) {
+        throw new Error(data?.message || 'Chatbot nicht erreichbar');
+      }
+
+      state.history.push({ role: 'assistant', content: data.answer });
+      saveHistory();
+      renderHistory();
+    } catch (error) {
+      loadingNode.remove();
+      const fallback = 'Im Moment kann ich nicht antworten. Für eine direkte Anfrage nutzen Sie bitte die Kontaktseite, WhatsApp oder rufen Sie an unter 015226560105.';
+      state.history.push({ role: 'assistant', content: fallback });
+      saveHistory();
+      renderHistory();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function buildWidget() {
+    toggleEl = document.createElement('button');
+    toggleEl.type = 'button';
+    toggleEl.className = 'chatbot-toggle';
+    toggleEl.setAttribute('aria-label', 'Chat öffnen');
+    toggleEl.setAttribute('aria-expanded', 'false');
+    toggleEl.innerHTML = '<span class="chatbot-toggle-badge">💬</span>';
+
+    shell = document.createElement('section');
+    shell.className = 'chatbot-shell';
+    shell.setAttribute('aria-label', 'Chatbot für Leistungen');
+    shell.innerHTML = `
+      <div class="chatbot-header">
+        <div>
+          <h2 class="chatbot-title">Leistungs-Chat</h2>
+          <p class="chatbot-subtitle">Fragen zu Paketen, Preisen, Ablauf und Kontakt.</p>
+        </div>
+        <button type="button" class="chatbot-close" aria-label="Chat schließen">×</button>
+      </div>
+      <div class="chatbot-messages"></div>
+      <form class="chatbot-form">
+        <div class="chatbot-input-row">
+          <textarea class="chatbot-input" rows="2" maxlength="500" placeholder="Stellen Sie eine Frage zu unseren Leistungen ..."></textarea>
+          <button class="chatbot-submit" type="submit">Senden</button>
+        </div>
+        <p class="chatbot-note">Der Chat beantwortet nur Fragen zu den Leistungen von casekompass.de.</p>
+      </form>
+    `;
+
+    document.body.appendChild(shell);
+    document.body.appendChild(toggleEl);
+
+    messagesEl = shell.querySelector('.chatbot-messages');
+    inputEl = shell.querySelector('.chatbot-input');
+    submitEl = shell.querySelector('.chatbot-submit');
+
+    shell.querySelector('.chatbot-close').addEventListener('click', () => toggleChat(false));
+    toggleEl.addEventListener('click', () => toggleChat());
+
+    shell.querySelector('.chatbot-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      sendMessage();
+    });
+
+    inputEl.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    renderHistory();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildWidget);
+  } else {
+    buildWidget();
+  }
+})();

@@ -1,73 +1,60 @@
-# KI-Text-Verbesserung Setup
+# Chatbot Setup mit Netlify
 
-## OpenAI API Key einrichten
+Der Chatbot läuft serverseitig über eine Netlify Function. Der OpenAI-Schlüssel bleibt dabei im Netlify-Environment und ist nicht im Frontend sichtbar.
 
-### Schritt 1: OpenAI API Key erhalten
-1. Gehen Sie zu: https://platform.openai.com/api-keys
-2. Melden Sie sich an oder erstellen Sie ein Konto
-3. Klicken Sie auf "Create new secret key"
-4. Kopieren Sie den API Key (beginnt mit `sk-...`)
+## Benötigte Umgebungsvariablen
 
-### Schritt 2: API Key einfügen
-Öffnen Sie die Datei `script.js` und suchen Sie nach dieser Zeile (ca. Zeile 257):
+In Netlify unter Site settings > Environment variables:
 
-```javascript
-const API_KEY = 'IHR_OPENAI_API_KEY_HIER';
-```
+- `OPENAI_API_KEY`
+	Ihr vorhandener geheimer OpenAI-Key.
+- `OPENAI_MODEL`
+	Optional. Standard ist `gpt-4.1-mini`.
 
-Ersetzen Sie `IHR_OPENAI_API_KEY_HIER` mit Ihrem echten API Key:
+## Technischer Ablauf
 
-```javascript
-const API_KEY = 'sk-proj-...IHR_KOMPLETTER_KEY...';
-```
+1. Das Frontend sendet Fragen an `/api/chatbot`
+2. Netlify leitet auf `netlify/functions/chatbot.js` weiter
+3. Die Function ruft OpenAI mit `OPENAI_API_KEY` auf
+4. Der Bot beantwortet nur Fragen zu den Leistungen und Paketen von casekompass.de
 
-**Wichtig**: Der API Key muss mit `sk-` beginnen und vollständig sein!
+## Was der Bot beantworten darf
 
-### Schritt 3: Kosten
-- **Modell**: GPT-3.5-Turbo (günstig und schnell)
-- **Kosten**: ca. $0.002 pro Anfrage
-- **Budget**: Setzen Sie ein monatliches Limit in den OpenAI-Einstellungen (z.B. $5-10/Monat)
+- Leistungen und Pakete
+- Preise
+- Typische Anwendungsfälle
+- Ablauf und Einsatzgebiet
+- Kontaktmöglichkeiten
 
-### Fehlerbehandlung
+## Was der Bot nicht beantworten soll
 
-**Fehler 401 - "API Key ungültig"**:
-- Ihr API Key ist falsch, abgelaufen oder nicht gesetzt
-- Lösung: Erstellen Sie einen neuen API Key auf https://platform.openai.com/api-keys
-- Stellen Sie sicher, dass der Key mit `sk-` beginnt
+- Allgemeinwissen außerhalb der Website
+- Medizinische Diagnosen
+- Rechtliche Beratung
+- Frei erfundene Leistungen oder Preise
 
-**Fehler 429 - "Rate-Limit"**:
-- Zu viele Anfragen in kurzer Zeit
-- Lösung: Warten Sie 1-2 Minuten und versuchen Sie es erneut
+## Wichtige Hinweise
 
-**Fehler 403 - "Zugriff verweigert"**:
-- Ihr OpenAI-Konto hat keine Berechtigung oder kein Guthaben
-- Lösung: Fügen Sie Guthaben zu Ihrem OpenAI-Konto hinzu
+- Der Key gehört nicht in `script.js` oder in HTML.
+- Wenn `OPENAI_API_KEY` in Netlify gesetzt ist, reicht das für den Betrieb.
+- Änderungen an der Function werden nach dem nächsten Deploy aktiv.
 
-### Wichtige Hinweise
+## Fehlerbilder
 
-⚠️ **SICHERHEIT**:
-- **NIEMALS** den API Key direkt im Frontend-Code lassen für eine Produktionsseite!
-- Für eine echte Website sollten Sie einen Backend-Server verwenden, der die API aufruft
-- Der API Key ist aktuell im Frontend sichtbar - nur für Test-/Entwicklungszwecke!
-- Jeder kann den Key sehen und verwenden - setzen Sie ein Budget-Limit!
+### Chat antwortet nicht
+- Prüfen, ob `OPENAI_API_KEY` in Netlify gesetzt ist
+- Prüfen, ob der Deploy erfolgreich war
+- Prüfen, ob OpenAI-Guthaben vorhanden ist
 
-### Alternative: Backend-Lösung (Empfohlen für Produktion)
+### 500 Server not configured
+- `OPENAI_API_KEY` fehlt in Netlify
 
-Für eine sichere Produktionsumgebung sollten Sie:
-1. Ein Backend (z.B. Node.js, PHP) erstellen
-2. Den API Key dort speichern (als Umgebungsvariable)
-3. Das Frontend ruft Ihr Backend auf, nicht direkt OpenAI
+### 502 OpenAI error
+- Key ungültig, Modell nicht verfügbar oder OpenAI-Konto ohne Guthaben
 
-### Funktion
-- Benutzer schreibt Text ins Nachrichtenfeld
-- Klickt auf "Text mit KI verbessern"
-- KI korrigiert Rechtschreibfehler
-- KI macht den Text professioneller und klarer
-- Verbesserter Text wird automatisch eingefügt
+## Dateien
 
-### Beispiel
-**Vorher:**
-"halo ich brauch termin hab rezen vom artz weil hand tut we bitte anrufen danke"
-
-**Nachher:**
-"Guten Tag, ich benötige einen Termin für eine ergotherapeutische Behandlung. Ich habe ein Rezept von meinem Arzt, da ich Beschwerden in der Hand habe. Bitte rufen Sie mich für einen Terminvorschlag an. Vielen Dank!"
+- `netlify/functions/chatbot.js`
+- `netlify.toml`
+- `script.js`
+- `style.css`
