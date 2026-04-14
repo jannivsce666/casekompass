@@ -1365,8 +1365,29 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   padding: 22px;
 }
 
+.detail-panel-accent {
+  background: linear-gradient(135deg, rgba(76,161,163,0.16), rgba(230,126,115,0.12));
+  border-color: rgba(76,161,163,0.28);
+}
+
 .detail-panel p:last-child {
   margin-bottom: 0;
+}
+
+.detail-list-muted {
+  color: var(--muted);
+}
+
+.price-range {
+  margin: 0 0 12px;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--primary-700);
+  line-height: 1.1;
+}
+
+.product-price-item {
+  border: 1px solid rgba(76,161,163,0.2);
 }
 
 .product-cta-panel {
