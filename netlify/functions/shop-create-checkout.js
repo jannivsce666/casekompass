@@ -33,6 +33,10 @@ function getBaseUrl(event) {
   return `${forwardedProto}://${forwardedHost}`;
 }
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+}
+
 const PRODUCTS = {
   'pflegegrad-ratgeber-pdf': {
     id: 'pflegegrad-ratgeber-pdf',
@@ -59,14 +63,20 @@ exports.handler = async (event) => {
 
   const body = parseBody(event);
   const productId = String(body.productId || '').trim();
+  const customerEmail = String(body.customerEmail || '').trim();
   const product = PRODUCTS[productId];
 
   if (!product) {
     return json(400, { success: false, message: 'Unknown product' });
   }
 
+  if (!isValidEmail(customerEmail)) {
+    return json(400, { success: false, message: 'Valid customerEmail is required' });
+  }
+
   const baseUrl = getBaseUrl(event);
   const redirectUrl = `${baseUrl}/shop-ratgeber.html?product=${encodeURIComponent(product.id)}`;
+  const webhookUrl = `${baseUrl}/api/shop/webhook`;
 
   const response = await fetch('https://api.mollie.com/v2/payments', {
     method: 'POST',
@@ -81,8 +91,10 @@ exports.handler = async (event) => {
       },
       description: product.name,
       redirectUrl,
+      webhookUrl,
       metadata: {
         productId: product.id,
+        customerEmail,
       },
     }),
   });

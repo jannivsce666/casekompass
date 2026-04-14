@@ -80,8 +80,8 @@ function buildLocalFallback(message) {
     return 'Sie können mich hier kontaktieren:';
   }
 
-  if (includesAny(text, ['gebiet', 'heidenheim', 'vor ort', 'remote', 'mobil'])) {
-    return 'Das Angebot richtet sich an Heidenheim an der Brenz (Schnaitheim) und Umkreis, zum Beispiel Bolheim, Herbrechtingen, Giengen, Sontheim und Niederstotzingen. Die Unterstützung ist mobil vor Ort oder remote möglich.';
+  if (includesAny(text, ['gebiet', 'heidenheim', 'vor ort', 'remote', 'mobil', 'deutschlandweit'])) {
+    return 'Case Management ist deutschlandweit remote moeglich. Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an.';
   }
 
   return 'Ich kann Ihnen bei Fragen zu Pflegegrad, Angehörigen-Entlastung, Hilfe nach dem Krankenhaus, Wohnraumanpassung, Pflegekassen-Leistungen, Alltagsbegleitung sowie Kontakt und Preisen weiterhelfen. Beschreiben Sie am besten kurz Ihre Situation, dann nenne ich das passende Paket oder den besten Kontaktweg.';
@@ -103,8 +103,8 @@ Dein Auftrag:
 
 Anbieterprofil:
 - casekompass.de bietet Case Management und Alltagsbegleitung.
-- Einsatzgebiet: Heidenheim an der Brenz (Schnaitheim) und Umkreis, z. B. Bolheim, Herbrechtingen, Giengen, Sontheim, Niederstotzingen.
-- Mobil vor Ort oder remote.
+- Case Management ist deutschlandweit remote moeglich.
+- Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an.
 - Kontakt: Telefon 015226560105, E-Mail casekompass@gmx.de, Kontaktseite kontakt.html.
 - WhatsApp-Link: https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20Case%20Management%20und%20Alltagsbegleitung.
 

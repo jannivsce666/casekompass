@@ -21,3 +21,8 @@
   from = "/api/shop/payment-status"
   to = "/.netlify/functions/shop-payment-status"
   status = 200
+
+[[redirects]]
+  from = "/api/shop/webhook"
+  to = "/.netlify/functions/shop-webhook"
+  status = 200

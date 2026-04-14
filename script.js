@@ -715,13 +715,17 @@ function toggleFAQ(button) {
   const buyButtons = document.querySelectorAll('[data-shop-buy]');
   const statusRoot = document.querySelector('[data-shop-status]');
 
-  async function createCheckout(productId) {
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
+  }
+
+  async function createCheckout(productId, customerEmail) {
     const response = await fetch('/api/shop/create-checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ productId }),
+      body: JSON.stringify({ productId, customerEmail }),
     });
 
     const data = await response.json().catch(() => ({}));
@@ -781,10 +785,24 @@ function toggleFAQ(button) {
     const productId = button.getAttribute('data-shop-buy');
     if (!productId) return;
 
+    const emailField = document.querySelector(`[data-shop-email="${productId}"]`);
+    const customerEmail = String(emailField?.value || '').trim();
+
+    if (!isValidEmail(customerEmail)) {
+      if (emailField) {
+        emailField.classList.add('is-invalid');
+        emailField.focus();
+      }
+      alert('Bitte geben Sie eine gueltige E-Mail-Adresse ein, damit der PDF-Ratgeber nach dem Kauf versendet werden kann.');
+      return;
+    }
+
+    emailField?.classList.remove('is-invalid');
+
     setButtonLoading(button, true);
 
     try {
-      const data = await createCheckout(productId);
+      const data = await createCheckout(productId, customerEmail);
       rememberPayment(data.paymentId, data.productId);
       window.location.href = data.checkoutUrl;
     } catch (error) {
@@ -836,12 +854,12 @@ function toggleFAQ(button) {
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
           <h2>Zahlung erfolgreich</h2>
-          <p>Vielen Dank. Die Zahlung fuer <strong>${status.productName}</strong> wurde bestaetigt.</p>
+          <p>Vielen Dank. Die Zahlung fuer <strong>${status.productName}</strong> wurde bestaetigt. Der PDF-Ratgeber wird an Ihre hinterlegte E-Mail-Adresse versendet.</p>
           <div class="shop-status-actions">
-            ${downloadReady ? `<a class="btn primary" href="${status.downloadUrl}"><i class="fa-solid fa-download"></i> PDF herunterladen</a>` : `<a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>`}
+            ${downloadReady ? `<a class="btn ghost" href="${status.downloadUrl}"><i class="fa-solid fa-download"></i> PDF auch hier herunterladen</a>` : `<a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>`}
             <a class="btn ghost" href="leistungen.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zu den Leistungen</a>
           </div>
-          <p class="shop-purchase-note">${downloadReady ? 'Der Download steht jetzt bereit.' : 'Die Zahlungsstrecke ist aktiv. Der PDF-Download wird freigeschaltet, sobald die Datei im Shop hinterlegt ist.'}</p>
+          <p class="shop-purchase-note">${downloadReady ? 'Zusaetzlich steht der Download auch direkt hier bereit.' : 'Wenn die Mail nicht innerhalb weniger Minuten ankommt, pruefen Sie bitte auch Ihren Spam-Ordner oder kontaktieren Sie mich direkt.'}</p>
         `;
 
         clearRememberedPayment();
