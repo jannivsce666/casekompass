@@ -45,7 +45,7 @@ const PRODUCTS = {
     id: 'pflegegrad-ratgeber-pdf',
     name: 'PDF-Ratgeber: Pflegegrad beantragen - einfach vorbereitet',
     description: 'Digitaler PDF-Ratgeber fuer einen klaren und strukturierten Einstieg in den Pflegegrad-Antrag.',
-    amount: '0.00',
+    amount: '11.99',
     currency: 'EUR',
     downloadPath: '/downloads/pflegegrad-beantragen-einfach-vorbereitet.pdf',
   },
