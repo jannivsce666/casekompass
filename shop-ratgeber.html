@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Status Ihres Kaufs fuer den PDF-Ratgeber von casekompass.de.">
+  <title>Ratgeber-Kauf | casekompass.de</title>
+  <link rel="icon" type="image/png" href="./images/logo.png">
+  <link rel="apple-touch-icon" href="./images/logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
+        <img src="./images/logo.png" alt="casekompass.de Logo">
+        <span>casekompass.de</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="leistungen.html" class="active">Leistungen</a></li>
+          <li><a href="https://ergomobil-hdh.de/">Ergo</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="legal-page shop-status-page">
+    <section class="page-hero shop-page-hero">
+      <div class="container">
+        <h1><i class="fa-solid fa-file-arrow-down"></i> Ratgeber-Kauf</h1>
+        <p class="hero-subtitle">Hier wird der Zahlungsstatus geprueft und der Download freigeschaltet, sobald die Zahlung bestaetigt ist.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="shop-status-card" data-shop-status>
+          <div class="shop-status-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+          <h2>Zahlung wird geprueft</h2>
+          <p>Bitte warten Sie einen Moment. Ich pruefe gerade den Status Ihres Kaufs.</p>
+          <div class="shop-status-actions">
+            <a class="btn ghost" href="leistungen.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zu den Leistungen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-box">
+        <h3>casekompass.de</h3>
+        <p>Case Management und Alltagsbegleitung fuer Heidenheim an der Brenz (Schnaitheim) und Umkreis.</p>
+      </div>
+      <div class="footer-box">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <small>© <span id="year"></span> casekompass.de · Alle Rechte vorbehalten</small>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

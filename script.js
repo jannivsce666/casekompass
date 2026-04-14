@@ -707,3 +707,192 @@ function toggleFAQ(button) {
     buildWidget();
   }
 })();
+
+(function () {
+  if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
+
+  const checkoutStorageKey = 'casekompass-shop-payment';
+  const buyButtons = document.querySelectorAll('[data-shop-buy]');
+  const statusRoot = document.querySelector('[data-shop-status]');
+
+  async function createCheckout(productId) {
+    const response = await fetch('/api/shop/create-checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data?.checkoutUrl || !data?.paymentId) {
+      throw new Error(data?.message || 'Checkout konnte nicht erstellt werden');
+    }
+
+    return data;
+  }
+
+  function rememberPayment(paymentId, productId) {
+    try {
+      window.sessionStorage.setItem(checkoutStorageKey, JSON.stringify({ paymentId, productId }));
+    } catch {
+      return;
+    }
+  }
+
+  function getRememberedPayment() {
+    try {
+      const raw = window.sessionStorage.getItem(checkoutStorageKey);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function clearRememberedPayment() {
+    try {
+      window.sessionStorage.removeItem(checkoutStorageKey);
+    } catch {
+      return;
+    }
+  }
+
+  async function checkDownloadAvailability(downloadUrl) {
+    if (!downloadUrl) return false;
+
+    try {
+      const response = await fetch(downloadUrl, { method: 'HEAD' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  function setButtonLoading(button, isLoading) {
+    if (!button) return;
+    button.disabled = isLoading;
+    button.dataset.originalLabel = button.dataset.originalLabel || button.innerHTML;
+    button.innerHTML = isLoading
+      ? '<i class="fa-solid fa-spinner fa-spin"></i> Weiterleitung ...'
+      : button.dataset.originalLabel;
+  }
+
+  async function handleBuyButtonClick(button) {
+    const productId = button.getAttribute('data-shop-buy');
+    if (!productId) return;
+
+    setButtonLoading(button, true);
+
+    try {
+      const data = await createCheckout(productId);
+      rememberPayment(data.paymentId, data.productId);
+      window.location.href = data.checkoutUrl;
+    } catch (error) {
+      alert('Der Kauf konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
+      setButtonLoading(button, false);
+    }
+  }
+
+  async function loadPaymentStatus(paymentId) {
+    const response = await fetch('/api/shop/payment-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ paymentId }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data?.success) {
+      throw new Error(data?.message || 'Zahlungsstatus konnte nicht geladen werden');
+    }
+
+    return data;
+  }
+
+  async function renderStatusCard(root) {
+    const remembered = getRememberedPayment();
+    if (!remembered?.paymentId) {
+      root.classList.add('is-warning');
+      root.innerHTML = `
+        <div class="shop-status-icon"><i class="fa-solid fa-circle-info"></i></div>
+        <h2>Kein Zahlungsvorgang gefunden</h2>
+        <p>Ich konnte keinen aktuellen Zahlungsvorgang zuordnen. Wenn Sie den Kauf gerade gestartet haben, kehren Sie bitte ueber die Leistungen-Seite zum Shop zurueck.</p>
+        <div class="shop-status-actions">
+          <a class="btn primary" href="leistungen.html"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
+          <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
+        </div>
+      `;
+      return;
+    }
+
+    try {
+      const status = await loadPaymentStatus(remembered.paymentId);
+
+      if (status.isPaid) {
+        const downloadReady = await checkDownloadAvailability(status.downloadUrl);
+        root.classList.add('is-success');
+
+        root.innerHTML = `
+          <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h2>Zahlung erfolgreich</h2>
+          <p>Vielen Dank. Die Zahlung fuer <strong>${status.productName}</strong> wurde bestaetigt.</p>
+          <div class="shop-status-actions">
+            ${downloadReady ? `<a class="btn primary" href="${status.downloadUrl}"><i class="fa-solid fa-download"></i> PDF herunterladen</a>` : `<a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>`}
+            <a class="btn ghost" href="leistungen.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zu den Leistungen</a>
+          </div>
+          <p class="shop-purchase-note">${downloadReady ? 'Der Download steht jetzt bereit.' : 'Die Zahlungsstrecke ist aktiv. Der PDF-Download wird freigeschaltet, sobald die Datei im Shop hinterlegt ist.'}</p>
+        `;
+
+        clearRememberedPayment();
+        return;
+      }
+
+      let title = 'Zahlung noch nicht abgeschlossen';
+      let message = 'Die Zahlung ist noch offen oder wurde nicht bestaetigt.';
+
+      if (status.isPending) {
+        message = 'Die Zahlung wird noch verarbeitet. Bitte pruefen Sie die Seite in wenigen Momenten erneut.';
+      } else if (status.isCanceled) {
+        title = 'Zahlung abgebrochen';
+        message = 'Der Kauf wurde abgebrochen. Sie koennen den Bestellvorgang jederzeit erneut starten.';
+      } else if (status.isFailed) {
+        title = 'Zahlung fehlgeschlagen';
+        message = 'Die Zahlung konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut.';
+      } else if (status.isExpired) {
+        title = 'Zahlung abgelaufen';
+        message = 'Der Zahlungsvorgang ist abgelaufen. Bitte starten Sie den Kauf neu.';
+      }
+
+      root.classList.add('is-warning');
+      root.innerHTML = `
+        <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h2>${title}</h2>
+        <p>${message}</p>
+        <div class="shop-status-actions">
+          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-rotate-right"></i> Kauf erneut starten</a>
+          <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
+        </div>
+      `;
+    } catch (error) {
+      root.classList.add('is-warning');
+      root.innerHTML = `
+        <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h2>Status konnte nicht geladen werden</h2>
+        <p>Der Zahlungsstatus konnte gerade nicht geprueft werden. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.</p>
+        <div class="shop-status-actions">
+          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
+          <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
+        </div>
+      `;
+    }
+  }
+
+  buyButtons.forEach((button) => {
+    button.addEventListener('click', () => handleBuyButtonClick(button));
+  });
+
+  if (statusRoot) {
+    renderStatusCard(statusRoot);
+  }
+})();

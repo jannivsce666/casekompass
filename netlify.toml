@@ -11,3 +11,13 @@
   from = "/api/chatbot"
   to = "/.netlify/functions/chatbot"
   status = 200
+
+[[redirects]]
+  from = "/api/shop/create-checkout"
+  to = "/.netlify/functions/shop-create-checkout"
+  status = 200
+
+[[redirects]]
+  from = "/api/shop/payment-status"
+  to = "/.netlify/functions/shop-payment-status"
+  status = 200
