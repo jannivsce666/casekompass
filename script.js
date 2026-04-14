@@ -824,7 +824,7 @@ function toggleFAQ(button) {
         <h2>Kein gültiger Freigabe-Link</h2>
         <p>Für diesen Download fehlt der Freigabe-Token. Bitte starten Sie den Kauf erneut über die Leistungen-Seite.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
+          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-book-open-reader"></i> Zu den Ratgebern</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
@@ -894,7 +894,7 @@ function toggleFAQ(button) {
         <h2>Status konnte nicht geladen werden</h2>
         <p>Der Zahlungsstatus konnte gerade nicht geprueft werden. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
+          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-book-open-reader"></i> Zu den Ratgebern</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;

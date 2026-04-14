@@ -16,6 +16,21 @@
   status = 200
 
 [[redirects]]
+  from = "/api/planning/validate"
+  to = "/.netlify/functions/planning-validate"
+  status = 200
+
+[[redirects]]
+  from = "/api/planning/create-checkout"
+  to = "/.netlify/functions/planning-create-checkout"
+  status = 200
+
+[[redirects]]
+  from = "/api/planning/payment-status"
+  to = "/.netlify/functions/planning-payment-status"
+  status = 200
+
+[[redirects]]
   from = "/api/shop/create-checkout"
   to = "/.netlify/functions/shop-create-checkout"
   status = 200
