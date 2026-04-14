@@ -716,7 +716,6 @@ function toggleFAQ(button) {
 (function () {
   if (typeof window === 'undefined' || window.location.protocol === 'file:') return;
 
-  const checkoutStorageKey = 'casekompass-shop-payment';
   const buyButtons = document.querySelectorAll('[data-shop-buy]');
   const statusRoot = document.querySelector('[data-shop-status]');
 
@@ -734,36 +733,11 @@ function toggleFAQ(button) {
     });
 
     const data = await response.json().catch(() => ({}));
-    if (!response.ok || !data?.checkoutUrl || !data?.paymentId) {
+    if (!response.ok || !data?.checkoutUrl) {
       throw new Error(data?.message || 'Checkout konnte nicht erstellt werden');
     }
 
     return data;
-  }
-
-  function rememberPayment(paymentId, productId) {
-    try {
-      window.sessionStorage.setItem(checkoutStorageKey, JSON.stringify({ paymentId, productId }));
-    } catch {
-      return;
-    }
-  }
-
-  function getRememberedPayment() {
-    try {
-      const raw = window.sessionStorage.getItem(checkoutStorageKey);
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  }
-
-  function clearRememberedPayment() {
-    try {
-      window.sessionStorage.removeItem(checkoutStorageKey);
-    } catch {
-      return;
-    }
   }
 
   async function checkDownloadAvailability(downloadUrl) {
@@ -798,7 +772,7 @@ function toggleFAQ(button) {
         emailField.classList.add('is-invalid');
         emailField.focus();
       }
-      alert('Bitte geben Sie eine gueltige E-Mail-Adresse ein, damit der PDF-Ratgeber nach dem Kauf versendet werden kann.');
+      alert('Bitte geben Sie eine gueltige E-Mail-Adresse fuer die Kaufabwicklung ein.');
       return;
     }
 
@@ -808,7 +782,6 @@ function toggleFAQ(button) {
 
     try {
       const data = await createCheckout(productId, customerEmail);
-      rememberPayment(data.paymentId, data.productId);
       window.location.href = data.checkoutUrl;
     } catch (error) {
       alert('Der Kauf konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
@@ -816,13 +789,20 @@ function toggleFAQ(button) {
     }
   }
 
-  async function loadPaymentStatus(paymentId) {
+  async function loadPaymentStatus() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || '';
+
+    if (!token) {
+      throw new Error('Token fehlt');
+    }
+
     const response = await fetch('/api/shop/payment-status', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ paymentId }),
+      body: JSON.stringify({ token }),
     });
 
     const data = await response.json().catch(() => ({}));
@@ -834,15 +814,17 @@ function toggleFAQ(button) {
   }
 
   async function renderStatusCard(root) {
-    const remembered = getRememberedPayment();
-    if (!remembered?.paymentId) {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || '';
+
+    if (!token) {
       root.classList.add('is-warning');
       root.innerHTML = `
-        <div class="shop-status-icon"><i class="fa-solid fa-circle-info"></i></div>
-        <h2>Kein Zahlungsvorgang gefunden</h2>
-        <p>Ich konnte keinen aktuellen Zahlungsvorgang zuordnen. Wenn Sie den Kauf gerade gestartet haben, kehren Sie bitte ueber die Leistungen-Seite zum Shop zurueck.</p>
+        <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h2>Kein gültiger Freigabe-Link</h2>
+        <p>Für diesen Download fehlt der Freigabe-Token. Bitte starten Sie den Kauf erneut über die Leistungen-Seite.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="leistungen.html"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
+          <a class="btn primary" href="leistungen.html#shop-title"><i class="fa-solid fa-bag-shopping"></i> Zum Shop</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
@@ -850,24 +832,32 @@ function toggleFAQ(button) {
     }
 
     try {
-      const status = await loadPaymentStatus(remembered.paymentId);
+      const status = await loadPaymentStatus();
 
       if (status.isPaid) {
         const downloadReady = await checkDownloadAvailability(status.downloadUrl);
         root.classList.add('is-success');
 
+        const confirmationMessage = status.isFreeTest
+          ? `Vielen Dank. Der Testkauf fuer <strong>${status.productName}</strong> wurde erfolgreich verarbeitet. Sie koennen den PDF-Ratgeber jetzt ueber den geschuetzten Link herunterladen.`
+          : `Vielen Dank. Die Zahlung fuer <strong>${status.productName}</strong> wurde bestaetigt. Der Download ist jetzt ueber diesen geschuetzten Link freigegeben.`;
+
+        const noteMessage = status.isFreeTest
+          ? 'Im 0-Euro-Testmodus steht der Download nur ueber diesen freigegebenen Link bereit.'
+          : (downloadReady
+              ? 'Der Download ist nur ueber diesen freigegebenen Link verfuegbar.'
+              : 'Die Freigabe konnte gerade nicht aufgebaut werden. Bitte versuchen Sie es erneut oder kontaktieren Sie mich direkt.');
+
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
           <h2>Zahlung erfolgreich</h2>
-          <p>Vielen Dank. Die Zahlung fuer <strong>${status.productName}</strong> wurde bestaetigt. Der PDF-Ratgeber wird an Ihre hinterlegte E-Mail-Adresse versendet.</p>
+          <p>${confirmationMessage}</p>
           <div class="shop-status-actions">
             ${downloadReady ? `<a class="btn ghost" href="${status.downloadUrl}"><i class="fa-solid fa-download"></i> PDF auch hier herunterladen</a>` : `<a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>`}
             <a class="btn ghost" href="leistungen.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zu den Leistungen</a>
           </div>
-          <p class="shop-purchase-note">${downloadReady ? 'Zusaetzlich steht der Download auch direkt hier bereit.' : 'Wenn die Mail nicht innerhalb weniger Minuten ankommt, pruefen Sie bitte auch Ihren Spam-Ordner oder kontaktieren Sie mich direkt.'}</p>
+          <p class="shop-purchase-note">${noteMessage}</p>
         `;
-
-        clearRememberedPayment();
         return;
       }
 
