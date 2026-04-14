@@ -415,6 +415,13 @@ function toggleFAQ(button) {
   let submitEl;
   let toggleEl;
 
+  const contactActions = {
+    contact: { label: 'Kontaktseite', href: 'kontakt.html', icon: 'fa-regular fa-envelope' },
+    whatsapp: { label: 'WhatsApp', href: 'https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20Case%20Management%20und%20Alltagsbegleitung.', icon: 'fa-brands fa-whatsapp' },
+    phone: { label: 'Anrufen', href: 'tel:+4915226560105', icon: 'fa-solid fa-phone' },
+    email: { label: 'E-Mail', href: 'mailto:casekompass@gmx.de', icon: 'fa-regular fa-envelope-open' },
+  };
+
   function includesAny(text, needles) {
     return needles.some((needle) => text.includes(needle));
   }
@@ -471,11 +478,76 @@ function toggleFAQ(button) {
     }
   }
 
+  function extractActions(text) {
+    const normalized = String(text || '');
+    const actions = [];
+
+    if (normalized.includes('kontakt.html') || /kontaktseite|kontakt aufnehmen|kontakt/i.test(normalized)) {
+      actions.push(contactActions.contact);
+    }
+    if (normalized.includes('wa.me/') || /whatsapp/i.test(normalized)) {
+      actions.push(contactActions.whatsapp);
+    }
+    if (normalized.includes('015226560105') || /telefonisch|anrufen|telefon/i.test(normalized)) {
+      actions.push(contactActions.phone);
+    }
+    if (normalized.includes('casekompass@gmx.de') || /e-mail|email/i.test(normalized)) {
+      actions.push(contactActions.email);
+    }
+
+    return actions.filter((action, index, array) => array.findIndex((item) => item.href === action.href) === index);
+  }
+
+  function sanitizeBotText(text) {
+    return String(text || '')
+      .replace(/https:\/\/wa\.me\/[^\s]+/gi, 'WhatsApp')
+      .replace(/kontakt\.html/gi, 'Kontaktseite')
+      .replace(/casekompass@gmx\.de/gi, 'E-Mail')
+      .replace(/\b015226560105\b/g, 'Telefon')
+      .trim();
+  }
+
+  function buildMessageActions(actions) {
+    if (!actions.length) return null;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'chatbot-message-actions';
+
+    actions.forEach((action) => {
+      const link = document.createElement('a');
+      link.className = 'chatbot-action-button';
+      link.href = action.href;
+      link.innerHTML = `<i class="${action.icon}" aria-hidden="true"></i><span>${action.label}</span>`;
+
+      if (/^https?:/i.test(action.href)) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+
+      wrap.appendChild(link);
+    });
+
+    return wrap;
+  }
+
   function createMessage(role, text, options) {
     const node = document.createElement('div');
     node.className = `chatbot-message ${role}`;
     if (options?.loading) node.classList.add('is-loading');
-    node.textContent = text;
+
+    const body = document.createElement('div');
+    body.className = 'chatbot-message-body';
+
+    if (role === 'bot' && !options?.loading) {
+      body.textContent = sanitizeBotText(text);
+      const actions = buildMessageActions(extractActions(text));
+      node.appendChild(body);
+      if (actions) node.appendChild(actions);
+      return node;
+    }
+
+    body.textContent = text;
+    node.appendChild(body);
     return node;
   }
 
