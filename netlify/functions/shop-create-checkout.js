@@ -37,13 +37,76 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || '').trim());
 }
 
+function buildMailConfig() {
+  const mailgunApiKey = process.env.MAILGUN_API_KEY;
+  const mailgunDomain = process.env.MAILGUN_DOMAIN;
+  const contactTo = process.env.CONTACT_TO;
+  const contactFrom = process.env.CONTACT_FROM || (mailgunDomain ? `casekompass.de <postmaster@${mailgunDomain}>` : 'casekompass.de <postmaster@example.com>');
+
+  if (!mailgunApiKey || !mailgunDomain) {
+    return null;
+  }
+
+  return {
+    mailgunApiKey,
+    mailgunDomain,
+    contactTo,
+    contactFrom,
+  };
+}
+
+async function sendDownloadEmail(mailConfig, customerEmail, product, baseUrl) {
+  const downloadUrl = `${baseUrl}${product.downloadPath}`;
+  const emailBody = [
+    'Guten Tag,',
+    '',
+    'vielen Dank fuer Ihren Download.',
+    '',
+    `Ihr PDF fuer "${product.name}" steht hier bereit:`,
+    downloadUrl,
+    '',
+    'Falls es Probleme beim Download gibt, antworten Sie einfach auf diese E-Mail oder schreiben Sie an casekompass@gmx.de.',
+    '',
+    'Freundliche Gruesse',
+    'Johannes Piperidis',
+    'casekompass.de',
+  ].join('\n');
+
+  const mailBody = new URLSearchParams();
+  mailBody.set('from', mailConfig.contactFrom);
+  mailBody.set('to', customerEmail);
+  if (mailConfig.contactTo) {
+    mailBody.set('bcc', mailConfig.contactTo);
+  }
+  mailBody.set('subject', `Ihr Download: ${product.name}`);
+  mailBody.set('text', emailBody);
+  mailBody.set('h:Reply-To', 'casekompass@gmx.de');
+
+  const auth = Buffer.from(`api:${mailConfig.mailgunApiKey}`).toString('base64');
+  const mailResponse = await fetch(`https://api.mailgun.net/v3/${mailConfig.mailgunDomain}/messages`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${auth}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json',
+    },
+    body: mailBody,
+  });
+
+  if (!mailResponse.ok) {
+    const mailText = await mailResponse.text();
+    throw new Error(`Mailgun error: HTTP ${mailResponse.status} ${mailText.slice(0, 300)}`);
+  }
+}
+
 const PRODUCTS = {
   'pflegegrad-ratgeber-pdf': {
     id: 'pflegegrad-ratgeber-pdf',
     name: 'PDF-Ratgeber: Pflegegrad beantragen - einfach vorbereitet',
     description: 'Digitaler PDF-Ratgeber fuer einen klaren und strukturierten Einstieg in den Pflegegrad-Antrag.',
-    amount: '9.90',
+    amount: '0.00',
     currency: 'EUR',
+    downloadPath: '/downloads/pflegegrad-beantragen-einfach-vorbereitet.pdf',
   },
 };
 
@@ -54,11 +117,6 @@ exports.handler = async (event) => {
 
   if (event.httpMethod !== 'POST') {
     return json(405, { success: false, message: 'Method not allowed' });
-  }
-
-  const mollieApiKey = process.env.MOLLIE_API_KEY;
-  if (!mollieApiKey) {
-    return json(500, { success: false, message: 'Server not configured (missing MOLLIE_API_KEY)' });
   }
 
   const body = parseBody(event);
@@ -76,6 +134,36 @@ exports.handler = async (event) => {
 
   const baseUrl = getBaseUrl(event);
   const redirectUrl = `${baseUrl}/shop-ratgeber.html?product=${encodeURIComponent(product.id)}`;
+
+  if (product.amount === '0.00') {
+    const mailConfig = buildMailConfig();
+    if (!mailConfig) {
+      return json(500, { success: false, message: 'Server not configured (missing MAILGUN_API_KEY/MAILGUN_DOMAIN)' });
+    }
+
+    try {
+      await sendDownloadEmail(mailConfig, customerEmail, product, baseUrl);
+    } catch (error) {
+      return json(502, {
+        success: false,
+        message: 'Mail could not be sent',
+        details: error instanceof Error ? error.message : 'Unknown mail error',
+      });
+    }
+
+    return json(200, {
+      success: true,
+      productId: product.id,
+      paymentId: `free:${product.id}:${Date.now()}`,
+      checkoutUrl: redirectUrl,
+    });
+  }
+
+  const mollieApiKey = process.env.MOLLIE_API_KEY;
+  if (!mollieApiKey) {
+    return json(500, { success: false, message: 'Server not configured (missing MOLLIE_API_KEY)' });
+  }
+
   const webhookUrl = `${baseUrl}/api/shop/webhook`;
 
   const response = await fetch('https://api.mollie.com/v2/payments', {

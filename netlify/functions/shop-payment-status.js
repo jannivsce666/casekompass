@@ -53,6 +53,26 @@ exports.handler = async (event) => {
     return json(400, { success: false, message: 'Missing paymentId' });
   }
 
+  if (paymentId.startsWith('free:')) {
+    const [, productId] = paymentId.split(':');
+    const product = PRODUCTS[productId] || null;
+
+    return json(200, {
+      success: true,
+      paymentId,
+      status: 'paid',
+      isPaid: true,
+      isOpen: false,
+      isPending: false,
+      isFailed: false,
+      isCanceled: false,
+      isExpired: false,
+      productId,
+      productName: product?.name || 'Digitales Produkt',
+      downloadUrl: product?.downloadUrl || null,
+    });
+  }
+
   const response = await fetch(`https://api.mollie.com/v2/payments/${encodeURIComponent(paymentId)}`, {
     headers: {
       Authorization: `Bearer ${mollieApiKey}`,
