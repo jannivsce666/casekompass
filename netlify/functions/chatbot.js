@@ -53,7 +53,7 @@ function buildLocalFallback(message) {
   }
 
   if (includesAny(text, ['angehörig', 'angehoerig', 'überfordert', 'ueberfordert', 'entlastung', 'pflege zu hause', 'pflege zuhause'])) {
-    return 'Für überlastete Angehörige passt das Paket Angehörigen-Entlastung für 249 Euro. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt. Wenn Sie möchten, können Sie direkt über kontakt.html, per WhatsApp oder telefonisch unter 015226560105 anfragen.';
+    return 'Für überlastete Angehörige passt das Paket Angehörigen-Entlastung für 249 Euro. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt. Für die Anfrage können Sie mich direkt kontaktieren.';
   }
 
   if (includesAny(text, ['krankenhaus', 'reha', 'entlassung', 'zuhause weiter', 'wieder zuhause'])) {
@@ -77,7 +77,7 @@ function buildLocalFallback(message) {
   }
 
   if (includesAny(text, ['kontakt', 'telefon', 'whatsapp', 'termin', 'anrufen', 'email', 'e-mail'])) {
-    return 'Sie können direkt Kontakt aufnehmen über kontakt.html, per E-Mail an casekompass@gmx.de oder telefonisch unter 015226560105. WhatsApp ist ebenfalls möglich: https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20f%C3%BCr%20Case%20Management%20und%20Alltagsbegleitung.';
+    return 'Sie können mich hier kontaktieren:';
   }
 
   if (includesAny(text, ['gebiet', 'heidenheim', 'vor ort', 'remote', 'mobil'])) {
@@ -97,7 +97,9 @@ Dein Auftrag:
 - Keine medizinischen Diagnosen, keine rechtliche Beratung, keine freien Fantasieangaben.
 - Erfinde keine Leistungen, Orte, Preise oder Abläufe.
 - Antworte auf Deutsch, klar, kurz und konkret.
+- Antworte in der Ich-Form, nicht als Team oder Firma mit "wir" oder "uns".
 - Wenn passend, verweise auf die passende Detailseite oder auf Kontakt/WhatsApp.
+- Gib keine rohen URLs, keine Dateinamen wie kontakt.html und keine ausgeschriebenen Kontaktdaten im Fließtext aus, wenn es um Kontakt geht. Schreibe stattdessen kurz: "Sie können mich hier kontaktieren:".
 
 Anbieterprofil:
 - casekompass.de bietet Case Management und Alltagsbegleitung.
@@ -156,7 +158,7 @@ Pakete:
 - Detailseite: alltagsbegleitung-zuhause-startpaket.html
 
 Wenn Nutzer nach dem passenden Paket fragen, schlage aus diesen sechs Angeboten das naheliegendste vor und nenne kurz warum.
-Wenn Nutzer einen Termin oder persönliche Beratung möchten, verweise auf kontakt.html, Telefon oder WhatsApp.
+Wenn Nutzer einen Termin oder persönliche Beratung möchten, schreibe kurz: "Sie können mich hier kontaktieren:".
 `;
 
 exports.handler = async (event) => {

@@ -394,7 +394,6 @@ function toggleFAQ(button) {
   const path = window.location.pathname.toLowerCase();
   if (path.endsWith('/datenschutz.html') || path.endsWith('/impressum.html')) return;
 
-  const storageKey = 'casekompass-chat-history';
   const endpoint = '/api/chatbot';
   const quickQuestions = [
     'Welches Paket passt bei Pflegegrad?',
@@ -406,7 +405,7 @@ function toggleFAQ(button) {
   const state = {
     open: false,
     busy: false,
-    history: loadHistory(),
+    history: [],
   };
 
   let shell;
@@ -454,28 +453,10 @@ function toggleFAQ(button) {
     }
 
     if (includesAny(text, ['kontakt', 'telefon', 'whatsapp', 'termin', 'anrufen', 'mail', 'email'])) {
-      return 'Sie können direkt über die Kontaktseite anfragen, eine E-Mail an casekompass@gmx.de senden oder unter 015226560105 anrufen. WhatsApp ist ebenfalls möglich.';
+      return 'Sie können mich hier kontaktieren:';
     }
 
     return 'Ich kann Fragen zu Pflegegrad, Angehörigen-Entlastung, Hilfe nach dem Krankenhaus, Wohnraumanpassung, Pflegekassen-Leistungen, Alltagsbegleitung, Preisen und Kontakt beantworten. Beschreiben Sie kurz Ihre Situation, dann nenne ich das passende Paket.';
-  }
-
-  function loadHistory() {
-    try {
-      const raw = window.sessionStorage.getItem(storageKey);
-      const parsed = raw ? JSON.parse(raw) : [];
-      return Array.isArray(parsed) ? parsed.slice(-10) : [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveHistory() {
-    try {
-      window.sessionStorage.setItem(storageKey, JSON.stringify(state.history.slice(-10)));
-    } catch {
-      return;
-    }
   }
 
   function extractActions(text) {
@@ -498,8 +479,14 @@ function toggleFAQ(button) {
     return actions.filter((action, index, array) => array.findIndex((item) => item.href === action.href) === index);
   }
 
-  function sanitizeBotText(text) {
-    return String(text || '')
+  function sanitizeBotText(text, actions) {
+    const normalized = String(text || '');
+
+    if (actions?.length && (/kontakt\.html|wa\.me\/|casekompass@gmx\.de|015226560105/i.test(normalized) || /kontaktseite|whatsapp|telefon|e-mail|email/i.test(normalized))) {
+      return 'Sie können mich hier kontaktieren:';
+    }
+
+    return normalized
       .replace(/https:\/\/wa\.me\/[^\s]+/gi, 'WhatsApp')
       .replace(/kontakt\.html/gi, 'Kontaktseite')
       .replace(/casekompass@gmx\.de/gi, 'E-Mail')
@@ -539,8 +526,8 @@ function toggleFAQ(button) {
     body.className = 'chatbot-message-body';
 
     if (role === 'bot' && !options?.loading) {
-      body.textContent = sanitizeBotText(text);
       const actions = buildMessageActions(extractActions(text));
+      body.textContent = sanitizeBotText(text, extractActions(text));
       node.appendChild(body);
       if (actions) node.appendChild(actions);
       return node;
@@ -622,7 +609,6 @@ function toggleFAQ(button) {
     if (!state.open) toggleChat(true);
 
     state.history.push({ role: 'user', content: text });
-    saveHistory();
     renderHistory();
 
     if (!prefill) inputEl.value = '';
@@ -650,13 +636,11 @@ function toggleFAQ(button) {
       }
 
       state.history.push({ role: 'assistant', content: data.answer });
-      saveHistory();
       renderHistory();
     } catch (error) {
       loadingNode.remove();
       const fallback = localChatFallback(text);
       state.history.push({ role: 'assistant', content: fallback });
-      saveHistory();
       renderHistory();
     } finally {
       setBusy(false);
