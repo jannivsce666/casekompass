@@ -50,7 +50,7 @@
         { id: 'email', label: 'E-Mail', type: 'email', required: true, placeholder: 'name@beispiel.de' },
         textField('insuranceProvider', 'Kranken- oder Pflegekasse', { required: true, wide: true }),
         yesNoField('hasCareLevel', 'Pflegegrad vorhanden?', { required: true }),
-        textField('careLevelValue', 'Falls ja: welcher Pflegegrad?', { placeholder: 'z. B. Pflegegrad 2' }),
+        textField('careLevelValue', 'Falls ja: welcher Pflegegrad?', { placeholder: 'z. B. Pflegegrad 2', showWhen: (draft) => draft.hasCareLevel === 'Ja' }),
         yesNoField('hasDisabilityCard', 'Schwerbehindertenausweis vorhanden?', { required: true }),
         yesNoField('hasLegalSupport', 'Gesetzliche Betreuung oder Vollmacht vorhanden?', { required: true }),
       ],
@@ -71,7 +71,7 @@
         textareaField('mainProblem', 'Was belastet aktuell am meisten?', { required: true, wide: true, placeholder: 'Beschreiben Sie das Hauptproblem in 2 bis 4 Sätzen.' }),
         selectField('situationSince', 'Seit wann besteht die Situation?', ['Seit wenigen Tagen', 'Seit einigen Wochen', 'Seit einigen Monaten', 'Seit mehr als einem halben Jahr', 'Schon länger, aber aktuell deutlich belastender'], { required: true }),
         yesNoField('recentlyWorsened', 'Hat sich die Lage kürzlich verschlechtert?', { required: true }),
-        textareaField('recentHospitalRehabFall', 'Gab es Krankenhaus, Reha oder Sturz in letzter Zeit?', { wide: true, placeholder: 'Wenn ja: kurz mit Zeitraum und Folgen beschreiben' }),
+        textareaField('recentHospitalRehabFall', 'Gab es Krankenhaus, Reha oder Sturz in letzter Zeit?', { wide: true, placeholder: 'Wenn ja: kurz mit Zeitraum und Folgen beschreiben', showWhen: (draft) => draft.recentlyWorsened === 'Ja' || draft.requestReason === 'Reha oder Krankenhaus-Nachsorge' }),
       ],
     },
     {
@@ -79,13 +79,13 @@
       intro: 'Die gesundheitliche Lage bestimmt den Versorgungsbedarf direkt mit.',
       fields: [
         checkboxField('mainDiagnoses', 'Welche Diagnosen oder Themen prägen die Lage besonders?', ['Schlaganfall', 'Demenz', 'Parkinson', 'Herz-Kreislauf-Erkrankung', 'Orthopädische Einschränkungen', 'Chronische Schmerzen', 'Psychische Erkrankung', 'Tumorerkrankung', 'Mehrere Diagnosen', 'Noch nicht klar'], { required: true, wide: true }),
-        textareaField('mainDiagnosesDetails', 'Weitere wichtige Diagnosen oder kurze Ergänzungen', { wide: true }),
-        checkboxField('physicalLimitations', 'Körperliche Einschränkungen', ['Schwäche', 'Lähmungen', 'Gleichgewichtsprobleme', 'Erschöpfung', 'Belastbarkeit stark reduziert', 'Feinmotorik eingeschränkt'], { wide: true }),
-        checkboxField('psychologicalBurden', 'Psychische Belastungen', ['Überforderung', 'Ängste', 'Depressive Stimmung', 'Unruhe', 'Aggression', 'Rückzug'], { wide: true }),
-        checkboxField('cognitiveLimitations', 'Kognitive Einschränkungen', ['Vergesslichkeit', 'Konzentrationsprobleme', 'Orientierungsprobleme', 'Entscheidungen fallen schwer', 'Verlangsamtes Denken'], { wide: true }),
+        textareaField('mainDiagnosesDetails', 'Weitere wichtige Diagnosen oder kurze Ergänzungen', { wide: true, askInQuickFlow: false, showWhen: (draft) => Array.isArray(draft.mainDiagnoses) && draft.mainDiagnoses.length > 0 }),
+        checkboxField('physicalLimitations', 'Körperliche Einschränkungen', ['Schwäche', 'Lähmungen', 'Gleichgewichtsprobleme', 'Erschöpfung', 'Belastbarkeit stark reduziert', 'Feinmotorik eingeschränkt'], { wide: true, askInQuickFlow: false }),
+        checkboxField('psychologicalBurden', 'Psychische Belastungen', ['Überforderung', 'Ängste', 'Depressive Stimmung', 'Unruhe', 'Aggression', 'Rückzug'], { wide: true, askInQuickFlow: false }),
+        checkboxField('cognitiveLimitations', 'Kognitive Einschränkungen', ['Vergesslichkeit', 'Konzentrationsprobleme', 'Orientierungsprobleme', 'Entscheidungen fallen schwer', 'Verlangsamtes Denken'], { wide: true, askInQuickFlow: false }),
         yesNoField('dementiaIssues', 'Demenz, deutliche Vergesslichkeit oder Orientierungsschwierigkeiten?', { required: true }),
-        selectField('painIssues', 'Schmerzen', ['Keine oder kaum', 'Leicht', 'Mittel', 'Stark', 'Sehr stark oder täglich belastend'], { wide: true }),
-        checkboxField('sensoryIssues', 'Seh- oder Hörprobleme', ['Sehen eingeschränkt', 'Hören eingeschränkt', 'Brille oder Hörgerät vorhanden', 'Keine relevanten Probleme'], { wide: true }),
+        selectField('painIssues', 'Schmerzen', ['Keine oder kaum', 'Leicht', 'Mittel', 'Stark', 'Sehr stark oder täglich belastend'], { wide: true, askInQuickFlow: false }),
+        checkboxField('sensoryIssues', 'Seh- oder Hörprobleme', ['Sehen eingeschränkt', 'Hören eingeschränkt', 'Brille oder Hörgerät vorhanden', 'Keine relevanten Probleme'], { wide: true, askInQuickFlow: false }),
         yesNoField('hasIncontinence', 'Inkontinenz?', { required: true }),
         yesNoField('hasSwallowingIssues', 'Schluckstörungen?', { required: true }),
       ],
@@ -100,7 +100,7 @@
         yesNoField('canUseStairs', 'Treppen möglich?', { required: true }),
         checkboxField('mobilityAids', 'Vorhandene Hilfsmittel', ['Rollator', 'Rollstuhl', 'Gehstock', 'Pflegebett', 'Toilettenstuhl', 'Haltegriffe'], { wide: true }),
         selectField('fallRisk', 'Sturzgefahr?', ['Keine erkennbare Sturzgefahr', 'Leicht erhöht', 'Deutlich erhöht', 'Es gab bereits Stürze'], { wide: true }),
-        textareaField('transferSupport', 'Transfer-Hilfe nötig? z. B. Bett, Toilette, Dusche', { wide: true }),
+        textareaField('transferSupport', 'Transfer-Hilfe nötig? z. B. Bett, Toilette, Dusche', { wide: true, showWhen: (draft) => draft.canStandUpAlone === 'Nein' || draft.canWalkIndoors === 'Nein' }),
       ],
     },
     {
@@ -109,7 +109,7 @@
       fields: [
         checkboxField('dailyLimitationAreas', 'Wo bestehen die größten Alltagseinschränkungen?', ['Körperpflege', 'Anziehen', 'Essen und Trinken', 'Toilettengang', 'Medikamente', 'Haushalt', 'Einkaufen', 'Kochen', 'Ordnung oder Wäsche'], { required: true, wide: true }),
         textareaField('dailyLimitations', 'Kurz beschrieben: Wo klappt der Alltag gerade nicht gut?', { required: true, wide: true, placeholder: 'Zum Beispiel morgens, beim Essen, im Bad oder bei der Organisation.' }),
-        checkboxField('helpAreas', 'Wo ist aktuell konkret Hilfe nötig?', ['Waschen oder Duschen', 'Anziehen', 'Essen oder Trinken', 'Toilettengang', 'Medikamente', 'Haushaltsführung', 'Einkaufen', 'Kochen', 'Reinigung oder Wäsche'], { wide: true }),
+        checkboxField('helpAreas', 'Wo ist aktuell konkret Hilfe nötig?', ['Waschen oder Duschen', 'Anziehen', 'Essen oder Trinken', 'Toilettengang', 'Medikamente', 'Haushaltsführung', 'Einkaufen', 'Kochen', 'Reinigung oder Wäsche'], { wide: true, askInQuickFlow: false, showWhen: (draft) => Array.isArray(draft.dailyLimitationAreas) && draft.dailyLimitationAreas.length > 0 }),
       ],
     },
     {
@@ -121,7 +121,7 @@
         yesNoField('missesDanger', 'Erkennt Gefahren nicht?', { required: true }),
         yesNoField('nighttimeUnrest', 'Nächtliche Unruhe?', { required: true }),
         yesNoField('wanderingRisk', 'Weglauftendenz?', { required: true }),
-        textareaField('stressBehavior', 'Ängste, Aggression oder Überforderung', { wide: true }),
+        textareaField('stressBehavior', 'Ängste, Aggression oder Überforderung', { wide: true, askInQuickFlow: false, showWhen: (draft) => draft.dementiaIssues === 'Ja' || draft.nighttimeUnrest === 'Ja' || draft.wanderingRisk === 'Ja' }),
         yesNoField('needsSupervision', 'Braucht Beaufsichtigung?', { required: true }),
         yesNoField('understandsLetters', 'Kann Schriftstücke oder Briefe noch verstehen?', { required: true }),
       ],
@@ -131,10 +131,10 @@
       intro: 'Was ist bereits organisiert und wo reißt die Versorgung noch auf?',
       fields: [
         textareaField('currentHelpers', 'Wer hilft aktuell?', { required: true, wide: true }),
-        checkboxField('helperTypes', 'Welche Unterstützung ist aktuell eingebunden?', ['Angehörige', 'Nachbarn', 'Pflegedienst', 'Haushaltshilfe', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Essen auf Rädern', 'Hausnotruf', 'Betreuungsdienst'], { wide: true }),
-        textareaField('helperFrequency', 'Wie oft kommt wer?', { wide: true }),
-        textareaField('whatWorksWell', 'Was funktioniert gut?', { wide: true }),
-        checkboxField('currentGapAreas', 'Wo gibt es Versorgungslücken?', ['Zu wenig Entlastung', 'Keine klare Zuständigkeit', 'Hilfsmittel fehlen', 'Pflegedienst reicht nicht aus', 'Anträge oder Unterlagen fehlen', 'Organisation überfordert die Familie'], { wide: true }),
+        checkboxField('helperTypes', 'Welche Unterstützung ist aktuell eingebunden?', ['Angehörige', 'Nachbarn', 'Pflegedienst', 'Haushaltshilfe', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Essen auf Rädern', 'Hausnotruf', 'Betreuungsdienst'], { wide: true, askInQuickFlow: false }),
+        textareaField('helperFrequency', 'Wie oft kommt wer?', { wide: true, askInQuickFlow: false }),
+        textareaField('whatWorksWell', 'Was funktioniert gut?', { wide: true, askInQuickFlow: false }),
+        checkboxField('currentGapAreas', 'Wo gibt es Versorgungslücken?', ['Zu wenig Entlastung', 'Keine klare Zuständigkeit', 'Hilfsmittel fehlen', 'Pflegedienst reicht nicht aus', 'Anträge oder Unterlagen fehlen', 'Organisation überfordert die Familie'], { wide: true, askInQuickFlow: false }),
         textareaField('currentGaps', 'Was fehlt aktuell am dringendsten?', { required: true, wide: true, placeholder: 'Zum Beispiel mehr Entlastung, klare Struktur, Hilfsmittel oder Unterstützung bei Anträgen.' }),
       ],
     },
@@ -142,15 +142,15 @@
       title: 'Wichtige Kontakte',
       intro: 'Hier sammeln Sie alle medizinischen und organisatorischen Ansprechpersonen.',
       fields: [
-        textField('familyDoctor', 'Hausarzt', { wide: true }),
-        textareaField('specialists', 'Fachärzte', { wide: true }),
-        textareaField('therapists', 'Therapeuten', { wide: true }),
-        textField('pharmacy', 'Apotheke', { wide: true }),
-        textField('medicalSupplyStore', 'Sanitätshaus', { wide: true }),
-        checkboxField('careServiceContactTypes', 'Welche professionellen Stellen sind aktuell eingebunden?', ['Pflegedienst', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Betreuungsdienst', 'Sozialdienst'], { wide: true }),
-        textareaField('careServiceContact', 'Pflegedienst oder weitere Dienste', { wide: true }),
-        textareaField('clinicContact', 'Ansprechpartner in Klinik, Reha oder Sozialdienst', { wide: true }),
-        textareaField('relativeContacts', 'Wichtige Angehörige mit Telefonnummern', { wide: true }),
+        textField('familyDoctor', 'Hausarzt', { wide: true, askInQuickFlow: false }),
+        textareaField('specialists', 'Fachärzte', { wide: true, askInQuickFlow: false }),
+        textareaField('therapists', 'Therapeuten', { wide: true, askInQuickFlow: false }),
+        textField('pharmacy', 'Apotheke', { wide: true, askInQuickFlow: false }),
+        textField('medicalSupplyStore', 'Sanitätshaus', { wide: true, askInQuickFlow: false }),
+        checkboxField('careServiceContactTypes', 'Welche professionellen Stellen sind aktuell eingebunden?', ['Pflegedienst', 'Ergotherapie', 'Physiotherapie', 'Logopädie', 'Tagespflege', 'Betreuungsdienst', 'Sozialdienst'], { wide: true, askInQuickFlow: false }),
+        textareaField('careServiceContact', 'Pflegedienst oder weitere Dienste', { wide: true, askInQuickFlow: false }),
+        textareaField('clinicContact', 'Ansprechpartner in Klinik, Reha oder Sozialdienst', { wide: true, askInQuickFlow: false }),
+        textareaField('relativeContacts', 'Wichtige Angehörige mit Telefonnummern', { wide: true, askInQuickFlow: false }),
       ],
     },
     {
@@ -158,7 +158,7 @@
       intro: 'Welche Anträge laufen schon und welche Bescheide oder Ablehnungen gibt es?',
       fields: [
         yesNoField('careLevelApplied', 'Pflegegrad beantragt?', { required: true }),
-        textField('careLevelExisting', 'Pflegegrad vorhanden, welcher?', { wide: true }),
+        textField('careLevelExisting', 'Pflegegrad vorhanden, welcher?', { wide: true, askInQuickFlow: false, showWhen: (draft) => draft.hasCareLevel === 'Ja' || draft.careLevelApplied === 'Ja' }),
         yesNoField('objectionRunning', 'Widerspruch aktuell?', { required: true }),
         yesNoField('aidsApplied', 'Hilfsmittel beantragt?', { required: true }),
         yesNoField('rehabApplied', 'Reha beantragt?', { required: true }),
@@ -167,8 +167,8 @@
         yesNoField('careAidsUsed', 'Pflegehilfsmittel genutzt?', { required: true }),
         yesNoField('shortTermCareUsed', 'Verhinderungspflege oder Kurzzeitpflege schon genutzt?', { required: true }),
         textareaField('availableDocuments', 'Welche Unterlagen oder Bescheide liegen schon vor?', { required: true, wide: true }),
-        checkboxField('rejectedTopics', 'Was wurde schon abgelehnt?', ['Pflegegrad', 'Hilfsmittel', 'Reha', 'Wohnraumanpassung', 'Pflegedienst oder Leistungsausweitung', 'Entlastungsleistungen'], { wide: true }),
-        textareaField('rejectedItems', 'Was wurde schon abgelehnt?', { wide: true }),
+        checkboxField('rejectedTopics', 'Was wurde schon abgelehnt?', ['Pflegegrad', 'Hilfsmittel', 'Reha', 'Wohnraumanpassung', 'Pflegedienst oder Leistungsausweitung', 'Entlastungsleistungen'], { wide: true, askInQuickFlow: false }),
+        textareaField('rejectedItems', 'Was wurde schon abgelehnt?', { wide: true, askInQuickFlow: false, showWhen: (draft) => Array.isArray(draft.rejectedTopics) && draft.rejectedTopics.length > 0 }),
       ],
     },
     {
@@ -177,18 +177,18 @@
       fields: [
         textField('livingSituation', 'Wie lebt die Person aktuell?', { required: true, wide: true, placeholder: 'Zum Beispiel allein, mit Partner, mit Familie oder in einer WG.' }),
         { id: 'housingType', label: 'Wie ist die Wohnform?', type: 'select', required: true, options: ['Wohnung', 'Haus', 'Sonstiges', 'Weiß ich nicht'] },
-        textField('floor', 'Stockwerk', {}),
-        yesNoField('hasElevator', 'Aufzug vorhanden?', { required: true }),
+        textField('floor', 'Stockwerk', { askInQuickFlow: false, showWhen: (draft) => draft.housingType === 'Wohnung' || draft.housingType === 'Haus' }),
+        yesNoField('hasElevator', 'Aufzug vorhanden?', { required: true, showWhen: (draft) => draft.housingType === 'Wohnung' }),
         yesNoField('hasAccessibleBathroom', 'Bad barrierefrei?', { required: true }),
         yesNoField('hasStairsAtHome', 'Treppen im Haus?', { required: true }),
         { id: 'bathSetup', label: 'Wie ist das Bad ausgestattet?', type: 'select', required: true, options: ['Dusche', 'Badewanne', 'Beides', 'Sonstiges', 'Weiß ich nicht'] },
         yesNoField('bedAccessible', 'Bett oder Schlafzimmer gut erreichbar?', { required: true }),
-        textareaField('tripHazards', 'Gibt es Stolperfallen?', { wide: true }),
+        textareaField('tripHazards', 'Gibt es Stolperfallen?', { wide: true, askInQuickFlow: false, showWhen: (draft) => draft.hasStairsAtHome === 'Ja' || draft.canWalkIndoors === 'Nein' }),
         yesNoField('renovationUseful', 'Wäre Umbau sinnvoll?', { required: true }),
         yesNoField('hasPets', 'Haustiere vorhanden?', { required: true }),
         selectField('areaType', 'Eher ländlich oder städtisch?', ['Städtisch', 'Ländlich', 'Dazwischen'], { required: true }),
         yesNoField('easyToReach', 'Wohnort gut erreichbar?', { required: true }),
-        textareaField('petsAndAccess', 'Sonstige Hinweise zur Wohnlage oder Erreichbarkeit', { wide: true }),
+        textareaField('petsAndAccess', 'Sonstige Hinweise zur Wohnlage oder Erreichbarkeit', { wide: true, askInQuickFlow: false, showWhen: (draft) => draft.hasPets === 'Ja' || draft.easyToReach === 'Nein' }),
       ],
     },
     {
@@ -197,9 +197,9 @@
       fields: [
         textareaField('improvementGoal', 'Was soll sich konkret verbessern?', { required: true, wide: true, placeholder: 'Beschreiben Sie den gewünschten Unterschied im Alltag.' }),
         textareaField('mostUrgentGoal', 'Was ist jetzt am dringendsten?', { required: true, wide: true, placeholder: 'Was sollte zuerst geklärt oder verbessert werden?' }),
-        textareaField('goalTwoWeeks', 'Was soll in den nächsten 2 Wochen erreicht werden?', { wide: true, placeholder: 'Zum Beispiel ein Antrag, ein Termin oder eine spürbare Entlastung.' }),
-        textareaField('goalThreeMonths', 'Was soll in den nächsten 3 Monaten erreicht werden?', { wide: true, placeholder: 'Zum Beispiel eine stabile Versorgung oder ein geklärter Pflegegrad.' }),
-        checkboxField('goalFocus', 'Worum geht es vor allem?', ['Entlastung der Angehörigen', 'Pflegegrad', 'Sichere Versorgung zuhause', 'Mehr Selbstständigkeit', 'Weniger Überforderung', 'Bessere Struktur', 'Hilfsmittel', 'Reha', 'Behörden oder Unterlagen'], { wide: true }),
+        textareaField('goalTwoWeeks', 'Was soll in den nächsten 2 Wochen erreicht werden?', { wide: true, placeholder: 'Zum Beispiel ein Antrag, ein Termin oder eine spürbare Entlastung.', askInQuickFlow: false }),
+        textareaField('goalThreeMonths', 'Was soll in den nächsten 3 Monaten erreicht werden?', { wide: true, placeholder: 'Zum Beispiel eine stabile Versorgung oder ein geklärter Pflegegrad.', askInQuickFlow: false }),
+        checkboxField('goalFocus', 'Worum geht es vor allem?', ['Entlastung der Angehörigen', 'Pflegegrad', 'Sichere Versorgung zuhause', 'Mehr Selbstständigkeit', 'Weniger Überforderung', 'Bessere Struktur', 'Hilfsmittel', 'Reha', 'Behörden oder Unterlagen'], { wide: true, askInQuickFlow: false }),
         textareaField('familyGoal', 'Was wäre für die Familie ein gutes Ergebnis?', { required: true, wide: true }),
       ],
     },
@@ -230,6 +230,16 @@
   SECTIONS.forEach((section) => {
     section.fields.forEach((field) => FIELD_MAP.set(field.id, field));
   });
+
+  const ALL_QUESTIONS = SECTIONS.flatMap((section, sectionIndex) =>
+    section.fields.map((field, fieldIndex) => ({
+      ...field,
+      sectionTitle: section.title,
+      sectionIntro: section.intro,
+      sectionIndex,
+      fieldIndex,
+    }))
+  );
 
   const FIELD_HELP_TEXTS = {
     firstName: 'Bitte tragen Sie die Daten der betroffenen Person ein, nicht die der ausfüllenden Person.',
@@ -365,13 +375,71 @@
     return String(value || '').trim();
   }
 
+  function isFieldMissing(field, draft, files) {
+    if (!field.required) return false;
+    if (field.type === 'file') return files.length === 0;
+    const value = draft[field.id];
+    return Array.isArray(value) ? value.length === 0 : !String(value || '').trim();
+  }
+
   function getRequiredMissingForSection(section, draft, files) {
-    return section.fields.filter((field) => {
-      if (!field.required) return false;
-      if (field.type === 'file') return files.length === 0;
-      const value = draft[field.id];
-      return Array.isArray(value) ? value.length === 0 : !String(value || '').trim();
+    return section.fields.filter((field) => isQuestionVisible(field, draft, false, true) && isFieldMissing(field, draft, files));
+  }
+
+  function isQuestionVisible(question, draft, includeOptionalDetails, ignoreQuickFlow) {
+    if (typeof question.showWhen === 'function' && !question.showWhen(draft)) {
+      return false;
+    }
+    if (ignoreQuickFlow) {
+      return true;
+    }
+    return question.required || question.askInQuickFlow !== false || includeOptionalDetails;
+  }
+
+  function getActiveQuestions(state) {
+    const visibleQuestions = ALL_QUESTIONS.filter((question) => isQuestionVisible(question, state.draft, state.includeOptionalDetails, false));
+    const sectionCounts = new Map();
+    const visibleSectionIndexes = [];
+    visibleQuestions.forEach((question) => {
+      sectionCounts.set(question.sectionIndex, (sectionCounts.get(question.sectionIndex) || 0) + 1);
+      if (!visibleSectionIndexes.includes(question.sectionIndex)) {
+        visibleSectionIndexes.push(question.sectionIndex);
+      }
     });
+    const sectionOrder = new Map(visibleSectionIndexes.map((sectionIndex, orderIndex) => [sectionIndex, orderIndex + 1]));
+    const sectionProgress = new Map();
+    return visibleQuestions.map((question) => {
+      const position = (sectionProgress.get(question.sectionIndex) || 0) + 1;
+      sectionProgress.set(question.sectionIndex, position);
+      return {
+        ...question,
+        visibleSectionPosition: sectionOrder.get(question.sectionIndex) || 1,
+        visibleSectionCount: visibleSectionIndexes.length,
+        sectionQuestionCount: sectionCounts.get(question.sectionIndex) || 1,
+        sectionQuestionPosition: position,
+      };
+    });
+  }
+
+  function getVisibleSections(state) {
+    const visibleSectionIndexes = new Set(getActiveQuestions(state).map((question) => question.sectionIndex));
+    return SECTIONS.map((section, index) => ({ section, index })).filter(({ index }) => visibleSectionIndexes.has(index));
+  }
+
+  function getFirstIncompleteQuestionIndex(state) {
+    const questions = getActiveQuestions(state);
+    const index = questions.findIndex((question) => isFieldMissing(question, state.draft, state.draftFiles));
+    return index >= 0 ? index : Math.max(questions.length - 1, 0);
+  }
+
+  function getHiddenOptionalQuestionCount(state) {
+    return ALL_QUESTIONS.filter((question) => !question.required && question.askInQuickFlow === false && isQuestionVisible(question, state.draft, true, false)).length;
+  }
+
+  function normalizeCurrentStep(state) {
+    const questions = getActiveQuestions(state);
+    state.currentStep = Math.max(0, Math.min(state.currentStep, questions.length));
+    return questions;
   }
 
   function getFieldHelpText(field) {
@@ -517,87 +585,129 @@
     `;
   }
 
-  function renderApp(root, state) {
-    const isReview = state.currentStep === SECTIONS.length;
-    const section = isReview ? null : SECTIONS[state.currentStep];
-    const currentMissing = section ? getRequiredMissingForSection(section, state.draft, state.draftFiles) : [];
+  function renderQuestionShell(state, question, questions) {
+    const progressValue = Math.max(4, Math.round(((state.currentStep + 1) / (questions.length + 1)) * 100));
+    const currentSection = SECTIONS[question.sectionIndex];
+    const currentMissing = isFieldMissing(question, state.draft, state.draftFiles);
+    const visibleSections = getVisibleSections(state);
+    const hiddenOptionalCount = getHiddenOptionalQuestionCount(state);
 
-    root.innerHTML = `
-      <div class="planning-shell">
-        <aside class="planning-sidebar">
-          <div class="planning-sidebar-head">
-            <span class="planning-eyebrow">Versorgungsplanung</span>
-            <h3>Ihr Fortschritt</h3>
-            <p>Alle Eingaben bleiben in diesem Browser gespeichert, bis der Vorgang abgeschlossen ist.</p>
+    return `
+      <div class="planning-app-frame">
+        <div class="planning-app-status">
+          <div>
+            <span class="planning-eyebrow">Frage ${state.currentStep + 1} von ${questions.length}</span>
+            <strong class="planning-app-title">${escapeHtml(question.sectionTitle)}</strong>
           </div>
-          <ol class="planning-step-list">
-            ${SECTIONS.map((item, index) => {
-              const complete = getRequiredMissingForSection(item, state.draft, state.draftFiles).length === 0;
-              const active = index === state.currentStep;
-              return `
-                <li>
-                  <button type="button" class="planning-step${active ? ' is-active' : ''}${complete ? ' is-complete' : ''}" data-goto-step="${index}">
-                    <span class="planning-step-index">${index + 1}</span>
-                    <span>
-                      <strong>${escapeHtml(item.title)}</strong>
-                      <small>${escapeHtml(item.intro)}</small>
-                    </span>
-                  </button>
-                </li>
-              `;
-            }).join('')}
-            <li>
-              <button type="button" class="planning-step${isReview ? ' is-active' : ''}${getAllMissingRequired(state).length === 0 ? ' is-complete' : ''}" data-goto-step="${SECTIONS.length}">
-                <span class="planning-step-index"><i class="fa-solid fa-check"></i></span>
-                <span>
-                  <strong>Abschluss & Zahlung</strong>
-                  <small>Vollständigkeit prüfen und dann bezahlen.</small>
-                </span>
-              </button>
-            </li>
-          </ol>
-        </aside>
-        <div class="planning-main-card">
-          <div class="planning-main-head">
-            <div>
-              <span class="planning-eyebrow">Schritt ${isReview ? 'Final' : state.currentStep + 1}</span>
-              <h2>${escapeHtml(isReview ? 'Abschluss und Zahlungsfreigabe' : section.title)}</h2>
-              <p>${escapeHtml(isReview ? 'Hier sehen Sie die wichtigsten Angaben noch einmal gesammelt. Wenn alles vollständig ist, können Sie direkt zum Checkout gehen.' : section.intro)}</p>
-            </div>
-            <div class="planning-progress-meter">
-              <strong>${Math.round(((state.currentStep + 1) / (SECTIONS.length + 1)) * 100)}%</strong>
-              <span>Fortschritt</span>
-            </div>
+          <div class="planning-app-actions-top">
+            ${hiddenOptionalCount && !state.includeOptionalDetails ? `<button class="planning-mini-action" type="button" data-action="enable-details"><i class="fa-solid fa-sliders"></i> ${hiddenOptionalCount} Detailfragen einblenden</button>` : ''}
+            <span class="planning-save-indicator"><i class="fa-solid fa-cloud-arrow-up"></i> Automatisch gespeichert</span>
           </div>
-          ${!isReview && currentMissing.length ? `<div class="planning-inline-warning"><i class="fa-solid fa-circle-exclamation"></i> In diesem Schritt fehlen noch ${currentMissing.length} Pflichtangaben.</div>` : ''}
-          <div class="planning-stage-body">
-            ${isReview ? renderReview(state) : `<div class="planning-form-grid">${section.fields.map((field) => renderField(field, state.draft, state.draftFiles)).join('')}</div>`}
+        </div>
+        <div class="planning-progress-bar" aria-hidden="true">
+          <span class="planning-progress-bar-fill" style="width:${progressValue}%"></span>
+        </div>
+        <div class="planning-section-strip" aria-hidden="true">
+          ${visibleSections.map(({ section, index }, visibleIndex) => {
+            const isActive = index === question.sectionIndex;
+            const isComplete = index < question.sectionIndex || getRequiredMissingForSection(section, state.draft, state.draftFiles).length === 0;
+            return `<span class="planning-section-pill${isActive ? ' is-active' : ''}${isComplete ? ' is-complete' : ''}">${visibleIndex + 1}. ${escapeHtml(section.title)}</span>`;
+          }).join('')}
+        </div>
+      </div>
+      <div class="planning-main-card planning-question-card">
+        <div class="planning-main-head planning-main-head--stack">
+          <div>
+            <span class="planning-question-count">Abschnitt ${question.visibleSectionPosition} von ${question.visibleSectionCount} · Frage ${question.sectionQuestionPosition} von ${question.sectionQuestionCount}</span>
+            <h2>${escapeHtml(question.label)}</h2>
+            <p>${escapeHtml(currentSection.intro)}</p>
           </div>
-          <div class="planning-footer-actions">
-            <button class="btn ghost" type="button" data-action="prev" ${state.currentStep === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-left"></i> Zurück</button>
-            ${isReview
-              ? '<button class="btn ghost" type="button" data-action="goto-form"><i class="fa-solid fa-pen-to-square"></i> Angaben weiter bearbeiten</button>'
-              : `<button class="btn primary" type="button" data-action="next">${state.currentStep === SECTIONS.length - 1 ? 'Zur Prüfung' : 'Weiter'}</button>`}
+          <div class="planning-progress-meter planning-progress-meter--compact">
+            <strong>${progressValue}%</strong>
+            <span>Fortschritt</span>
+          </div>
+        </div>
+        ${currentMissing && state.showValidation ? '<div class="planning-inline-warning"><i class="fa-solid fa-circle-exclamation"></i> Bitte beantworten Sie diese Pflichtfrage, bevor Sie weitergehen.</div>' : ''}
+        <div class="planning-stage-body planning-stage-body--single">
+          ${renderField(question, state.draft, state.draftFiles)}
+        </div>
+        <div class="planning-footer-actions">
+          <button class="btn ghost" type="button" data-action="prev" ${state.currentStep === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+          <span class="planning-footer-note">${question.required ? 'Pflichtfrage' : 'Optional, Sie können sie überspringen.'}</span>
+          <div class="planning-footer-buttons">
+            ${!question.required ? '<button class="btn ghost" type="button" data-action="skip">Überspringen</button>' : ''}
+            <button class="btn primary" type="button" data-action="next">${state.currentStep === questions.length - 1 ? 'Zur Übersicht' : 'Weiter'}</button>
           </div>
         </div>
       </div>
     `;
   }
 
-  function collectSectionValues(root, section, draft) {
+  function renderApp(root, state) {
+    const questions = normalizeCurrentStep(state);
+    const isReview = state.currentStep === questions.length;
+    const question = isReview ? null : questions[state.currentStep];
+    const reviewProgress = 100;
+    const hiddenOptionalCount = getHiddenOptionalQuestionCount(state);
+
+    root.innerHTML = `
+      <div class="planning-shell">
+        ${isReview
+          ? `
+            <div class="planning-app-frame planning-app-frame--review">
+              <div class="planning-app-status">
+                <div>
+                  <span class="planning-eyebrow">Abschluss</span>
+                  <strong class="planning-app-title">Vollständigkeit prüfen und abschließen</strong>
+                </div>
+                <span class="planning-save-indicator"><i class="fa-solid fa-check"></i> Eingaben gesichert</span>
+              </div>
+              <div class="planning-progress-bar" aria-hidden="true">
+                <span class="planning-progress-bar-fill" style="width:${reviewProgress}%"></span>
+              </div>
+            </div>
+            <div class="planning-main-card">
+              <div class="planning-main-head planning-main-head--stack">
+                <div>
+                  <span class="planning-eyebrow">Letzter Schritt</span>
+                  <h2>Abschluss und Zahlungsfreigabe</h2>
+                  <p>Hier sehen Sie die wichtigsten Angaben gesammelt. Wenn alles vollständig ist, können Sie direkt zur Zahlung gehen.</p>
+                </div>
+                <div class="planning-progress-meter planning-progress-meter--compact">
+                  <strong>${reviewProgress}%</strong>
+                  <span>Fortschritt</span>
+                </div>
+              </div>
+              ${hiddenOptionalCount && !state.includeOptionalDetails ? `<div class="planning-inline-note"><i class="fa-solid fa-lightbulb"></i> Der Schnellmodus hat ${hiddenOptionalCount} optionale Detailfragen ausgelassen. Sie können sie bei Bedarf noch ergänzen.</div>` : ''}
+              <div class="planning-stage-body">
+                ${renderReview(state)}
+              </div>
+              <div class="planning-footer-actions">
+                <button class="btn ghost" type="button" data-action="prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+                <div class="planning-footer-buttons">
+                  ${hiddenOptionalCount && !state.includeOptionalDetails ? '<button class="btn ghost" type="button" data-action="enable-details"><i class="fa-solid fa-sliders"></i> Optionale Details ergänzen</button>' : ''}
+                  <button class="btn ghost" type="button" data-action="goto-form"><i class="fa-solid fa-pen-to-square"></i> Fehlende Angaben öffnen</button>
+                </div>
+              </div>
+            </div>
+          `
+          : renderQuestionShell(state, question, questions)}
+      </div>
+    `;
+  }
+
+  function collectFieldValue(root, field, draft) {
     const nextDraft = { ...draft };
-    section.fields.forEach((field) => {
-      if (field.type === 'file') return;
-      if (field.type === 'checkbox') {
-        nextDraft[field.id] = Array.from(root.querySelectorAll(`input[name="${field.id}"]:checked`)).map((input) => input.value);
-        return;
-      }
-      if (field.type === 'radio') {
-        nextDraft[field.id] = root.querySelector(`input[name="${field.id}"]:checked`)?.value || '';
-        return;
-      }
-      nextDraft[field.id] = root.querySelector(`[name="${field.id}"]`)?.value?.trim() || '';
-    });
+    if (!field || field.type === 'file') return nextDraft;
+    if (field.type === 'checkbox') {
+      nextDraft[field.id] = Array.from(root.querySelectorAll(`input[name="${field.id}"]:checked`)).map((input) => input.value);
+      return nextDraft;
+    }
+    if (field.type === 'radio') {
+      nextDraft[field.id] = root.querySelector(`input[name="${field.id}"]:checked`)?.value || '';
+      return nextDraft;
+    }
+    nextDraft[field.id] = root.querySelector(`[name="${field.id}"]`)?.value?.trim() || '';
     return nextDraft;
   }
 
@@ -678,6 +788,9 @@
       currentStep: 0,
       draft: loadJson(DRAFT_STORAGE_KEY, {}),
       draftFiles: [],
+      showValidation: false,
+      includeOptionalDetails: false,
+      autoAdvanceTimer: null,
     };
 
     try {
@@ -686,41 +799,87 @@
       state.draftFiles = [];
     }
 
-    const rerender = () => renderApp(root, state);
+    const rerender = () => {
+      renderApp(root, state);
+      const preferredFocus = root.querySelector('textarea, select, input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="file"]');
+      preferredFocus?.focus({ preventScroll: true });
+    };
+
+    function clearAutoAdvance() {
+      if (state.autoAdvanceTimer) {
+        window.clearTimeout(state.autoAdvanceTimer);
+        state.autoAdvanceTimer = null;
+      }
+    }
+
+    function moveToNextQuestion() {
+      const questions = getActiveQuestions(state);
+      state.showValidation = false;
+      state.currentStep = Math.min(questions.length, state.currentStep + 1);
+      rerender();
+    }
+
+    function canAutoAdvance(question) {
+      return Boolean(question) && (question.type === 'radio' || question.type === 'select');
+    }
+
+    function scheduleAutoAdvance() {
+      clearAutoAdvance();
+      state.autoAdvanceTimer = window.setTimeout(() => {
+        state.autoAdvanceTimer = null;
+        const questions = getActiveQuestions(state);
+        const currentQuestion = questions[state.currentStep];
+        if (!currentQuestion || isFieldMissing(currentQuestion, state.draft, state.draftFiles)) {
+          return;
+        }
+        moveToNextQuestion();
+      }, 180);
+    }
+
     rerender();
 
     root.addEventListener('click', async (event) => {
-      const button = event.target.closest('[data-action], [data-goto-step]');
+      const button = event.target.closest('[data-action]');
       if (!button) return;
 
-      if (button.hasAttribute('data-goto-step')) {
-        if (state.currentStep < SECTIONS.length) {
-          state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
-          saveJson(DRAFT_STORAGE_KEY, state.draft);
-        }
-        state.currentStep = Number(button.getAttribute('data-goto-step'));
-        rerender();
-        return;
-      }
-
       const action = button.getAttribute('data-action');
-      if (state.currentStep < SECTIONS.length) {
-        state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
+      const questions = getActiveQuestions(state);
+      clearAutoAdvance();
+      if (state.currentStep < questions.length) {
+        state.draft = collectFieldValue(root, questions[state.currentStep], state.draft);
         saveJson(DRAFT_STORAGE_KEY, state.draft);
       }
 
       if (action === 'prev' && state.currentStep > 0) {
         state.currentStep -= 1;
+        state.showValidation = false;
         rerender();
       }
 
       if (action === 'next') {
-        state.currentStep = Math.min(SECTIONS.length, state.currentStep + 1);
-        rerender();
+        const currentQuestion = questions[state.currentStep];
+        if (currentQuestion && isFieldMissing(currentQuestion, state.draft, state.draftFiles)) {
+          state.showValidation = true;
+          rerender();
+          return;
+        }
+        moveToNextQuestion();
+      }
+
+      if (action === 'skip') {
+        moveToNextQuestion();
       }
 
       if (action === 'goto-form') {
-        state.currentStep = SECTIONS.length - 1;
+        state.currentStep = getFirstIncompleteQuestionIndex(state);
+        state.showValidation = false;
+        rerender();
+      }
+
+      if (action === 'enable-details') {
+        state.includeOptionalDetails = true;
+        state.currentStep = getFirstIncompleteQuestionIndex(state);
+        state.showValidation = false;
         rerender();
       }
 
@@ -736,19 +895,28 @@
         return;
       }
 
-      if (state.currentStep < SECTIONS.length) {
-        state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
+      const questions = getActiveQuestions(state);
+      if (state.currentStep < questions.length) {
+        state.draft = collectFieldValue(root, questions[state.currentStep], state.draft);
         saveJson(DRAFT_STORAGE_KEY, state.draft);
+        state.showValidation = false;
         if (target.matches('input[type="radio"], input[type="checkbox"], select')) {
           rerender();
+        }
+        const currentQuestion = getActiveQuestions(state)[state.currentStep];
+        if (canAutoAdvance(currentQuestion) && !isFieldMissing(currentQuestion, state.draft, state.draftFiles)) {
+          scheduleAutoAdvance();
         }
       }
     });
 
     root.addEventListener('input', () => {
-      if (state.currentStep < SECTIONS.length) {
-        state.draft = collectSectionValues(root, SECTIONS[state.currentStep], state.draft);
+      const questions = getActiveQuestions(state);
+      clearAutoAdvance();
+      if (state.currentStep < questions.length) {
+        state.draft = collectFieldValue(root, questions[state.currentStep], state.draft);
         saveJson(DRAFT_STORAGE_KEY, state.draft);
+        state.showValidation = false;
       }
     });
   }

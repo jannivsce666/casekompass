@@ -234,6 +234,51 @@
     revealEls.forEach((el) => el.classList.add('visible'));
   }
 
+  const initLeistungenPage = () => {
+    const leistungenPage = document.querySelector('.leistungen-page');
+    if (!leistungenPage) return;
+
+    const motionCards = Array.from(document.querySelectorAll('[data-motion-card]'));
+    motionCards.forEach((card, index) => {
+      card.style.setProperty('--reveal-order', index);
+      card.addEventListener('pointermove', (event) => {
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        const rect = card.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--pointer-x', `${x}%`);
+        card.style.setProperty('--pointer-y', `${y}%`);
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.removeProperty('--pointer-x');
+        card.style.removeProperty('--pointer-y');
+      });
+    });
+
+    const filterButtons = Array.from(document.querySelectorAll('[data-package-filter]'));
+    const packageCards = Array.from(document.querySelectorAll('[data-package-tags]'));
+
+    if (filterButtons.length && packageCards.length) {
+      const applyFilter = (filter) => {
+        filterButtons.forEach((button) => {
+          button.classList.toggle('is-active', button.dataset.packageFilter === filter);
+        });
+
+        packageCards.forEach((card) => {
+          const tags = (card.dataset.packageTags || '').split(/\s+/).filter(Boolean);
+          const matches = filter === 'all' || tags.includes(filter);
+          card.classList.toggle('is-filtered-out', !matches);
+        });
+      };
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => applyFilter(button.dataset.packageFilter || 'all'));
+      });
+    }
+  };
+
+  initLeistungenPage();
+
   // Contact form handling with Web3Forms (new flow)
   const form = document.getElementById('form') || document.getElementById('contactForm');
   const submitBtn = form ? form.querySelector('button[type="submit"]') : null;

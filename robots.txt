@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://ergotherapie-mobil.de/sitemap.xml
+Sitemap: https://casekompass.de/sitemap.xml
 
 # Crawl-Delay
 Crawl-delay: 1
