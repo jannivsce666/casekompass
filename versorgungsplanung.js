@@ -1055,8 +1055,8 @@
         root.classList.add('is-warning');
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-          <h2>Abschluss noch nicht bestaetigt</h2>
-          <p>Der aktuelle Status ist <strong>${escapeHtml(paymentStatus.status)}</strong>. Sobald der Vorgang bestaetigt ist, werden Ihre Angaben automatisch erfasst.</p>
+          <h2>Abschluss noch nicht bestätigt</h2>
+          <p>Der aktuelle Status ist <strong>${escapeHtml(paymentStatus.status)}</strong>. Sobald der Vorgang bestätigt ist, werden Ihre Angaben automatisch erfasst.</p>
           <div class="shop-status-actions">
             <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-rotate-right"></i> Zurück zum Formular</a>
             <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
@@ -1074,7 +1074,7 @@
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
           <h2>Daten bereits erfasst</h2>
-          <p>Ihre Angaben wurden bereits erfolgreich erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen fuer Sie erstellt.</p>
+          <p>Ihre Angaben wurden bereits erfolgreich erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen für Sie erstellt.</p>
           <div class="shop-status-actions">
             <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           </div>
@@ -1111,7 +1111,7 @@
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-paper-plane"></i></div>
         <h2>Daten erfolgreich erfasst</h2>
-        <p>Ihre Daten wurden erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen fuer Sie erstellt.</p>
+        <p>Ihre Daten wurden erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen für Sie erstellt.</p>
         <div class="shop-status-actions">
           <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
@@ -1122,7 +1122,7 @@
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
         <h2>Abschluss konnte nicht automatisch erfasst werden</h2>
-        <p>Der Vorgang wurde zwar geprueft, aber die Uebermittlung Ihrer Angaben ist gerade fehlgeschlagen. Bitte laden Sie die Seite erneut oder melden Sie sich direkt.</p>
+        <p>Der Vorgang wurde zwar geprüft, aber die Übermittlung Ihrer Angaben ist gerade fehlgeschlagen. Bitte laden Sie die Seite erneut oder melden Sie sich direkt.</p>
         <div class="shop-status-actions">
           <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
