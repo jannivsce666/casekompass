@@ -251,6 +251,66 @@
 
     const filterButtons = Array.from(document.querySelectorAll('[data-package-filter]'));
     const packageCards = Array.from(document.querySelectorAll('[data-package-tags]'));
+    const packageGrid = document.querySelector('[data-package-grid]');
+    const carouselControls = document.querySelector('[data-package-carousel-controls]');
+    const prevButton = document.querySelector('[data-package-prev]');
+    const nextButton = document.querySelector('[data-package-next]');
+    const dotsHost = document.querySelector('[data-package-dots]');
+
+    const getVisiblePackageCards = () => packageCards.filter((card) => !card.classList.contains('is-filtered-out'));
+
+    const isMobileCarousel = () => window.matchMedia('(max-width: 720px)').matches;
+
+    const getActivePackageIndex = () => {
+      if (!packageGrid) return 0;
+      const visibleCards = getVisiblePackageCards();
+      if (!visibleCards.length) return 0;
+
+      const gridRect = packageGrid.getBoundingClientRect();
+      let activeIndex = 0;
+      let closestOffset = Number.POSITIVE_INFINITY;
+
+      visibleCards.forEach((card, index) => {
+        const offset = Math.abs(card.getBoundingClientRect().left - gridRect.left);
+        if (offset < closestOffset) {
+          closestOffset = offset;
+          activeIndex = index;
+        }
+      });
+
+      return activeIndex;
+    };
+
+    const scrollToPackage = (index) => {
+      if (!packageGrid) return;
+      const visibleCards = getVisiblePackageCards();
+      const targetCard = visibleCards[index];
+      if (!targetCard) return;
+
+      packageGrid.scrollTo({
+        left: targetCard.offsetLeft - packageGrid.offsetLeft,
+        behavior: 'smooth',
+      });
+    };
+
+    const renderCarouselDots = () => {
+      if (!dotsHost || !carouselControls) return;
+      const visibleCards = getVisiblePackageCards();
+      const activeIndex = getActivePackageIndex();
+
+      carouselControls.hidden = !isMobileCarousel() || visibleCards.length <= 1;
+      dotsHost.innerHTML = visibleCards.map((_, index) => `
+        <button
+          class="package-carousel-dot${index === activeIndex ? ' is-active' : ''}"
+          type="button"
+          aria-label="Paket ${index + 1} anzeigen"
+          data-package-dot="${index}">
+        </button>
+      `).join('');
+
+      if (prevButton) prevButton.disabled = activeIndex <= 0;
+      if (nextButton) nextButton.disabled = activeIndex >= visibleCards.length - 1;
+    };
 
     if (filterButtons.length && packageCards.length) {
       const applyFilter = (filter) => {
@@ -263,11 +323,43 @@
           const matches = filter === 'all' || tags.includes(filter);
           card.classList.toggle('is-filtered-out', !matches);
         });
+
+        if (isMobileCarousel()) {
+          scrollToPackage(0);
+        }
+        renderCarouselDots();
       };
 
       filterButtons.forEach((button) => {
         button.addEventListener('click', () => applyFilter(button.dataset.packageFilter || 'all'));
       });
+    }
+
+    if (packageGrid && carouselControls && prevButton && nextButton && dotsHost) {
+      prevButton.addEventListener('click', () => {
+        const activeIndex = getActivePackageIndex();
+        scrollToPackage(Math.max(0, activeIndex - 1));
+      });
+
+      nextButton.addEventListener('click', () => {
+        const visibleCards = getVisiblePackageCards();
+        const activeIndex = getActivePackageIndex();
+        scrollToPackage(Math.min(visibleCards.length - 1, activeIndex + 1));
+      });
+
+      dotsHost.addEventListener('click', (event) => {
+        const dot = event.target.closest('[data-package-dot]');
+        if (!dot) return;
+        scrollToPackage(Number(dot.getAttribute('data-package-dot')) || 0);
+      });
+
+      packageGrid.addEventListener('scroll', () => {
+        if (!isMobileCarousel()) return;
+        window.requestAnimationFrame(renderCarouselDots);
+      }, { passive: true });
+
+      window.addEventListener('resize', renderCarouselDots);
+      renderCarouselDots();
     }
   };
 

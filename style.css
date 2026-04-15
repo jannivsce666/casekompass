@@ -1229,6 +1229,52 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   transform: translateY(-1px);
 }
 
+.package-carousel-controls {
+  display: none;
+}
+
+.package-carousel-button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(76,161,163,0.18);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  color: var(--primary-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(45,106,108,0.08);
+}
+
+.package-carousel-button[disabled] {
+  opacity: 0.42;
+  cursor: default;
+  box-shadow: none;
+}
+
+.package-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.package-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(76,161,163,0.22);
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, width .2s ease;
+}
+
+.package-carousel-dot.is-active {
+  width: 28px;
+  background: var(--primary);
+}
+
 .package-card {
   position: relative;
   overflow: hidden;
@@ -2852,11 +2898,12 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
 
   .quick-packages {
     grid-auto-flow: column;
-    grid-auto-columns: minmax(84vw, 1fr);
+    grid-auto-columns: 100%;
     grid-template-columns: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 4px 2px 10px;
+    padding: 4px 0 10px;
+    gap: 12px;
     scrollbar-width: none;
   }
 
@@ -2864,19 +2911,46 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
     display: none;
   }
 
+  .package-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
   .package-card {
     scroll-snap-align: start;
+    width: 100%;
+    min-width: 0;
+    padding: 16px 14px 14px;
   }
 
   .shop-grid {
     overflow-x: auto;
     scroll-snap-type: x proximity;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    grid-template-columns: none;
+    gap: 12px;
   }
 
   .shop-card {
-    min-width: min(100%, 92vw);
+    min-width: 100%;
+    width: 100%;
     grid-template-columns: 1fr;
     scroll-snap-align: start;
+    padding: 18px;
+  }
+
+  .shop-card-visual {
+    min-height: 220px;
+  }
+
+  .shop-card-body,
+  .shop-card-footer,
+  .shop-actions {
+    min-width: 0;
   }
 }
 
