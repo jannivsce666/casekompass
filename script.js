@@ -55,10 +55,6 @@
 
   // Mobile Navigation Toggle
   if (navToggle && siteNav) {
-    console.log('Navigation elements found, setting up mobile menu');
-    console.log('Nav toggle element:', navToggle);
-    console.log('Site nav element:', siteNav);
-    
     // nav toggle click is handled by the consolidated handler further below
     
     // Close menu when clicking nav links
@@ -77,8 +73,6 @@
         navToggle.setAttribute('aria-expanded', 'false');
       }
     });
-  } else {
-    console.log('Navigation elements not found:', {navToggle, siteNav});
   }
 
   // Header scroll effect

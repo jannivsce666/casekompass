@@ -568,18 +568,18 @@
       </div>
       <div class="planning-validation-card${missingFields.length ? ' is-warning' : ' is-ready'}">
         <div>
-          <h3>Abschluss vor der Zahlung</h3>
-          <p>${missingFields.length ? 'Es fehlen noch einige Pflichtangaben. Ergänzen Sie diese bitte vor dem Checkout.' : 'Alle Pflichtangaben sind vorhanden. Sie können jetzt in den Test-Checkout gehen.'}</p>
+          <h3>Letzter Check vor dem Abschluss</h3>
+          <p>${missingFields.length ? 'Es fehlen noch einige Pflichtangaben. Ergänzen Sie diese bitte vor dem Abschluss.' : 'Alle Pflichtangaben sind vorhanden. Sie können den Vorgang jetzt abschließen.'}</p>
         </div>
         ${missingFields.length ? `<div class="planning-validation-list"><strong>Fehlt noch:</strong><ul>${missingFields.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
       </div>
       <div class="planning-payment-box">
         <div>
-          <span class="planning-payment-price">0 €</span>
-          <p>Die Zahlung startet, sobald alle Pflichtangaben ausgefüllt sind. Die freie Schilderung wird erst nach dem Abschluss mit KI aufbereitet.</p>
+          <span class="planning-payment-price">Bereit zum Abschluss</span>
+          <p>Mit dem Abschluss werden Ihre Angaben final erfasst und übersichtlich an Sie übermittelt.</p>
         </div>
         <div class="planning-payment-actions">
-          <button class="btn primary" type="button" data-action="checkout" ${missingFields.length ? 'disabled' : ''}>Zur Zahlung mit Mollie</button>
+          <button class="btn primary" type="button" data-action="checkout" ${missingFields.length ? 'disabled' : ''}>Jetzt abschließen</button>
         </div>
       </div>
     `;
@@ -648,7 +648,6 @@
     const isReview = state.currentStep === questions.length;
     const question = isReview ? null : questions[state.currentStep];
     const reviewProgress = 100;
-    const hiddenOptionalCount = getHiddenOptionalQuestionCount(state);
 
     root.innerHTML = `
       <div class="planning-shell">
@@ -670,22 +669,20 @@
               <div class="planning-main-head planning-main-head--stack">
                 <div>
                   <span class="planning-eyebrow">Letzter Schritt</span>
-                  <h2>Abschluss und Zahlungsfreigabe</h2>
-                  <p>Hier sehen Sie die wichtigsten Angaben gesammelt. Wenn alles vollständig ist, können Sie direkt zur Zahlung gehen.</p>
+                  <h2>Angaben prüfen und abschließen</h2>
+                  <p>Hier sehen Sie die wichtigsten Angaben gesammelt. Wenn alles passt, können Sie den Vorgang jetzt abschließen.</p>
                 </div>
                 <div class="planning-progress-meter planning-progress-meter--compact">
                   <strong>${reviewProgress}%</strong>
                   <span>Fortschritt</span>
                 </div>
               </div>
-              ${hiddenOptionalCount && !state.includeOptionalDetails ? `<div class="planning-inline-note"><i class="fa-solid fa-lightbulb"></i> Der Schnellmodus hat ${hiddenOptionalCount} optionale Detailfragen ausgelassen. Sie können sie bei Bedarf noch ergänzen.</div>` : ''}
               <div class="planning-stage-body">
                 ${renderReview(state)}
               </div>
               <div class="planning-footer-actions">
                 <button class="btn ghost" type="button" data-action="prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
                 <div class="planning-footer-buttons">
-                  ${hiddenOptionalCount && !state.includeOptionalDetails ? '<button class="btn ghost" type="button" data-action="enable-details"><i class="fa-solid fa-sliders"></i> Optionale Details ergänzen</button>' : ''}
                   <button class="btn ghost" type="button" data-action="goto-form"><i class="fa-solid fa-pen-to-square"></i> Fehlende Angaben öffnen</button>
                 </div>
               </div>
@@ -745,7 +742,7 @@
     const checkoutButton = document.querySelector('[data-action="checkout"]');
     if (checkoutButton) {
       checkoutButton.disabled = true;
-      checkoutButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Weiterleitung';
+      checkoutButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Abschluss wird vorbereitet';
     }
 
     try {
@@ -775,10 +772,10 @@
 
       window.location.href = data.checkoutUrl;
     } catch (error) {
-      alert('Der Bezahlvorgang konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
+      alert('Der Abschluss konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
       if (checkoutButton) {
         checkoutButton.disabled = false;
-        checkoutButton.innerHTML = 'Zur Zahlung mit Mollie';
+        checkoutButton.innerHTML = 'Jetzt abschließen';
       }
     }
   }
@@ -921,28 +918,6 @@
     });
   }
 
-  function buildPdfSections(order) {
-    return SECTIONS.map((section) => {
-      const entries = section.fields
-        .filter((field) => field.type !== 'file')
-        .map((field) => ({
-          label: field.label,
-          value: formatValue(field, order.draft[field.id]),
-        }))
-        .filter((entry) => entry.value);
-
-      if (section.title === 'Dokumente') {
-        const fileEntries = (order.files || []).map((file) => ({
-          label: 'Hochgeladene Datei',
-          value: `${file.name} (${Math.round(file.size / 1024)} KB)`,
-        }));
-        return { title: section.title, entries: fileEntries };
-      }
-
-      return { title: section.title, entries };
-    }).filter((section) => section.entries.length > 0);
-  }
-
   async function processNarrativeText(order) {
     const response = await fetch('/api/planning/process-text', {
       method: 'POST',
@@ -972,101 +947,60 @@
     return data;
   }
 
-  function createPdfBlob(orderRef, order, paymentStatus) {
-    const jsPDF = window.jspdf?.jsPDF;
-    if (!jsPDF) {
-      throw new Error('PDF library not loaded');
-    }
-
-    const doc = new jsPDF({ unit: 'pt', format: 'a4' });
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const margin = 48;
-    let y = margin;
-
-    function addWrappedText(text, fontSize, isBold) {
-      doc.setFont('helvetica', isBold ? 'bold' : 'normal');
-      doc.setFontSize(fontSize);
-      const lines = doc.splitTextToSize(text, pageWidth - margin * 2);
-      if (y + lines.length * (fontSize + 4) > pageHeight - margin) {
-        doc.addPage();
-        y = margin;
-      }
-      doc.text(lines, margin, y);
-      y += lines.length * (fontSize + 4) + 8;
-    }
-
-    addWrappedText('Versorgungsplanung - Eingangsunterlagen', 20, true);
-    addWrappedText(`Bestellreferenz: ${orderRef}`, 11, false);
-    addWrappedText(`Zahlungsstatus: ${paymentStatus.status}`, 11, false);
-    addWrappedText(`Bezahlt am: ${new Date().toLocaleString('de-DE')}`, 11, false);
-
-    if (order.aiProcessing?.processedSummary) {
-      addWrappedText('KI-bearbeitete Situationsbeschreibung', 14, true);
-      addWrappedText(order.aiProcessing.processedSummary, 11, false);
-    }
-
-    if (order.aiProcessing?.actionFocus) {
-      addWrappedText('KI-bearbeiteter Wunschfokus', 14, true);
-      addWrappedText(order.aiProcessing.actionFocus, 11, false);
-    }
-
-    buildPdfSections(order).forEach((section) => {
-      addWrappedText(section.title, 15, true);
-      section.entries.forEach((entry) => {
-        addWrappedText(`${entry.label}: ${entry.value}`, 11, false);
-      });
-    });
-
-    return doc.output('blob');
-  }
-
   function buildEmailMessage(orderRef, order, paymentStatus) {
     const applicantName = `${order.draft.firstName || ''} ${order.draft.lastName || ''}`.trim();
+    const sectionLines = SECTIONS.map((section) => {
+      const entries = section.fields
+        .filter((field) => field.type !== 'file')
+        .map((field) => {
+          const value = formatValue(field, order.draft[field.id]);
+          return value ? `${field.label}: ${value}` : '';
+        })
+        .filter(Boolean);
+
+      if (section.title === 'Dokumente' && (order.files || []).length) {
+        entries.push(`Ausgewaehlte Dokumente: ${(order.files || []).map((file) => file.name).join(', ')}`);
+      }
+
+      return entries.length ? [`${section.title}:`, ...entries, ''] : [];
+    }).flat();
+
     const lines = [
-      'Neue bezahlte Versorgungsplanung',
+      'Neue abgeschlossene Versorgungsplanung',
       '',
-      `Bestellreferenz: ${orderRef}`,
+      `Vorgangsnummer: ${orderRef}`,
       `Name: ${applicantName}`,
       `E-Mail: ${order.draft.email || paymentStatus.customerEmail || ''}`,
       `Telefon: ${order.draft.phone || ''}`,
-      `Zahlungsstatus: ${paymentStatus.status}`,
+      `Status: ${paymentStatus.status}`,
       '',
-      `Freie Situationsbeschreibung: ${order.draft.situationNarrative || ''}`,
-      `Freier Wunsch: ${order.draft.wishNarrative || ''}`,
-      '',
-      `KI-bearbeitete Zusammenfassung: ${order.aiProcessing?.processedSummary || ''}`,
-      `KI-bearbeiteter Fokus: ${order.aiProcessing?.actionFocus || ''}`,
-      '',
-      'Kernaussagen:',
+      'Kurzzusammenfassung:',
       `Grund der Anfrage: ${order.draft.requestReason || ''}`,
       `Hauptproblem: ${order.draft.mainProblem || ''}`,
-      `Versorgungslücken: ${order.draft.currentGaps || ''}`,
+      `Versorgungsluecken: ${order.draft.currentGaps || ''}`,
       `Ziel der Familie: ${order.draft.familyGoal || ''}`,
       '',
-      `Hochgeladene Dokumente: ${(order.files || []).map((file) => file.name).join(', ') || 'keine zusätzlichen Dokumente'}`,
+      'KI-Strukturierung:',
+      `Zusammenfassung: ${order.aiProcessing?.processedSummary || ''}`,
+      `Fokus: ${order.aiProcessing?.actionFocus || ''}`,
+      '',
+      ...sectionLines,
     ];
 
     return lines.join('\n');
   }
 
-  async function sendOrderToWeb3Forms(orderRef, order, paymentStatus) {
-    const pdfBlob = createPdfBlob(orderRef, order, paymentStatus);
-    const formData = new FormData();
+  async function sendPlanningOrder(orderRef, order, paymentStatus) {
     const applicantName = `${order.draft.firstName || ''} ${order.draft.lastName || ''}`.trim() || paymentStatus.applicantName || 'Versorgungsplanung';
+    const formData = new FormData();
 
     formData.append('access_key', WEB3FORMS_ACCESS_KEY);
-    formData.append('subject', `Bezahlte Versorgungsplanung | ${applicantName} | ${orderRef}`);
+    formData.append('subject', `Abgeschlossene Versorgungsplanung | ${applicantName} | ${orderRef}`);
     formData.append('from_name', 'casekompass.de Versorgungsplanung');
     formData.append('name', applicantName);
     formData.append('email', order.draft.email || paymentStatus.customerEmail || 'casekompass@gmx.de');
     formData.append('message', buildEmailMessage(orderRef, order, paymentStatus));
     formData.append('botcheck', '');
-    formData.append('attachment', pdfBlob, `versorgungsplanung-${orderRef}.pdf`);
-
-    (order.files || []).slice(0, MAX_UPLOAD_COUNT).forEach((file, index) => {
-      formData.append(`attachment_${index + 1}`, file, file.name);
-    });
 
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -1121,8 +1055,8 @@
         root.classList.add('is-warning');
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-          <h2>Zahlung noch nicht abgeschlossen</h2>
-          <p>Der aktuelle Status ist <strong>${escapeHtml(paymentStatus.status)}</strong>. Sobald die Zahlung bestätigt ist, wird die PDF-Zusammenfassung automatisch verschickt.</p>
+          <h2>Abschluss noch nicht bestaetigt</h2>
+          <p>Der aktuelle Status ist <strong>${escapeHtml(paymentStatus.status)}</strong>. Sobald der Vorgang bestaetigt ist, werden Ihre Angaben automatisch erfasst.</p>
           <div class="shop-status-actions">
             <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-rotate-right"></i> Zurück zum Formular</a>
             <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
@@ -1139,8 +1073,8 @@
         root.classList.add('is-success');
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
-          <h2>Zahlung erfolgreich verarbeitet</h2>
-          <p>Die Versorgungsplanung wurde bereits an casekompass.de übermittelt. Sie müssen nichts weiter tun.</p>
+          <h2>Daten bereits erfasst</h2>
+          <p>Ihre Angaben wurden bereits erfolgreich erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen fuer Sie erstellt.</p>
           <div class="shop-status-actions">
             <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           </div>
@@ -1164,7 +1098,7 @@
 
       order.files = await getFilesForKey(paymentStatus.orderRef);
       order.aiProcessing = await processNarrativeText(order);
-      await sendOrderToWeb3Forms(paymentStatus.orderRef, order, paymentStatus);
+      await sendPlanningOrder(paymentStatus.orderRef, order, paymentStatus);
 
       dispatched[paymentStatus.orderRef] = {
         sentAt: new Date().toISOString(),
@@ -1176,8 +1110,8 @@
       root.classList.add('is-success');
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-paper-plane"></i></div>
-        <h2>Versorgungsplanung erfolgreich übermittelt</h2>
-        <p>Die Zahlung wurde bestätigt. Ihre PDF-Zusammenfassung und die ausgewählten Unterlagen wurden soeben an casekompass.de gesendet.</p>
+        <h2>Daten erfolgreich erfasst</h2>
+        <p>Ihre Daten wurden erfasst. Ihr individueller Versorgungsplan wird innerhalb von 1 bis 3 Werktagen fuer Sie erstellt.</p>
         <div class="shop-status-actions">
           <a class="btn ghost" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
@@ -1187,8 +1121,8 @@
       root.classList.add('is-warning');
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-        <h2>Abschluss konnte nicht automatisch gesendet werden</h2>
-        <p>Die Zahlung wurde zwar geprüft, aber der Versand an casekompass.de ist gerade fehlgeschlagen. Bitte versuchen Sie die Seite erneut oder melden Sie sich direkt.</p>
+        <h2>Abschluss konnte nicht automatisch erfasst werden</h2>
+        <p>Der Vorgang wurde zwar geprueft, aber die Uebermittlung Ihrer Angaben ist gerade fehlgeschlagen. Bitte laden Sie die Seite erneut oder melden Sie sich direkt.</p>
         <div class="shop-status-actions">
           <a class="btn primary" href="versorgungsplanung-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
