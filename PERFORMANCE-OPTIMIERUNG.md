@@ -18,18 +18,23 @@
 
 ### 2. Lazy Loading für weitere Bilder
 **Änderungen:**
-- Portrait `m.nebel.png`: `loading="lazy"` Attribut hinzugefügt
-- **Ersparnis**: ~566 KB gespart bei Below-the-Fold Content
+- Portrait `m.nebel.webp`: `loading="lazy"` und `decoding="async"` hinzugefuegt
+- **Ersparnis**: deutlich geringere Dateigroesse plus spaeteres Laden bei Below-the-Fold Content
 
 ### 3. Preload für kritische Ressourcen
 **Hinzugefügt:**
 ```html
 <link rel="preload" href="./style.css" as="style">
-<link rel="preload" href="./images/ergo2.webp" as="image">
 <link rel="preload" href="...fonts..." as="style">
 ```
-- **Effekt**: Schnellerer First Contentful Paint (FCP)
+- **Effekt**: Schnellerer First Contentful Paint (FCP) ohne ungenutztes Bild-Preload
 - **Verbesserung**: ~200-400ms schneller
+
+### 4. Nicht mehr verwendete Alt-Dateien entfernt
+**Änderungen:**
+- Hero-PNGs, alte Produkt-PNGs und weitere ungenutzte Bildoriginale wurden aus dem Repo entfernt
+- Die aktiven Seiten referenzieren nur noch die optimierten WebP-Dateien
+- **Effekt**: weniger Ballast im Projekt und keine Verwechslung mit alten Assets
 
 ## 📋 Nächste Schritte: Bildoptimierung
 
@@ -55,14 +60,8 @@ cd /Users/jannivsce666/Desktop/Mareike-Seite
 ### Option B: Manuell mit Online-Tools
 
 1. **Gehe zu https://squoosh.app**
-2. **Lade diese Bilder hoch:**
-   - logo.png (1.4 MB)
-   - m.nebel.png (566 KB)
-   - mobil.png (1.2 MB)
-   - ergo2.webp (2.4 MB)
-   - ergo3.jpg (248 KB)
-   - ergo5.webp (142 KB)
-   - ergo6.jpg (164 KB)
+2. **Lade neue oder große Quelldateien hoch:**
+   - zum Beispiel neue Hero-Bilder, Portraits oder Produktgrafiken vor dem Einbau
 
 3. **Einstellungen pro Bild:**
    - Format: WebP

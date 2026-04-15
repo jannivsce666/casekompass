@@ -1,16 +1,18 @@
 # Bildoptimierung für Ergotherapie Mobil
 
-## Aktueller Zustand
+## Stand 2026-04-15
 ```
-logo.png          1.4 MB  ❌ ZU GROSS
-m.nebel.png       566 KB  ❌ ZU GROSS
-mobil.png         1.2 MB  ❌ ZU GROSS
-ergo2.webp        2.4 MB  ❌ ZU GROSS
-ergo3.jpg         248 KB  ⚠️ OPTIMIERBAR
-ergo5.webp        142 KB  ⚠️ OPTIMIERBAR
-ergo6.jpg         164 KB  ⚠️ OPTIMIERBAR
-ergo4.jpg          29 KB  ✅ OK
+logo.png          ~37 KB  ✅ optimiert
+1.webp            ~68 KB  ✅ aktiv
+2.webp            ~60 KB  ✅ aktiv
+3.webp            ~65 KB  ✅ aktiv
+4.webp            ~54 KB  ✅ aktiv
+m.nebel.webp      ~40 KB  ✅ aktiv
+Produktbilder     ~19-26 KB je Datei  ✅ aktiv
 ```
+
+- Ungenutzte alte PNG- und JPG-Originale wurden aus dem Repo entfernt.
+- Die Website verwendet fuer Hero, Portrait und Produktkarten jetzt die kleineren WebP-Dateien.
 
 ## Zielgrößen
 - **Hero-Bilder**: Max 150-200 KB (WebP)
@@ -97,15 +99,13 @@ done
 ## Empfohlene Größen nach Optimierung
 
 ```
-logo.webp          ~40 KB  (Original: 1.4 MB)
-logo.png           ~80 KB  (Fallback für alte Browser)
-m.nebel.webp       ~80 KB  (Original: 566 KB)
-mobil.webp         ~100 KB (Original: 1.2 MB)
-ergo2.webp         ~150 KB (Original: 2.4 MB)
-ergo3.webp         ~100 KB (Original: 248 KB)
-ergo4.webp         ~25 KB  (Original: 29 KB)
-ergo5.webp         ~80 KB  (Original: 142 KB)
-ergo6.webp         ~90 KB  (Original: 164 KB)
+logo.png           ~40 KB  (aktiver Fallback)
+hero-1.webp        ~70 KB  (Startseiten-Hintergrund)
+hero-2.webp        ~60 KB  (Startseiten-Hintergrund)
+hero-3.webp        ~65 KB  (Startseiten-Hintergrund)
+hero-4.webp        ~55 KB  (Startseiten-Hintergrund)
+m.nebel.webp       ~40 KB  (Portrait)
+produktbilder.webp ~20-30 KB je Datei
 ```
 
 **Gesamt-Ersparnis: ca. 4.3 MB → 0.7 MB (85% kleiner!)**
@@ -113,9 +113,9 @@ ergo6.webp         ~90 KB  (Original: 164 KB)
 ## Nach der Optimierung
 
 1. Alte Bilder sichern: `mkdir images_backup && cp images/* images_backup/`
-2. Optimierte Bilder in `images/` Ordner kopieren
-3. HTML-Code wird automatisch aktualisiert (siehe nächster Schritt)
-4. Testen: Seite neu laden und Bilder prüfen
+2. Neue oder ersetzte Quelldateien mit `./optimize-images.sh` nach WebP umwandeln
+3. Referenzen in HTML/CSS/JS auf die optimierten Dateien umstellen
+4. Testen: Seite neu laden und Bilder pruefen
 
 ## Notiz
-Die HTML-Dateien werden automatisch aktualisiert, um `<picture>` Tags mit WebP + Fallback zu verwenden.
+Die vorhandenen Seiten wurden bereits manuell auf kleinere WebP-Dateien umgestellt.
