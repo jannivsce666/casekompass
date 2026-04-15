@@ -41,7 +41,6 @@
 
   <!-- Preload Critical Resources -->
   <link rel="preload" href="./style.css" as="style">
-  <link rel="preload" href="./images/ergo2.webp" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style">
 
   <!-- Google Fonts -->
@@ -450,10 +449,10 @@
 
   <main id="start" class="hero" aria-label="Einstiegsbereich">
     <div class="hero-gallery">
-      <div class="hero-gallery-item active" style="background-image: url('./images/1.png')"></div>
-      <div class="hero-gallery-item" data-bg="./images/2.png"></div>
-      <div class="hero-gallery-item" data-bg="./images/3.png"></div>
-      <div class="hero-gallery-item" data-bg="./images/4.png"></div>
+      <div class="hero-gallery-item active" style="background-image: url('./images/1.webp')"></div>
+      <div class="hero-gallery-item" data-bg="./images/2.webp"></div>
+      <div class="hero-gallery-item" data-bg="./images/3.webp"></div>
+      <div class="hero-gallery-item" data-bg="./images/4.webp"></div>
     </div>
     <div class="container hero-content" data-aos="fade-up">
 
@@ -623,7 +622,7 @@
         .hero-title .letter:nth-child(18) { animation-delay: 1.65s; }
       </style>
       <div class="logo-bubble">
-        <img class="hero-logo" src="./images/logo.png" alt="casekompass.de Logo">
+        <img class="hero-logo" src="./images/logo.png" alt="casekompass.de Logo" width="360" height="360" fetchpriority="high" decoding="async">
       </div>
       <h1>
         <span class="hero-title">
@@ -675,7 +674,7 @@
       <div class="container">
         <div class="about-grid">
           <div class="about-image" data-aos="zoom-in">
-            <img src="./images/m.nebel.png" alt="Mareike Nebel - Ergotherapeutin" loading="lazy" />
+            <img src="./images/m.nebel.webp" alt="Mareike Nebel - Ergotherapeutin" loading="lazy" decoding="async" width="720" height="720" />
           </div>
           <div class="about-text" data-aos="fade-left">
             <h2><i class="fa-solid fa-user-heart"></i> Struktur im Pflegealltag - klar begleitet</h2>
