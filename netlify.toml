@@ -28,6 +28,16 @@
   status = 200
 
 [[redirects]]
+  from = "/api/pflegegrad/create-checkout"
+  to = "/.netlify/functions/pflegegrad-create-checkout"
+  status = 200
+
+[[redirects]]
+  from = "/api/pflegegrad/payment-status"
+  to = "/.netlify/functions/pflegegrad-payment-status"
+  status = 200
+
+[[redirects]]
   from = "/api/shop/create-checkout"
   to = "/.netlify/functions/shop-create-checkout"
   status = 200

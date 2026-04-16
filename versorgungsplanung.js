@@ -5,10 +5,6 @@
   const DRAFT_STORAGE_KEY = 'casekompass-planning-draft-v1';
   const ORDER_STORAGE_KEY = 'casekompass-planning-orders-v1';
   const DISPATCHED_STORAGE_KEY = 'casekompass-planning-dispatched-v1';
-  const DB_NAME = 'casekompass-planning-db';
-  const FILE_STORE = 'files';
-  const MAX_UPLOAD_COUNT = 6;
-  const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
   const DEFAULT_FIELD_HELP = 'Tragen Sie hier die Angabe so ein, wie sie aktuell für die betroffene Person am besten passt.';
 
   function textField(id, label, options) {
@@ -211,19 +207,6 @@
         textareaField('wishNarrative', 'Was wünscht sich die betroffene Person oder Familie konkret?', { required: true, wide: true, rows: 5, placeholder: 'Was soll sich verbessern, was wäre eine gute Lösung und was wäre kurzfristig schon hilfreich?' }),
       ],
     },
-    {
-      title: 'Dokumente',
-      intro: 'Hier können Sie relevante Unterlagen direkt hinzufügen. Diese werden nach erfolgreicher Zahlung mitgesendet.',
-      fields: [
-        {
-          id: 'supportingDocuments',
-          label: 'Dokumente hochladen',
-          type: 'file',
-          wide: true,
-          help: 'Empfohlen: Pflegegradbescheid, MD-Gutachten, Arztberichte, Entlassungsberichte, Medikamentenplan, Hilfsmittelübersicht, relevante Anträge oder Ablehnungen, Vollmacht oder Betreuerausweis.',
-        },
-      ],
-    },
   ];
 
   const FIELD_MAP = new Map();
@@ -261,7 +244,6 @@
     familyGoal: 'Was wäre aus Sicht der Familie oder der betroffenen Person ein wirklich gutes Ergebnis?',
     situationNarrative: 'Hier darf frei geschrieben werden. Genau dieser Text wird später mit KI verständlich zusammengefasst.',
     wishNarrative: 'Beschreiben Sie hier das gewünschte Zielbild möglichst konkret und alltagsnah.',
-    supportingDocuments: 'Laden Sie nur Unterlagen hoch, die für die aktuelle Versorgung oder die Antragslage wirklich relevant sind.',
   };
 
   function escapeHtml(value) {
@@ -284,68 +266,6 @@
 
   function saveJson(key, value) {
     window.localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  function openDb() {
-    return new Promise((resolve, reject) => {
-      const request = window.indexedDB.open(DB_NAME, 1);
-      request.onupgradeneeded = () => {
-        const db = request.result;
-        if (!db.objectStoreNames.contains(FILE_STORE)) {
-          const store = db.createObjectStore(FILE_STORE, { keyPath: 'id' });
-          store.createIndex('byOrderRef', 'orderRef', { unique: false });
-        }
-      };
-      request.onsuccess = () => resolve(request.result);
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function getFilesForKey(orderRef) {
-    const db = await openDb();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(FILE_STORE, 'readonly');
-      const store = tx.objectStore(FILE_STORE).index('byOrderRef');
-      const request = store.getAll(orderRef);
-      request.onsuccess = () => {
-        const records = Array.isArray(request.result) ? request.result : [];
-        resolve(records.map((item) => item.file).filter(Boolean));
-      };
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  async function clearFilesForKey(orderRef) {
-    const db = await openDb();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(FILE_STORE, 'readwrite');
-      const index = tx.objectStore(FILE_STORE).index('byOrderRef');
-      const request = index.getAll(orderRef);
-      request.onsuccess = () => {
-        const store = tx.objectStore(FILE_STORE);
-        request.result.forEach((record) => store.delete(record.id));
-      };
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error);
-    });
-  }
-
-  async function saveFilesForKey(orderRef, files) {
-    await clearFilesForKey(orderRef);
-    const db = await openDb();
-    return new Promise((resolve, reject) => {
-      const tx = db.transaction(FILE_STORE, 'readwrite');
-      const store = tx.objectStore(FILE_STORE);
-      files.forEach((file, index) => {
-        store.put({
-          id: `${orderRef}-${index}-${file.name}`,
-          orderRef,
-          file,
-        });
-      });
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error);
-    });
   }
 
   function getOrders() {
@@ -375,15 +295,14 @@
     return String(value || '').trim();
   }
 
-  function isFieldMissing(field, draft, files) {
+  function isFieldMissing(field, draft) {
     if (!field.required) return false;
-    if (field.type === 'file') return files.length === 0;
     const value = draft[field.id];
     return Array.isArray(value) ? value.length === 0 : !String(value || '').trim();
   }
 
-  function getRequiredMissingForSection(section, draft, files) {
-    return section.fields.filter((field) => isQuestionVisible(field, draft, false, true) && isFieldMissing(field, draft, files));
+  function getRequiredMissingForSection(section, draft) {
+    return section.fields.filter((field) => isQuestionVisible(field, draft, false, true) && isFieldMissing(field, draft));
   }
 
   function isQuestionVisible(question, draft, includeOptionalDetails, ignoreQuickFlow) {
@@ -428,7 +347,7 @@
 
   function getFirstIncompleteQuestionIndex(state) {
     const questions = getActiveQuestions(state);
-    const index = questions.findIndex((question) => isFieldMissing(question, state.draft, state.draftFiles));
+    const index = questions.findIndex((question) => isFieldMissing(question, state.draft));
     return index >= 0 ? index : Math.max(questions.length - 1, 0);
   }
 
@@ -459,7 +378,7 @@
     `;
   }
 
-  function renderField(field, draft, files) {
+  function renderField(field, draft) {
     const value = draft[field.id];
     const fieldClass = field.wide ? 'planning-field planning-field-wide' : 'planning-field';
 
@@ -517,21 +436,6 @@
       `;
     }
 
-    if (field.type === 'file') {
-      return `
-        <div class="${fieldClass}">
-          ${renderFieldLabel(field, field.id)}
-          <div class="planning-upload-box">
-            <input id="${escapeHtml(field.id)}" type="file" name="${escapeHtml(field.id)}" data-planning-files multiple accept="application/pdf,image/*,.doc,.docx">
-            <p>${escapeHtml(field.help || '')}</p>
-            <ul class="planning-file-list">
-              ${files.length ? files.map((file) => `<li>${escapeHtml(file.name)} <span>${Math.round(file.size / 1024)} KB</span></li>`).join('') : '<li>Noch keine Dokumente ausgewählt</li>'}
-            </ul>
-          </div>
-        </div>
-      `;
-    }
-
     const inputType = field.type || 'text';
     return `
       <div class="${fieldClass}">
@@ -542,7 +446,7 @@
   }
 
   function getAllMissingRequired(state) {
-    return SECTIONS.flatMap((section) => getRequiredMissingForSection(section, state.draft, state.draftFiles).map((field) => field.label));
+    return SECTIONS.flatMap((section) => getRequiredMissingForSection(section, state.draft).map((field) => field.label));
   }
 
   function renderReview(state) {
@@ -588,7 +492,7 @@
   function renderQuestionShell(state, question, questions) {
     const progressValue = Math.max(4, Math.round(((state.currentStep + 1) / (questions.length + 1)) * 100));
     const currentSection = SECTIONS[question.sectionIndex];
-    const currentMissing = isFieldMissing(question, state.draft, state.draftFiles);
+    const currentMissing = isFieldMissing(question, state.draft);
     const visibleSections = getVisibleSections(state);
     const hiddenOptionalCount = getHiddenOptionalQuestionCount(state);
 
@@ -610,7 +514,7 @@
         <div class="planning-section-strip" aria-hidden="true">
           ${visibleSections.map(({ section, index }, visibleIndex) => {
             const isActive = index === question.sectionIndex;
-            const isComplete = index < question.sectionIndex || getRequiredMissingForSection(section, state.draft, state.draftFiles).length === 0;
+            const isComplete = index < question.sectionIndex || getRequiredMissingForSection(section, state.draft).length === 0;
             return `<span class="planning-section-pill${isActive ? ' is-active' : ''}${isComplete ? ' is-complete' : ''}">${visibleIndex + 1}. ${escapeHtml(section.title)}</span>`;
           }).join('')}
         </div>
@@ -629,7 +533,7 @@
         </div>
         ${currentMissing && state.showValidation ? '<div class="planning-inline-warning"><i class="fa-solid fa-circle-exclamation"></i> Bitte beantworten Sie diese Pflichtfrage, bevor Sie weitergehen.</div>' : ''}
         <div class="planning-stage-body planning-stage-body--single">
-          ${renderField(question, state.draft, state.draftFiles)}
+          ${renderField(question, state.draft)}
         </div>
         <div class="planning-footer-actions">
           <button class="btn ghost" type="button" data-action="prev" ${state.currentStep === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-left"></i> Zurück</button>
@@ -695,7 +599,7 @@
 
   function collectFieldValue(root, field, draft) {
     const nextDraft = { ...draft };
-    if (!field || field.type === 'file') return nextDraft;
+    if (!field) return nextDraft;
     if (field.type === 'checkbox') {
       nextDraft[field.id] = Array.from(root.querySelectorAll(`input[name="${field.id}"]:checked`)).map((input) => input.value);
       return nextDraft;
@@ -706,25 +610,6 @@
     }
     nextDraft[field.id] = root.querySelector(`[name="${field.id}"]`)?.value?.trim() || '';
     return nextDraft;
-  }
-
-  async function handleFileSelection(input, state, rerender) {
-    const incomingFiles = Array.from(input.files || []);
-    if (incomingFiles.length > MAX_UPLOAD_COUNT) {
-      alert(`Bitte maximal ${MAX_UPLOAD_COUNT} Dateien hochladen.`);
-      input.value = '';
-      return;
-    }
-
-    if (incomingFiles.some((file) => file.size > MAX_UPLOAD_SIZE)) {
-      alert('Bitte nur Dateien bis maximal 5 MB pro Dokument hochladen.');
-      input.value = '';
-      return;
-    }
-
-    state.draftFiles = incomingFiles;
-    await saveFilesForKey('draft', incomingFiles);
-    rerender();
   }
 
   async function startCheckout(state) {
@@ -768,7 +653,6 @@
         draft: state.draft,
       };
       saveOrders(orders);
-      await saveFilesForKey(data.orderRef, state.draftFiles);
 
       window.location.href = data.checkoutUrl;
     } catch (error) {
@@ -784,21 +668,14 @@
     const state = {
       currentStep: 0,
       draft: loadJson(DRAFT_STORAGE_KEY, {}),
-      draftFiles: [],
       showValidation: false,
       includeOptionalDetails: false,
       autoAdvanceTimer: null,
     };
 
-    try {
-      state.draftFiles = await getFilesForKey('draft');
-    } catch {
-      state.draftFiles = [];
-    }
-
     const rerender = () => {
       renderApp(root, state);
-      const preferredFocus = root.querySelector('textarea, select, input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="file"]');
+      const preferredFocus = root.querySelector('textarea, select, input[type="text"], input[type="email"], input[type="tel"], input[type="date"]');
       preferredFocus?.focus({ preventScroll: true });
     };
 
@@ -826,7 +703,7 @@
         state.autoAdvanceTimer = null;
         const questions = getActiveQuestions(state);
         const currentQuestion = questions[state.currentStep];
-        if (!currentQuestion || isFieldMissing(currentQuestion, state.draft, state.draftFiles)) {
+        if (!currentQuestion || isFieldMissing(currentQuestion, state.draft)) {
           return;
         }
         moveToNextQuestion();
@@ -887,11 +764,6 @@
 
     root.addEventListener('change', async (event) => {
       const target = event.target;
-      if (target.matches('[data-planning-files]')) {
-        await handleFileSelection(target, state, rerender);
-        return;
-      }
-
       const questions = getActiveQuestions(state);
       if (state.currentStep < questions.length) {
         state.draft = collectFieldValue(root, questions[state.currentStep], state.draft);
@@ -901,7 +773,7 @@
           rerender();
         }
         const currentQuestion = getActiveQuestions(state)[state.currentStep];
-        if (canAutoAdvance(currentQuestion) && !isFieldMissing(currentQuestion, state.draft, state.draftFiles)) {
+        if (canAutoAdvance(currentQuestion) && !isFieldMissing(currentQuestion, state.draft)) {
           scheduleAutoAdvance();
         }
       }
@@ -951,16 +823,11 @@
     const applicantName = `${order.draft.firstName || ''} ${order.draft.lastName || ''}`.trim();
     const sectionLines = SECTIONS.map((section) => {
       const entries = section.fields
-        .filter((field) => field.type !== 'file')
         .map((field) => {
           const value = formatValue(field, order.draft[field.id]);
           return value ? `${field.label}: ${value}` : '';
         })
         .filter(Boolean);
-
-      if (section.title === 'Dokumente' && (order.files || []).length) {
-        entries.push(`Ausgewaehlte Dokumente: ${(order.files || []).map((file) => file.name).join(', ')}`);
-      }
 
       return entries.length ? [`${section.title}:`, ...entries, ''] : [];
     }).flat();
@@ -1096,7 +963,6 @@
         return;
       }
 
-      order.files = await getFilesForKey(paymentStatus.orderRef);
       order.aiProcessing = await processNarrativeText(order);
       await sendPlanningOrder(paymentStatus.orderRef, order, paymentStatus);
 
@@ -1105,7 +971,6 @@
       };
       saveDispatchedOrders(dispatched);
       saveJson(DRAFT_STORAGE_KEY, {});
-      await clearFilesForKey('draft');
 
       root.classList.add('is-success');
       root.innerHTML = `
