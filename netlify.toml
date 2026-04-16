@@ -2,9 +2,6 @@
   publish = "."
   functions = "netlify/functions"
 
-[functions]
-  included_files = ["downloads/pflegegrad-beantragen-einfach-vorbereitet.pdf"]
-
 [[redirects]]
   from = "/api/contact"
   to = "/.netlify/functions/contact"
@@ -52,6 +49,6 @@
 
 [[redirects]]
   from = "/downloads/pflegegrad-beantragen-einfach-vorbereitet.pdf"
-  to = "/shop-ratgeber.html"
+  to = "/pflegegrad-ratgeber-einfach-vorbereitet.html"
   status = 302
   force = true

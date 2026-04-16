@@ -10,14 +10,7 @@ function response(statusCode, body, headers = {}) {
   };
 }
 
-const PRODUCTS = {
-  'pflegegrad-ratgeber-pdf': {
-    id: 'pflegegrad-ratgeber-pdf',
-    filePath: 'downloads/pflegegrad-beantragen-einfach-vorbereitet.pdf',
-    fileName: 'pflegegrad-beantragen-einfach-vorbereitet.pdf',
-    contentType: 'application/pdf',
-  },
-};
+const DISCONTINUED_MESSAGE = 'Dieses Download-Produkt wird nicht mehr angeboten. Bitte nutzen Sie stattdessen das Pflegegrad-Startpaket fuer 199 Euro.';
 
 function resolveFilePath(relativePath) {
   const candidates = [
@@ -75,40 +68,8 @@ exports.handler = async (event) => {
     return response(403, 'Ungültiger oder abgelaufener Download-Link');
   }
 
-  const paymentId = String(verification.payload?.paymentId || '').trim();
-  const productId = String(verification.payload?.productId || '').trim();
-  const product = PRODUCTS[productId] || null;
-
-  if (!paymentId || !product) {
-    return response(403, 'Download-Link ist unvollständig');
-  }
-
-  const paymentStatus = await getPaymentStatus(paymentId);
-  if (!paymentStatus.isPaid || paymentStatus.productId !== productId) {
-    return response(403, 'Download nicht freigegeben');
-  }
-
-  const filePath = resolveFilePath(product.filePath);
-  if (!filePath) {
-    return response(404, 'Datei nicht gefunden');
-  }
-
-  if (event.httpMethod === 'HEAD') {
-    return response(200, '', {
-      'Content-Type': product.contentType,
-      'Cache-Control': 'private, no-store',
-    });
-  }
-
-  const buffer = fs.readFileSync(filePath);
-  return {
-    statusCode: 200,
-    isBase64Encoded: true,
-    headers: {
-      'Content-Type': product.contentType,
-      'Content-Disposition': `attachment; filename="${product.fileName}"`,
-      'Cache-Control': 'private, no-store',
-    },
-    body: buffer.toString('base64'),
-  };
+  return response(410, DISCONTINUED_MESSAGE, {
+    'Content-Type': 'text/plain; charset=utf-8',
+    'Cache-Control': 'private, no-store',
+  });
 };
