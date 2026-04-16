@@ -107,7 +107,7 @@ exports.handler = async (event) => {
         currency: 'EUR',
         value: '199.00',
       },
-      description: `Pflegegrad-Startpaket fuer ${applicantName}`,
+      description: `Pflegegrad-Startpaket für ${applicantName}`,
       locale: 'de_DE',
       redirectUrl: `${baseUrl}/pflegegrad-startpaket-abschluss.html?token=${encodeURIComponent(returnToken)}`,
       metadata: {

@@ -5,7 +5,7 @@
   const DRAFT_STORAGE_KEY = 'casekompass-pflegegrad-draft-v1';
   const ORDER_STORAGE_KEY = 'casekompass-pflegegrad-orders-v1';
   const DISPATCHED_STORAGE_KEY = 'casekompass-pflegegrad-dispatched-v1';
-  const DEFAULT_FIELD_HELP = 'Tragen Sie hier die Angabe so ein, wie sie fuer die aktuelle Pflegesituation am besten passt.';
+  const DEFAULT_FIELD_HELP = 'Tragen Sie hier die Angabe so ein, wie sie für die aktuelle Pflegesituation am besten passt.';
   const PACKAGE_PRICE_LABEL = '199 Euro';
 
   function textField(id, label, options) {
@@ -39,7 +39,7 @@
       fields: [
         textField('requesterFirstName', 'Vorname der anfragenden Person', { required: true }),
         textField('requesterLastName', 'Nachname der anfragenden Person', { required: true }),
-        selectField('relationshipToPerson', 'Verhaeltnis zur betroffenen Person', ['Betroffene Person selbst', 'Tochter oder Sohn', 'Partner oder Partnerin', 'Enkelkind', 'Bevollmaechtigte Person', 'Gesetzliche Betreuung', 'Andere Bezugsperson'], { required: true, wide: true }),
+        selectField('relationshipToPerson', 'Verhältnis zur betroffenen Person', ['Betroffene Person selbst', 'Tochter oder Sohn', 'Partner oder Partnerin', 'Enkelkind', 'Bevollmächtigte Person', 'Gesetzliche Betreuung', 'Andere Bezugsperson'], { required: true, wide: true }),
         { id: 'requesterPhone', label: 'Telefonnummer', type: 'tel', required: true, placeholder: '0152...' },
         { id: 'requesterEmail', label: 'E-Mail-Adresse', type: 'email', required: true, placeholder: 'name@beispiel.de' },
       ],
@@ -52,7 +52,7 @@
         textField('personLastName', 'Nachname der betroffenen Person', { required: true }),
         textField('personAge', 'Alter der betroffenen Person', { required: true, placeholder: 'z. B. 78 Jahre' }),
         textField('personCity', 'Wohnort', { required: true, wide: true }),
-        selectField('livingArrangement', 'Wie lebt die Person aktuell?', ['Allein', 'Mit Angehoerigen', 'Mit Partner oder Partnerin', 'Betreutes Wohnen', 'Pflegeeinrichtung', 'Andere Wohnform'], { required: true, wide: true }),
+        selectField('livingArrangement', 'Wie lebt die Person aktuell?', ['Allein', 'Mit Angehörigen', 'Mit Partner oder Partnerin', 'Betreutes Wohnen', 'Pflegeeinrichtung', 'Andere Wohnform'], { required: true, wide: true }),
       ],
     },
     {
@@ -61,7 +61,7 @@
       fields: [
         yesNoField('hasCareLevel', 'Besteht bereits ein Pflegegrad?'),
         textField('careLevelValue', 'Wenn ja, welcher Pflegegrad?', { required: true, showWhen: (draft) => draft.hasCareLevel === 'Ja' }),
-        radioField('careRequestType', 'Handelt es sich um einen Erstantrag oder um eine Hoeherstufung?', ['Erstantrag', 'Hoeherstufung']),
+        radioField('careRequestType', 'Handelt es sich um einen Erstantrag oder um eine Höherstufung?', ['Erstantrag', 'Höherstufung']),
         yesNoField('applicationAlreadySubmitted', 'Wurde bereits ein Antrag gestellt?'),
         yesNoField('assessmentAppointmentSet', 'Gibt es schon einen Termin zur Begutachtung?'),
         textareaField('assessmentAppointmentDetails', 'Wenn ja, was ist zum Termin bereits bekannt?', { rows: 3, wide: true, showWhen: (draft) => draft.assessmentAppointmentSet === 'Ja' }),
@@ -69,23 +69,23 @@
       ],
     },
     {
-      title: 'Unterstuetzungsbedarf im Alltag',
-      intro: 'Welche Unterstuetzung wird aktuell benoetigt und wo zeigt sich der Hilfebedarf im Alltag am deutlichsten?',
+      title: 'Unterstützungsbedarf im Alltag',
+      intro: 'Welche Unterstützung wird aktuell benötigt und wo zeigt sich der Hilfebedarf im Alltag am deutlichsten?',
       fields: [
-        checkboxField('supportNeeds', 'Wobei braucht die Person aktuell Unterstuetzung?', ['Koerperpflege', 'Anziehen', 'Essen und Trinken', 'Toilettengang', 'Mobilitaet', 'Medikamente', 'Haushalt', 'Organisation des Alltags'], { required: true, wide: true }),
-        textareaField('difficultActivities', 'Welche Taetigkeiten fallen besonders schwer?', { required: true, wide: true, placeholder: 'Zum Beispiel Aufstehen, Treppen, Duschen, Anziehen oder Organisation im Alltag.' }),
-        textareaField('basicCareProblems', 'Gibt es Probleme mit Koerperpflege, Anziehen, Essen, Toilettengang oder Mobilitaet?', { required: true, wide: true, placeholder: 'Bitte kurz beschreiben, was ohne Hilfe nicht oder nur schwer moeglich ist.' }),
-        yesNoField('cognitiveOrPsychologicalIssues', 'Gibt es Gedaechtnisprobleme, Orientierungsschwierigkeiten oder psychische Belastungen?'),
-        textareaField('cognitiveOrPsychologicalDetails', 'Wenn ja, welche Auffaelligkeiten fallen besonders auf?', { rows: 4, wide: true, showWhen: (draft) => draft.cognitiveOrPsychologicalIssues === 'Ja' }),
-        yesNoField('nightSupportNeeded', 'Besteht naechtlicher Hilfebedarf?'),
-        textareaField('currentDailySupport', 'Wer unterstuetzt aktuell im Alltag?', { required: true, wide: true, placeholder: 'Zum Beispiel Angehoerige, Nachbarn, Pflegedienst oder noch niemand regelmaessig.' }),
+        checkboxField('supportNeeds', 'Wobei braucht die Person aktuell Unterstützung?', ['Körperpflege', 'Anziehen', 'Essen und Trinken', 'Toilettengang', 'Mobilität', 'Medikamente', 'Haushalt', 'Organisation des Alltags'], { required: true, wide: true }),
+        textareaField('difficultActivities', 'Welche Tätigkeiten fallen besonders schwer?', { required: true, wide: true, placeholder: 'Zum Beispiel Aufstehen, Treppen, Duschen, Anziehen oder Organisation im Alltag.' }),
+        textareaField('basicCareProblems', 'Gibt es Probleme mit Körperpflege, Anziehen, Essen, Toilettengang oder Mobilität?', { required: true, wide: true, placeholder: 'Bitte kurz beschreiben, was ohne Hilfe nicht oder nur schwer möglich ist.' }),
+        yesNoField('cognitiveOrPsychologicalIssues', 'Gibt es Gedächtnisprobleme, Orientierungsschwierigkeiten oder psychische Belastungen?'),
+        textareaField('cognitiveOrPsychologicalDetails', 'Wenn ja, welche Auffälligkeiten fallen besonders auf?', { rows: 4, wide: true, showWhen: (draft) => draft.cognitiveOrPsychologicalIssues === 'Ja' }),
+        yesNoField('nightSupportNeeded', 'Besteht nächtlicher Hilfebedarf?'),
+        textareaField('currentDailySupport', 'Wer unterstützt aktuell im Alltag?', { required: true, wide: true, placeholder: 'Zum Beispiel Angehörige, Nachbarn, Pflegedienst oder noch niemand regelmäßig.' }),
       ],
     },
     {
       title: 'Gesundheitliche Situation',
-      intro: 'Die gesundheitliche Lage ist wichtig, damit das Pflegegrad-Startpaket die tatsaechliche Belastung im Alltag richtig abbildet.',
+      intro: 'Die gesundheitliche Lage ist wichtig, damit das Pflegegrad-Startpaket die tatsächliche Belastung im Alltag richtig abbildet.',
       fields: [
-        textareaField('diagnosesAndLimitations', 'Welche wichtigen Diagnosen oder gesundheitlichen Einschraenkungen bestehen?', { required: true, wide: true, rows: 5, placeholder: 'Zum Beispiel Schlaganfall, Demenz, Parkinson, starke Schmerzen, Erschoepfung oder Unsicherheit beim Gehen.' }),
+        textareaField('diagnosesAndLimitations', 'Welche wichtigen Diagnosen oder gesundheitlichen Einschränkungen bestehen?', { required: true, wide: true, rows: 5, placeholder: 'Zum Beispiel Schlaganfall, Demenz, Parkinson, starke Schmerzen, Erschöpfung oder Unsicherheit beim Gehen.' }),
         checkboxField('availableAids', 'Gibt es Hilfsmittel wie Rollator, Rollstuhl oder Pflegebett?', ['Rollator', 'Rollstuhl', 'Pflegebett', 'Gehstock', 'Duschstuhl', 'Hausnotruf', 'Keine Hilfsmittel', 'Andere Hilfsmittel'], { required: true, wide: true }),
         yesNoField('recentDeclineOrHospital', 'Gab es in letzter Zeit eine deutliche Verschlechterung oder einen Krankenhausaufenthalt?'),
         textareaField('recentDeclineOrHospitalDetails', 'Wenn ja, was ist passiert und welche Folgen hat das aktuell?', { rows: 4, wide: true, showWhen: (draft) => draft.recentDeclineOrHospital === 'Ja' }),
@@ -95,28 +95,28 @@
       title: 'Ziel des Pakets',
       intro: 'Zum Schluss geht es um Ihr Zielbild, offene Fragen und darum, worauf ich im Paket besonders achten soll.',
       fields: [
-        textareaField('desiredSupport', 'Wobei wuenschen Sie sich konkret Unterstuetzung?', { required: true, wide: true, rows: 5, placeholder: 'Zum Beispiel Antrag gemeinsam vorbereiten, Unterlagen sortieren oder Begutachtung besser verstehen.' }),
-        textareaField('specialConsiderations', 'Was soll ich fuer Ihr Pflegegrad-Startpaket besonders beruecksichtigen?', { required: true, wide: true, rows: 4, placeholder: 'Zum Beispiel Zeitdruck, schwierige Familiensituation, bereits laufender Termin oder besondere Belastungen.' }),
+        textareaField('desiredSupport', 'Wobei wünschen Sie sich konkret Unterstützung?', { required: true, wide: true, rows: 5, placeholder: 'Zum Beispiel Antrag gemeinsam vorbereiten, Unterlagen sortieren oder Begutachtung besser verstehen.' }),
+        textareaField('specialConsiderations', 'Was soll ich für Ihr Pflegegrad-Startpaket besonders berücksichtigen?', { required: true, wide: true, rows: 4, placeholder: 'Zum Beispiel Zeitdruck, schwierige Familiensituation, bereits laufender Termin oder besondere Belastungen.' }),
         textareaField('currentQuestions', 'Welche Fragen oder Unsicherheiten haben Sie aktuell?', { required: true, wide: true, rows: 5, placeholder: 'Welche Punkte sind gerade unklar oder machen Ihnen am meisten Sorgen?' }),
       ],
     },
   ];
 
   const FIELD_HELP_TEXTS = {
-    relationshipToPerson: 'Damit spaeter klar ist, aus welcher Perspektive die Angaben gemacht werden.',
-    requesterPhone: 'Bitte eine Nummer angeben, unter der Rueckfragen zum Pflegegrad-Fall gut moeglich sind.',
-    requesterEmail: 'An diese Adresse geht die Bestellbestaetigung und die weitere Rueckmeldekommunikation.',
-    personAge: 'Eine ungefaehre Angabe reicht. Es geht nicht um das genaue Geburtsdatum.',
-    careRequestType: 'Bitte waehlen Sie den Fall, der aktuell am ehesten passt.',
+    relationshipToPerson: 'Damit später klar ist, aus welcher Perspektive die Angaben gemacht werden.',
+    requesterPhone: 'Bitte eine Nummer angeben, unter der Rückfragen zum Pflegegrad-Fall gut möglich sind.',
+    requesterEmail: 'An diese Adresse geht die Bestellbestätigung und die weitere Rückmeldekommunikation.',
+    personAge: 'Eine ungefähre Angabe reicht. Es geht nicht um das genaue Geburtsdatum.',
+    careRequestType: 'Bitte wählen Sie den Fall, der aktuell am ehesten passt.',
     assessmentAppointmentDetails: 'Zum Beispiel Datum, Hausbesuch, offene Fragen oder bereits bekannte Hinweise.',
-    supportNeeds: 'Mehrfachauswahl ist moeglich.',
-    difficultActivities: 'Beschreiben Sie moeglichst konkrete Situationen statt nur allgemeine Begriffe wie Pflege oder Hilfe.',
+    supportNeeds: 'Mehrfachauswahl ist möglich.',
+    difficultActivities: 'Beschreiben Sie möglichst konkrete Situationen statt nur allgemeine Begriffe wie Pflege oder Hilfe.',
     basicCareProblems: 'Entscheidend ist, was im Alltag praktisch nicht mehr allein klappt.',
-    currentDailySupport: 'Hier reicht eine kurze Uebersicht, wer aktuell wie ungefaehr eingebunden ist.',
-    availableAids: 'Waehlen Sie alles aus, was aktuell schon vorhanden oder genutzt wird.',
-    diagnosesAndLimitations: 'Es geht nicht um medizinische Vollstaendigkeit, sondern um die Themen, die den Alltag wirklich praegen.',
-    desiredSupport: 'Beschreiben Sie moeglichst konkret, wobei Sie im Paket Hilfe erwarten.',
-    specialConsiderations: 'Hier koennen Sie alles ergaenzen, was im Ablauf besonders beachtet werden sollte.',
+    currentDailySupport: 'Hier reicht eine kurze Übersicht, wer aktuell wie ungefähr eingebunden ist.',
+    availableAids: 'Wählen Sie alles aus, was aktuell schon vorhanden oder genutzt wird.',
+    diagnosesAndLimitations: 'Es geht nicht um medizinische Vollständigkeit, sondern um die Themen, die den Alltag wirklich prägen.',
+    desiredSupport: 'Beschreiben Sie möglichst konkret, wobei Sie im Paket Hilfe erwarten.',
+    specialConsiderations: 'Hier können Sie alles ergänzen, was im Ablauf besonders beachtet werden sollte.',
     currentQuestions: 'Je konkreter Ihre Fragen sind, desto gezielter kann ich das Paket vorbereiten.',
   };
 
@@ -136,11 +136,11 @@
 
   function validateCheckoutDraft(draft) {
     if (!isValidEmail(draft.requesterEmail)) {
-      return 'Bitte geben Sie eine gueltige E-Mail-Adresse an.';
+      return 'Bitte geben Sie eine gültige E-Mail-Adresse an.';
     }
 
     if (!isLikelyPhoneNumber(draft.requesterPhone)) {
-      return 'Bitte geben Sie eine Telefonnummer an, unter der Rueckfragen moeglich sind.';
+      return 'Bitte geben Sie eine Telefonnummer an, unter der Rückfragen möglich sind.';
     }
 
     if (!isLikelyAge(draft.personAge)) {
@@ -324,7 +324,7 @@
         <div class="${fieldClass}">
           ${renderFieldLabel(field, field.id)}
           <select id="${escapeHtml(field.id)}" name="${escapeHtml(field.id)}">
-            <option value="">Bitte auswaehlen</option>
+            <option value="">Bitte auswählen</option>
             ${field.options.map((option) => `<option value="${escapeHtml(option)}" ${value === option ? 'selected' : ''}>${escapeHtml(option)}</option>`).join('')}
           </select>
         </div>
@@ -360,7 +360,7 @@
       ['Kontaktdaten', `${draft.requesterFirstName || ''} ${draft.requesterLastName || ''}`.trim(), draft.relationshipToPerson || '', draft.requesterPhone || '', draft.requesterEmail || ''],
       ['Betroffene Person', `${draft.personFirstName || ''} ${draft.personLastName || ''}`.trim(), draft.personAge || '', draft.personCity || '', draft.livingArrangement || ''],
       ['Pflegesituation', draft.hasCareLevel || '', draft.careLevelValue || '', draft.careRequestType || '', draft.applicationAlreadySubmitted || '', draft.assessmentAppointmentSet || '', draft.insuranceProvider || ''],
-      ['Unterstuetzungsbedarf', formatValue(null, draft.supportNeeds), draft.difficultActivities || '', draft.basicCareProblems || '', draft.currentDailySupport || ''],
+      ['Unterstützungsbedarf', formatValue(null, draft.supportNeeds), draft.difficultActivities || '', draft.basicCareProblems || '', draft.currentDailySupport || ''],
       ['Gesundheit & Ziel', draft.diagnosesAndLimitations || '', formatValue(null, draft.availableAids), draft.desiredSupport || '', draft.currentQuestions || ''],
     ];
 
@@ -378,14 +378,14 @@
       <div class="planning-validation-card${missingFields.length ? ' is-warning' : ' is-ready'}">
         <div>
           <h3>Letzter Check vor der Zahlung</h3>
-          <p>${missingFields.length ? 'Es fehlen noch einige Pflichtangaben. Bitte ergaenzen Sie diese vor dem Abschluss.' : 'Alle Pflichtangaben sind vorhanden. Sie koennen den Vorgang jetzt kostenpflichtig abschliessen.'}</p>
+          <p>${missingFields.length ? 'Es fehlen noch einige Pflichtangaben. Bitte ergänzen Sie diese vor dem Abschluss.' : 'Alle Pflichtangaben sind vorhanden. Sie können den Vorgang jetzt kostenpflichtig abschließen.'}</p>
         </div>
         ${missingFields.length ? `<div class="planning-validation-list"><strong>Fehlt noch:</strong><ul>${missingFields.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></div>` : ''}
       </div>
       <div class="planning-payment-box">
         <div>
           <span class="planning-payment-price">${PACKAGE_PRICE_LABEL}</span>
-          <p>Nach erfolgreicher Mollie-Zahlung werden Ihre Angaben automatisch per Web3Forms an meine E-Mail uebermittelt. Sie muessen danach nichts separat absenden.</p>
+          <p>Nach erfolgreicher Mollie-Zahlung werden Ihre Angaben automatisch per Web3Forms an meine E-Mail übermittelt. Sie müssen danach nichts separat absenden.</p>
         </div>
         <div class="planning-payment-actions">
           <button class="btn primary" type="button" data-action="checkout" ${missingFields.length ? 'disabled' : ''}>Jetzt kostenpflichtig abschliessen</button>
@@ -439,11 +439,11 @@
           ${renderField(question, state.draft)}
         </div>
         <div class="planning-footer-actions">
-          <button class="btn ghost" type="button" data-action="prev" ${state.currentStep === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-left"></i> Zurueck</button>
-          <span class="planning-footer-note">${question.required ? 'Pflichtfrage' : 'Optional, Sie koennen sie ueberspringen.'}</span>
+          <button class="btn ghost" type="button" data-action="prev" ${state.currentStep === 0 ? 'disabled' : ''}><i class="fa-solid fa-arrow-left"></i> Zurück</button>
+          <span class="planning-footer-note">${question.required ? 'Pflichtfrage' : 'Optional, Sie können sie überspringen.'}</span>
           <div class="planning-footer-buttons">
-            ${!question.required ? '<button class="btn ghost" type="button" data-action="skip">Ueberspringen</button>' : ''}
-            <button class="btn primary" type="button" data-action="next">${state.currentStep === questions.length - 1 ? 'Zur Uebersicht' : 'Weiter'}</button>
+            ${!question.required ? '<button class="btn ghost" type="button" data-action="skip">Überspringen</button>' : ''}
+            <button class="btn primary" type="button" data-action="next">${state.currentStep === questions.length - 1 ? 'Zur Übersicht' : 'Weiter'}</button>
           </div>
         </div>
       </div>
@@ -464,7 +464,7 @@
               <div class="planning-app-status">
                 <div>
                   <span class="planning-eyebrow">Abschluss</span>
-                  <strong class="planning-app-title">Angaben pruefen und Zahlung starten</strong>
+                  <strong class="planning-app-title">Angaben prüfen und Zahlung starten</strong>
                 </div>
                 <span class="planning-save-indicator"><i class="fa-solid fa-check"></i> Eingaben gesichert</span>
               </div>
@@ -476,8 +476,8 @@
               <div class="planning-main-head planning-main-head--stack">
                 <div>
                   <span class="planning-eyebrow">Letzter Schritt</span>
-                  <h2>Angaben pruefen und zahlen</h2>
-                  <p>Hier sehen Sie die wichtigsten Angaben gesammelt. Wenn alles passt, koennen Sie jetzt die Mollie-Zahlung starten.</p>
+                  <h2>Angaben prüfen und zahlen</h2>
+                  <p>Hier sehen Sie die wichtigsten Angaben gesammelt. Wenn alles passt, können Sie jetzt die Mollie-Zahlung starten.</p>
                 </div>
                 <div class="planning-progress-meter planning-progress-meter--compact">
                   <strong>${reviewProgress}%</strong>
@@ -488,9 +488,9 @@
                 ${renderReview(state)}
               </div>
               <div class="planning-footer-actions">
-                <button class="btn ghost" type="button" data-action="prev"><i class="fa-solid fa-arrow-left"></i> Zurueck</button>
+                <button class="btn ghost" type="button" data-action="prev"><i class="fa-solid fa-arrow-left"></i> Zurück</button>
                 <div class="planning-footer-buttons">
-                  <button class="btn ghost" type="button" data-action="goto-form"><i class="fa-solid fa-pen-to-square"></i> Fehlende Angaben oeffnen</button>
+                  <button class="btn ghost" type="button" data-action="goto-form"><i class="fa-solid fa-pen-to-square"></i> Fehlende Angaben öffnen</button>
                 </div>
               </div>
             </div>
@@ -521,13 +521,13 @@
 
   async function startCheckout(state) {
     if (getAllMissingRequired(state).length > 0) {
-      alert('Bitte fuellen Sie zuerst alle Pflichtangaben aus.');
+      alert('Bitte füllen Sie zuerst alle Pflichtangaben aus.');
       return;
     }
 
     const applicantName = buildApplicantName(state.draft);
     if (!applicantName || !state.draft.requesterEmail) {
-      alert('Bitte ergaenzen Sie Vorname, Nachname und E-Mail-Adresse der anfragenden Person.');
+      alert('Bitte ergänzen Sie Vorname, Nachname und E-Mail-Adresse der anfragenden Person.');
       return;
     }
 
@@ -572,7 +572,7 @@
       alert('Die Zahlung konnte gerade nicht gestartet werden. Bitte versuchen Sie es erneut.');
       if (checkoutButton) {
         checkoutButton.disabled = false;
-        checkoutButton.innerHTML = 'Jetzt kostenpflichtig abschliessen';
+        checkoutButton.innerHTML = 'Jetzt kostenpflichtig abschließen';
       }
     }
   }
@@ -776,8 +776,8 @@
       root.classList.add('is-warning');
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-        <h2>Kein gueltiger Link</h2>
-        <p>Fuer diesen Vorgang fehlt der Token. Bitte starten Sie das Pflegegrad-Formular erneut.</p>
+        <h2>Kein gültiger Link</h2>
+        <p>Für diesen Vorgang fehlt der Token. Bitte starten Sie das Pflegegrad-Formular erneut.</p>
         <div class="shop-status-actions">
           <a class="btn primary" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
@@ -790,21 +790,21 @@
       const paymentStatus = await loadPflegegradPaymentStatus(token);
 
       if (!paymentStatus.isPaid) {
-        let title = 'Zahlung noch nicht bestaetigt';
-        let message = `Der aktuelle Status ist ${escapeHtml(paymentStatus.status)}. Sobald die Zahlung bestaetigt ist, werden Ihre Angaben automatisch erfasst.`;
+        let title = 'Zahlung noch nicht bestätigt';
+        let message = `Der aktuelle Status ist ${escapeHtml(paymentStatus.status)}. Sobald die Zahlung bestätigt ist, werden Ihre Angaben automatisch erfasst.`;
 
         if (paymentStatus.isPending) {
           title = 'Zahlung wird noch verarbeitet';
           message = 'Mollie verarbeitet die Zahlung noch. Bitte laden Sie die Seite in kurzer Zeit erneut.';
         } else if (paymentStatus.isCanceled) {
           title = 'Zahlung abgebrochen';
-          message = 'Die Zahlung wurde abgebrochen. Wenn Sie das Paket weiter buchen moechten, starten Sie den Vorgang bitte erneut.';
+          message = 'Die Zahlung wurde abgebrochen. Wenn Sie das Paket weiter buchen möchten, starten Sie den Vorgang bitte erneut.';
         } else if (paymentStatus.isFailed) {
           title = 'Zahlung fehlgeschlagen';
           message = 'Die Zahlung konnte nicht abgeschlossen werden. Bitte starten Sie den Vorgang erneut oder melden Sie sich direkt.';
         } else if (paymentStatus.isExpired) {
           title = 'Zahlung abgelaufen';
-          message = 'Der Zahlungslink ist abgelaufen. Bitte starten Sie das Formular erneut, falls Sie das Paket weiterhin buchen moechten.';
+          message = 'Der Zahlungslink ist abgelaufen. Bitte starten Sie das Formular erneut, falls Sie das Paket weiterhin buchen möchten.';
         }
 
         root.classList.add('is-warning');
@@ -813,7 +813,7 @@
           <h2>${title}</h2>
           <p>${message}</p>
           <div class="shop-status-actions">
-            <a class="btn primary" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-rotate-right"></i> Zurueck zum Formular</a>
+            <a class="btn primary" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-rotate-right"></i> Zurück zum Formular</a>
             <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
           </div>
         `;
@@ -828,10 +828,10 @@
         root.classList.add('is-success');
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-check"></i></div>
-          <h2>Angaben bereits uebermittelt</h2>
-          <p>Ihre Angaben wurden bereits erfolgreich an mich uebermittelt. Ich melde mich mit dem Pflegegrad-Startpaket schnellstmoeglich bei Ihnen.</p>
+          <h2>Angaben bereits übermittelt</h2>
+          <p>Ihre Angaben wurden bereits erfolgreich an mich übermittelt. Ich melde mich mit dem Pflegegrad-Startpaket schnellstmöglich bei Ihnen.</p>
           <div class="shop-status-actions">
-            <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zum Formular</a>
+            <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           </div>
         `;
         return;
@@ -842,10 +842,10 @@
         root.innerHTML = `
           <div class="shop-status-icon"><i class="fa-solid fa-circle-info"></i></div>
           <h2>Zahlung erkannt, Daten fehlen lokal</h2>
-          <p>Die Zahlung ist bestaetigt, aber die Formulardaten sind in diesem Browser nicht mehr vorhanden. Bitte melden Sie sich kurz, damit der Vorgang manuell abgeschlossen werden kann.</p>
+          <p>Die Zahlung ist bestätigt, aber die Formulardaten sind in diesem Browser nicht mehr vorhanden. Bitte melden Sie sich kurz, damit der Vorgang manuell abgeschlossen werden kann.</p>
           <div class="shop-status-actions">
             <a class="btn primary" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt aufnehmen</a>
-            <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurueck</a>
+            <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück</a>
           </div>
         `;
         return;
@@ -862,10 +862,10 @@
       root.classList.add('is-success');
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-paper-plane"></i></div>
-        <h2>Angaben erfolgreich uebermittelt</h2>
-        <p>Ihre Zahlung ist bestaetigt und Ihre Angaben wurden an mich uebermittelt. Ich melde mich fuer das Pflegegrad-Startpaket schnellstmoeglich bei Ihnen. Falls Sie innerhalb kurzer Zeit keine Rueckmeldung sehen, schreiben Sie mir bitte direkt.</p>
+        <h2>Angaben erfolgreich übermittelt</h2>
+        <p>Ihre Zahlung ist bestätigt und Ihre Angaben wurden an mich übermittelt. Ich melde mich für das Pflegegrad-Startpaket schnellstmöglich bei Ihnen. Falls Sie innerhalb kurzer Zeit keine Rückmeldung sehen, schreiben Sie mir bitte direkt.</p>
         <div class="shop-status-actions">
-          <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zum Formular</a>
+          <a class="btn ghost" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
@@ -873,10 +873,10 @@
       root.classList.add('is-warning');
       root.innerHTML = `
         <div class="shop-status-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
-        <h2>Abschluss konnte nicht automatisch uebermittelt werden</h2>
-        <p>Die Zahlung wurde geprueft, aber die Uebermittlung Ihrer Angaben ist gerade fehlgeschlagen. Bitte laden Sie die Seite erneut oder melden Sie sich direkt.</p>
+        <h2>Abschluss konnte nicht automatisch übermittelt werden</h2>
+        <p>Die Zahlung wurde geprüft, aber die Übermittlung Ihrer Angaben ist gerade fehlgeschlagen. Bitte laden Sie die Seite erneut oder melden Sie sich direkt.</p>
         <div class="shop-status-actions">
-          <a class="btn primary" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurueck zum Formular</a>
+          <a class="btn primary" href="pflegegrad-startpaket-starten.html"><i class="fa-solid fa-arrow-left"></i> Zurück zum Formular</a>
           <a class="btn ghost" href="kontakt.html"><i class="fa-regular fa-envelope"></i> Kontakt</a>
         </div>
       `;
