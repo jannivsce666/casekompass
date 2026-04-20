@@ -105,7 +105,7 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       amount: {
         currency: 'EUR',
-        value: '199.00',
+        value: '99.50',
       },
       description: `Pflegegrad-Startpaket für ${applicantName}`,
       locale: 'de_DE',

@@ -228,6 +228,46 @@
     revealEls.forEach((el) => el.classList.add('visible'));
   }
 
+  const initPromoCountdowns = () => {
+    const countdownNodes = document.querySelectorAll('[data-countdown-deadline]');
+    if (!countdownNodes.length) return;
+
+    const updateCountdown = () => {
+      countdownNodes.forEach((node) => {
+        const rawDeadline = node.getAttribute('data-countdown-deadline');
+        const deadline = rawDeadline ? new Date(rawDeadline) : null;
+        if (!deadline || Number.isNaN(deadline.getTime())) return;
+
+        const remainingMs = Math.max(0, deadline.getTime() - Date.now());
+        const totalMinutes = Math.floor(remainingMs / 60000);
+        const days = Math.floor(totalMinutes / (60 * 24));
+        const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+        const minutes = totalMinutes % 60;
+        const countdownText = node.querySelector('[data-countdown-text]');
+
+        const setText = (selector, value) => {
+          const target = node.querySelector(selector);
+          if (target) target.textContent = String(value).padStart(2, '0');
+        };
+
+        setText('[data-countdown-days]', days);
+        setText('[data-countdown-hours]', hours);
+        setText('[data-countdown-minutes]', minutes);
+
+        if (countdownText) {
+          countdownText.textContent = remainingMs > 0
+            ? `${days} ${days === 1 ? 'Tag' : 'Tage'}`
+            : 'heute';
+        }
+      });
+    };
+
+    updateCountdown();
+    window.setInterval(updateCountdown, 1000);
+  };
+
+  initPromoCountdowns();
+
   const initLeistungenPage = () => {
     const leistungenPage = document.querySelector('.leistungen-page');
     if (!leistungenPage) return;
@@ -565,27 +605,27 @@ function toggleFAQ(button) {
     const text = String(message || '').toLowerCase();
 
     if (includesAny(text, ['pflegegrad', 'begutachtung', 'md', 'einstufung', 'widerspruch'])) {
-      return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket für 199 Euro. Es umfasst ein Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Details finden Sie auf der Detailseite oder über die Kontaktseite.';
+      return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket. Statt 199 Euro kostet es aktuell 99,50 Euro in der 50-Prozent-Aktion. Es umfasst ein Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Details finden Sie auf der Detailseite oder über die Kontaktseite.';
     }
 
     if (includesAny(text, ['angehörig', 'angehoerig', 'entlastung', 'überfordert', 'ueberfordert'])) {
-      return 'Dafür passt meist das Paket Angehörigen-Entlastung für 249 Euro. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt.';
+      return 'Dafür passt meist das Paket Angehörigen-Entlastung. Statt 249 Euro kostet es aktuell 124,50 Euro in der 50-Prozent-Aktion. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt.';
     }
 
     if (includesAny(text, ['krankenhaus', 'reha', 'entlassung'])) {
-      return 'Wenn nach Krankenhaus oder Reha unklar ist, wie es zuhause weitergeht, passt das Paket Nach Krankenhaus wieder zuhause für 349 Euro. Es umfasst ein Aufnahmegespräch, einen Versorgungsplan und eine Checkliste für die ersten Tage.';
+      return 'Wenn nach Krankenhaus oder Reha unklar ist, wie es zuhause weitergeht, passt das Paket Nach Krankenhaus wieder zuhause. Statt 349 Euro kostet es aktuell 174,50 Euro in der 50-Prozent-Aktion. Es umfasst ein Aufnahmegespräch, einen Versorgungsplan und eine Checkliste für die ersten Tage.';
     }
 
     if (includesAny(text, ['umbau', 'wohnraumanpassung', 'zuschuss'])) {
-      return 'Für dieses Thema passt das Paket Wohnraumanpassung & Umbauzuschuss für 279 Euro. Es unterstützt bei Analyse, Unterlagen und Vorbereitung des Zuschussantrags.';
+      return 'Für dieses Thema passt das Paket Wohnraumanpassung & Umbauzuschuss. Statt 279 Euro kostet es aktuell 139,50 Euro in der 50-Prozent-Aktion. Es unterstützt bei Analyse, Unterlagen und Vorbereitung des Zuschussantrags.';
     }
 
     if (includesAny(text, ['pflegekasse', 'entlastungsbetrag', 'pflegehilfsmittel', 'leistungen'])) {
-      return 'Dafür passt meist der Pflegekassen-Leistungen-Check für 179 Euro. Er zeigt, welche Leistungen möglich sind und welche Schritte jetzt sinnvoll sind.';
+      return 'Dafür passt meist der Pflegekassen-Leistungen-Check. Statt 179 Euro kostet er aktuell 89,50 Euro in der 50-Prozent-Aktion. Er zeigt, welche Leistungen möglich sind und welche Schritte jetzt sinnvoll sind.';
     }
 
     if (includesAny(text, ['alltagsbegleitung', 'alltag', 'begleitung'])) {
-      return 'Für Unterstützung im Alltag passt das Alltagsbegleitung zuhause - Startpaket für 159 Euro. Es enthält ein Vorgespräch, 4 Stunden Alltagsbegleitung und eine erste Einschätzung des weiteren Bedarfs.';
+      return 'Für Unterstützung im Alltag passt das Alltagsbegleitung zuhause - Startpaket. Statt 159 Euro kostet es aktuell 79,50 Euro in der 50-Prozent-Aktion. Es enthält ein Vorgespräch, 4 Stunden Alltagsbegleitung und eine erste Einschätzung des weiteren Bedarfs.';
     }
 
     if (includesAny(text, ['kontakt', 'telefon', 'whatsapp', 'termin', 'anrufen', 'mail', 'email'])) {

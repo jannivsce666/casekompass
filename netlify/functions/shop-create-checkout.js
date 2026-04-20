@@ -9,7 +9,7 @@ function json(statusCode, body) {
     },
     body: JSON.stringify(body),
   };
-const DISCONTINUED_MESSAGE = 'Dieses Download-Produkt wird nicht mehr angeboten. Bitte nutzen Sie stattdessen das Pflegegrad-Startpaket fuer 199 Euro.';
+const DISCONTINUED_MESSAGE = 'Dieses Download-Produkt wird nicht mehr angeboten. Bitte nutzen Sie stattdessen das Pflegegrad-Startpaket statt 199 Euro aktuell fuer 99,50 Euro.';
 
 exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {

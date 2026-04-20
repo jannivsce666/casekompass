@@ -49,31 +49,31 @@ function buildLocalFallback(message) {
   const text = String(message || '').toLowerCase();
 
   if (includesAny(text, ['pflegegrad', 'begutachtung', 'md', 'einstufung', 'widerspruch'])) {
-    return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket für 199 Euro. Es umfasst ein ausführliches Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Wenn es schon Probleme mit einer Einstufung oder Ablehnung gibt, ist zusätzlich eine vertiefte remote-Beratung sinnvoll. Details finden Sie auf pflegegrad-startpaket.html oder direkt über kontakt.html.';
+    return 'Zum Thema Pflegegrad passt meist das Pflegegrad-Startpaket. Statt 199 Euro kostet es aktuell 99,50 Euro in der 50-Prozent-Aktion. Es umfasst ein ausführliches Erstgespräch, einen Unterlagen-Check und die Vorbereitung auf die Begutachtung. Wenn es schon Probleme mit einer Einstufung oder Ablehnung gibt, ist zusätzlich eine vertiefte remote-Beratung sinnvoll. Details finden Sie auf pflegegrad-startpaket.html oder direkt über kontakt.html.';
   }
 
   if (includesAny(text, ['angehörig', 'angehoerig', 'überfordert', 'ueberfordert', 'entlastung', 'pflege zu hause', 'pflege zuhause'])) {
-    return 'Für überlastete Angehörige passt das Paket Angehörigen-Entlastung für 249 Euro. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt. Für die Anfrage können Sie mich direkt kontaktieren.';
+    return 'Für überlastete Angehörige passt das Paket Angehörigen-Entlastung. Statt 249 Euro kostet es aktuell 124,50 Euro in der 50-Prozent-Aktion. Es enthält ein Orientierungsgespräch, einen Struktur- und Maßnahmenplan und einen kurzen Nachfasskontakt. Für die Anfrage können Sie mich direkt kontaktieren.';
   }
 
   if (includesAny(text, ['krankenhaus', 'reha', 'entlassung', 'zuhause weiter', 'wieder zuhause'])) {
-    return 'Wenn nach Krankenhaus oder Reha unklar ist, wie es zuhause weitergeht, passt das Paket Nach Krankenhaus wieder zuhause für 349 Euro. Es enthält ein Aufnahmegespräch, einen Versorgungsplan für zuhause und eine Checkliste für die ersten Tage. Die Detailseite ist nach-krankenhaus-wieder-zuhause.html.';
+    return 'Wenn nach Krankenhaus oder Reha unklar ist, wie es zuhause weitergeht, passt das Paket Nach Krankenhaus wieder zuhause. Statt 349 Euro kostet es aktuell 174,50 Euro in der 50-Prozent-Aktion. Es enthält ein Aufnahmegespräch, einen Versorgungsplan für zuhause und eine Checkliste für die ersten Tage. Die Detailseite ist nach-krankenhaus-wieder-zuhause.html.';
   }
 
   if (includesAny(text, ['umbau', 'wohnraumanpassung', 'bad', 'rampe', 'tür', 'zuschuss'])) {
-    return 'Für Anpassungen zuhause passt das Paket Wohnraumanpassung & Umbauzuschuss für 279 Euro. Es geht um Analyse der Wohnsituation, Unterlagencheck und Vorbereitung des Zuschussantrags. Wichtig: Es geht um strukturierte Vorbereitung und Orientierung, nicht um die handwerkliche Ausführung. Mehr dazu auf wohnraumanpassung-umbauzuschuss.html.';
+    return 'Für Anpassungen zuhause passt das Paket Wohnraumanpassung & Umbauzuschuss. Statt 279 Euro kostet es aktuell 139,50 Euro in der 50-Prozent-Aktion. Es geht um Analyse der Wohnsituation, Unterlagencheck und Vorbereitung des Zuschussantrags. Wichtig: Es geht um strukturierte Vorbereitung und Orientierung, nicht um die handwerkliche Ausführung. Mehr dazu auf wohnraumanpassung-umbauzuschuss.html.';
   }
 
   if (includesAny(text, ['pflegekasse', 'entlastungsbetrag', 'pflegehilfsmittel', 'leistungen-check', 'welche leistungen'])) {
-    return 'Dafür passt der Pflegekassen-Leistungen-Check für 179 Euro. Er prüft, welche Leistungen rund um Pflege zuhause schon genutzt werden und was noch offen ist. Enthalten sind die Prüfung der aktuellen Situation, ein Leistungs- und Möglichkeitencheck und eine schriftliche Orientierung für die nächsten Schritte. Details: pflegekassen-leistungen-check.html.';
+    return 'Dafür passt der Pflegekassen-Leistungen-Check. Statt 179 Euro kostet er aktuell 89,50 Euro in der 50-Prozent-Aktion. Er prüft, welche Leistungen rund um Pflege zuhause schon genutzt werden und was noch offen ist. Enthalten sind die Prüfung der aktuellen Situation, ein Leistungs- und Möglichkeitencheck und eine schriftliche Orientierung für die nächsten Schritte. Details: pflegekassen-leistungen-check.html.';
   }
 
   if (includesAny(text, ['alltagsbegleitung', 'alltag', 'begleitung', 'einsam', 'struktur im alltag'])) {
-    return 'Für praktische Unterstützung im Alltag passt das Alltagsbegleitung zuhause - Startpaket für 159 Euro. Es enthält ein Vorgespräch, 4 Stunden Alltagsbegleitung und eine erste Einordnung des weiteren Bedarfs. Die Detailseite ist alltagsbegleitung-zuhause-startpaket.html.';
+    return 'Für praktische Unterstützung im Alltag passt das Alltagsbegleitung zuhause - Startpaket. Statt 159 Euro kostet es aktuell 79,50 Euro in der 50-Prozent-Aktion. Es enthält ein Vorgespräch, 4 Stunden Alltagsbegleitung und eine erste Einordnung des weiteren Bedarfs. Die Detailseite ist alltagsbegleitung-zuhause-startpaket.html.';
   }
 
   if (includesAny(text, ['preis', 'kosten', 'was kostet'])) {
-    return 'Aktuell gibt es diese Pakete: Pflegegrad-Startpaket 199 Euro, Angehörigen-Entlastung 249 Euro, Nach Krankenhaus wieder zuhause 349 Euro, Wohnraumanpassung & Umbauzuschuss 279 Euro, Pflegekassen-Leistungen-Check 179 Euro und Alltagsbegleitung zuhause - Startpaket 159 Euro. Wenn Sie unsicher sind, welches Paket passt, beschreiben Sie kurz Ihre Situation.';
+    return 'Aktuell gibt es diese Pakete in der 50-Prozent-Aktion: Pflegegrad-Startpaket statt 199 Euro jetzt 99,50 Euro, Angehörigen-Entlastung statt 249 Euro jetzt 124,50 Euro, Nach Krankenhaus wieder zuhause statt 349 Euro jetzt 174,50 Euro, Wohnraumanpassung & Umbauzuschuss statt 279 Euro jetzt 139,50 Euro, Pflegekassen-Leistungen-Check statt 179 Euro jetzt 89,50 Euro und Alltagsbegleitung zuhause - Startpaket statt 159 Euro jetzt 79,50 Euro. Wenn Sie unsicher sind, welches Paket passt, beschreiben Sie kurz Ihre Situation.';
   }
 
   if (includesAny(text, ['kontakt', 'telefon', 'whatsapp', 'termin', 'anrufen', 'email', 'e-mail'])) {
@@ -123,38 +123,38 @@ Pakete:
 1. Pflegegrad-Startpaket
 - Zielgruppe: Menschen oder Angehörige, die einen Pflegegrad beantragen wollen und nicht wissen, wie sie anfangen sollen.
 - Inhalt: ausführliches Erstgespräch, Unterlagen-Check, Vorbereitung auf die Begutachtung.
-- Preis: 199 Euro.
+- Preis: statt 199 Euro aktuell 99,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: pflegegrad-startpaket.html
 
 2. Angehörigen-Entlastung
 - Zielgruppe: Angehörige, die mit Pflege, Organisation, Terminen und Verantwortung überfordert sind.
 - Inhalt: Orientierungsgespräch, Struktur- und Maßnahmenplan, kurzer Nachfasskontakt.
-- Preis: 249 Euro.
+- Preis: statt 249 Euro aktuell 124,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: angehoerigen-entlastung.html
 
 3. Nach Krankenhaus wieder zuhause
 - Zielgruppe: Menschen und Angehörige nach Krankenhaus oder Reha, wenn zuhause unklar ist, wie es weitergeht.
 - Inhalt: Aufnahmegespräch, Versorgungsplan für zuhause, Checkliste für die ersten Tage.
-- Preis: 349 Euro.
+- Preis: statt 349 Euro aktuell 174,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: nach-krankenhaus-wieder-zuhause.html
 
 4. Wohnraumanpassung und Umbauzuschuss
 - Zielgruppe: Menschen und Angehörige, die ihre Wohnsituation an körperliche Einschränkungen anpassen und den Zuschuss der Pflegekasse vorbereiten möchten.
 - Inhalt: Analyse der Wohnsituation, Maßnahmen- und Unterlagencheck, Vorbereitung des Zuschussantrags.
-- Preis: 279 Euro.
+- Preis: statt 279 Euro aktuell 139,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: wohnraumanpassung-umbauzuschuss.html
 - Wichtiger Hinweis: Es geht um strukturierte Vorbereitung und Orientierung, nicht um handwerkliche Ausführung.
 
 5. Pflegekassen-Leistungen-Check
 - Zielgruppe: Familien, die wissen möchten, welche Leistungen rund um Pflege zuhause zustehen und was noch ungenutzt bleibt.
 - Inhalt: Prüfung der aktuellen Situation, Leistungs- und Möglichkeitencheck, schriftliche Orientierung für die nächsten Schritte.
-- Preis: 179 Euro.
+- Preis: statt 179 Euro aktuell 89,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: pflegekassen-leistungen-check.html
 
 6. Alltagsbegleitung zuhause - Startpaket
 - Zielgruppe: Menschen, die zunächst praktische Unterstützung im Alltag und eine erste Einordnung des weiteren Bedarfs wünschen.
 - Inhalt: Vorgespräch, 4 Stunden Alltagsbegleitung, erste Einordnung des weiteren Bedarfs.
-- Preis: 159 Euro.
+- Preis: statt 159 Euro aktuell 79,50 Euro (50-Prozent-Aktion, noch 31 Tage).
 - Detailseite: alltagsbegleitung-zuhause-startpaket.html
 
 Wenn Nutzer nach dem passenden Paket fragen, schlage aus diesen sechs Angeboten das naheliegendste vor und nenne kurz warum.

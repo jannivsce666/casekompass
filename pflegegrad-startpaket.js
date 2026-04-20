@@ -6,7 +6,7 @@
   const ORDER_STORAGE_KEY = 'casekompass-pflegegrad-orders-v1';
   const DISPATCHED_STORAGE_KEY = 'casekompass-pflegegrad-dispatched-v1';
   const DEFAULT_FIELD_HELP = 'Tragen Sie hier die Angabe so ein, wie sie für die aktuelle Pflegesituation am besten passt.';
-  const PACKAGE_PRICE_LABEL = '199 Euro';
+  const PACKAGE_PRICE_LABEL = '99,50 Euro';
 
   function textField(id, label, options) {
     return { id, label, type: 'text', ...options };

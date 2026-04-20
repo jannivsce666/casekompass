@@ -122,7 +122,7 @@ exports.handler = async (event) => {
     return json(403, { success: false, message: 'Payment does not match this package flow' });
   }
 
-  if (paymentAmount !== '199.00' || paymentCurrency !== 'EUR') {
+  if (paymentAmount !== '99.50' || paymentCurrency !== 'EUR') {
     return json(403, { success: false, message: 'Payment amount does not match the package price' });
   }
 

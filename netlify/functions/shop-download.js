@@ -10,7 +10,7 @@ function response(statusCode, body, headers = {}) {
   };
 }
 
-const DISCONTINUED_MESSAGE = 'Dieses Download-Produkt wird nicht mehr angeboten. Bitte nutzen Sie stattdessen das Pflegegrad-Startpaket fuer 199 Euro.';
+const DISCONTINUED_MESSAGE = 'Dieses Download-Produkt wird nicht mehr angeboten. Bitte nutzen Sie stattdessen das Pflegegrad-Startpaket statt 199 Euro aktuell fuer 99,50 Euro.';
 
 function resolveFilePath(relativePath) {
   const candidates = [

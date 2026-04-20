@@ -1829,6 +1829,12 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   font-weight: 700;
 }
 
+.shop-card-badge-sale {
+  background: linear-gradient(135deg, rgba(230,126,115,0.94), rgba(207,110,100,0.94));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(207,110,100,0.24);
+}
+
 .motion-card.reveal {
   transform: translateY(24px) scale(0.985);
   transition-duration: .7s;
@@ -1887,6 +1893,112 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   font-size: 2rem;
   line-height: 1;
   color: var(--primary-700);
+}
+
+.promo-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.promo-price-old {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  opacity: 0.85;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.promo-price-new {
+  color: var(--accent-600);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.promo-price-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(230,126,115,0.14);
+  color: var(--accent-600);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.shop-price.promo-price {
+  gap: 6px 10px;
+}
+
+.shop-price.promo-price .promo-price-old {
+  font-size: 0.92rem;
+}
+
+.shop-price.promo-price .promo-price-new {
+  font-size: 1em;
+}
+
+.promo-countdown {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.74);
+  border: 1px solid rgba(230,126,115,0.22);
+}
+
+.promo-countdown-label {
+  color: var(--primary-700);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.promo-countdown-label strong {
+  color: var(--accent-600);
+}
+
+.promo-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.promo-countdown-unit {
+  padding: 10px 8px;
+  border-radius: 14px;
+  text-align: center;
+  background: rgba(76,161,163,0.08);
+}
+
+.promo-countdown-unit strong {
+  display: block;
+  color: var(--primary-700);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.promo-countdown-unit small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.promo-countdown-inline {
+  margin: 18px 0 28px;
+  background: linear-gradient(135deg, rgba(76,161,163,0.1), rgba(230,126,115,0.12));
+}
+
+.section-sale-banner {
+  justify-items: start;
 }
 
 .shop-actions {
@@ -2152,6 +2264,26 @@ button[disabled]{opacity:0.7;cursor:not-allowed}
   font-weight: 700;
   color: var(--primary-700);
   line-height: 1.1;
+}
+
+.price-range.promo-price {
+  margin-bottom: 10px;
+}
+
+.price-range.promo-price .promo-price-old {
+  font-size: 1rem;
+}
+
+.price-range.promo-price .promo-price-new {
+  font-size: 1em;
+}
+
+.product-meta-item .promo-price {
+  margin-top: 2px;
+}
+
+.product-meta-item .promo-price-new {
+  font-size: 1.1rem;
 }
 
 .product-price-item {
