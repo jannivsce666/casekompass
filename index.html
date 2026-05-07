@@ -423,7 +423,7 @@
       <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
           <li><a href="#start" class="active">Start</a></li>
-          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="#leistungen">Leistungen</a></li>
           <li><a href="erstgespraech-buchen.html">Erstgespräch buchen</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
@@ -694,126 +694,209 @@
       </div>
     </section>
 
-    <section id="leistungen" class="section reveal" aria-labelledby="leistungen-title">
-      <div class="container" data-aos="fade-up">
-        <h2 id="leistungen-title"><i class="fa-solid fa-stethoscope"></i> Case Management in der Praxis</h2>
-        <p class="section-intro">Case Management heißt, komplexe Situationen zu ordnen, passende Hilfen zu planen und alle nötigen Schritte nachvollziehbar zu koordinieren.</p>
+    <section id="leistungen" class="section">
+      <div class="container">
+        <h2 class="reveal"><i class="fa-solid fa-box-open"></i> Unterstützung in 7 klaren Paketen</h2>
+        <p class="section-intro reveal">Hier finden Sie alle Pakete im Überblick. Jedes Angebot ist klar beschrieben und kann direkt als Detailseite geöffnet werden.</p>
 
-        <div class="case-management-intro">
-          <p>Gerade wenn Pflegegrad, Reha, Versorgung, Termine und Behörden gleichzeitig Thema sind, braucht es eine klare Struktur. Genau hier setzt Case Management an: Es verbindet Beratung, Planung, Koordination und Begleitung zu einem nachvollziehbaren Ablauf.</p>
+        <div class="package-filter-bar reveal" aria-label="Leistungen filtern">
+          <button class="package-filter-chip is-active" type="button" data-package-filter="all">Alle Pakete</button>
+          <button class="package-filter-chip" type="button" data-package-filter="pflegegrad">Pflegegrad</button>
+          <button class="package-filter-chip" type="button" data-package-filter="versorgung">Versorgung zuhause</button>
+          <button class="package-filter-chip" type="button" data-package-filter="entlastung">Entlastung</button>
+          <button class="package-filter-chip" type="button" data-package-filter="antraege">Anträge & Leistungen</button>
         </div>
 
-        <div class="services-grid">
-          <article class="service-card">
-            <div class="service-header">
-              <div class="icon"><i class="fa-solid fa-file-circle-check"></i></div>
-              <h3>Pflegegrad & Widerspruch</h3>
-              <p class="service-subtitle">Sichere Begleitung bei Antrag, Begutachtung und Korrektur</p>
+        <div class="quick-packages" aria-label="Paketangebote" data-package-grid>
+          <article class="package-card reveal motion-card" data-package-tags="pflegegrad antraege" data-motion-card>
+            <a class="package-image-link" href="pflegegrad-startpaket.html" aria-label="Pflegegrad-Startpaket im Detail ansehen">
+              <img class="package-image" src="./images/produkte/pflegegrad.webp" alt="Produktbild Pflegegrad-Startpaket" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="pflegegrad-startpaket.html"><i class="fa-solid fa-file-shield"></i> Pflegegrad-Startpaket</a></h3>
+            <p class="package-desc">Für Menschen oder Angehörige, die einen Pflegegrad beantragen wollen und nicht wissen, wie sie anfangen sollen.</p>
+            <ul class="package-points">
+              <li>Ausführliches Erstgespräch</li>
+              <li>Unterlagen-Check</li>
+              <li>Vorbereitung auf die Begutachtung</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="pflegegrad-startpaket.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
             </div>
-            <div class="service-content">
-              <p>Ich begleite Sie vom ersten Pflegegrad-Antrag bis zur finalen Entscheidung und bereite Sie gezielt auf die MD-Begutachtung vor.</p>
+          </article>
 
-              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
-              <ul class="service-points">
-                <li>Passende Einstufung nach tatsächlichem Hilfebedarf</li>
-                <li>Transparente Unterlagen und nachvollziehbare Argumentation</li>
-                <li>Sicherheit im Begutachtungsgespräch</li>
-                <li>Entlastung von Angehörigen im Antragsprozess</li>
+          <article class="package-card reveal motion-card" data-package-tags="entlastung" data-motion-card>
+            <a class="package-image-link" href="angehoerigen-entlastung.html" aria-label="Angehörigen-Entlastung im Detail ansehen">
+              <img class="package-image" src="./images/produkte/Angehoerigenentlastung.webp" alt="Produktbild Angehörigen-Entlastung" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="angehoerigen-entlastung.html"><i class="fa-solid fa-people-roof"></i> Angehörigen-Entlastung</a></h3>
+            <p class="package-desc">Für Angehörige, die mit Pflege, Organisation, Terminen und Verantwortung überfordert sind.</p>
+            <ul class="package-points">
+              <li>Orientierungsgespräch</li>
+              <li>Struktur- und Maßnahmenplan</li>
+              <li>Kurzer Nachfasskontakt</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="angehoerigen-entlastung.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="versorgung zuhause" data-motion-card>
+            <a class="package-image-link" href="nach-krankenhaus-wieder-zuhause.html" aria-label="Nach Krankenhaus wieder zuhause im Detail ansehen">
+              <img class="package-image" src="./images/produkte/wiederzuhause.webp" alt="Produktbild Nach Krankenhaus wieder zuhause" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="nach-krankenhaus-wieder-zuhause.html"><i class="fa-solid fa-house-medical-circle-check"></i> Nach Krankenhaus wieder zuhause</a></h3>
+            <p class="package-desc">Für Menschen und Angehörige nach Krankenhaus oder Reha, wenn zuhause unklar ist, wie es weitergeht.</p>
+            <ul class="package-points">
+              <li>Aufnahmegespräch</li>
+              <li>Versorgungsplan für zuhause</li>
+              <li>Checkliste für die ersten Tage</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="nach-krankenhaus-wieder-zuhause.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="antraege versorgung" data-motion-card>
+            <a class="package-image-link" href="wohnraumanpassung-umbauzuschuss.html" aria-label="Wohnraumanpassung und Umbauzuschuss im Detail ansehen">
+              <img class="package-image" src="./images/produkte/wohnraumanpassung.webp" alt="Produktbild Wohnraumanpassung und Umbauzuschuss" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="wohnraumanpassung-umbauzuschuss.html"><i class="fa-solid fa-house-circle-check"></i> Wohnraumanpassung & Umbauzuschuss</a></h3>
+            <p class="package-desc">Unterstützung bei wohnumfeldverbessernden Maßnahmen und der strukturierten Vorbereitung des Zuschussantrags.</p>
+            <ul class="package-points">
+              <li>Analyse der Wohnsituation</li>
+              <li>Maßnahmen- und Unterlagencheck</li>
+              <li>Vorbereitung des Zuschussantrags</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="wohnraumanpassung-umbauzuschuss.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="pflegegrad antraege" data-motion-card>
+            <a class="package-image-link" href="pflegekassen-leistungen-check.html" aria-label="Pflegekassen-Leistungen-Check im Detail ansehen">
+              <img class="package-image" src="./images/produkte/pflegekassen-leistungen-check.webp" alt="Produktbild Pflegekassen-Leistungen-Check" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="pflegekassen-leistungen-check.html"><i class="fa-solid fa-wallet"></i> Pflegekassen-Leistungen-Check</a></h3>
+            <p class="package-desc">Klare Übersicht, welche Leistungen rund um Pflege zuhause zustehen und welche Möglichkeiten noch offen sind.</p>
+            <ul class="package-points">
+              <li>Prüfung der aktuellen Situation</li>
+              <li>Leistungs- und Möglichkeitencheck</li>
+              <li>Schriftliche Orientierung für die nächsten Schritte</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="pflegekassen-leistungen-check.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="entlastung zuhause versorgung" data-motion-card>
+            <a class="package-image-link" href="alltagsbegleitung-zuhause-startpaket.html" aria-label="Alltagsbegleitung zuhause Startpaket im Detail ansehen">
+              <img class="package-image" src="./images/produkte/alltagsbegleitung.webp" alt="Produktbild Alltagsbegleitung zuhause Startpaket" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="alltagsbegleitung-zuhause-startpaket.html"><i class="fa-solid fa-hand-holding-heart"></i> Alltagsbegleitung zuhause - Startpaket</a></h3>
+            <p class="package-desc">Ein klarer Einstieg in die Alltagsbegleitung zuhause mit vier Stunden Unterstützung und erster Einordnung des weiteren Bedarfs.</p>
+            <ul class="package-points">
+              <li>Vorgespräch</li>
+              <li>4 Stunden Alltagsbegleitung</li>
+              <li>Erste Einordnung des weiteren Bedarfs</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="alltagsbegleitung-zuhause-startpaket.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="package-carousel-controls reveal" data-package-carousel-controls aria-label="Paketnavigation">
+          <button class="package-carousel-button" type="button" data-package-prev aria-label="Vorheriges Paket">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="package-carousel-dots" data-package-dots aria-label="Paketposition"></div>
+          <button class="package-carousel-button" type="button" data-package-next aria-label="Nächstes Paket">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shop-section" aria-labelledby="shop-title">
+      <div class="container">
+        <div class="shop-section-head">
+          <h2 id="shop-title" class="reveal"><i class="fa-solid fa-bolt"></i> Sofort buchbar</h2>
+          <p class="section-intro reveal">Leistungen, die Sie direkt online starten oder direkt anfragen können. Das Pflegegrad-Startpaket ist regulär für 99,50 Euro buchbar.</p>
+        </div>
+
+        <div class="shop-grid">
+          <article class="shop-card reveal motion-card" data-motion-card>
+            <a class="shop-card-visual" href="versorgungsplanung.html" aria-label="Versorgungsplanung im Detail ansehen">
+              <img src="./images/produkte/versorgungsplan.webp" alt="Produktbild Versorgungsplanung" loading="lazy" decoding="async" width="960" height="640">
+              <span class="shop-card-badge">Direkt starten</span>
+            </a>
+
+            <div class="shop-card-body">
+              <h3><a href="versorgungsplanung.html">Versorgungsplanung</a></h3>
+              <p class="shop-card-desc">Sie schildern Ihre aktuelle Situation in einem strukturierten Formular. Daraus entsteht ein persönlicher Versorgungsplan mit klaren nächsten Schritten, Prioritäten und passenden Anlaufstellen.</p>
+
+              <ul class="shop-card-points">
+                <li>Strukturiertes Formular statt unübersichtlicher Freitext-Anfrage</li>
+                <li>Persönliche Auswertung Ihrer aktuellen Versorgungslage</li>
+                <li>Individueller Versorgungsplan mit klarer Orientierung</li>
               </ul>
 
-              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
-              <ul class="service-points">
-                <li>Prüfung und Vorbereitung aller Antragsunterlagen</li>
-                <li>Begleitung vor, während und nach der Begutachtung</li>
-                <li>Auswertung von Bescheiden und verständliche Erklärung</li>
-                <li>Widerspruch bei zu niedriger oder falscher Einstufung</li>
-                <li>Kommunikation mit Kasse und beteiligten Stellen</li>
-              </ul>
+              <div class="shop-card-footer">
+                <div class="shop-price-block">
+                  <span class="shop-price-label">Start</span>
+                  <strong class="shop-price">Sofort</strong>
+                </div>
 
-              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
-              <div class="indications-grid">
-                <span class="indication-tag">Erstantrag Pflegegrad</span>
-                <span class="indication-tag">Höherstufung</span>
-                <span class="indication-tag">Ablehnung Pflegegrad</span>
-                <span class="indication-tag">Widerspruchsverfahren</span>
-                <span class="indication-tag">MD-Begutachtung</span>
-                <span class="indication-tag">Überprüfung bestehender Bescheide</span>
+                <div class="shop-actions">
+                  <div class="product-cta-actions">
+                    <a class="btn primary" href="versorgungsplanung-starten.html">
+                      <i class="fa-solid fa-rocket"></i> Jetzt starten
+                    </a>
+                    <a class="btn ghost" href="versorgungsplanung.html"><i class="fa-solid fa-circle-info"></i> Details ansehen</a>
+                  </div>
+                  <p class="shop-purchase-note">Direkt online ausfüllbar. Ihre Angaben werden nach dem Abschluss strukturiert erfasst.</p>
+                </div>
               </div>
             </div>
           </article>
 
-          <article class="service-card">
-            <div class="service-header">
-              <div class="icon"><i class="fa-solid fa-handshake-angle"></i></div>
-              <h3>Reha & Versorgungskoordination</h3>
-              <p class="service-subtitle">Die richtigen Leistungen zur richtigen Zeit organisieren</p>
-            </div>
-            <div class="service-content">
-              <p>Ich koordiniere medizinische, pflegerische und soziale Hilfen und unterstütze Sie bei Reha, Hilfsmitteln und Anträgen gegenüber Kostenträgern.</p>
+          <article class="shop-card reveal motion-card" data-motion-card>
+            <a class="shop-card-visual" href="pflegegrad-startpaket.html" aria-label="Pflegegrad-Startpaket im Detail ansehen">
+              <img src="./images/produkte/pflegegrad.webp" alt="Produktbild Pflegegrad-Startpaket" loading="lazy" decoding="async" width="960" height="640">
+              <span class="shop-card-badge">Pflegegrad-Hilfe</span>
+            </a>
 
-              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
-              <ul class="service-points">
-                <li>Lückenlose Versorgung ohne Doppelstrukturen</li>
-                <li>Schnellere Zugänge zu Reha- und Unterstützungsangeboten</li>
-                <li>Klare Abstimmung zwischen allen Beteiligten</li>
-                <li>Nachhaltige Stabilisierung im Alltag</li>
+            <div class="shop-card-body">
+              <h3><a href="pflegegrad-startpaket.html">Pflegegrad-Startpaket</a></h3>
+              <p class="shop-card-desc">Sie erhalten keine Standardvorlage, sondern eine individuell auf die betroffene Person abgestimmte Unterstützung für Antrag, Unterlagen und Vorbereitung auf die Begutachtung.</p>
+
+              <ul class="shop-card-points">
+                <li>Ausführliches Erstgespräch zur aktuellen Situation</li>
+                <li>Individuell abgestimmter Plan für die nächsten Schritte</li>
+                <li>Personalisiertes Pflegetagebuch und konkrete Anleitung zum Vorgehen</li>
               </ul>
 
-              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
-              <ul class="service-points">
-                <li>Beratung zu Reha-Maßnahmen und Antragswegen</li>
-                <li>Unterstützung bei Hilfsmittelanträgen und Versorgung</li>
-                <li>Koordination mit Ärzten, Kliniken, Pflegediensten und Kassen</li>
-                <li>Begleitung bei Behördenkontakten und Schriftverkehr</li>
-                <li>Planung individueller Unterstützungsnetzwerke</li>
-              </ul>
+              <div class="shop-card-footer">
+                <div class="shop-price-block">
+                  <span class="shop-price-label">Preis</span>
+                  <strong class="shop-price">99,50 €</strong>
+                </div>
 
-              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
-              <div class="indications-grid">
-                <span class="indication-tag">Reha-Antrag</span>
-                <span class="indication-tag">Hilfsmittelbedarf</span>
-                <span class="indication-tag">Pflegesachleistungen</span>
-                <span class="indication-tag">Entlassmanagement</span>
-                <span class="indication-tag">Leistungsablehnung</span>
-                <span class="indication-tag">Mehrfachzuständigkeiten</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="service-card">
-            <div class="service-header">
-              <div class="icon"><i class="fa-solid fa-people-group"></i></div>
-              <h3>Alltagsbegleitung & Betreuung</h3>
-              <p class="service-subtitle">Praktische Unterstützung für ein sicheres und aktives Leben</p>
-            </div>
-            <div class="service-content">
-              <p>Ich begleite ältere Menschen und Menschen mit Behinderung im Alltag, fördere Teilhabe und schaffe verlässliche Strukturen im gewohnten Umfeld.</p>
-
-              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
-              <ul class="service-points">
-                <li>Selbstständigkeit und Orientierung im Alltag erhalten</li>
-                <li>Soziale Isolation reduzieren und Teilhabe stärken</li>
-                <li>Angehörige entlasten und Versorgungssicherheit schaffen</li>
-                <li>Stabilität bei körperlichen und kognitiven Einschränkungen</li>
-              </ul>
-
-              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
-              <ul class="service-points">
-                <li>Begleitung zu Arztterminen, Ämtern und wichtigen Terminen</li>
-                <li>Unterstützung bei Tagesstruktur, Aktivierung und Freizeit</li>
-                <li>Hilfe bei Organisation von Haushalt und Versorgung</li>
-                <li>Begleitung bei sozialen Kontakten und Aktivitäten</li>
-                <li>Individuelle Betreuung im häuslichen Umfeld</li>
-              </ul>
-
-              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
-              <div class="indications-grid">
-                <span class="indication-tag">Alter mit Unterstützungsbedarf</span>
-                <span class="indication-tag">Menschen mit Behinderung</span>
-                <span class="indication-tag">Demenznahe Begleitung</span>
-                <span class="indication-tag">Entlastung Angehöriger</span>
-                <span class="indication-tag">Alltagsüberforderung</span>
-                <span class="indication-tag">Einsamkeit und Isolation</span>
+                <div class="shop-actions">
+                  <div class="product-cta-actions">
+                    <a class="btn primary" href="pflegegrad-startpaket-starten.html">
+                      <i class="fa-solid fa-rocket"></i> Formular starten
+                    </a>
+                    <a class="btn ghost" href="pflegegrad-startpaket.html"><i class="fa-solid fa-circle-info"></i> Details ansehen</a>
+                  </div>
+                  <p class="shop-purchase-note">Sie erhalten einen persönlich abgestimmten Plan, ein personalisiertes Pflegetagebuch und eine konkrete Anleitung, wie Sie für die jeweilige Person sinnvoll vorgehen.</p>
+                </div>
               </div>
             </div>
           </article>
