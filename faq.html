@@ -1,153 +1,380 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAQ | casekompass.de</title>
-  <meta name="description" content="Haeufige Fragen zu Leistungen von CaseKompass: Pflegegrad-Antrag, Hoeherstufung, Privatleistung und Einsatzgebiet." />
-  <link rel="icon" type="image/png" href="./images/logo.png" />
-  <link rel="apple-touch-icon" href="./images/logo.png" />
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Häufige Fragen (FAQ) - casekompass.de</title>
+    <meta name="description" content="Häufige Fragen zu Case Management, Pflegegrad, Widerspruch und Alltagsbegleitung.">
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="apple-touch-icon" href="./images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Ensure no list bullets in navigation */
+        .site-nav ul {
+            list-style: none !important;
+            list-style-type: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .site-nav li {
+            list-style: none !important;
+            list-style-type: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .site-nav ul li {
+            list-style: none !important;
+            list-style-type: none !important;
+        }
+        .site-nav ul li:before {
+            content: none !important;
+        }
+        /* Remove any potential pseudo-elements */
+        .site-nav li::before,
+        .site-nav li::after {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-  <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
-        <img src="./images/logo.png" alt="casekompass.de Logo" />
-        <span>casekompass.de</span>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-label="Menue oeffnen/schliessen" aria-controls="site-nav">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-      <nav id="site-nav" class="site-nav">
-        <ul>
-          <li><a href="index.html">Start</a></li>
-          <li><a href="leistungen.html">Leistungen</a></li>
-          <li><a href="index.html#ansprechpartner">Über mich</a></li>
-          <li><a href="faq.html" class="active">FAQ</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main" class="faq-page" style="padding-top: 120px;">
-    <div class="container">
-      <h1><i class="fa-solid fa-question-circle"></i> Haeufige Fragen</h1>
-      <p class="section-intro">Klare Antworten fuer Angehoerige und Pflegebeduerftige.</p>
-
-      <div class="faq-grid">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>Werden die Kosten von der Pflegekasse uebernommen?</span>
-            <i class="fa-solid fa-chevron-down faq-icon"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Aktuell erfolgt keine direkte Abrechnung mit Pflege- oder Krankenkassen. Die Leistungen sind Privatleistungen.</p>
-          </div>
+    <a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+    
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="brand">
+                    <img src="./images/logo.png" alt="Ergotherapie Logo">
+                    <span>Ergotherapie Mobil</span>
+                </a>
+                
+                <button class="nav-toggle" aria-expanded="false" aria-label="Menü öffnen/schließen">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+                
+                <nav class="site-nav">
+                    <ul>
+                        <li><a href="index.html">Start</a></li>
+                        <li><a href="leistungen.html">Leistungen</a></li>
+                        <li><a href="erstgespraech-buchen.html">Erstgespräch buchen</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+    </header>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>Helfen Sie beim Pflegegrad-Antrag?</span>
-            <i class="fa-solid fa-chevron-down faq-icon"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Ja, ich unterstuetze bei Vorbereitung, Strukturierung, Unterlagen, Pflegetagebuch und Einschaetzung der naechsten Schritte. Eine Garantie fuer einen bestimmten Pflegegrad gibt es nicht.</p>
-          </div>
+    <main id="main" class="faq-page">
+        <div class="container">
+            <div class="faq-content">
+                <div class="faq-intro">
+                    <h1><i class="fas fa-question-circle"></i>Häufige Fragen (FAQ)</h1>
+                    <p>Hier finden Sie Antworten auf die am häufigsten gestellten Fragen zur Ergotherapie, Kostenübernahme und unserem Behandlungsangebot.</p>
+                </div>
+
+                <div class="faq-categories">
+                    <!-- Kostenübernahme & Versicherung -->
+                    <div class="faq-category">
+                        <h2><i class="fas fa-euro-sign"></i>Kostenübernahme & Versicherung</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Übernimmt meine Krankenkasse die Kosten für Ergotherapie?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ja, die Kosten für Ergotherapie werden von allen gesetzlichen und privaten Krankenkassen übernommen, wenn eine ärztliche Verordnung vorliegt.</p>
+                                    <div class="faq-highlight">
+                                        <strong>Wichtig:</strong> Sie benötigen eine Heilmittelverordnung von Ihrem Arzt (Hausarzt, Neurologe, Orthopäde, Psychiater oder anderen Fachärzten).
+                                    </div>
+                                    <p>Als gesetzlich Versicherter zahlen Sie lediglich eine Zuzahlung von 10% der Behandlungskosten plus 10€ Rezeptgebühr - maximal jedoch 10€ pro Verordnung.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Was kostet eine Ergotherapie-Behandlung als Selbstzahler?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Selbstzahler-Preise richten sich nach der Gebührenordnung für Heilpraktiker:</p>
+                                    <ul>
+                                        <li>Einzelbehandlung (45-60 Min.): 65-80€</li>
+                                        <li>Hausbesuch: zzgl. 15-25€ Anfahrtskosten</li>
+                                        <li>Beratungsgespräch: 50€</li>
+                                    </ul>
+                                    <p>Gerne erstelle ich Ihnen ein individuelles Angebot je nach Behandlungsumfang.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Kann ich von der Zuzahlung befreit werden?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ja, eine Befreiung ist möglich bei:</p>
+                                    <ul>
+                                        <li>Erreichen der jährlichen Belastungsgrenze (2% bzw. 1% des Bruttoeinkommens)</li>
+                                        <li>Kindern und Jugendlichen unter 18 Jahren</li>
+                                        <li>Befreiungsbescheid Ihrer Krankenkasse</li>
+                                    </ul>
+                                    <p>Sprechen Sie mit Ihrer Krankenkasse über die Möglichkeiten der Zuzahlungsbefreiung.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behandlungsgebiete & Einzugsgebiet -->
+                    <div class="faq-category">
+                        <h2><i class="fas fa-map-marker-alt"></i>Behandlungsgebiete & Einzugsgebiet</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    In welchem Umkreis bieten Sie Hausbesuche an?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ich biete Hausbesuche in einem Umkreis von etwa 25 km um Bolheim an, einschließlich:</p>
+                                    <ul>
+                                        <li>Bolheim (Hauptstandort)</li>
+                                        <li>Heidenheim an der Brenz</li>
+                                        <li>Herbrechtingen</li>
+                                        <li>Giengen an der Brenz</li>
+                                        <li>Steinheim am Albuch</li>
+                                        <li>Dischingen</li>
+                                    </ul>
+                                    <div class="faq-highlight">
+                                        <strong>Tipp:</strong> Bei Unsicherheit rufen Sie gerne an - gemeinsam finden wir eine Lösung!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Behandeln Sie auch in Pflegeheimen und Einrichtungen?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ja, ich behandle auch in:</p>
+                                    <ul>
+                                        <li>Pflegeheimen und Seniorenresidenzen</li>
+                                        <li>Betreuten Wohnanlagen</li>
+                                        <li>Tagespflegeeinrichtungen</li>
+                                        <li>Rehabilitationskliniken (nach Absprache)</li>
+                                    </ul>
+                                    <p>Die Behandlung erfolgt nach ärztlicher Verordnung und wird von der Krankenkasse übernommen.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Behandlungsablauf -->
+                    <div class="faq-category">
+                        <h2><i class="fas fa-calendar-check"></i>Behandlungsablauf & Termine</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Wie schnell bekomme ich einen Termin?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>In der Regel können wir Ihnen binnen 1-2 Wochen einen Ersttermin anbieten. Bei dringenden Fällen oder akuten Verschlechterungen bemühen wir uns um schnellere Termine.</p>
+                                    <div class="faq-highlight">
+                                        <strong>Hausbesuche:</strong> Termine werden bevorzugt behandelt, da diese meist bei eingeschränkter Mobilität nötig sind.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Wie lange dauert eine Behandlungseinheit?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Die Behandlungsdauer hängt von der Verordnung ab:</p>
+                                    <ul>
+                                        <li><strong>Motorisch-funktionelle Behandlung:</strong> 45-60 Minuten</li>
+                                        <li><strong>Sensomotorisch-perzeptive Behandlung:</strong> 45-60 Minuten</li>
+                                        <li><strong>Psychisch-funktionelle Behandlung:</strong> 60 Minuten</li>
+                                        <li><strong>Hirnleistungstraining:</strong> 30-45 Minuten</li>
+                                    </ul>
+                                    <p>Bei Hausbesuchen sollten Sie zusätzlich 15-30 Minuten für Vor- und Nachbesprechung einplanen.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Was passiert beim ersten Termin?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Der Ersttermin umfasst:</p>
+                                    <ul>
+                                        <li>Ausführliches Anamnesegespräch (15-20 Min.)</li>
+                                        <li>Befunderhebung und Tests</li>
+                                        <li>Zielsetzung gemeinsam mit Ihnen</li>
+                                        <li>Behandlungsplan erstellen</li>
+                                        <li>Erste therapeutische Maßnahmen</li>
+                                    </ul>
+                                    <p>Bringen Sie bitte Ihre Verordnung, Versichertenkarte und ggf. relevante Vorbefunde mit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Allgemeine Fragen -->
+                    <div class="faq-category">
+                        <h2><i class="fas fa-info-circle"></i>Allgemeine Fragen</h2>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Für wen ist Ergotherapie geeignet?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ergotherapie hilft Menschen jeden Alters bei:</p>
+                                    <ul>
+                                        <li>Neurologischen Erkrankungen (Schlaganfall, MS, Parkinson)</li>
+                                        <li>Orthopädischen Problemen (nach Unfällen, Operationen)</li>
+                                        <li>Psychiatrischen Erkrankungen (Depression, Demenz)</li>
+                                        <li>Entwicklungsstörungen bei Kindern</li>
+                                        <li>Altersbedingten Einschränkungen</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Wie viele Behandlungen sind normalerweise nötig?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Die Anzahl der Behandlungen ist sehr individuell und hängt ab von:</p>
+                                    <ul>
+                                        <li>Art und Schwere der Erkrankung</li>
+                                        <li>Individuellen Zielen</li>
+                                        <li>Mitarbeit des Patienten</li>
+                                        <li>Häuslicher Situation</li>
+                                    </ul>
+                                    <p>Typischerweise umfasst eine Verordnung 10-20 Behandlungseinheiten. Bei Bedarf kann der Arzt eine Folgeverordnung ausstellen.</p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    Können Angehörige bei der Behandlung dabei sein?
+                                    <i class="fas fa-chevron-down faq-icon"></i>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Ja, gerne! Angehörige sind in der Ergotherapie herzlich willkommen, besonders bei:</p>
+                                    <ul>
+                                        <li>Behandlung von Kindern</li>
+                                        <li>Patienten mit Demenz oder geistigen Einschränkungen</li>
+                                        <li>Erlernen von Hilfsmitteln und Techniken</li>
+                                        <li>Beratung zur häuslichen Umgebung</li>
+                                    </ul>
+                                    <p>Die Einbeziehung der Familie ist oft ein wichtiger Baustein für den Therapieerfolg.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-contact-cta">
+                    <h3>Ihre Frage war nicht dabei?</h3>
+                    <p>Kein Problem! Rufen Sie mich gerne an oder schreiben Sie mir eine Nachricht. Ich berate Sie gerne individuell und beantworte Ihre Fragen zu Case Management und Alltagsbegleitung.</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+4915129812721" class="btn primary">
+                            <i class="fas fa-phone"></i>
+                            Jetzt anrufen
+                        </a>
+                        <a href="kontakt.html" class="btn ghost">
+                            <i class="fas fa-envelope"></i>
+                            Nachricht schreiben
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </main>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>Koennen Sie auch bei einer Hoeherstufung helfen?</span>
-            <i class="fa-solid fa-chevron-down faq-icon"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Ja, ich helfe dabei, den Unterstuetzungsbedarf verstaendlich zu erfassen und Unterlagen fuer eine Hoeherstufung vorzubereiten.</p>
-          </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-box">
+                    <h3>Kontakt</h3>
+                    <ul class="footer-list contact-list">
+                        <li><i class="fas fa-phone"></i> <a href="tel:+4915129812721">01512 9812721</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:infocasekompasshdh@gmail.com">infocasekompasshdh@gmail.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kein fester Standort - Case Management ausschließlich remote, deutschlandweit; Alltagsbegleitung regional im Raum Heidenheim</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-legal">
+                <p>&copy; 2024 Ergotherapie Mobil</p>
+                <div class="legal-links">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>Arbeiten Sie deutschlandweit?</span>
-            <i class="fa-solid fa-chevron-down faq-icon"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Case Management, Pflegegrad-Vorbereitung und Leistungschecks sind remote deutschlandweit moeglich. Alltagsbegleitung findet regional im Raum Heidenheim statt.</p>
-          </div>
-        </div>
+    <script>
+        // FAQ Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqQuestions.forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
 
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFAQ(this)">
-            <span>Machen Sie medizinische Pflege?</span>
-            <i class="fa-solid fa-chevron-down faq-icon"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Nein. CaseKompass bietet keine medizinische Behandlungspflege und keine koerperbezogene Pflege an. Der Fokus liegt auf Organisation, Beratung, Struktur, Alltagsbegleitung und Entlastung.</p>
-          </div>
-        </div>
-      </div>
+            // Header scroll effect
+            const header = document.querySelector('.site-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-      <section class="section" style="padding: 28px 0 0;">
-        <div class="hint-box" style="background: linear-gradient(135deg, #f4fbfb, #fff9f5); border: 1px solid #d8ebe8; border-left: 4px solid var(--primary); border-radius: 14px; padding: 16px; color: #365354;">
-          Wichtig: CaseKompass bietet Privatleistungen an. Eine direkte Abrechnung mit Pflegekassen oder Krankenkassen erfolgt aktuell nicht. Ich unterstuetze Sie jedoch dabei, moegliche Ansprueche, Leistungen und Antraege besser zu verstehen und vorzubereiten.
-        </div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 16px;">
-          <a href="kontakt.html" class="btn primary">Jetzt unverbindlich anfragen</a>
-          <a href="leistungen.html" class="btn ghost">Leistungen vergleichen</a>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-box">
-        <h3>casekompass.de</h3>
-        <p>Case Management und Alltagsbegleitung fuer Angehoerige und Pflegebeduerftige.</p>
-      </div>
-      <div class="footer-box">
-        <h4>Kontakt</h4>
-        <ul class="footer-list">
-          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
-          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:kontakt@casekompass.de">kontakt@casekompass.de</a></li>
-        </ul>
-      </div>
-      <div class="footer-box">
-        <h4>Rechtliches</h4>
-        <ul class="footer-list">
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="datenschutz.html">Datenschutz</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="container footer-legal">
-      <small>© <span id="year"></span> casekompass.de · Alle Rechte vorbehalten</small>
-      <div class="legal-links">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function toggleFAQ(button) {
-      const faqItem = button.parentElement;
-      const answer = faqItem.querySelector('.faq-answer');
-      const icon = button.querySelector('.faq-icon');
-      button.classList.toggle('active');
-      answer.classList.toggle('active');
-      icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-  </script>
-  <script src="./script.js" defer></script>
+            // Mobile navigation
+            const navToggle = document.querySelector('.nav-toggle');
+            const siteNav = document.querySelector('.site-nav');
+            
+            navToggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                siteNav.classList.toggle('open');
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+

@@ -1,134 +1,416 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="CaseKompass unterstützt Angehörige bei Pflegegrad, Anträgen, Versorgung nach Krankenhaus und alltagstauglicher Entlastung - ruhig, strukturiert und verständlich." />
-  <meta name="robots" content="index, follow" />
-  <title>casekompass.de | Struktur und Hilfe in schwierigen Pflegesituationen</title>
-  <link rel="canonical" href="https://casekompass.de/" />
-  <link rel="icon" type="image/png" href="./images/logo.png" />
-  <link rel="apple-touch-icon" href="./images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="google-site-verification" content="FqFQrfwIUoq_1ruwVKCUwlzmFGR8DKU7gE38AdiXPzM" />
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Case Management deutschlandweit für Pflegegrad, Versorgungsplanung, Anträge, Widerspruch und Versorgung zuhause. Klare Unterstützung für Angehörige und Familien.">
+  <meta name="keywords" content="Case Management deutschlandweit, Pflegegrad Hilfe, Versorgungsplanung, Widerspruch Pflegegrad, Anträge Pflege, Versorgung zuhause, Angehörige entlasten, deutschlandweit remote">
+  <meta name="author" content="casekompass.de">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="DE-BW">
+  <meta name="geo.placename" content="Schnaitheim, Heidenheim an der Brenz, Landkreis Heidenheim">
+  <meta name="geo.position" content="48.6305;10.1509">
+  <meta name="ICBM" content="48.6305, 10.1509">
+  
+  <title>Case Management deutschlandweit | casekompass.de</title>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://casekompass.de/">
+  <meta property="og:title" content="Case Management deutschlandweit | casekompass.de">
+  <meta property="og:description" content="Case Management deutschlandweit für Pflegegrad, Versorgungsplanung, Anträge, Widerspruch und Versorgung zuhause.">
+  <meta property="og:image" content="https://casekompass.de/images/logo.png">
+  <meta property="og:site_name" content="casekompass.de">
+  <meta property="og:locale" content="de_DE">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case Management deutschlandweit | casekompass.de">
+  <meta name="twitter:description" content="Case Management deutschlandweit für Pflegegrad, Versorgungsplanung, Anträge, Widerspruch und Versorgung zuhause.">
+  <meta name="twitter:image" content="https://casekompass.de/images/logo.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://casekompass.de/">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./images/logo.png">
+  <link rel="apple-touch-icon" href="./images/logo.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="./style.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./style.css" />
 
+  <!-- AOS (scroll animations) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- GLightbox (gallery) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css" />
+  
   <style>
-    .hero-copy {
-      max-width: 760px;
-      margin: 0 auto;
-      text-align: center;
+    /* Mobile Optimierungen & Alignment Fix */
+    @media (max-width: 820px){
+      .section h2,
+      .section .section-intro{
+        text-align:center;
+      }
+      .services-slideshow.card.modern-slideshow{
+        padding:16px 18px 70px;
+      }
+      .services-slideshow .ms-prev{left:8px}
+      .services-slideshow .ms-next{left:60px}
+      .services-slideshow .ms-toggle{right:10px}
+      .services-slide{padding:32px 12px 10px}
+      .services-slide h3{font-size:1.55rem}
+      .services-slide p{font-size:.95rem}
     }
-    .hero-note {
-      margin: 18px auto 0;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      display: inline-block;
-    }
-    .quick-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      margin-top: 24px;
-    }
-    .quick-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .quick-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: var(--primary-700);
-      font-size: 1.1rem;
-    }
-    .quick-card p {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .mini-label {
-      font-weight: 700;
-      color: var(--text);
-      display: block;
-      margin-top: 8px;
-      margin-bottom: 4px;
-    }
-    .hint-box {
-      background: linear-gradient(135deg, #f4fbfb, #fff9f5);
-      border: 1px solid #d8ebe8;
-      border-left: 4px solid var(--primary);
-      border-radius: 14px;
-      padding: 16px;
-      margin-top: 20px;
-      color: #365354;
-    }
-    .trust-block {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 22px;
-      align-items: center;
-      margin-top: 20px;
-    }
-    .photo-placeholder {
-      width: 100%;
-      min-height: 260px;
-      border: 2px dashed #bdd4d0;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #5e7e7a;
-      background: #f7fbfb;
-      text-align: center;
-      padding: 18px;
-    }
-    .cta-row {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .price-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: var(--shadow-sm);
-    }
-    .price-value {
-      font-size: 1.45rem;
-      color: var(--primary-700);
-      font-weight: 700;
-      margin: 6px 0 8px;
-    }
-    .so-fachlich {
-      background: var(--bg-soft);
-    }
-    @media (max-width: 820px) {
-      .trust-block {
-        grid-template-columns: 1fr;
+
+    @media (max-width: 700px){
+      /* Kontakt-Bereich mittig & Luft reduzieren */
+      #kontakt .contact-grid{
+        text-align:center;
+      }
+      #kontakt .contact-info ul{
+        list-style:none;
+        padding:0;
+        margin:0 auto 18px;
+        text-align:center;
+      }
+      #kontakt .contact-info li{
+        justify-content:center;
+      }
+      #kontakt .contact-info a{
+        word-break:break-word;
+      }
+      #kontakt .contact-form{
+        margin-top:8px;
       }
     }
+
+    @media (max-width: 600px){
+      .hero-content p{
+        font-size:1rem;
+        padding:0 4px;
+      }
+      .hero-actions{
+        flex-direction:column;
+        gap:14px;
+      }
+      .hero-actions .btn{
+        width:100%;
+        justify-content:center;
+      }
+      .hero-locations{
+        gap:10px;
+      }
+      .hero-locations .location-item{
+        padding:6px 14px;
+        font-size:.8rem;
+      }
+      /* Map Scaling */
+      .interactive-map-container{
+        border-radius:16px;
+      }
+      .enhanced-map{
+        height:360px;
+      }
+      .service-area-circle{
+        width:260px;
+        height:260px;
+      }
+      .center-marker{
+        width:58px;
+        height:58px;
+        font-size:1.15rem;
+      }
+      .location-marker{
+        width:34px;
+        height:34px;
+      }
+      .location-marker i{
+        font-size:.9rem;
+      }
+      .area-radius{
+        font-size:.65rem;
+        top:-22px;
+        padding:3px 10px;
+      }
+      .map-header,.map-footer{
+        padding:16px 18px;
+      }
+      .coverage-stats{
+        gap:14px;
+      }
+      .stat-item{
+        padding:12px 10px;
+      }
+      .stat-item i{
+        font-size:1.2rem;
+      }
+      /* Footer stacking spacing */
+      .footer-grid{
+        gap:22px;
+      }
+    }
+
+    @media (max-width:480px){
+      .services-slide .features{
+        gap:6px;
+        font-size:.85rem;
+      }
+      .services-slide .icon{
+        width:70px;
+        height:70px;
+        font-size:1.6rem;
+      }
+      .ms-dots .ms-dot{
+        width:12px;
+        height:12px;
+      }
+      .ms-nav,.ms-toggle{
+        width:40px !important;
+        height:40px !important;
+        top:10px !important;
+      }
+      .ms-next{left:54px !important}
+    }
+
+    /* Sicherstellen, dass UL im Haupt-Navi nie Marker zeigt */
+    nav.site-nav ul{list-style:none;margin:0;padding:0}
+    nav.site-nav li{list-style:none}
+
+    /* Defensive: Entfernt evtl. styling-konflikt durch Browser */
+    nav.site-nav li::marker{content:""}
+
+    /* ZENTRIERUNG CTA LEISTUNGEN */
+    .cta-block,
+    .leistungen-cta {
+      max-width: 960px;
+      margin: 50px auto 0;
+      text-align: center;
+      padding: 10px 20px 0;
+    }
+    .cta-block h2,
+    .leistungen-cta h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+      font-weight: 700;
+      letter-spacing: .3px;
+      color: var(--primary-700);
+    }
+    .cta-block p,
+    .leistungen-cta p {
+      margin: 0 0 26px;
+      font-size: .95rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+    }
+    .cta-actions .btn {
+      min-width: 170px;
+      justify-content: center;
+      font-size: .9rem;
+      padding: 13px 20px;
+    }
+
+    /* Wenn der alte Block links steht (z.B. durch container ohne center), überschreiben: */
+    .leistungen-cta.container,
+    .cta-block.container {
+      display: block;
+    }
+
+    /* Mobile Feinschliff */
+    @media (max-width:600px){
+      .cta-block,
+      .leistungen-cta {margin-top:40px;padding:0 6px}
+      .cta-block p,
+      .leistungen-cta p {margin-bottom:22px}
+      .cta-actions {gap:10px}
+      .cta-actions .btn {width:100%}
+    }
   </style>
+  
+  <!-- JSON-LD Structured Data for Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://casekompass.de",
+    "name": "casekompass.de",
+    "alternateName": "Case Management deutschlandweit",
+    "description": "Case Management deutschlandweit für Pflegegrad, Versorgungsplanung, Anträge, Widerspruch und Versorgung zuhause. Klare Unterstützung für Angehörige und Familien.",
+    "url": "https://casekompass.de",
+    "logo": "https://casekompass.de/images/logo.png",
+    "image": "https://casekompass.de/images/logo.png",
+    "telephone": "+4915226560105",
+    "email": "casekompass@gmx.de",
+    "paymentAccepted": "Selbstzahler, Überweisung",
+    "currenciesAccepted": "EUR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Albstraße 5",
+      "addressLocality": "Herbrechtingen",
+      "addressRegion": "Baden-Württemberg",
+      "postalCode": "89542",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.6305",
+      "longitude": "10.1509"
+    },
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Landkreis Heidenheim"
+      },
+      {
+        "@type": "City",
+        "name": "Heidenheim an der Brenz"
+      },
+      {
+        "@type": "City",
+        "name": "Bolheim"
+      },
+      {
+        "@type": "City",
+        "name": "Herbrechtingen"
+      },
+      {
+        "@type": "City",
+        "name": "Giengen an der Brenz"
+      },
+      {
+        "@type": "City",
+        "name": "Sontheim an der Brenz"
+      },
+      {
+        "@type": "City",
+        "name": "Niederstotzingen"
+      },
+      {
+        "@type": "City",
+        "name": "Hermaringen"
+      },
+      {
+        "@type": "City",
+        "name": "Königsbronn"
+      },
+      {
+        "@type": "City",
+        "name": "Nattheim"
+      },
+      {
+        "@type": "City",
+        "name": "Steinheim am Albuch"
+      },
+      {
+        "@type": "City",
+        "name": "Gerstetten"
+      },
+      {
+        "@type": "City",
+        "name": "Dischingen"
+      },
+      {
+        "@type": "City",
+        "name": "Syrgenstein"
+      },
+      {
+        "@type": "City",
+        "name": "Bachhagel"
+      }
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    ],
+    "availableService": [
+      {
+        "@type": "Service",
+        "name": "Pflegegrad-Begleitung",
+        "description": "Unterstützung bei Antrag, Vorbereitung auf die Begutachtung und Einordnung der nächsten Schritte."
+      },
+      {
+        "@type": "Service",
+        "name": "Versorgungsplanung zuhause",
+        "description": "Strukturierte Planung von Hilfen, Entlastung, Terminen und tragfähigen Abläufen im Alltag."
+      },
+      {
+        "@type": "Service",
+        "name": "Anträge und Widerspruch",
+        "description": "Klare Begleitung bei Formularen, Nachweisen und der Formulierung von Widersprüchen."
+      },
+      {
+        "@type": "Service",
+        "name": "Begleitung für Angehörige",
+        "description": "Orientierung, Entlastung und konkrete Unterstützung in belastenden Versorgungssituationen."
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/ergotherapie_mobil",
+      "https://www.facebook.com/ergotherapie_mobil"
+    ]
+  }
+  </script>
+  
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://casekompass.de/"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#start">Zum Inhalt springen</a>
+  
+  
+  
+  <!-- Google tag (gtag.js) - Add your Google Analytics ID here -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script> -->
 
   <header id="top" class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
-        <img src="./images/logo.png" alt="casekompass.de Logo" />
+      <a href="#top" class="brand" aria-label="casekompass.de Startseite">
+        <img src="./images/logo.png" alt="casekompass.de Logo">
         <span>casekompass.de</span>
       </a>
 
@@ -141,282 +423,734 @@
       <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
           <li><a href="#start" class="active">Start</a></li>
-          <li><a href="#angebote">Leistungen</a></li>
-          <li><a href="#ansprechpartner">Über mich</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="leistungen.html">Leistungen</a></li>
+          <li><a href="erstgespraech-buchen.html">Erstgespräch buchen</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section id="start" class="hero" aria-label="Einstiegsbereich">
-      <div class="hero-gallery">
-        <div class="hero-gallery-item active" style="background-image: url('./images/1.png')"></div>
-        <div class="hero-gallery-item" data-bg="./images/2.png"></div>
-        <div class="hero-gallery-item" data-bg="./images/3.png"></div>
-        <div class="hero-gallery-item" data-bg="./images/4.png"></div>
+  <main id="start" class="hero" aria-label="Einstiegsbereich">
+    <div class="hero-gallery">
+      <div class="hero-gallery-item active" style="background-image: url('./images/1.webp')"></div>
+      <div class="hero-gallery-item" data-bg="./images/2.webp"></div>
+      <div class="hero-gallery-item" data-bg="./images/3.webp"></div>
+      <div class="hero-gallery-item" data-bg="./images/4.webp"></div>
+    </div>
+    <div class="container hero-content" data-aos="fade-up">
+
+      <!-- Logo Bubble Style -->
+      <style>
+        .logo-bubble {
+          width: 180px;
+          height: 180px;
+          margin: 0 auto 30px;
+          background: rgba(255, 255, 255, 0.95);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 
+                      0 0 0 1px rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(10px);
+          position: relative;
+          animation: bubbleEntry 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+          overflow: hidden;
+        }
+        
+        .logo-bubble::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, 
+            rgba(76, 161, 163, 0.4), 
+            rgba(230, 126, 115, 0.4));
+          z-index: -1;
+          animation: bubbleGlow 3s ease-in-out infinite;
+        }
+        
+        .logo-bubble::after {
+          content: '';
+          position: absolute;
+          top: 10%;
+          left: 15%;
+          width: 40%;
+          height: 40%;
+          background: radial-gradient(circle, 
+            rgba(255, 255, 255, 0.8) 0%, 
+            transparent 70%);
+          border-radius: 50%;
+          animation: bubbleShine 3s ease-in-out infinite;
+        }
+        
+        .hero-logo {
+          width: 140px;
+          height: auto;
+          position: relative;
+          z-index: 1;
+          animation: logoFadeIn 1s ease-out 0.3s backwards;
+        }
+        
+        @keyframes bubbleEntry {
+          0% {
+            transform: scale(0) translateY(-100px);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.1) translateY(10px);
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes bubbleGlow {
+          0%, 100% {
+            opacity: 0.6;
+            transform: rotate(0deg) scale(1);
+          }
+          50% {
+            opacity: 0.9;
+            transform: rotate(180deg) scale(1.05);
+          }
+        }
+        
+        @keyframes bubbleShine {
+          0%, 100% {
+            opacity: 0.3;
+            transform: translate(0, 0);
+          }
+          50% {
+            opacity: 0.6;
+            transform: translate(-5px, -5px);
+          }
+        }
+        
+        @keyframes logoFadeIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        /* Mobile Anpassung */
+        @media (max-width: 600px) {
+          .logo-bubble {
+            width: 140px;
+            height: 140px;
+            margin-bottom: 25px;
+          }
+          .hero-logo {
+            width: 110px;
+          }
+        }
+        
+        /* Animated Text Letter by Letter */
+        .hero-title {
+          display: inline-block;
+          font-size: inherit;
+          font-weight: inherit;
+          margin: 0;
+        }
+        
+        .hero-title .letter {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(-30px) rotateX(-90deg);
+          animation: letterDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .hero-title .letter.space {
+          width: 0.3em;
+        }
+        
+        @keyframes letterDrop {
+          0% {
+            opacity: 0;
+            transform: translateY(-30px) rotateX(-90deg);
+          }
+          50% {
+            transform: translateY(5px) rotateX(0deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+          }
+        }
+        
+        /* Stagger delay for each letter */
+        .hero-title .letter:nth-child(1) { animation-delay: 0.8s; }
+        .hero-title .letter:nth-child(2) { animation-delay: 0.85s; }
+        .hero-title .letter:nth-child(3) { animation-delay: 0.9s; }
+        .hero-title .letter:nth-child(4) { animation-delay: 0.95s; }
+        .hero-title .letter:nth-child(5) { animation-delay: 1s; }
+        .hero-title .letter:nth-child(6) { animation-delay: 1.05s; }
+        .hero-title .letter:nth-child(7) { animation-delay: 1.1s; }
+        .hero-title .letter:nth-child(8) { animation-delay: 1.15s; }
+        .hero-title .letter:nth-child(9) { animation-delay: 1.2s; }
+        .hero-title .letter:nth-child(10) { animation-delay: 1.25s; }
+        .hero-title .letter:nth-child(11) { animation-delay: 1.3s; }
+        .hero-title .letter:nth-child(12) { animation-delay: 1.35s; }
+        .hero-title .letter:nth-child(13) { animation-delay: 1.4s; }
+        .hero-title .letter:nth-child(14) { animation-delay: 1.45s; }
+        .hero-title .letter:nth-child(15) { animation-delay: 1.5s; }
+        .hero-title .letter:nth-child(16) { animation-delay: 1.55s; }
+        .hero-title .letter:nth-child(17) { animation-delay: 1.6s; }
+        .hero-title .letter:nth-child(18) { animation-delay: 1.65s; }
+      </style>
+      <div class="logo-bubble">
+        <img class="hero-logo" src="./images/logo.png" alt="casekompass.de Logo" width="360" height="360" fetchpriority="high" decoding="async">
       </div>
-      <div class="container hero-content">
-        <div class="hero-copy">
-          <h1>Hilfe, wenn Pflege zuhause ploetzlich zu viel wird</h1>
-          <p>Ich unterstuetze Angehoerige und Pflegebeduerftige dabei, Pflegegrad, Antraege, Pflegekasse, Krankenhausentlassung und Versorgung zuhause verstaendlich zu ordnen - privat, strukturiert und ohne falsche Versprechen.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="kontakt.html"><i class="fa-solid fa-paper-plane"></i> Kostenlose Anfrage stellen</a>
-            <a class="btn ghost" href="#angebote"><i class="fa-solid fa-list-check"></i> Leistungen ansehen</a>
+      <h1>
+        <span class="hero-title">
+          <span class="letter">c</span><span class="letter">a</span><span class="letter">s</span><span class="letter">e</span><span class="letter">k</span><span class="letter">o</span><span class="letter">m</span><span class="letter">p</span><span class="letter">a</span><span class="letter">s</span><span class="letter">s</span><span class="letter">.</span><span class="letter">d</span><span class="letter">e</span>
+        </span>
+      </h1>
+
+      <p>Hilfe, wenn zuhause alles zu viel wird: Ich bringe Struktur in Pflege, Anträge und Termine - klar, menschlich und an Ihrer Seite.</p>
+      <ul class="hero-problem-list" aria-label="Typische Herausforderungen im Pflegealltag">
+        <li><i class="fa-solid fa-file-medical"></i> Hilfe beim Pflegegrad</li>
+        <li><i class="fa-solid fa-folder-open"></i> Ordnung bei Unterlagen</li>
+        <li><i class="fa-solid fa-hospital-user"></i> Unterstützung nach Krankenhaus oder Reha</li>
+        <li><i class="fa-solid fa-people-roof"></i> Entlastung für Angehörige</li>
+      </ul>
+      
+      <!-- Leistungsformat im Hero -->
+      <div class="hero-locations">
+        <div class="location-item">
+          <i class="fa-solid fa-laptop-house"></i>
+          <span>Case Management remote</span>
+        </div>
+        <div class="location-item">
+          <i class="fa-solid fa-globe"></i>
+          <span>Deutschlandweit</span>
+        </div>
+        <div class="location-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Alltagsbegleitung regional</span>
+        </div>
+      </div>
+      
+      <div class="hero-actions">
+        <a class="btn primary" href="kontakt.html#termin"><i class="fa-solid fa-calendar-check"></i> Termin vereinbaren</a>
+        <a class="btn primary" href="https://wa.me/4915129812721?text=Hallo,%20ich%20interessiere%20mich%20für%20eine%20ergotherapeutische%20Behandlung." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Anfrage</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- HIER EINFÜGEN -->
+  <main id="main" class="about-page" aria-label="Über uns">
+    <section class="page-hero">
+      <div class="container" data-aos="fade-up">
+        <h1><i class="fa-solid fa-user-doctor"></i> Fachliche Expertise - Johannes Piperidis</h1>
+        <p class="hero-subtitle">Konkrete Unterstützung für Familien, wenn Pflege, Anträge und Termine überfordern.</p>
+      </div>
+    </section>
+
+    <section id="ueber-mich" class="about-content reveal">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image" data-aos="zoom-in">
+            <img src="./images/m.nebel.webp" alt="Mareike Nebel - Ergotherapeutin" loading="lazy" decoding="async" width="720" height="720" />
           </div>
-          <p class="hero-note">Privatleistung · Remote deutschlandweit · Alltagsbegleitung regional im Raum Heidenheim</p>
+          <div class="about-text" data-aos="fade-left">
+            <h2><i class="fa-solid fa-user-heart"></i> Struktur im Pflegealltag - klar begleitet</h2>
+            <p>
+              Wenn zuhause plötzlich alles gleichzeitig kommt, bin ich an Ihrer Seite.
+            </p>
+            <p>
+              Ich begleite ältere Menschen, Menschen mit Behinderung und ihre Angehörigen dabei, Schritt für Schritt wieder Struktur in den Alltag zu bringen. Gemeinsam schauen wir, welche Hilfen sinnvoll sind, welche Anträge gestellt werden sollten und was jetzt wirklich wichtig ist.
+            </p>
+            <ul class="trust-points" aria-label="Vertrauen und Qualifikation">
+              <li><i class="fa-solid fa-circle-check"></i> Fachlich fundierte Begleitung im Case Management</li>
+              <li><i class="fa-solid fa-circle-check"></i> Individuell abgestimmte Unterstützung auf privater Basis</li>
+              <li><i class="fa-solid fa-circle-check"></i> Verständliche Hilfe ohne Fachchinesisch</li>
+            </ul>
+            <p>
+              Ich unterstütze unter anderem bei Pflegegrad-Anträgen, der Vorbereitung auf Begutachtungen, Fragen rund um die Einstufung, Reha-Anträgen, Hilfsmitteln und der Kommunikation mit Behörden. Auch in der Alltagsbegleitung helfe ich dabei, den Alltag wieder planbarer, sicherer und entlastender zu gestalten.
+            </p>
+            <p class="about-personal-note"><strong>Mein Ziel:</strong><br>Weniger Überforderung. Mehr Orientierung. Klare nächste Schritte.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="probleme" class="section">
+    <section class="typical-situations" aria-labelledby="situationen-title">
       <div class="container">
-        <h2>Kommt Ihnen eine dieser Situationen bekannt vor?</h2>
-        <div class="quick-grid">
-          <article class="quick-card"><p>Ein Pflegegrad soll beantragt oder erhoeht werden.</p></article>
-          <article class="quick-card"><p>Der Bescheid der Pflegekasse wirkt zu niedrig oder unverstaendlich.</p></article>
-          <article class="quick-card"><p>Nach Krankenhaus oder Reha ist unklar, wie es zuhause weitergehen soll.</p></article>
-          <article class="quick-card"><p>Angehoerige fuehlen sich ueberfordert mit Formularen, Terminen und Zustaendigkeiten.</p></article>
-          <article class="quick-card"><p>Es fehlt ein klarer Versorgungsplan fuer den Alltag.</p></article>
-          <article class="quick-card"><p>Es wird praktische Entlastung im Raum Heidenheim gesucht.</p></article>
+        <h3 id="situationen-title"><i class="fa-solid fa-lightbulb"></i> Typische Situationen</h3>
+        <div class="situations-list">
+          <p>Sie wissen nach dem Krankenhaus nicht, wie es zuhause weitergeht?</p>
+          <p>Der Pflegegrad-Antrag überfordert Sie?</p>
+          <p>Sie kümmern sich um Angehörige und brauchen endlich Struktur?</p>
         </div>
-        <div class="cta-row">
-          <a class="btn primary" href="kontakt.html">Jetzt unverbindlich anfragen</a>
+        <a class="btn primary situations-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-envelope-open-text"></i> Jetzt Kontakt aufnehmen</a>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section reveal" aria-labelledby="leistungen-title">
+      <div class="container" data-aos="fade-up">
+        <h2 id="leistungen-title"><i class="fa-solid fa-stethoscope"></i> Case Management in der Praxis</h2>
+        <p class="section-intro">Case Management heißt, komplexe Situationen zu ordnen, passende Hilfen zu planen und alle nötigen Schritte nachvollziehbar zu koordinieren.</p>
+
+        <div class="case-management-intro">
+          <p>Gerade wenn Pflegegrad, Reha, Versorgung, Termine und Behörden gleichzeitig Thema sind, braucht es eine klare Struktur. Genau hier setzt Case Management an: Es verbindet Beratung, Planung, Koordination und Begleitung zu einem nachvollziehbaren Ablauf.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-file-circle-check"></i></div>
+              <h3>Pflegegrad & Widerspruch</h3>
+              <p class="service-subtitle">Sichere Begleitung bei Antrag, Begutachtung und Korrektur</p>
+            </div>
+            <div class="service-content">
+              <p>Ich begleite Sie vom ersten Pflegegrad-Antrag bis zur finalen Entscheidung und bereite Sie gezielt auf die MD-Begutachtung vor.</p>
+
+              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
+              <ul class="service-points">
+                <li>Passende Einstufung nach tatsächlichem Hilfebedarf</li>
+                <li>Transparente Unterlagen und nachvollziehbare Argumentation</li>
+                <li>Sicherheit im Begutachtungsgespräch</li>
+                <li>Entlastung von Angehörigen im Antragsprozess</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
+              <ul class="service-points">
+                <li>Prüfung und Vorbereitung aller Antragsunterlagen</li>
+                <li>Begleitung vor, während und nach der Begutachtung</li>
+                <li>Auswertung von Bescheiden und verständliche Erklärung</li>
+                <li>Widerspruch bei zu niedriger oder falscher Einstufung</li>
+                <li>Kommunikation mit Kasse und beteiligten Stellen</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Erstantrag Pflegegrad</span>
+                <span class="indication-tag">Höherstufung</span>
+                <span class="indication-tag">Ablehnung Pflegegrad</span>
+                <span class="indication-tag">Widerspruchsverfahren</span>
+                <span class="indication-tag">MD-Begutachtung</span>
+                <span class="indication-tag">Überprüfung bestehender Bescheide</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-handshake-angle"></i></div>
+              <h3>Reha & Versorgungskoordination</h3>
+              <p class="service-subtitle">Die richtigen Leistungen zur richtigen Zeit organisieren</p>
+            </div>
+            <div class="service-content">
+              <p>Ich koordiniere medizinische, pflegerische und soziale Hilfen und unterstütze Sie bei Reha, Hilfsmitteln und Anträgen gegenüber Kostenträgern.</p>
+
+              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
+              <ul class="service-points">
+                <li>Lückenlose Versorgung ohne Doppelstrukturen</li>
+                <li>Schnellere Zugänge zu Reha- und Unterstützungsangeboten</li>
+                <li>Klare Abstimmung zwischen allen Beteiligten</li>
+                <li>Nachhaltige Stabilisierung im Alltag</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
+              <ul class="service-points">
+                <li>Beratung zu Reha-Maßnahmen und Antragswegen</li>
+                <li>Unterstützung bei Hilfsmittelanträgen und Versorgung</li>
+                <li>Koordination mit Ärzten, Kliniken, Pflegediensten und Kassen</li>
+                <li>Begleitung bei Behördenkontakten und Schriftverkehr</li>
+                <li>Planung individueller Unterstützungsnetzwerke</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Reha-Antrag</span>
+                <span class="indication-tag">Hilfsmittelbedarf</span>
+                <span class="indication-tag">Pflegesachleistungen</span>
+                <span class="indication-tag">Entlassmanagement</span>
+                <span class="indication-tag">Leistungsablehnung</span>
+                <span class="indication-tag">Mehrfachzuständigkeiten</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-header">
+              <div class="icon"><i class="fa-solid fa-people-group"></i></div>
+              <h3>Alltagsbegleitung & Betreuung</h3>
+              <p class="service-subtitle">Praktische Unterstützung für ein sicheres und aktives Leben</p>
+            </div>
+            <div class="service-content">
+              <p>Ich begleite ältere Menschen und Menschen mit Behinderung im Alltag, fördere Teilhabe und schaffe verlässliche Strukturen im gewohnten Umfeld.</p>
+
+              <h4><i class="fa-solid fa-target"></i> Ziele</h4>
+              <ul class="service-points">
+                <li>Selbstständigkeit und Orientierung im Alltag erhalten</li>
+                <li>Soziale Isolation reduzieren und Teilhabe stärken</li>
+                <li>Angehörige entlasten und Versorgungssicherheit schaffen</li>
+                <li>Stabilität bei körperlichen und kognitiven Einschränkungen</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-clipboard-list"></i> Leistungen</h4>
+              <ul class="service-points">
+                <li>Begleitung zu Arztterminen, Ämtern und wichtigen Terminen</li>
+                <li>Unterstützung bei Tagesstruktur, Aktivierung und Freizeit</li>
+                <li>Hilfe bei Organisation von Haushalt und Versorgung</li>
+                <li>Begleitung bei sozialen Kontakten und Aktivitäten</li>
+                <li>Individuelle Betreuung im häuslichen Umfeld</li>
+              </ul>
+
+              <h4><i class="fa-solid fa-user-injured"></i> Typische Anliegen</h4>
+              <div class="indications-grid">
+                <span class="indication-tag">Alter mit Unterstützungsbedarf</span>
+                <span class="indication-tag">Menschen mit Behinderung</span>
+                <span class="indication-tag">Demenznahe Begleitung</span>
+                <span class="indication-tag">Entlastung Angehöriger</span>
+                <span class="indication-tag">Alltagsüberforderung</span>
+                <span class="indication-tag">Einsamkeit und Isolation</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="angebote" class="section">
+    <section class="therapy-process">
       <div class="container">
-        <h2>Konkrete Angebote fuer Ihre Situation</h2>
-        <p class="section-intro">Problemorientiert statt theoretisch: Sie erhalten klare naechste Schritte und umsetzbare Struktur.</p>
-        <div class="quick-grid">
-          <article class="quick-card">
-            <h3>Pflegegrad-Startpaket</h3>
-            <span class="mini-label">Was ist das Problem?</span>
-            <p>Unsicherheit bei Antrag, Unterlagen und Begutachtung.</p>
-            <span class="mini-label">Was macht CaseKompass?</span>
-            <p>Ich ordne Unterlagen, strukturiere den Fall und bereite Sie auf die Begutachtung vor.</p>
-            <span class="mini-label">Fuer wen ist es geeignet?</span>
-            <p>Fuer Familien vor dem Erstantrag oder bei unklarer Ausgangslage.</p>
-            <a class="btn ghost" href="leistungen.html">Mehr erfahren</a>
-          </article>
+        <h2><i class="fa-solid fa-clipboard-list"></i> Case-Management-Regelkreis</h2>
+        <p class="section-intro">Strukturiertes Vorgehen in sechs Phasen: von der Klärung bis zur Evaluation und Nachsorge.</p>
 
-          <article class="quick-card">
-            <h3>Pflegekassen-Leistungen-Check</h3>
-            <span class="mini-label">Was ist das Problem?</span>
-            <p>Leistungen, Ansprueche und Moeglichkeiten sind nicht transparent.</p>
-            <span class="mini-label">Was macht CaseKompass?</span>
-            <p>Ich erklaere verstaendlich, welche Leistungen zu Ihrer Situation passen koennen.</p>
-            <span class="mini-label">Fuer wen ist es geeignet?</span>
-            <p>Fuer Angehoerige mit bestehendem Pflegegrad oder offenem Leistungsbedarf.</p>
-            <a class="btn ghost" href="leistungen.html">Mehr erfahren</a>
-          </article>
+        <div class="process-steps">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-phone"></i> Intake / Eintrittsphase (Klärung)</h3>
+              <p>Identifikation des Falls und Prüfung, ob die Voraussetzungen für ein Case Management erfüllt sind.</p>
+              <ul>
+                <li>Erstkontakt und Auftragsklärung</li>
+                <li>Zuständigkeiten prüfen</li>
+                <li>Aufnahmeentscheidung treffen</li>
+              </ul>
+            </div>
+          </div>
 
-          <article class="quick-card">
-            <h3>Nach Krankenhaus wieder zuhause</h3>
-            <span class="mini-label">Was ist das Problem?</span>
-            <p>Nach Entlassung fehlen klare Zustaendigkeiten und ein stabiler Startplan.</p>
-            <span class="mini-label">Was macht CaseKompass?</span>
-            <p>Ich helfe bei Koordination, Prioritaeten und alltagstauglicher Umsetzung.</p>
-            <span class="mini-label">Fuer wen ist es geeignet?</span>
-            <p>Fuer Familien in den ersten Wochen nach Klinik oder Reha.</p>
-            <a class="btn ghost" href="leistungen.html">Mehr erfahren</a>
-          </article>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-clipboard-check"></i> Assessment (Bedarfsermittlung)</h3>
+              <p>Systematische Analyse der Lebenssituation, Problemlagen, Ressourcen und des konkreten Unterstützungsbedarfs.</p>
+              <ul>
+                <li>Aktuelle Versorgungssituation erfassen</li>
+                <li>Belastungen und Risiken identifizieren</li>
+                <li>Ressourcen von Klient und Umfeld erfassen</li>
+                <li>Prioritäten gemeinsam festlegen</li>
+              </ul>
+            </div>
+          </div>
 
-          <article class="quick-card">
-            <h3>Alltagsbegleitung regional</h3>
-            <span class="mini-label">Was ist das Problem?</span>
-            <p>Angehoerige brauchen praktische Entlastung im laufenden Alltag.</p>
-            <span class="mini-label">Was macht CaseKompass?</span>
-            <p>Ich begleite strukturiert bei Terminen, Organisation und Tagesablauf.</p>
-            <span class="mini-label">Fuer wen ist es geeignet?</span>
-            <p>Fuer Pflegebeduerftige und Familien im Raum Heidenheim.</p>
-            <a class="btn ghost" href="leistungen.html">Mehr erfahren</a>
-          </article>
-        </div>
-        <div class="hint-box">
-          Wichtig: CaseKompass bietet Privatleistungen an. Eine direkte Abrechnung mit Pflegekassen oder Krankenkassen erfolgt aktuell nicht. Ich unterstuetze Sie jedoch dabei, moegliche Ansprueche, Leistungen und Antraege besser zu verstehen und vorzubereiten.
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="leistungen.html">Leistungen vergleichen</a>
-          <a class="btn ghost" href="kontakt.html">Pflegegrad-Hilfe ansehen</a>
-        </div>
-      </div>
-    </section>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-bullseye"></i> Ziel- und Hilfeplanung</h3>
+              <p>Gemeinsame Festlegung realistischer Ziele und Entwicklung eines konkreten Maßnahmenplans (Care Plan).</p>
+              <ul>
+                <li>Ziele messbar definieren</li>
+                <li>Passende Leistungen auswählen</li>
+                <li>Aufgaben und Verantwortlichkeiten klären</li>
+                <li>Zeitplan und nächste Schritte festlegen</li>
+              </ul>
+            </div>
+          </div>
 
-    <section class="section">
-      <div class="container">
-        <h2>Warum CaseKompass?</h2>
-        <div class="quick-grid">
-          <article class="quick-card"><h3>Ruhige Orientierung</h3><p>Sie erhalten eine klare Struktur, statt mit offenen Fragen allein zu bleiben.</p></article>
-          <article class="quick-card"><h3>Verstaendliche Sprache</h3><p>Komplexe Begriffe aus Pflege und Antraegen werden nachvollziehbar erklaert.</p></article>
-          <article class="quick-card"><h3>Umsetzbare Schritte</h3><p>Jedes Gespraech fuehrt zu konkreten naechsten Schritten fuer Ihren Alltag.</p></article>
-          <article class="quick-card"><h3>Ehrliche Begleitung</h3><p>Keine Garantien auf Pflegegrad oder Erstattungen, sondern serioese Fallvorbereitung.</p></article>
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="kontakt.html">Erstkontakt aufnehmen</a>
-        </div>
-      </div>
-    </section>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-hands-helping"></i> Implementierung (Umsetzung & Koordination)</h3>
+              <p>Umsetzung der geplanten Maßnahmen und aktive Koordination aller beteiligten Leistungserbringer.</p>
+              <ul>
+                <li>Anträge und Maßnahmen anstoßen</li>
+                <li>Termine und Abläufe koordinieren</li>
+                <li>Kommunikation zwischen allen Beteiligten sichern</li>
+                <li>Umsetzung im Alltag begleiten</li>
+              </ul>
+            </div>
+          </div>
 
-    <section id="ansprechpartner" class="section">
-      <div class="container">
-        <h2>Ihr Ansprechpartner: Johannes Piperidis</h2>
-        <div class="trust-block">
-          <div class="photo-placeholder">Platz fuer Foto<br />Johannes Piperidis</div>
-          <div>
-            <p>Ich unterstuetze Menschen und Angehoerige dabei, in schwierigen Pflegesituationen wieder Struktur, Ueberblick und konkrete naechste Schritte zu bekommen. Meine Arbeit verbindet Case Management, Erfahrung im Pflegeumfeld und eine ruhige, verstaendliche Begleitung. Ich verspreche keine Wunder und keine garantierten Pflegegrade - aber ich helfe Ihnen dabei, Ihren Fall sauber vorzubereiten, Unterlagen zu ordnen und passende Moeglichkeiten zu pruefen.</p>
-            <div class="cta-row">
-              <a class="btn ghost" href="kontakt.html">Jetzt unverbindlich anfragen</a>
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-chart-line"></i> Monitoring (Verlaufskontrolle)</h3>
+              <p>Kontinuierliche Überprüfung der Wirksamkeit und bei Bedarf gezielte Anpassung des Maßnahmenplans.</p>
+              <ul>
+                <li>Ergebnisse regelmäßig prüfen</li>
+                <li>Rückmeldungen von Klient und Netzwerk einholen</li>
+                <li>Maßnahmen bei Bedarf nachsteuern</li>
+                <li>Verlauf nachvollziehbar dokumentieren</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">6</div>
+            <div class="step-content">
+              <h3><i class="fa-solid fa-graduation-cap"></i> Evaluation & Abschluss</h3>
+              <p>Bewertung der erreichten Ergebnisse, geordneter Fallabschluss oder Übergang in eine passende Nachsorge.</p>
+              <ul>
+                <li>Zielerreichung gemeinsam bewerten</li>
+                <li>Abschlussgespräch und Empfehlungen</li>
+                <li>Nachsorge und Anschlussversorgung planen</li>
+                <li>Fall strukturiert abschließen</li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <h2>Ablauf der Zusammenarbeit</h2>
-        <div class="quick-grid">
-          <article class="quick-card"><h3>1. Erstgespraech</h3><p>Wir klaeren kurz, was aktuell am meisten belastet und was zuerst geloest werden soll.</p></article>
-          <article class="quick-card"><h3>2. Fallstruktur</h3><p>Ich ordne Ihre Unterlagen und mache Prioritaeten, Aufgaben und Fristen sichtbar.</p></article>
-          <article class="quick-card"><h3>3. Umsetzung</h3><p>Sie erhalten konkrete Handlungsschritte fuer Antrag, Versorgung und Alltag.</p></article>
-          <article class="quick-card"><h3>4. Nachsteuerung</h3><p>Bei Bescheiden oder neuen Entwicklungen passen wir die Schritte gemeinsam an.</p></article>
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="kontakt.html">Erstkontakt aufnehmen</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2>Preise und Transparenz</h2>
-        <div class="quick-grid">
-          <article class="price-card">
-            <h3>Einfuehrungsangebot</h3>
-            <p>Pflegegrad-Startpaket aktuell fuer</p>
-            <p class="price-value">99,50 EUR statt 199 EUR</p>
-            <p>Ruhig und transparent ohne Zeitdruck, Countdown oder kuenstliche Verknappung.</p>
-          </article>
-          <article class="price-card">
-            <h3>Transparente Privatleistung</h3>
-            <p>Leistungsumfang und Kosten werden vor Beginn klar besprochen. Keine versteckten Zusatzkosten.</p>
-          </article>
-        </div>
-        <div class="hint-box">
-          Wichtig: CaseKompass bietet Privatleistungen an. Eine direkte Abrechnung mit Pflegekassen oder Krankenkassen erfolgt aktuell nicht. Ich unterstuetze Sie jedoch dabei, moegliche Ansprueche, Leistungen und Antraege besser zu verstehen und vorzubereiten.
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq-section">
-      <div class="container">
-        <h2><i class="fa-solid fa-question-circle"></i> FAQ</h2>
-        <div class="faq-grid">
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>Werden die Kosten von der Pflegekasse uebernommen?</span>
-              <i class="fa-solid fa-chevron-down faq-icon"></i>
-            </button>
-            <div class="faq-answer"><p>Aktuell erfolgt keine direkte Abrechnung mit Pflege- oder Krankenkassen. Die Leistungen sind Privatleistungen.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>Helfen Sie beim Pflegegrad-Antrag?</span>
-              <i class="fa-solid fa-chevron-down faq-icon"></i>
-            </button>
-            <div class="faq-answer"><p>Ja, ich unterstuetze bei Vorbereitung, Strukturierung, Unterlagen, Pflegetagebuch und Einschaetzung der naechsten Schritte. Eine Garantie fuer einen bestimmten Pflegegrad gibt es nicht.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>Koennen Sie auch bei einer Hoeherstufung helfen?</span>
-              <i class="fa-solid fa-chevron-down faq-icon"></i>
-            </button>
-            <div class="faq-answer"><p>Ja, ich helfe dabei, den Unterstuetzungsbedarf verstaendlich zu erfassen und Unterlagen fuer eine Hoeherstufung vorzubereiten.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>Arbeiten Sie deutschlandweit?</span>
-              <i class="fa-solid fa-chevron-down faq-icon"></i>
-            </button>
-            <div class="faq-answer"><p>Case Management, Pflegegrad-Vorbereitung und Leistungschecks sind remote deutschlandweit moeglich. Alltagsbegleitung findet regional im Raum Heidenheim statt.</p></div>
-          </div>
-          <div class="faq-item">
-            <button class="faq-question" onclick="toggleFAQ(this)">
-              <span>Machen Sie medizinische Pflege?</span>
-              <i class="fa-solid fa-chevron-down faq-icon"></i>
-            </button>
-            <div class="faq-answer"><p>Nein. CaseKompass bietet keine medizinische Behandlungspflege und keine koerperbezogene Pflege an. Der Fokus liegt auf Organisation, Beratung, Struktur, Alltagsbegleitung und Entlastung.</p></div>
-          </div>
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="kontakt.html">Jetzt unverbindlich anfragen</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontakt" class="section">
-      <div class="container">
-        <h2>Kontakt und Anfrage</h2>
-        <p class="section-intro">Wenn Sie sich gerade ueberfordert fuehlen, starten wir mit einem ruhigen Erstkontakt. Sie muessen nicht alles vorbereitet haben.</p>
-        <div class="quick-grid">
-          <article class="quick-card">
-            <h3>Direkter Kontakt</h3>
-            <p><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></p>
-            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:kontakt@casekompass.de">kontakt@casekompass.de</a></p>
-            <p><i class="fa-solid fa-location-dot"></i> Remote deutschlandweit, vor Ort im Raum Heidenheim</p>
-          </article>
-          <article class="quick-card">
-            <h3>Naechster Schritt</h3>
-            <p>Schicken Sie Ihr Anliegen kurz ueber das Kontaktformular. Ich melde mich mit einer klaren ersten Einschaetzung und den naechsten sinnvollen Schritten.</p>
-            <a class="btn primary" href="kontakt.html">Jetzt unverbindlich anfragen</a>
-          </article>
-        </div>
-        <div class="hint-box">
-          Wichtig: CaseKompass bietet Privatleistungen an. Eine direkte Abrechnung mit Pflegekassen oder Krankenkassen erfolgt aktuell nicht. Ich unterstuetze Sie jedoch dabei, moegliche Ansprueche, Leistungen und Antraege besser zu verstehen und vorzubereiten.
-        </div>
-      </div>
-    </section>
-
-    <section class="section so-fachlich">
-      <div class="container">
-        <h2>So arbeite ich fachlich</h2>
-        <p class="section-intro">Der Case-Management-Regelkreis kommt bewusst nach den praxisnahen Informationen, damit Sie zuerst Problem, Loesung und Angebot sehen.</p>
-        <div class="quick-grid">
-          <article class="quick-card"><h3>Intake</h3><p>Auftrag und Ausgangssituation klaeren.</p></article>
-          <article class="quick-card"><h3>Assessment</h3><p>Bedarf, Risiken und Ressourcen strukturiert erfassen.</p></article>
-          <article class="quick-card"><h3>Planung</h3><p>Realistische Ziele und konkrete Massnahmen festlegen.</p></article>
-          <article class="quick-card"><h3>Monitoring</h3><p>Verlauf beobachten und bei Bedarf nachsteuern.</p></article>
-          <article class="quick-card"><h3>Evaluation</h3><p>Ergebnisse bewerten und naechste Schritte sichern.</p></article>
-        </div>
-      </div>
-    </section>
   </main>
+
+  <section id="einsatzgebiet" class="section reveal" aria-labelledby="einsatzgebiet-title">
+    <div class="container" data-aos="fade-up">
+      <h2 id="einsatzgebiet-title">Einsatzgebiet & Remote-Beratung</h2>
+      <p class="section-intro">Alltagsbegleitung biete ich mobil im Raum Heidenheim an der Brenz und Umgebung an. Case Management findet ausschließlich remote und deutschlandweit statt.</p>
+      
+      <div class="interactive-map-container">
+        <div class="map-header">
+          <div class="map-info">
+            <div class="location-badge">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Unser Einsatzgebiet</span>
+            </div>
+            <div class="coverage-info">
+              <i class="fa-solid fa-circle-dot"></i>
+              <span>Alltagsbegleitung im Raum Heidenheim, Case Management ausschließlich remote und deutschlandweit</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="enhanced-map">
+          <div class="map-overlay">
+            <div class="service-area-circle">
+              <div class="center-marker">
+                <i class="fa-solid fa-house-medical"></i>
+                <span class="marker-label">Deutschlandweit remote<br><small>Case Management</small></span>
+              </div>
+              <div class="area-radius">Raum Heidenheim</div>
+            </div>
+            
+            <div class="location-markers">
+              <div class="location-marker heidenheim" style="top: 35%; right: 25%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Heidenheim an der Brenz</span>
+              </div>
+              <div class="location-marker giengen" style="bottom: 35%; left: 30%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Giengen an der Brenz</span>
+              </div>
+              <div class="location-marker herbrechtingen" style="top: 45%; left: 15%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Herbrechtingen</span>
+              </div>
+              <div class="location-marker syrgenstein" style="bottom: 45%; right: 35%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Syrgenstein</span>
+              </div>
+              <div class="location-marker bachhagel" style="top: 20%; right: 20%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Bachhagel</span>
+              </div>
+              <div class="location-marker heldenfingen" style="bottom: 20%; left: 40%;">
+                <i class="fa-solid fa-map-pin"></i>
+                <span class="marker-tooltip">Heldenfingen</span>
+              </div>
+            </div>
+          </div>
+          
+          <iframe 
+            title="Alltagsbegleitung im Raum Heidenheim" 
+            loading="lazy" 
+            src="https://www.google.com/maps?q=Heidenheim%20an%20der%20Brenz&output=embed"
+            style="border:0; width:100%; height:100%; pointer-events:none;"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        
+        <div class="map-footer">
+          <div class="coverage-stats">
+            <div class="stat-item">
+              <i class="fa-solid fa-home"></i>
+              <span>Hausbesuche</span>
+              <strong>Täglich</strong>
+            </div>
+            <div class="stat-item">
+              <i class="fa-solid fa-video"></i>
+              <span>Remote-Termine</span>
+              <strong>Online möglich</strong>
+            </div>
+            <div class="stat-item">
+              <i class="fa-solid fa-clock"></i>
+              <span>Anfahrtszeit</span>
+              <strong>Max. 30 Min</strong>
+            </div>
+            <div class="stat-item">
+              <i class="fa-solid fa-route"></i>
+              <span>Umkreis</span>
+              <strong>25 km</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section reveal" aria-labelledby="kontakt-title">
+    <div class="container" data-aos="fade-up" style="text-align: center; max-width: 800px;">
+      <h2 id="kontakt-title"><i class="fa-solid fa-comments"></i> Kontakt & Beratung</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 40px;">Rufen Sie an oder schreiben Sie mir – ich bin mit Zeit und Herz für Sie da.</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+        <a href="kontakt.html" class="btn primary" style="font-size: 1.1rem; padding: 16px 40px;">
+          <i class="fa-solid fa-envelope"></i> Jetzt Kontakt aufnehmen
+        </a>
+        
+        <div style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+          <a href="tel:+4915226560105" style="display: flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-size: 1.05rem;">
+            <i class="fa-solid fa-phone"></i> 015226560105
+          </a>
+          <a href="mailto:casekompass@gmx.de" style="display: flex; align-items: center; gap: 8px; color: var(--primary); text-decoration: none; font-size: 1.05rem;">
+            <i class="fa-solid fa-envelope"></i> casekompass@gmx.de
+          </a>
+          <a href="https://wa.me/4915226560105" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; color: #25D366; text-decoration: none; font-size: 1.05rem;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2><i class="fa-solid fa-question-circle"></i> Häufige Fragen</h2>
+      <p class="section-intro">Die wichtigsten Antworten rund um Case Management und Alltagsbegleitung.</p>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Für wen ist das Angebot geeignet?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Mein Angebot richtet sich an ältere Menschen, Menschen mit Behinderung und Angehörige, die Unterstützung bei Organisation, Anträgen und Alltagsbewältigung benötigen.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Werden die Kosten von der Krankenkasse übernommen?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Die Leistungen richten sich nach Ihrem konkreten Bedarf. Im Mittelpunkt stehen Case Management deutschlandweit, strukturierte Unterstützung bei Pflegegrad, Versorgung zuhause, Anträgen und Widerspruch sowie klare Orientierung für Angehörige und Familien.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wie läuft die Zusammenarbeit ab?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Wir starten mit einem Erstgespräch, klären Ihren Bedarf und erstellen einen klaren Plan. Danach begleite ich Sie bei Anträgen, Koordination und Alltagsorganisation in der Intensität, die zu Ihrer Situation passt.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Warum private Zahlung und welche Vorteile habe ich gegenüber einer Kassenleistung?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Private Zahlung bedeutet vor allem: schnelle Hilfe ohne lange Wartezeiten, flexible Termine und eine individuell auf Ihre Situation abgestimmte Begleitung. Case Management erfolgt dabei deutschlandweit remote, Alltagsbegleitung regional im Raum Heidenheim. Sie erhalten Unterstützung aus einer Hand - von der Klärung über Anträge bis zur Umsetzung im Alltag. Dadurch sind Abläufe oft deutlich schneller und transparenter als in starren Leistungssystemen. Zusätzlich können ab Pflegegrad 2 je nach Situation Budgets genutzt werden, bei deren Klärung und Beantragung ich Sie aktiv unterstütze.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wobei unterstützen Sie konkret?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Zum Beispiel bei Pflegegrad-Antrag, Höherstufung, Widerspruch bei falscher Einstufung, Reha-Anträgen, Hilfsmittelversorgung, Behördenkontakten sowie bei Alltagsbegleitung und Betreuung zuhause.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Was benötige ich für den ersten Termin?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Hilfreich sind vorhandene Unterlagen wie Bescheide, Anträge, Arztberichte und Schriftverkehr mit Kassen oder Behörden. Falls nicht alles vorliegt, starten wir trotzdem und sammeln die Unterlagen gemeinsam.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wie kann ich einen Termin absagen?</span>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Terminabsagen sind bis 24 Stunden vorher kostenfrei möglich. Bei kurzfristigen Absagen kann der Termin in Rechnung gestellt werden.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-box">
         <h3>casekompass.de</h3>
-        <p>Case Management und Alltagsbegleitung fuer Angehoerige und Pflegebeduerftige.</p>
+        <p>Case Management ausschließlich remote, deutschlandweit. Alltagsbegleitung mobil im Raum Heidenheim an der Brenz (Schnaitheim) und Umgebung.</p>
+        <p>Die für das Titelbild verwendeten Bilder stammen von <a href="https://www.pexels.com/">Pexels</a>.</p>
       </div>
       <div class="footer-box">
         <h4>Kontakt</h4>
         <ul class="footer-list">
+          <li><i class="fa-solid fa-location-dot"></i> Case Management ausschließlich remote, deutschlandweit; Alltagsbegleitung mobil im Raum Heidenheim</li>
           <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
-          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:kontakt@casekompass.de">kontakt@casekompass.de</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
         </ul>
       </div>
       <div class="footer-box">
-        <h4>Rechtliches</h4>
+        <h4>Öffnungszeiten</h4>
         <ul class="footer-list">
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="datenschutz.html">Datenschutz</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li>Mo- Sa geöffnet</li>
         </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Folgen Sie uns</h4>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="social social-instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+          </a>
+          <a href="#" aria-label="Facebook" class="social social-facebook">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="social-tooltip">Facebook</span>
+          </a>
+          <a href="https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20für%20Case%20Management%20und%20Alltagsbegleitung." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social social-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-tooltip">WhatsApp</span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="container footer-legal">
@@ -424,20 +1158,102 @@
       <div class="legal-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
+        <a href="faq.html">FAQ</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    function toggleFAQ(button) {
-      const faqItem = button.parentElement;
-      const answer = faqItem.querySelector('.faq-answer');
-      const icon = button.querySelector('.faq-icon');
-      button.classList.toggle('active');
-      answer.classList.toggle('active');
-      icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-  </script>
+  
+
+  <!-- Scripts -->
   <script src="./script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+  <script src="banner.js"></script>
+  <style>
+    .floating-sprite,.sprite,.sprite-hand,.sprite-cross,[data-sprite],.sprites-wrapper{display:none!important;visibility:hidden!important}
+  </style>
+  <script>
+    // Modern Slideshow Engine (fixed pause/play)
+    (() => {
+      function initSlideshow(root){
+        const track   = root.querySelector('.ms-track');
+        if(!track) return;
+        const slides  = [...track.children];
+        const prevBtn = root.querySelector('.ms-prev');
+        const nextBtn = root.querySelector('.ms-next');
+        const dots    = [...root.querySelectorAll('.ms-dot')];
+        const toggle  = root.querySelector('.ms-toggle');
+        let idx = slides.findIndex(s => s.classList.contains('active'));
+        if (idx < 0) idx = 0;
+
+        const interval = parseInt(root.dataset.interval || 10000, 10);
+        let timer = null;
+        let playing = true;
+
+        function setActive(i){
+          slides.forEach(s => s.classList.remove('active'));
+          dots.forEach(d => d.classList.remove('active','is-paused'));
+          slides[i].classList.add('active');
+          dots[i]?.classList.add('active');
+          idx = i;
+        }
+
+        function next(){ setActive( (idx + 1) % slides.length ); }
+        function prev(){ setActive( (idx - 1 + slides.length) % slides.length ); }
+
+        function clear(){
+          if(timer){
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+
+        function play(){
+          clear();
+            timer = setInterval(next, interval);
+          playing = true;
+          toggle.dataset.state = 'playing';
+          toggle.setAttribute('aria-label','Pause');
+          toggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        }
+
+        function pause(){
+          clear();
+          playing = false;
+          toggle.dataset.state = 'paused';
+          toggle.setAttribute('aria-label','Fortsetzen');
+          toggle.innerHTML = '<i class="fa-solid fa-play"></i>';
+        }
+
+        function togglePlay(){
+          playing ? pause() : play();
+        }
+
+        // Event Binding
+        nextBtn?.addEventListener('click', () => { pause(); next(); });
+        prevBtn?.addEventListener('click', () => { pause(); prev(); });
+        dots.forEach((d,i) => d.addEventListener('click', () => { pause(); setActive(i); }));
+        toggle?.addEventListener('click', togglePlay);
+
+        // Visibility Pause (Tab-Wechsel) für Konsistenz
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            pause();
+          } else if (!playing) {
+            // bleibt pausiert bis User wieder startet
+          }
+        });
+
+        play();
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.modern-slideshow').forEach(initSlideshow);
+      });
+    })();
+  </script>
 </body>
 </html>
+
+

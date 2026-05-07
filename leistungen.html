@@ -1,177 +1,326 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Leistungen von CaseKompass: Pflegegrad-Startpaket, Leistungscheck, Versorgung nach Krankenhaus und regionale Alltagsbegleitung." />
-  <title>Leistungen | casekompass.de</title>
-  <link rel="icon" type="image/png" href="./images/logo.png" />
-  <link rel="apple-touch-icon" href="./images/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="./style.css" />
-  <style>
-    .offer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-top: 22px;
-    }
-    .offer-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-    .offer-card h2 {
-      font-size: 1.2rem;
-      margin-top: 0;
-      color: var(--primary-700);
-    }
-    .offer-card p {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .lbl {
-      display: block;
-      font-weight: 700;
-      margin: 10px 0 4px;
-      color: var(--text);
-    }
-    .hinweis {
-      background: linear-gradient(135deg, #f4fbfb, #fff9f5);
-      border: 1px solid #d8ebe8;
-      border-left: 4px solid var(--primary);
-      border-radius: 14px;
-      padding: 16px;
-      margin-top: 20px;
-      color: #365354;
-    }
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Unsere Leistungen im ausschließlich remote stattfindenden Case Management deutschlandweit sowie in der Alltagsbegleitung im Raum Heidenheim an der Brenz.">
+  <title>Unsere Leistungen | casekompass.de</title>
+  <link rel="canonical" href="https://casekompass.de/leistungen.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://casekompass.de/leistungen.html">
+  <meta property="og:title" content="Unsere Leistungen | casekompass.de">
+  <meta property="og:description" content="Klare Pakete für Pflegegrad, Versorgung zuhause, Angehörigen-Entlastung, Alltagsbegleitung und Versorgungsplanung.">
+  <meta property="og:image" content="https://casekompass.de/images/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unsere Leistungen | casekompass.de">
+  <meta name="twitter:description" content="Klare Pakete für Pflegegrad, Versorgung zuhause, Angehörigen-Entlastung, Alltagsbegleitung und Versorgungsplanung.">
+  <meta name="twitter:image" content="https://casekompass.de/images/logo.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+  <link rel="apple-touch-icon" href="./images/logo.png">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
-  <a class="skip-link" href="#leistungen">Zum Inhalt springen</a>
-
-  <header id="top" class="site-header">
+  
+  <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="index.html" class="brand" aria-label="casekompass.de Startseite">
-        <img src="./images/logo.png" alt="casekompass.de Logo" />
+        <img src="./images/logo.png" alt="casekompass.de Logo">
         <span>casekompass.de</span>
       </a>
+
       <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
+
       <nav id="site-nav" class="site-nav" role="navigation">
         <ul>
           <li><a href="index.html">Start</a></li>
           <li><a href="leistungen.html" class="active">Leistungen</a></li>
-          <li><a href="index.html#ansprechpartner">Über mich</a></li>
-          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="erstgespraech-buchen.html">Erstgespräch buchen</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="leistungen" class="section" style="padding-top: 120px;">
-    <div class="container">
-      <h1><i class="fa-solid fa-clipboard-list"></i> Leistungen, die im Pflegealltag wirklich weiterhelfen</h1>
-      <p class="section-intro">Sie erhalten keine theoretischen Vortraege, sondern klare Struktur fuer Ihren konkreten Fall.</p>
-
-      <div class="offer-grid">
-        <article class="offer-card">
-          <h2>Pflegegrad-Startpaket</h2>
-          <span class="lbl">Problem</span>
-          <p>Der Antrag ist offen, Unterlagen sind unklar, die Begutachtung macht Druck.</p>
-          <span class="lbl">Leistung von CaseKompass</span>
-          <p>Strukturierte Vorbereitung mit Unterlagencheck, Pflegetagebuch-Hilfe und realistischem Vorgehen.</p>
-          <span class="lbl">Geeignet fuer</span>
-          <p>Angehoerige und Pflegebeduerftige vor Erstantrag oder Neubeantragung.</p>
-          <a class="btn ghost" href="kontakt.html">Erstkontakt aufnehmen</a>
-        </article>
-
-        <article class="offer-card">
-          <h2>Pflegekassen-Leistungen-Check</h2>
-          <span class="lbl">Problem</span>
-          <p>Bescheide und Ansprueche wirken unklar, Leistungen bleiben ungenutzt.</p>
-          <span class="lbl">Leistung von CaseKompass</span>
-          <p>Verstaendliche Einordnung moeglicher Leistungen und Prioritaeten fuer Ihre Situation.</p>
-          <span class="lbl">Geeignet fuer</span>
-          <p>Familien mit Pflegegrad oder bei offener Frage zur sinnvollen Leistungsnutzung.</p>
-          <a class="btn ghost" href="kontakt.html">Leistungen vergleichen</a>
-        </article>
-
-        <article class="offer-card">
-          <h2>Nach Krankenhaus wieder zuhause</h2>
-          <span class="lbl">Problem</span>
-          <p>Nach Entlassung fehlt ein belastbarer Plan fuer Versorgung und Alltag.</p>
-          <span class="lbl">Leistung von CaseKompass</span>
-          <p>Priorisierung der naechsten Schritte, Koordination von Stellen und praktische Umsetzungsplanung.</p>
-          <span class="lbl">Geeignet fuer</span>
-          <p>Menschen und Angehoerige in den ersten Wochen nach Klinik oder Reha.</p>
-          <a class="btn ghost" href="kontakt.html">Jetzt unverbindlich anfragen</a>
-        </article>
-
-        <article class="offer-card">
-          <h2>Alltagsbegleitung regional</h2>
-          <span class="lbl">Problem</span>
-          <p>Angehoerige sind ueberlastet, Termine und Alltagsaufgaben wachsen zusammen.</p>
-          <span class="lbl">Leistung von CaseKompass</span>
-          <p>Ruhige, praktische Begleitung bei Tagesstruktur, Organisation und Entlastung im Raum Heidenheim.</p>
-          <span class="lbl">Geeignet fuer</span>
-          <p>Pflegebeduerftige und Familien mit Bedarf an verlässlicher Unterstuetzung vor Ort.</p>
-          <a class="btn ghost" href="kontakt.html">Erstkontakt aufnehmen</a>
-        </article>
+  <main class="leistungen-page">
+    <section class="page-hero" id="leistungen-hero">
+      <div class="container">
+        <h1 class="reveal"><i class="fa-solid fa-house-medical"></i> Meine Leistungen</h1>
+        <p class="hero-subtitle reveal">Konkrete Unterstützung in klaren Paketen: bei Pflegegrad, Versorgung, Entlastung und Alltagsbegleitung zuhause.</p>
       </div>
+    </section>
 
-      <div class="hinweis">
-        Wichtig: CaseKompass bietet Privatleistungen an. Eine direkte Abrechnung mit Pflegekassen oder Krankenkassen erfolgt aktuell nicht. Ich unterstuetze Sie jedoch dabei, moegliche Ansprueche, Leistungen und Antraege besser zu verstehen und vorzubereiten.
+    <section id="leistungen" class="section">
+      <div class="container">
+        <h2 class="reveal"><i class="fa-solid fa-box-open"></i> Unterstützung in 7 klaren Paketen</h2>
+        <p class="section-intro reveal">Hier finden Sie alle Pakete im Überblick. Jedes Angebot ist klar beschrieben und kann direkt als Detailseite geöffnet werden.</p>
+
+        <div class="package-filter-bar reveal" aria-label="Leistungen filtern">
+          <button class="package-filter-chip is-active" type="button" data-package-filter="all">Alle Pakete</button>
+          <button class="package-filter-chip" type="button" data-package-filter="pflegegrad">Pflegegrad</button>
+          <button class="package-filter-chip" type="button" data-package-filter="versorgung">Versorgung zuhause</button>
+          <button class="package-filter-chip" type="button" data-package-filter="entlastung">Entlastung</button>
+          <button class="package-filter-chip" type="button" data-package-filter="antraege">Anträge & Leistungen</button>
+        </div>
+
+        <div class="quick-packages" aria-label="Paketangebote" data-package-grid>
+          <article class="package-card reveal motion-card" data-package-tags="pflegegrad antraege" data-motion-card>
+            <a class="package-image-link" href="pflegegrad-startpaket.html" aria-label="Pflegegrad-Startpaket im Detail ansehen">
+              <img class="package-image" src="./images/produkte/pflegegrad.webp" alt="Produktbild Pflegegrad-Startpaket" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="pflegegrad-startpaket.html"><i class="fa-solid fa-file-shield"></i> Pflegegrad-Startpaket</a></h3>
+            <p class="package-desc">Für Menschen oder Angehörige, die einen Pflegegrad beantragen wollen und nicht wissen, wie sie anfangen sollen.</p>
+            <ul class="package-points">
+              <li>Ausführliches Erstgespräch</li>
+              <li>Unterlagen-Check</li>
+              <li>Vorbereitung auf die Begutachtung</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="pflegegrad-startpaket.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="entlastung" data-motion-card>
+            <a class="package-image-link" href="angehoerigen-entlastung.html" aria-label="Angehörigen-Entlastung im Detail ansehen">
+              <img class="package-image" src="./images/produkte/Angehoerigenentlastung.webp" alt="Produktbild Angehörigen-Entlastung" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="angehoerigen-entlastung.html"><i class="fa-solid fa-people-roof"></i> Angehörigen-Entlastung</a></h3>
+            <p class="package-desc">Für Angehörige, die mit Pflege, Organisation, Terminen und Verantwortung überfordert sind.</p>
+            <ul class="package-points">
+              <li>Orientierungsgespräch</li>
+              <li>Struktur- und Maßnahmenplan</li>
+              <li>Kurzer Nachfasskontakt</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="angehoerigen-entlastung.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="versorgung zuhause" data-motion-card>
+            <a class="package-image-link" href="nach-krankenhaus-wieder-zuhause.html" aria-label="Nach Krankenhaus wieder zuhause im Detail ansehen">
+              <img class="package-image" src="./images/produkte/wiederzuhause.webp" alt="Produktbild Nach Krankenhaus wieder zuhause" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="nach-krankenhaus-wieder-zuhause.html"><i class="fa-solid fa-house-medical-circle-check"></i> Nach Krankenhaus wieder zuhause</a></h3>
+            <p class="package-desc">Für Menschen und Angehörige nach Krankenhaus oder Reha, wenn zuhause unklar ist, wie es weitergeht.</p>
+            <ul class="package-points">
+              <li>Aufnahmegespräch</li>
+              <li>Versorgungsplan für zuhause</li>
+              <li>Checkliste für die ersten Tage</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="nach-krankenhaus-wieder-zuhause.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="antraege versorgung" data-motion-card>
+            <a class="package-image-link" href="wohnraumanpassung-umbauzuschuss.html" aria-label="Wohnraumanpassung und Umbauzuschuss im Detail ansehen">
+              <img class="package-image" src="./images/produkte/wohnraumanpassung.webp" alt="Produktbild Wohnraumanpassung und Umbauzuschuss" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="wohnraumanpassung-umbauzuschuss.html"><i class="fa-solid fa-house-circle-check"></i> Wohnraumanpassung & Umbauzuschuss</a></h3>
+            <p class="package-desc">Unterstützung bei wohnumfeldverbessernden Maßnahmen und der strukturierten Vorbereitung des Zuschussantrags.</p>
+            <ul class="package-points">
+              <li>Analyse der Wohnsituation</li>
+              <li>Maßnahmen- und Unterlagencheck</li>
+              <li>Vorbereitung des Zuschussantrags</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="wohnraumanpassung-umbauzuschuss.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="pflegegrad antraege" data-motion-card>
+            <a class="package-image-link" href="pflegekassen-leistungen-check.html" aria-label="Pflegekassen-Leistungen-Check im Detail ansehen">
+              <img class="package-image" src="./images/produkte/pflegekassen-leistungen-check.webp" alt="Produktbild Pflegekassen-Leistungen-Check" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="pflegekassen-leistungen-check.html"><i class="fa-solid fa-wallet"></i> Pflegekassen-Leistungen-Check</a></h3>
+            <p class="package-desc">Klare Übersicht, welche Leistungen rund um Pflege zuhause zustehen und welche Möglichkeiten noch offen sind.</p>
+            <ul class="package-points">
+              <li>Prüfung der aktuellen Situation</li>
+              <li>Leistungs- und Möglichkeitencheck</li>
+              <li>Schriftliche Orientierung für die nächsten Schritte</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="pflegekassen-leistungen-check.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+
+          <article class="package-card reveal motion-card" data-package-tags="entlastung zuhause versorgung" data-motion-card>
+            <a class="package-image-link" href="alltagsbegleitung-zuhause-startpaket.html" aria-label="Alltagsbegleitung zuhause Startpaket im Detail ansehen">
+              <img class="package-image" src="./images/produkte/alltagsbegleitung.webp" alt="Produktbild Alltagsbegleitung zuhause Startpaket" loading="lazy" decoding="async" width="960" height="640">
+            </a>
+            <h3><a href="alltagsbegleitung-zuhause-startpaket.html"><i class="fa-solid fa-hand-holding-heart"></i> Alltagsbegleitung zuhause - Startpaket</a></h3>
+            <p class="package-desc">Ein klarer Einstieg in die Alltagsbegleitung zuhause mit vier Stunden Unterstützung und erster Einordnung des weiteren Bedarfs.</p>
+            <ul class="package-points">
+              <li>Vorgespräch</li>
+              <li>4 Stunden Alltagsbegleitung</li>
+              <li>Erste Einordnung des weiteren Bedarfs</li>
+            </ul>
+            <div class="package-actions">
+              <a class="btn ghost package-cta" href="alltagsbegleitung-zuhause-startpaket.html"><i class="fa-solid fa-circle-info"></i> Paketdetails ansehen</a>
+              <a class="btn ghost package-cta" href="kontakt.html#kontakt"><i class="fa-solid fa-paper-plane"></i> Direkt anfragen</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="package-carousel-controls reveal" data-package-carousel-controls aria-label="Paketnavigation">
+          <button class="package-carousel-button" type="button" data-package-prev aria-label="Vorheriges Paket">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="package-carousel-dots" data-package-dots aria-label="Paketposition"></div>
+          <button class="package-carousel-button" type="button" data-package-next aria-label="Nächstes Paket">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
       </div>
+    </section>
 
-      <section class="section" style="padding: 28px 0 0;">
-        <h2>Transparenz bei Preisen</h2>
-        <p>Einführungsangebot: Pflegegrad-Startpaket aktuell fuer 99,50 EUR statt 199 EUR.</p>
-        <p>Ohne Countdown, ohne kuenstlichen Druck, ohne aggressive Verkaufsrhetorik.</p>
-      </section>
+    <section class="section shop-section" aria-labelledby="shop-title">
+      <div class="container">
+        <div class="shop-section-head">
+          <h2 id="shop-title" class="reveal"><i class="fa-solid fa-bolt"></i> Sofort buchbar</h2>
+          <p class="section-intro reveal">Leistungen, die Sie direkt online starten oder direkt anfragen können. Das Pflegegrad-Startpaket gibt es aktuell mit 50 % Rabatt: statt 199 Euro jetzt 99,50 Euro.</p>
+          <div class="section-sale-banner promo-countdown promo-countdown-inline reveal" data-countdown-deadline="2026-05-21T23:59:59">
+            <span class="promo-countdown-label">50 % Rabattaktion endet in <strong data-countdown-text>31 Tagen</strong></span>
+            <div class="promo-countdown-grid" aria-label="Countdown bis Aktionsende">
+              <span class="promo-countdown-unit"><strong data-countdown-days>31</strong><small>Tage</small></span>
+              <span class="promo-countdown-unit"><strong data-countdown-hours>00</strong><small>Std</small></span>
+              <span class="promo-countdown-unit"><strong data-countdown-minutes>00</strong><small>Min</small></span>
+            </div>
+          </div>
+        </div>
 
-      <div class="cta-row">
-        <a class="btn primary" href="kontakt.html">Jetzt unverbindlich anfragen</a>
-        <a class="btn ghost" href="index.html#faq">FAQ ansehen</a>
+        <div class="shop-grid">
+          <article class="shop-card reveal motion-card" data-motion-card>
+            <a class="shop-card-visual" href="versorgungsplanung.html" aria-label="Versorgungsplanung im Detail ansehen">
+              <img src="./images/produkte/versorgungsplan.webp" alt="Produktbild Versorgungsplanung" loading="lazy" decoding="async" width="960" height="640">
+              <span class="shop-card-badge">Direkt starten</span>
+            </a>
+
+            <div class="shop-card-body">
+              <h3><a href="versorgungsplanung.html">Versorgungsplanung</a></h3>
+              <p class="shop-card-desc">Sie schildern Ihre aktuelle Situation in einem strukturierten Formular. Daraus entsteht ein persönlicher Versorgungsplan mit klaren nächsten Schritten, Prioritäten und passenden Anlaufstellen.</p>
+
+              <ul class="shop-card-points">
+                <li>Strukturiertes Formular statt unübersichtlicher Freitext-Anfrage</li>
+                <li>Persönliche Auswertung Ihrer aktuellen Versorgungslage</li>
+                <li>Individueller Versorgungsplan mit klarer Orientierung</li>
+              </ul>
+
+              <div class="shop-card-footer">
+                <div class="shop-price-block">
+                  <span class="shop-price-label">Start</span>
+                  <strong class="shop-price">Sofort</strong>
+                </div>
+
+                <div class="shop-actions">
+                  <div class="product-cta-actions">
+                    <a class="btn primary" href="versorgungsplanung-starten.html">
+                      <i class="fa-solid fa-rocket"></i> Jetzt starten
+                    </a>
+                    <a class="btn ghost" href="versorgungsplanung.html"><i class="fa-solid fa-circle-info"></i> Details ansehen</a>
+                  </div>
+                  <p class="shop-purchase-note">Direkt online ausfüllbar. Ihre Angaben werden nach dem Abschluss strukturiert erfasst.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="shop-card reveal motion-card" data-motion-card>
+            <a class="shop-card-visual" href="pflegegrad-startpaket.html" aria-label="Pflegegrad-Startpaket im Detail ansehen">
+              <img src="./images/produkte/pflegegrad.webp" alt="Produktbild Pflegegrad-Startpaket" loading="lazy" decoding="async" width="960" height="640">
+              <span class="shop-card-badge shop-card-badge-sale">50 % Rabatt</span>
+            </a>
+
+            <div class="shop-card-body">
+              <h3><a href="pflegegrad-startpaket.html">Pflegegrad-Startpaket</a></h3>
+              <p class="shop-card-desc">Sie erhalten keine Standardvorlage, sondern eine individuell auf die betroffene Person abgestimmte Unterstützung für Antrag, Unterlagen und Vorbereitung auf die Begutachtung.</p>
+
+              <ul class="shop-card-points">
+                <li>Ausführliches Erstgespräch zur aktuellen Situation</li>
+                <li>Individuell abgestimmter Plan für die nächsten Schritte</li>
+                <li>Personalisiertes Pflegetagebuch und konkrete Anleitung zum Vorgehen</li>
+              </ul>
+
+              <div class="shop-card-footer">
+                <div class="shop-price-block">
+                  <span class="shop-price-label">Preis</span>
+                  <div class="shop-price promo-price">
+                    <span class="promo-price-old">199 €</span>
+                    <strong class="promo-price-new">99,50 €</strong>
+                    <span class="promo-price-badge">Jetzt neu</span>
+                  </div>
+                </div>
+
+                <div class="shop-actions">
+                  <div class="product-cta-actions">
+                    <a class="btn primary" href="pflegegrad-startpaket-starten.html">
+                      <i class="fa-solid fa-rocket"></i> Formular starten
+                    </a>
+                    <a class="btn ghost" href="pflegegrad-startpaket.html"><i class="fa-solid fa-circle-info"></i> Details ansehen</a>
+                  </div>
+                  <p class="shop-purchase-note">Sie erhalten einen persönlich abgestimmten Plan, ein personalisiertes Pflegetagebuch und eine konkrete Anleitung, wie Sie für die jeweilige Person sinnvoll vorgehen. Aktionspreis noch 31 Tage.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-box">
         <h3>casekompass.de</h3>
-        <p>Case Management und Alltagsbegleitung fuer Angehoerige und Pflegebeduerftige.</p>
+        <p>Case Management ausschließlich remote, deutschlandweit. Alltagsbegleitung mobil im Raum Heidenheim an der Brenz und Umgebung.</p>
+        <p>Die für das Titelbild verwendeten Bilder stammen von <a href="https://www.pexels.com/">Pexels</a>.</p>
       </div>
       <div class="footer-box">
         <h4>Kontakt</h4>
         <ul class="footer-list">
+          <li><i class="fa-solid fa-location-dot"></i> Case Management ausschließlich remote, deutschlandweit; Alltagsbegleitung mobil im Raum Heidenheim</li>
           <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915226560105">015226560105</a></li>
-          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:kontakt@casekompass.de">kontakt@casekompass.de</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:casekompass@gmx.de">casekompass@gmx.de</a></li>
         </ul>
       </div>
       <div class="footer-box">
-        <h4>Rechtliches</h4>
+        <h4>Öffnungszeiten</h4>
         <ul class="footer-list">
-          <li><a href="impressum.html">Impressum</a></li>
-          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <li>Mo- Sa geöffnet</li>
         </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Folgen Sie uns</h4>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="social social-instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+          </a>
+          <a href="#" aria-label="Facebook" class="social social-facebook">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="social-tooltip">Facebook</span>
+          </a>
+          <a href="https://wa.me/4915226560105?text=Hallo,%20ich%20interessiere%20mich%20für%20Case%20Management%20und%20Alltagsbegleitung." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social social-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-tooltip">WhatsApp</span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="container footer-legal">
@@ -179,10 +328,37 @@
       <div class="legal-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
+        <a href="faq.html">FAQ</a>
       </div>
     </div>
   </footer>
 
   <script src="./script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+  <script>
+    function toggleFAQ(button) {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+      
+      button.classList.toggle('active');
+      answer.classList.toggle('active');
+      
+      if (answer.classList.contains('active')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  </script>
+
+  <!-- Sprite-Killer -->
+  <style>
+    .floating-sprite,.sprite,.sprite-hand,.sprite-cross,[data-sprite],.sprites-wrapper{display:none!important;visibility:hidden!important;pointer-events:none!important}
+  </style>
 </body>
 </html>
+
+
