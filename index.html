@@ -22,8 +22,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
-<body class="premium-site">
-  <header class="site-header premium-header">
+<body class="premium-site reference-home">
+  <header class="site-header premium-header ref-header">
     <a class="brand" href="/" aria-label="CaseKompass Startseite">
       <svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2"/>
@@ -36,158 +36,157 @@
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <nav class="main-nav" aria-label="Hauptnavigation">
-      <a href="/alltagsbegleitung/">Alltagsbegleitung</a>
-      <a href="/case-management/">Case Management</a>
-      <a href="/preise/">Preise</a>
-      <a href="/ueber-mich/">Über mich</a>
+      <a href="#start">Start</a>
+      <a href="/alltagsbegleitung/">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#preise">Preise</a>
       <a href="/kontakt/">Kontakt</a>
       <a class="nav-cta" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung%20im%20Raum%20Heidenheim." target="_blank" rel="noopener">WhatsApp schreiben</a>
     </nav>
   </header>
 
-  <main>
-    <section class="premium-hero">
-      <div class="premium-hero-copy reveal">
-        <p class="premium-eyebrow">Private Alltagsbegleitung · Raum Heidenheim</p>
-        <h1>Private Alltagsbegleitung im Raum Heidenheim</h1>
-        <p class="premium-lead">Ich unterstütze ältere Menschen und Angehörige zuhause – bei Einkäufen, Arztterminen, Tagesstruktur, Begleitung und Entlastung. Persönlich, zuverlässig und auf privater Basis.</p>
-        <ul class="premium-checks">
+  <main id="start">
+    <section class="ref-hero">
+      <div class="ref-hero-copy reveal">
+        <p class="ref-kicker">Private Alltagsbegleitung · Raum Heidenheim</p>
+        <h1>Orientierung, Begleitung und Entlastung im Alltag</h1>
+        <p>Ich unterstütze ältere Menschen und Angehörige zuhause – bei Einkäufen, Arztterminen, Tagesstruktur, Begleitung und Entlastung. Persönlich, zuverlässig und auf privater Basis.</p>
+        <div class="ref-actions">
+          <a class="btn btn-primary" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung%20im%20Raum%20Heidenheim." target="_blank" rel="noopener">WhatsApp schreiben</a>
+          <a class="btn btn-secondary" href="/alltagsbegleitung/">Leistungen ansehen</a>
+        </div>
+        <p class="ref-trust">Persönlich. Diskret. Zuverlässig.</p>
+      </div>
+      <div class="ref-hero-photo reveal reveal-delay">
+        <img src="/assets/hero.png" alt="Johannes Piperidis – private Alltagsbegleitung im Raum Heidenheim" width="800" height="600" fetchpriority="high" />
+      </div>
+    </section>
+
+    <section class="ref-service-strip" aria-label="Leistungsübersicht">
+      <a class="ref-service-card reveal" href="/alltagsbegleitung/">
+        <span>01</span>
+        <h2>Alltagsbegleitung</h2>
+        <p>Begleitung im Alltag – zuhause oder unterwegs.</p>
+      </a>
+      <a class="ref-service-card reveal" href="/alltagsbegleitung/">
+        <span>02</span>
+        <h2>Terminbegleitung</h2>
+        <p>Arzt, Apotheke, Behörden oder Erledigungen.</p>
+      </a>
+      <a class="ref-service-card reveal" href="/alltagsbegleitung/">
+        <span>03</span>
+        <h2>Angehörigenentlastung</h2>
+        <p>Ein paar Stunden Sicherheit und Entlastung.</p>
+      </a>
+      <a class="ref-service-card ref-service-card-muted reveal" href="/case-management/">
+        <span>04</span>
+        <h2>Case Management</h2>
+        <p>Pflegegrad, MD-Termin und Anträge als Zusatz.</p>
+      </a>
+    </section>
+
+    <section class="ref-process" id="ablauf">
+      <div class="ref-section-title reveal">
+        <h2>In 3 Schritten zu Entlastung im Alltag</h2>
+      </div>
+      <div class="ref-process-panel reveal">
+        <article>
+          <span>1</span>
+          <h3>Anfrage</h3>
+          <p>Sie kontaktieren mich per WhatsApp, Telefon oder Formular. Ich melde mich persönlich zurück.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Situation klären</h3>
+          <p>Wir besprechen, wobei Unterstützung gebraucht wird und welcher Umfang sinnvoll ist.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Begleitung starten</h3>
+          <p>Ich komme zum vereinbarten Termin nach Hause oder begleite zu Erledigungen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="ref-values" aria-label="Vertrauensmerkmale">
+      <article class="reveal"><h3>Persönlich</h3><p>Ein fester Ansprechpartner – ruhig und verlässlich.</p></article>
+      <article class="reveal"><h3>Diskret</h3><p>Ihre Situation wird vertraulich behandelt.</p></article>
+      <article class="reveal"><h3>Strukturiert</h3><p>Klare Absprachen und planbare Termine.</p></article>
+      <article class="reveal"><h3>Zuverlässig</h3><p>Rückmeldung und Begleitung wie vereinbart.</p></article>
+    </section>
+
+    <section class="ref-offers" id="preise">
+      <div class="ref-offer-intro reveal">
+        <p class="ref-kicker">Fair & transparent</p>
+        <h2>Unsere Preise</h2>
+        <p>Alltagsbegleitung auf Privatbasis – klar kalkulierbar und ohne versteckte Kosten.</p>
+        <ul>
           <li>Hausbesuche ab 2 Stunden</li>
-          <li>40 € pro Stunde + 15 € Anfahrt</li>
+          <li>Anfahrt im Raum Heidenheim: 15 €</li>
           <li>Rückmeldung an Angehörige möglich</li>
         </ul>
-        <div class="premium-actions">
-          <a class="btn btn-whatsapp" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung%20im%20Raum%20Heidenheim." target="_blank" rel="noopener">WhatsApp schreiben</a>
-          <a class="btn btn-secondary" href="tel:+4915226560105">Anrufen</a>
-          <a class="premium-text-link" href="/preise/">Preise ansehen</a>
-        </div>
       </div>
-      <div class="premium-hero-media reveal reveal-delay">
-        <img src="/assets/hero.png" alt="Johannes Piperidis – private Alltagsbegleitung im Raum Heidenheim" width="800" height="600" fetchpriority="high" />
-        <div class="premium-mini-card">Persönlich. Zuverlässig. Vor Ort.</div>
-      </div>
-    </section>
-
-    <section class="premium-section premium-price-section">
-      <div class="premium-section-head reveal">
-        <p class="premium-eyebrow">Preise</p>
-        <h2>Klare Preise auf Privatbasis</h2>
-        <p>Sie wissen vorab, womit Sie rechnen können. Die Alltagsbegleitung wird privat abgerechnet.</p>
-      </div>
-      <div class="premium-price-grid reveal-stagger">
-        <article><span>Alltagsbegleitung</span><strong>40 € / Stunde</strong></article>
-        <article><span>Anfahrt im Raum Heidenheim</span><strong>15 €</strong></article>
-        <article><span>Mindestdauer</span><strong>2 Stunden</strong></article>
-        <article><span>2 Stunden vor Ort</span><strong>95 €</strong></article>
-        <article><span>3 Stunden vor Ort</span><strong>135 €</strong></article>
-        <article><span>4 Stunden vor Ort</span><strong>175 €</strong></article>
-      </div>
-      <p class="premium-note reveal">Keine Abrechnung über Krankenkasse oder Pflegekasse wird garantiert. Wenn Leistungen oder Budgets infrage kommen, kann dies individuell besprochen werden.</p>
-    </section>
-
-    <section class="premium-section">
-      <div class="premium-section-head reveal">
-        <p class="premium-eyebrow">Alltag</p>
-        <h2>Wobei ich im Alltag unterstütze</h2>
-        <p>Praktische Hilfe für ältere Menschen und spürbare Entlastung für Angehörige.</p>
-      </div>
-      <div class="premium-card-grid reveal-stagger">
-        <article class="premium-card">
-          <h3>Begleitung zu Terminen</h3>
-          <p>Arzttermine, Apotheke, Behörden, Sanitätshaus oder Erledigungen – ich begleite zuverlässig und gebe Angehörigen auf Wunsch Rückmeldung.</p>
+      <div class="ref-price-cards reveal-stagger">
+        <article class="ref-price-card">
+          <h3>Alltagsbegleitung</h3>
+          <strong>40 €</strong>
+          <span>pro Stunde</span>
+          <ul>
+            <li>Begleitung im Alltag</li>
+            <li>Einkaufen & Erledigungen</li>
+            <li>Gespräche & Tagesstruktur</li>
+          </ul>
+          <a href="/kontakt/">Jetzt anfragen</a>
         </article>
-        <article class="premium-card">
-          <h3>Einkaufen &amp; Erledigungen</h3>
-          <p>Gemeinsam einkaufen, kleine Besorgungen erledigen, Orientierung geben und den Alltag wieder planbarer machen.</p>
+        <article class="ref-price-card ref-price-card-featured">
+          <p class="ref-badge">Beliebte Wahl</p>
+          <h3>2 Stunden vor Ort</h3>
+          <strong>95 €</strong>
+          <span>inkl. Anfahrt im Raum Heidenheim</span>
+          <ul>
+            <li>Hausbesuch ab 2 Stunden</li>
+            <li>planbare Entlastung</li>
+            <li>Rückmeldung an Angehörige möglich</li>
+          </ul>
+          <a href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%202%20Stunden%20Alltagsbegleitung." target="_blank" rel="noopener">WhatsApp schreiben</a>
         </article>
-        <article class="premium-card">
-          <h3>Gesellschaft &amp; Tagesstruktur</h3>
-          <p>Gespräche, Spaziergänge, einfache Aktivierung und verlässliche Zeit im Alltag – respektvoll und ohne Druck.</p>
-        </article>
-        <article class="premium-card">
-          <h3>Entlastung für Angehörige</h3>
-          <p>Für ein paar Stunden wissen, dass jemand da ist. Besonders hilfreich, wenn Familie, Beruf und Pflege zu viel werden.</p>
+        <article class="ref-price-card">
+          <h3>Längere Begleitung</h3>
+          <strong>135 € / 175 €</strong>
+          <span>3 Stunden / 4 Stunden</span>
+          <ul>
+            <li>mehr Zeit für Termine</li>
+            <li>Einkäufe und Struktur</li>
+            <li>Entlastung für Angehörige</li>
+          </ul>
+          <a href="/preise/">Alle Preise</a>
         </article>
       </div>
     </section>
 
-    <section class="premium-section premium-soft">
-      <div class="premium-section-head reveal">
-        <h2>Für wen ist das geeignet?</h2>
-      </div>
-      <ul class="premium-list reveal">
-        <li>Senioren, die zuhause Unterstützung brauchen</li>
-        <li>Angehörige, die nicht alles alleine schaffen</li>
-        <li>Menschen nach Krankenhaus, Reha oder Krankheit</li>
-        <li>Familien, die regelmäßige Entlastung suchen</li>
-        <li>Ergotherapie-Patienten, bei denen zuhause zusätzliche Unterstützung hilfreich ist</li>
-      </ul>
-    </section>
-
-    <section class="premium-section premium-secondary-offer">
-      <div class="premium-section-head reveal">
-        <p class="premium-eyebrow">Zusätzlich möglich</p>
-        <h2>Pflegegrad, MD-Termin &amp; Case Management</h2>
-        <p>Wenn neben der Alltagsbegleitung auch Anträge, Pflegegrad, MD-Begutachtung oder Pflegekasse unklar sind, unterstütze ich zusätzlich bei Struktur, Vorbereitung und nächsten Schritten.</p>
-      </div>
-      <div class="premium-small-grid reveal-stagger">
-        <article>Pflegegrad &amp; MD-Termin vorbereiten</article>
-        <article>Unterlagen und nächste Schritte sortieren</article>
-        <article>Angehörigen- und Case-Management-Beratung</article>
-      </div>
-      <p class="premium-center reveal"><a class="btn btn-secondary" href="/case-management/">Mehr zu Case Management</a></p>
-    </section>
-
-    <section class="premium-section">
-      <div class="premium-section-head reveal">
-        <h2>So läuft die Zusammenarbeit ab</h2>
-      </div>
-      <div class="premium-steps reveal-stagger">
-        <article><span>1</span><h3>Kurz anfragen</h3><p>Per WhatsApp, Telefon oder Kontaktformular.</p></article>
-        <article><span>2</span><h3>Situation klären</h3><p>Wir besprechen, wobei Unterstützung gebraucht wird und ob regelmäßige Termine sinnvoll sind.</p></article>
-        <article><span>3</span><h3>Begleitung starten</h3><p>Ich komme zum vereinbarten Termin nach Hause oder begleite zu Erledigungen.</p></article>
-      </div>
-    </section>
-
-    <section class="premium-section premium-boundary">
-      <div class="premium-section-head reveal">
-        <h2>Wichtig: klare Abgrenzung</h2>
-        <p>Mein Angebot ersetzt keinen Pflegedienst, keine Ergotherapie und keine ärztliche Behandlung. Ich biete Alltagsbegleitung, Angehörigenentlastung, Orientierung und organisatorische Unterstützung. Keine medizinische Behandlungspflege, keine Rechtsberatung und keine Heilmittelbehandlung.</p>
-      </div>
-    </section>
-
-    <section class="premium-section premium-quote">
+    <section class="ref-testimonial">
       <blockquote class="reveal">
         <p>„Ich erlebe Herrn Piperidis als sehr zuverlässig, strukturiert und einfühlsam. Besonders bei organisatorischer Unterstützung und individueller Begleitung ist seine Hilfe sehr wertvoll.“</p>
         <footer>Mareike Nebel · Selbstständige Ergotherapeutin</footer>
       </blockquote>
     </section>
 
-    <section class="premium-section">
-      <div class="premium-section-head reveal">
-        <h2>Häufige Fragen</h2>
+    <section class="ref-final-cta">
+      <div class="ref-compass" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2"/><path d="M20 10l4 10-4-2-4 2 4-10z" fill="currentColor"/></svg>
       </div>
-      <div class="premium-faq reveal">
-        <details><summary>Was kostet Alltagsbegleitung?</summary><p>40 € pro Stunde zuzüglich 15 € Anfahrt im Raum Heidenheim. Hausbesuche ab 2 Stunden.</p></details>
-        <details><summary>Wird privat bezahlt?</summary><p>Ja, die Alltagsbegleitung wird auf Privatbasis angeboten. Ob Budgets oder Leistungen im Einzelfall infrage kommen, kann individuell besprochen werden.</p></details>
-        <details><summary>Was ist der Unterschied zu einem Pflegedienst?</summary><p>Ich übernehme keine medizinische Behandlungspflege. Ich begleite im Alltag, entlaste Angehörige, unterstütze bei Terminen, Einkäufen und Struktur.</p></details>
-        <details><summary>Gibt es regelmäßige Termine?</summary><p>Ja, regelmäßige wöchentliche Termine sind möglich, wenn Kapazitäten frei sind.</p></details>
+      <div>
+        <h2>Lassen Sie uns den richtigen Weg im Alltag finden.</h2>
+        <p>Ich bin für Sie da – persönlich, ruhig und vor Ort im Raum Heidenheim.</p>
       </div>
-    </section>
-
-    <section class="premium-cta">
-      <div class="reveal">
-        <h2>Brauchen Sie Entlastung im Alltag?</h2>
-        <p>Schreiben Sie mir kurz, worum es geht. Ich melde mich persönlich zurück.</p>
-        <div class="premium-actions premium-actions-center">
-          <a class="btn btn-whatsapp" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung%20im%20Raum%20Heidenheim." target="_blank" rel="noopener">WhatsApp schreiben</a>
-          <a class="btn btn-secondary" href="tel:+4915226560105">Anrufen</a>
-        </div>
+      <div class="ref-final-contact">
+        <a href="tel:+4915226560105">01522 6560105</a>
+        <a class="btn btn-light" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung." target="_blank" rel="noopener">WhatsApp schreiben</a>
       </div>
     </section>
   </main>
 
-  <footer class="premium-footer">
+  <footer class="premium-footer ref-footer">
     <p><strong>CaseKompass</strong> · Private Alltagsbegleitung im Raum Heidenheim</p>
     <p><a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p>
   </footer>
