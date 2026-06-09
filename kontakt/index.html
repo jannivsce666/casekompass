@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontakt | CaseKompass Alltagsbegleitung Heidenheim</title>
+  <meta name="description" content="Kontakt zu CaseKompass: Private Alltagsbegleitung im Raum Heidenheim per Telefon, WhatsApp oder Kontaktformular anfragen." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://casekompass.de/kontakt/" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body class="premium-site">
+  <header class="site-header premium-header">
+    <a class="brand" href="/" aria-label="CaseKompass Startseite"><svg class="brand-logo" viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2"/><path d="M20 8v5M20 27v5M8 20h5M27 20h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".6"/><path d="M20 12l3.5 8.5-3.5-1.8-3.5 1.8L20 12z" fill="currentColor"/></svg><span>CaseKompass</span></a>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <nav class="main-nav" aria-label="Hauptnavigation">
+      <a href="/alltagsbegleitung/">Alltagsbegleitung</a>
+      <a href="/case-management/">Case Management</a>
+      <a href="/preise/">Preise</a>
+      <a href="/ueber-mich/">Über mich</a>
+      <a href="/kontakt/" aria-current="page">Kontakt</a>
+      <a class="nav-cta" href="https://wa.me/4915226560105?text=Hallo%20Johannes%2C%20ich%20interessiere%20mich%20f%C3%BCr%20Alltagsbegleitung." target="_blank" rel="noopener">WhatsApp schreiben</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="premium-subhero">
+      <p class="premium-eyebrow">Kontakt</p>
+      <h1>Schreiben oder rufen Sie mich an</h1>
+      <p>Ich melde mich persönlich zurück. Bitte tragen Sie keine sensiblen Gesundheitsdaten in das Formular ein.</p>
+    </section>
+
+    <section class="premium-contact-layout">
+      <aside class="premium-contact-card">
+        <h2>Direkt erreichen</h2>
+        <p><strong>Telefon</strong><br /><a href="tel:+4915226560105">01522 6560105</a></p>
+        <p><strong>WhatsApp</strong><br /><a href="https://wa.me/4915226560105" target="_blank" rel="noopener">Nachricht schreiben</a></p>
+        <p><strong>Einsatzgebiet</strong><br />Heidenheim, Herbrechtingen, Giengen, Schnaitheim, Bolheim, Gerstetten und Umgebung.</p>
+      </aside>
+
+      <form class="contact-form premium-contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="bf91ac2c-a7ec-45cd-aeb8-85eea76afcd2" />
+        <input type="hidden" name="subject" value="Neue Anfrage über CaseKompass" />
+        <input type="hidden" name="from_name" value="CaseKompass Website" />
+        <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required />
+        </label>
+
+        <div class="form-row">
+          <label>Telefon
+            <input type="tel" name="phone" id="form-phone" autocomplete="tel" />
+          </label>
+          <label>E-Mail optional
+            <input type="email" name="email" id="form-email" autocomplete="email" />
+          </label>
+        </div>
+
+        <fieldset class="form-fieldset">
+          <legend>Bevorzugter Kontaktweg</legend>
+          <div class="contact-options">
+            <label class="contact-option"><input type="radio" name="kontakt_art" value="Telefon" required /><span>Telefon</span></label>
+            <label class="contact-option"><input type="radio" name="kontakt_art" value="WhatsApp" /><span>WhatsApp</span></label>
+            <label class="contact-option"><input type="radio" name="kontakt_art" value="E-Mail" /><span>E-Mail</span></label>
+          </div>
+        </fieldset>
+
+        <label>Thema
+          <select name="leistung" required>
+            <option value="">Bitte auswählen</option>
+            <option>Alltagsbegleitung</option>
+            <option>Angehörigenentlastung</option>
+            <option>Arzt-/Terminbegleitung</option>
+            <option>Pflegegrad / MD</option>
+            <option>Case Management</option>
+            <option>Sonstiges</option>
+          </select>
+        </label>
+
+        <label>Nachricht
+          <textarea name="message" rows="5" placeholder="Worum geht es grob? Bitte keine sensiblen Gesundheitsdaten eintragen." required></textarea>
+        </label>
+
+        <p class="form-error hidden" id="form-error" role="alert"></p>
+        <p class="form-note">Mit dem Absenden erklären Sie sich einverstanden, dass Ihre Angaben zur Bearbeitung der Anfrage verarbeitet werden. <a href="/datenschutz/">Datenschutz</a></p>
+        <button class="btn btn-primary btn-full" type="submit">Nachricht senden</button>
+      </form>
+      <div class="form-success hidden" id="form-success" role="status" aria-live="polite">
+        <h3>Vielen Dank für Ihre Nachricht</h3>
+        <p>Ich werde mich persönlich zurückmelden.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="premium-footer"><p><strong>CaseKompass</strong> · Private Alltagsbegleitung im Raum Heidenheim</p><p><a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></p></footer>
+  <div class="mobile-cta premium-mobile-cta" aria-label="Schnellkontakt"><a class="mobile-cta-btn mobile-cta-call" href="tel:+4915226560105">Anrufen</a><a class="mobile-cta-btn mobile-cta-wa" href="https://wa.me/4915226560105" target="_blank" rel="noopener">WhatsApp</a></div>
+  <script src="/assets/script.js"></script>
+</body>
+</html>
