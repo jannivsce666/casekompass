@@ -4595,3 +4595,583 @@ img { max-width: 100%; display: block; height: auto; }
     height: 56px;
   }
 }
+
+/* ── Ergomobil-inspired CaseKompass homepage ── */
+.ergo-home {
+  background:
+    radial-gradient(circle at 86% 8%, rgba(184, 149, 106, 0.12), transparent 28%),
+    linear-gradient(180deg, #fffdf9 0%, #faf5ec 100%);
+}
+
+.ergo-home .ergo-header {
+  height: 72px;
+  background: rgba(255, 253, 249, 0.96);
+  box-shadow: 0 10px 34px rgba(5, 61, 52, 0.07);
+}
+
+.ergo-home .brand span::after {
+  content: "Orientierung. Entlastung. Vertrauen.";
+  display: block;
+  margin-top: -2px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0;
+}
+
+.ergo-home .main-nav {
+  gap: clamp(14px, 1.8vw, 26px);
+  font-size: 13px;
+}
+
+.ergo-home .nav-cta {
+  border-radius: 10px;
+  padding: 12px 18px;
+}
+
+.ergo-hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 86px) var(--page-gutter) clamp(42px, 7vw, 76px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.82fr);
+  gap: clamp(42px, 7vw, 86px);
+  align-items: center;
+}
+
+.ergo-eyebrow {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.ergo-hero h1,
+.ergo-section-head h2,
+.ergo-case-copy h2,
+.ergo-price-intro h2,
+.ergo-contact-cta h2 {
+  font-family: var(--font-display);
+  color: var(--green);
+  letter-spacing: -0.035em;
+}
+
+.ergo-hero h1 {
+  margin: 0 0 20px;
+  max-width: 12.5ch;
+  font-size: clamp(42px, 5.4vw, 66px);
+  line-height: 1.02;
+}
+
+.ergo-hero-copy > p:not(.ergo-eyebrow) {
+  margin: 0 0 24px;
+  max-width: 56ch;
+  color: #405953;
+  font-size: clamp(16px, 1.7vw, 18px);
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.ergo-place-chips,
+.ergo-area-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.ergo-place-chips span,
+.ergo-area-chips span {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(232, 239, 233, 0.9);
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ergo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ergo-actions .btn {
+  border-radius: 10px;
+}
+
+.ergo-hero-card {
+  position: relative;
+  border-radius: 30px;
+  background: #fff;
+  padding: 12px;
+  box-shadow: 0 28px 80px rgba(5, 61, 52, 0.12);
+}
+
+.ergo-hero-card img {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  object-position: 82% 22%;
+  border-radius: 24px;
+}
+
+.ergo-hero-note {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 253, 249, 0.92);
+  box-shadow: 0 14px 30px rgba(5, 61, 52, 0.12);
+}
+
+.ergo-hero-note strong {
+  display: block;
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+.ergo-hero-note span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ergo-expertise,
+.ergo-services,
+.ergo-process,
+.ergo-area,
+.ergo-pricing {
+  padding: clamp(58px, 8vw, 94px) var(--page-gutter);
+}
+
+.ergo-section-head {
+  max-width: 760px;
+  margin: 0 auto clamp(34px, 5vw, 54px);
+  text-align: center;
+}
+
+.ergo-section-head h2,
+.ergo-price-intro h2,
+.ergo-contact-cta h2 {
+  margin: 0 0 14px;
+  font-size: clamp(31px, 4.2vw, 48px);
+  line-height: 1.08;
+}
+
+.ergo-section-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.ergo-text-panel {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 42px);
+  padding: clamp(28px, 4vw, 42px);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  box-shadow: 0 20px 58px rgba(5, 61, 52, 0.055);
+}
+
+.ergo-text-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.ergo-services {
+  background: rgba(232, 239, 233, 0.42);
+}
+
+.ergo-service-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 24px);
+}
+
+.ergo-service-card {
+  min-width: 0;
+  padding: clamp(26px, 3.4vw, 38px);
+  border-radius: 26px;
+  background: #fff;
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  box-shadow: 0 18px 52px rgba(5, 61, 52, 0.06);
+}
+
+.ergo-service-card > span {
+  display: inline-flex;
+  margin-bottom: 28px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ergo-service-card h3 {
+  margin: 0 0 12px;
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.12;
+}
+
+.ergo-service-card p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.ergo-service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 9px;
+}
+
+.ergo-service-card li {
+  position: relative;
+  padding-left: 21px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ergo-service-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--green-2);
+  font-weight: 800;
+}
+
+.ergo-case-add {
+  max-width: 1120px;
+  margin: clamp(42px, 7vw, 74px) auto;
+  padding: clamp(28px, 4vw, 42px) var(--page-gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  border-top: 1px solid rgba(5, 61, 52, 0.1);
+  border-bottom: 1px solid rgba(5, 61, 52, 0.1);
+}
+
+.ergo-case-copy h2 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.1;
+}
+
+.ergo-case-copy p:not(.ergo-eyebrow) {
+  margin: 0;
+  max-width: 720px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.ergo-process-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  background: #fff;
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  box-shadow: 0 18px 52px rgba(5, 61, 52, 0.055);
+}
+
+.ergo-process-grid article {
+  padding: clamp(24px, 3vw, 34px);
+  border-right: 1px solid var(--line);
+}
+
+.ergo-process-grid article:last-child {
+  border-right: 0;
+}
+
+.ergo-process-grid span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ergo-process-grid h3 {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 17px;
+}
+
+.ergo-process-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.ergo-area {
+  background: rgba(232, 239, 233, 0.38);
+}
+
+.ergo-area-chips {
+  justify-content: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.ergo-pricing {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.6fr) minmax(0, 1.4fr);
+  gap: clamp(34px, 5vw, 62px);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ergo-price-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.ergo-price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ergo-price-grid article {
+  position: relative;
+  padding: 28px 24px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  box-shadow: 0 18px 52px rgba(5, 61, 52, 0.055);
+  text-align: center;
+}
+
+.ergo-price-grid small {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -30px;
+  padding: 8px;
+  border-radius: 12px 12px 0 0;
+  background: var(--gold);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ergo-price-grid h3 {
+  margin: 0 0 14px;
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.12;
+}
+
+.ergo-price-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--green);
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 46px);
+  line-height: 1;
+}
+
+.ergo-price-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.ergo-price-featured {
+  border-color: var(--gold) !important;
+  transform: translateY(12px);
+}
+
+.ergo-note {
+  grid-column: 2;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.ergo-contact-cta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  padding: clamp(42px, 7vw, 68px) var(--page-gutter);
+  background: linear-gradient(135deg, #073f35 0%, #052e28 100%);
+  color: #fff;
+}
+
+.ergo-contact-cta .ergo-eyebrow {
+  color: var(--gold-light);
+}
+
+.ergo-contact-cta h2 {
+  margin: 0 0 10px;
+  max-width: 620px;
+  color: #fff;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+}
+
+.ergo-contact-cta p:not(.ergo-eyebrow) {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ergo-contact-actions {
+  display: grid;
+  gap: 12px;
+  justify-items: end;
+  white-space: nowrap;
+}
+
+.ergo-contact-actions > a:first-child {
+  color: #fff;
+  font-weight: 800;
+}
+
+.ergo-footer {
+  padding-top: 24px;
+}
+
+@media (max-width: 1120px) {
+  .ergo-home .main-nav {
+    gap: 12px;
+    font-size: 12px;
+  }
+
+  .ergo-home .nav-cta {
+    padding: 10px 14px;
+  }
+
+  .ergo-price-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ergo-price-featured {
+    transform: none;
+    margin-top: 30px;
+    order: -1;
+  }
+}
+
+@media (max-width: 960px) {
+  .ergo-home .brand span::after {
+    display: none;
+  }
+
+  .ergo-hero,
+  .ergo-text-panel,
+  .ergo-case-add,
+  .ergo-process-grid,
+  .ergo-pricing,
+  .ergo-contact-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .ergo-hero-card {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .ergo-service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ergo-process-grid article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ergo-process-grid article:last-child {
+    border-bottom: 0;
+  }
+
+  .ergo-note {
+    grid-column: auto;
+  }
+
+  .ergo-contact-actions {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .ergo-home .ergo-header {
+    height: var(--header-mobile-h);
+  }
+
+  .ergo-hero {
+    padding-top: 38px;
+    gap: 32px;
+  }
+
+  .ergo-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(34px, 10vw, 44px);
+    line-height: 1.08;
+  }
+
+  .ergo-hero-copy > p:not(.ergo-eyebrow) {
+    font-size: 14px;
+  }
+
+  .ergo-actions {
+    flex-direction: column;
+  }
+
+  .ergo-actions .btn,
+  .ergo-case-add .btn,
+  .ergo-contact-actions .btn {
+    width: 100%;
+  }
+
+  .ergo-contact-actions {
+    width: 100%;
+  }
+
+  .ergo-expertise,
+  .ergo-services,
+  .ergo-process,
+  .ergo-area,
+  .ergo-pricing {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+}
