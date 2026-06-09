@@ -4278,3 +4278,320 @@ img { max-width: 100%; display: block; height: auto; }
     margin-top: 0;
   }
 }
+
+/* Responsive cleanup for reference homepage */
+.reference-home .site-header {
+  padding-left: clamp(20px, 4vw, 64px);
+  padding-right: clamp(20px, 4vw, 64px);
+}
+
+.ref-hero {
+  min-height: auto;
+  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.9fr);
+  max-width: 1280px;
+  margin: 0 auto;
+  background:
+    linear-gradient(90deg, rgba(255, 253, 249, 0.98) 0%, rgba(255, 253, 249, 0.94) 42%, rgba(255, 253, 249, 0.22) 70%),
+    url("/assets/hero-banner.png") center / cover no-repeat;
+}
+
+.ref-hero-copy {
+  padding-top: clamp(54px, 7vw, 86px);
+  padding-bottom: clamp(54px, 7vw, 86px);
+}
+
+.ref-hero h1 {
+  max-width: 12ch;
+  font-size: clamp(42px, 4.8vw, 60px);
+  line-height: 1.06;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+
+.ref-hero p:not(.ref-kicker):not(.ref-trust) {
+  max-width: 46ch;
+  font-size: 15px;
+}
+
+.ref-hero-photo {
+  width: min(420px, 36vw);
+  align-self: center;
+  margin-right: clamp(24px, 4vw, 58px);
+}
+
+.ref-hero-photo img {
+  border-radius: 22px;
+}
+
+.ref-service-strip {
+  grid-template-columns: repeat(3, minmax(230px, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  margin-top: clamp(32px, 5vw, 58px);
+}
+
+.ref-service-card {
+  min-height: 180px;
+  padding: clamp(22px, 2.8vw, 30px);
+}
+
+.ref-service-card span {
+  margin-bottom: clamp(18px, 3vw, 28px);
+}
+
+.ref-service-card h2 {
+  font-size: clamp(21px, 2.2vw, 26px);
+  line-height: 1.16;
+  overflow-wrap: anywhere;
+}
+
+.ref-service-card p {
+  max-width: 28ch;
+}
+
+.ref-case-note {
+  max-width: 1120px;
+  margin: clamp(18px, 3vw, 28px) auto 0;
+  padding: 0 var(--page-gutter);
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 1fr) auto;
+  gap: clamp(16px, 3vw, 34px);
+  align-items: center;
+}
+
+.ref-case-note > * {
+  min-width: 0;
+}
+
+.ref-case-note div {
+  padding: 22px 24px;
+  border-radius: 14px 0 0 14px;
+  background: rgba(251, 244, 234, 0.85);
+  border: 1px solid rgba(5, 61, 52, 0.08);
+  border-right: 0;
+}
+
+.ref-case-note h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--green);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.15;
+}
+
+.ref-case-note p:not(.ref-kicker) {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.ref-case-note a {
+  justify-self: end;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ref-process {
+  padding-top: clamp(42px, 6vw, 70px);
+}
+
+.ref-section-title h2 {
+  font-size: clamp(24px, 2.7vw, 32px);
+  line-height: 1.2;
+}
+
+.ref-process-panel {
+  max-width: 1000px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ref-process-panel article {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 30px);
+}
+
+.ref-offers {
+  grid-template-columns: minmax(260px, 0.52fr) minmax(0, 1.48fr);
+  gap: clamp(28px, 5vw, 56px);
+  padding-top: clamp(48px, 7vw, 78px);
+}
+
+.ref-offer-intro h2 {
+  font-size: clamp(32px, 3.6vw, 44px);
+  line-height: 1.08;
+}
+
+.ref-price-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+.ref-price-card {
+  min-width: 0;
+  padding: clamp(22px, 2.4vw, 28px) clamp(18px, 2vw, 24px);
+}
+
+.ref-price-card h3 {
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.18;
+}
+
+.ref-price-card strong {
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: 1.05;
+}
+
+.ref-price-card span {
+  min-height: 0;
+  line-height: 1.4;
+}
+
+.ref-price-card-featured {
+  transform: translateY(-12px);
+}
+
+.ref-final-cta h2 {
+  max-width: 620px;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.12;
+}
+
+@media (max-width: 1180px) {
+  .reference-home .main-nav {
+    gap: 14px;
+    font-size: 12px;
+  }
+
+  .reference-home .nav-cta {
+    padding: 10px 14px;
+  }
+
+  .ref-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr);
+  }
+
+  .ref-hero h1 {
+    font-size: clamp(40px, 5vw, 54px);
+  }
+
+  .ref-price-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ref-price-card-featured {
+    order: -1;
+    grid-column: 1 / -1;
+    transform: none;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 980px) {
+  .ref-hero {
+    grid-template-columns: 1fr;
+    background:
+      linear-gradient(180deg, rgba(255, 253, 249, 0.98) 0%, rgba(255, 253, 249, 0.94) 56%, rgba(255, 253, 249, 0.72) 100%),
+      url("/assets/hero-banner.png") center / cover no-repeat;
+  }
+
+  .ref-hero h1 {
+    max-width: 13ch;
+  }
+
+  .ref-hero-photo {
+    display: none;
+  }
+
+  .ref-service-strip,
+  .ref-process-panel,
+  .ref-offers,
+  .ref-final-cta {
+    grid-template-columns: 1fr;
+  }
+
+  .ref-case-note {
+    grid-template-columns: 1fr;
+  }
+
+  .ref-case-note div {
+    border-radius: 14px;
+    border-right: 1px solid rgba(5, 61, 52, 0.08);
+  }
+
+  .ref-case-note a {
+    justify-self: start;
+  }
+
+  .ref-process-panel article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .ref-process-panel article:last-child {
+    border-bottom: 0;
+  }
+
+  .ref-final-contact {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 720px) {
+  .ref-service-strip,
+  .ref-price-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .ref-price-card-featured {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .reference-home .ref-header {
+    height: var(--header-mobile-h);
+  }
+
+  .ref-hero-copy {
+    padding-top: 40px;
+    padding-bottom: 42px;
+  }
+
+  .ref-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(34px, 10vw, 44px);
+    line-height: 1.08;
+  }
+
+  .ref-hero p:not(.ref-kicker):not(.ref-trust) {
+    font-size: 14px;
+  }
+
+  .ref-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ref-actions .btn {
+    width: 100%;
+  }
+
+  .ref-service-card {
+    min-height: 0;
+  }
+
+  .ref-final-cta {
+    gap: 18px;
+  }
+
+  .ref-compass {
+    width: 56px;
+    height: 56px;
+  }
+}
