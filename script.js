@@ -248,10 +248,10 @@
       
       // Validierung
       const formData = new FormData(form);
-      const name = formData.get('👤 Patient/Anfragender')?.toString().trim();
-      const email = formData.get('📧 E-Mail')?.toString().trim();
-      const message = formData.get('💬 Nachricht')?.toString().trim();
-      const consent = formData.get('consent');
+      const name = formData.get('name')?.toString().trim();
+      const email = formData.get('email')?.toString().trim();
+      const message = formData.get('message')?.toString().trim();
+      const consent = formData.get('datenschutz_zustimmung');
       
       if (!name || !email || !message || !consent) {
         feedback.style.display = 'block';
