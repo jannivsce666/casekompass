@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="description" content="Plan erstellen: Angaben machen und einen groben Versorgungsplan erhalten. Premium/Voll nach Zahlung & Begleitung." />
+  <title>Plan erstellen | Case Management Begleitung</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+
+<header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Case Management Begleitung Startseite">
+        <img src="./images/logo.png" alt="Case Management Begleitung Logo">
+        <span>Case Management Begleitung</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Navigation umschalten" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" role="navigation">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="leistungen.html" class="active">Leistungen</a></li>
+<li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<main class="leistungen-page">
+    <section class="page-hero">
+      <div class="container" data-aos="fade-up">
+        <h1><i class="fa-solid fa-clipboard-list"></i> Groben Plan erstellen</h1>
+        <p class="hero-subtitle">
+          Gib kurz deine Situation an. Du bekommst sofort einen groben Plan (Prioritäten & nächste Schritte).
+          Premium/Voll buchst du anschließend für aktive Koordination.
+        </p>
+      </div>
+    </section>
+
+    <section class="container" style="padding: 30px 0 60px;" data-aos="fade-up" data-aos-delay="80">
+      <div class="info-box">
+        <strong>Hinweis:</strong> Der automatische Grobplan ist eine Orientierung. Für aktive Kontaktaufnahme/Terminorganisation bitte Premium/Voll buchen.
+      </div>
+
+      <form id="basicPlanForm" class="contact-form" style="margin-top:18px;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="plz">PLZ <span style="color:#b91c1c">*</span></label>
+            <input id="plz" name="plz" type="text" required placeholder="z. B. 895xx">
+          </div>
+          <div class="form-group">
+            <label for="pflegegrad">Pflegegrad</label>
+            <select id="pflegegrad" name="pflegegrad">
+              <option value="unbekannt">Unbekannt</option>
+              <option value="beantragt">Beantragt</option>
+              <option value="pg1">Pflegegrad 1</option>
+              <option value="pg2">Pflegegrad 2</option>
+              <option value="pg3">Pflegegrad 3</option>
+              <option value="pg4">Pflegegrad 4</option>
+              <option value="pg5">Pflegegrad 5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="situation">Kurzbeschreibung</label>
+          <textarea id="situation" name="situation" rows="4" placeholder="z. B. nach Klinikentlassung, Sturzrisiko, braucht Hilfe zuhause..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="consent" required>
+            Ich bin berechtigt, diese Angaben zu machen.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Grobplan anzeigen</button>
+      </form>
+
+      <div id="basicPlanOut" style="display:none; margin-top:18px;" class="info-box"></div>
+
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn-secondary" href="leistungen.html">Pakete ansehen</a>
+        <a class="btn-primary" href="kontakt.html#anfrage">Premium/Voll anfragen</a>
+      </div>
+
+      <hr style="margin:30px 0; opacity:.25">
+
+      <div class="info-box" style="opacity:.95">
+        <strong>Technische Platzhalter (für später):</strong><br>
+        Keys gehören NICHT in den Browser. Für GPT/Google/Firebase nutze serverseitige Endpunkte (z. B. Netlify Functions).
+        <pre style="white-space:pre-wrap;margin:10px 0 0; background:#0b1220;color:#e5e7eb;padding:12px;border-radius:12px;overflow:auto;">
+OPENAI_API_KEY=...
+GOOGLE_MAPS_API_KEY=...
+FIREBASE_API_KEY=...
+FIREBASE_AUTH_DOMAIN=...
+FIREBASE_PROJECT_ID=...
+        </pre>
+      </div>
+    </section>
+  </main>
+
+<footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-box">
+        <h4>Case Management Begleitung</h4>
+        <p>Mobile alltagsbegleitende Praxis für Herbrechtingen & Umgebung.</p>
+      </div>
+      <div class="footer-box">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li><i class="fa-solid fa-location-dot"></i> Albstr. 5, 89542 Herbrechtingen</li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+4915234551137">01523 4551137</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@Alltagsbegleitung & Case management-mobil.de">info@Alltagsbegleitung & Case management-mobil.de</a></li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Öffnungszeiten</h4>
+        <ul class="footer-list">
+          <li>Mo–Fr: 09:00–17:00 Uhr</li>
+          <li>und nach Vereinbarung</li>
+        </ul>
+      </div>
+      <div class="footer-box">
+        <h4>Folgen Sie uns</h4>
+        <div class="socials">
+          <a href="#" aria-label="Instagram" class="social social-instagram">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+          </a>
+          <a href="#" aria-label="Facebook" class="social social-facebook">
+            <i class="fa-brands fa-facebook"></i>
+            <span class="social-tooltip">Facebook</span>
+          </a>
+          <a href="#" aria-label="WhatsApp" class="social social-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-tooltip">WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-legal">
+      <small>© <span id="year"></span> Case Management Begleitung · Alle Rechte vorbehalten</small>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./script.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+
+  <script>
+    function toggleFAQ(button) {
+      const faqItem = button.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+      
+      button.classList.toggle('active');
+      answer.classList.toggle('active');
+      
+      if (answer.classList.contains('active')) {
+        icon.style.transform = 'rotate(180deg)';
+      } else {
+        icon.style.transform = 'rotate(0deg)';
+      }
+    }
+  </script>
+
+  <!-- Sprite-Killer -->
+  <style>
+    .floating-sprite,.sprite,.sprite-hand,.sprite-cross,[data-sprite],.sprites-wrapper{display:none!important;visibility:hidden!important;pointer-events:none!important}
+  </style>
+</body>
+</html>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once:true, duration:650 });
+
+  const form = document.getElementById("basicPlanForm");
+  const out = document.getElementById("basicPlanOut");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const plz = document.getElementById("plz").value.trim();
+    const pg = document.getElementById("pflegegrad").value;
+    const sit = document.getElementById("situation").value.trim();
+
+    const esc = (s) => String(s || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+    const lines = [];
+    lines.push("<h3 style='margin-top:0'>Dein Grobplan (Demo)</h3>");
+    lines.push("<ul style='margin:10px 0 0; padding-left:18px'>");
+    lines.push("<li><strong>Sofort:</strong> Hausarzt / behandelnde Stelle kontaktieren, Verordnungen & Nachsorge klären.</li>");
+    if (pg === "unbekannt" || pg === "beantragt") lines.push("<li><strong>Sofort:</strong> Pflegegrad-Unterlagen sammeln, Pflegetagebuch beginnen.</li>");
+    lines.push("<li><strong>Nächste 2 Wochen:</strong> Therapien (Ergo/Physio/Logo) prüfen und Termine anfragen.</li>");
+    lines.push("<li><strong>Nächste 2 Wochen:</strong> Pflege/Haushaltshilfe/Entlastungsleistungen prüfen.</li>");
+    lines.push("</ul>");
+    lines.push("<p style='margin-top:10px'><strong>PLZ:</strong> " + esc(plz) + " · <strong>Pflegegrad:</strong> " + esc(pg) + "</p>");
+    if (sit) lines.push("<p><strong>Hinweis:</strong> " + esc(sit) + "</p>");
+    out.innerHTML = lines.join("");
+    out.style.display = "block";
+    out.scrollIntoView({ behavior:"smooth" });
+  });
+</script>
+</body>
+</html>
+
