@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Plan erstellen | Case Management Begleitung" description="">
+<main class="leistungen-page">
+    <section class="page-hero">
+      <div class="container" data-aos="fade-up">
+        <h1><i class="fa-solid fa-clipboard-list"></i> Groben Plan erstellen</h1>
+        <p class="hero-subtitle">
+          Gib kurz deine Situation an. Du bekommst sofort einen groben Plan (Prioritäten & nächste Schritte).
+          Premium/Voll buchst du anschließend für aktive Koordination.
+        </p>
+      </div>
+    </section>
+
+    <section class="container" style="padding: 30px 0 60px;" data-aos="fade-up" data-aos-delay="80">
+      <div class="info-box">
+        <strong>Hinweis:</strong> Der automatische Grobplan ist eine Orientierung. Für aktive Kontaktaufnahme/Terminorganisation bitte Premium/Voll buchen.
+      </div>
+
+      <form id="basicPlanForm" class="contact-form" style="margin-top:18px;">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="plz">PLZ <span style="color:#b91c1c">*</span></label>
+            <input id="plz" name="plz" type="text" required placeholder="z. B. 895xx">
+          </div>
+          <div class="form-group">
+            <label for="pflegegrad">Pflegegrad</label>
+            <select id="pflegegrad" name="pflegegrad">
+              <option value="unbekannt">Unbekannt</option>
+              <option value="beantragt">Beantragt</option>
+              <option value="pg1">Pflegegrad 1</option>
+              <option value="pg2">Pflegegrad 2</option>
+              <option value="pg3">Pflegegrad 3</option>
+              <option value="pg4">Pflegegrad 4</option>
+              <option value="pg5">Pflegegrad 5</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="situation">Kurzbeschreibung</label>
+          <textarea id="situation" name="situation" rows="4" placeholder="z. B. nach Klinikentlassung, Sturzrisiko, braucht Hilfe zuhause..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="consent" required>
+            Ich bin berechtigt, diese Angaben zu machen.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Grobplan anzeigen</button>
+      </form>
+
+      <div id="basicPlanOut" style="display:none; margin-top:18px;" class="info-box"></div>
+
+      <div style="margin-top:18px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn-secondary" href="/leistungen">Pakete ansehen</a>
+        <a class="btn-primary" href="/kontakt#anfrage">Premium/Voll anfragen</a>
+      </div>
+
+      <hr style="margin:30px 0; opacity:.25">
+
+      <div class="info-box" style="opacity:.95">
+        <strong>Technische Platzhalter (für später):</strong><br>
+        Keys gehören NICHT in den Browser. Für GPT/Google/Firebase nutze serverseitige Endpunkte (z. B. Netlify Functions).
+        <pre style="white-space:pre-wrap;margin:10px 0 0; background:#0b1220;color:#e5e7eb;padding:12px;border-radius:12px;overflow:auto;">
+OPENAI_API_KEY=...
+GOOGLE_MAPS_API_KEY=...
+FIREBASE_API_KEY=...
+FIREBASE_AUTH_DOMAIN=...
+FIREBASE_PROJECT_ID=...
+        </pre>
+      </div>
+    </section>
+  </main>
+</Layout>
